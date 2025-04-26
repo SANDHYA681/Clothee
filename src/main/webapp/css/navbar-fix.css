@@ -1,0 +1,92 @@
+/**
+ * Navbar Fix CSS
+ *
+ * This CSS file contains fixes for navbar clickability issues
+ */
+
+/* Ensure the site header is above all other elements */
+.site-header {
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+}
+
+/* Ensure all navbar elements are clickable */
+.header-container,
+.logo,
+.nav-icons,
+.nav-icon {
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+  position: relative;
+  cursor: pointer !important;
+}
+
+/* Enhance the nav-icon hover effect */
+.nav-icon:hover {
+  color: #fff !important;
+  background-color: #ff6b6b !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 8px rgba(255, 107, 107, 0.3) !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Fix for any potential overlapping elements */
+.page-header::before {
+  z-index: -1 !important;
+}
+
+.page-header-content {
+  z-index: 2 !important;
+}
+
+/* Ensure body doesn't have any overlays */
+body::before,
+body::after {
+  display: none !important;
+}
+
+/* Fix for any potential overlapping elements in the hero section */
+.hero-slider .slide-overlay {
+  z-index: 1 !important;
+}
+
+.hero-slider .slide-content {
+  z-index: 2 !important;
+}
+
+/* Fix for mobile menu button */
+.mobile-menu-btn {
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+  position: relative;
+}
+
+/* Mobile menu styles */
+@media (max-width: 768px) {
+  .nav-icons.mobile-active {
+    display: flex !important;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    padding: 20px 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    z-index: 9998 !important;
+    align-items: center;
+  }
+
+  .nav-icon {
+    margin: 5px 0;
+  }
+}
+
+/* Debug outline to see clickable areas */
+.debug-mode .site-header,
+.debug-mode .header-container,
+.debug-mode .logo,
+.debug-mode .nav-icons,
+.debug-mode .nav-icon {
+  outline: 2px solid red;
+}

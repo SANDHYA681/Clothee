@@ -1,0 +1,353 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
+
+import model.Order;
+import model.OrderItem;
+import util.DBConnection;
+
+/**
+ * Order Data Access Object
+ */
+public class OrderDAO {
+
+    /**
+     * Get all orders
+     * @return List of all orders
+     */
+    public List<Order> getAllOrders() {
+        List<Order> orders = new ArrayList<>();
+        String query = "SELECT o.*, u.first_name, u.last_name, p.payment_method, p.status as payment_status " +
+                      "FROM orders o " +
+                      "LEFT JOIN users u ON o.user_id = u.id " +
+                      "LEFT JOIN payments p ON o.id = p.order_id " +
+                      "ORDER BY o.order_placed_date DESC";
+
+        try (Connection conn = DBConnection.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+
+            while (rs.next()) {
+                Order order = extractOrderFromResultSet(rs);
+                orders.add(order);
+            }
+
+            // Load order items for each order
+            for (Order order : orders) {
+                loadOrderItems(order);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return orders;
+    }
+
+    /**
+     * Get orders by user ID
+     * @param userId User ID
+     * @return List of orders for the specified user
+     */
+    public List<Order> getOrdersByUserId(int userId) {
+        List<Order> orders = new ArrayList<>();
+        String query = "SELECT o.*, u.first_name, u.last_name, p.payment_method, p.status as payment_status " +
+                      "FROM orders o " +
+                      "LEFT JOIN users u ON o.user_id = u.id " +
+                      "LEFT JOIN payments p ON o.id = p.order_id " +
+                      "WHERE o.user_id = ? " +
+                      "ORDER BY o.order_placed_date DESC";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setInt(1, userId);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Order order = extractOrderFromResultSet(rs);
+                    orders.add(order);
+                }
+            }
+
+            // Load order items for each order
+            for (Order order : orders) {
+                loadOrderItems(order);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return orders;
+    }
+
+    /**
+     * Get order by ID
+     * @param orderId Order ID
+     * @return Order object if found, null otherwise
+     */
+    public Order getOrderById(int orderId) {
+        String query = "SELECT o.*, u.first_name, u.last_name, p.payment_method, p.status as payment_status, " +
+                      "s.shipping_address " +
+                      "FROM orders o " +
+                      "LEFT JOIN users u ON o.user_id = u.id " +
+                      "LEFT JOIN payments p ON o.id = p.order_id " +
+                      "LEFT JOIN shipping s ON o.id = s.order_id " +
+                      "WHERE o.id = ?";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setInt(1, orderId);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    Order order = extractOrderFromResultSet(rs);
+                    order.setShippingAddress(rs.getString("shipping_address"));
+                    
+                    // Load order items
+                    loadOrderItems(order);
+                    
+                    return order;
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    /**
+     * Update order status
+     * @param orderId Order ID
+     * @param status New status
+     * @return true if successful, false otherwise
+     */
+    public boolean updateOrderStatus(int orderId, String status) {
+        String query = "UPDATE orders SET status = ? WHERE id = ?";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setString(1, status);
+            stmt.setInt(2, orderId);
+
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
+     * Create a new order
+     * @param order Order object to create
+     * @return true if successful, false otherwise
+     */
+    public boolean createOrder(Order order) {
+        String query = "INSERT INTO orders (user_id, total_price, order_placed_date, status) VALUES (?, ?, ?, ?)";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+
+            stmt.setInt(1, order.getUserId());
+            stmt.setDouble(2, order.getTotalPrice());
+            stmt.setTimestamp(3, new Timestamp(order.getOrderDate().getTime()));
+            stmt.setString(4, order.getStatus());
+
+            int rowsAffected = stmt.executeUpdate();
+
+            if (rowsAffected > 0) {
+                try (ResultSet rs = stmt.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        int orderId = rs.getInt(1);
+                        order.setId(orderId);
+                        
+                        // Insert order items
+                        if (order.getOrderItems() != null && !order.getOrderItems().isEmpty()) {
+                            for (OrderItem item : order.getOrderItems()) {
+                                item.setOrderId(orderId);
+                                insertOrderItem(conn, item);
+                            }
+                        }
+                        
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
+     * Insert order item
+     * @param conn Database connection
+     * @param item OrderItem to insert
+     * @return true if successful, false otherwise
+     * @throws SQLException if error occurs
+     */
+    private boolean insertOrderItem(Connection conn, OrderItem item) throws SQLException {
+        String query = "INSERT INTO order_items (order_id, product_id, product_name, price, quantity, image_url) " +
+                      "VALUES (?, ?, ?, ?, ?, ?)";
+
+        try (PreparedStatement stmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+            stmt.setInt(1, item.getOrderId());
+            stmt.setInt(2, item.getProductId());
+            stmt.setString(3, item.getProductName());
+            stmt.setDouble(4, item.getPrice());
+            stmt.setInt(5, item.getQuantity());
+            stmt.setString(6, item.getImageUrl());
+
+            int rowsAffected = stmt.executeUpdate();
+
+            if (rowsAffected > 0) {
+                try (ResultSet rs = stmt.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        item.setId(rs.getInt(1));
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+    }
+
+    /**
+     * Load order items for an order
+     * @param order Order to load items for
+     */
+    private void loadOrderItems(Order order) {
+        String query = "SELECT * FROM order_items WHERE order_id = ?";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setInt(1, order.getId());
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    OrderItem item = new OrderItem();
+                    item.setId(rs.getInt("id"));
+                    item.setOrderId(rs.getInt("order_id"));
+                    item.setProductId(rs.getInt("product_id"));
+                    item.setProductName(rs.getString("product_name"));
+                    item.setPrice(rs.getDouble("price"));
+                    item.setQuantity(rs.getInt("quantity"));
+                    item.setImageUrl(rs.getString("image_url"));
+                    
+                    order.addOrderItem(item);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Helper method to extract order from result set
+     * @param rs Result set
+     * @return Order object
+     * @throws SQLException if error occurs
+     */
+    private Order extractOrderFromResultSet(ResultSet rs) throws SQLException {
+        Order order = new Order();
+        order.setId(rs.getInt("id"));
+        order.setUserId(rs.getInt("user_id"));
+        order.setTotalPrice(rs.getDouble("total_price"));
+        order.setOrderDate(rs.getTimestamp("order_placed_date"));
+        order.setStatus(rs.getString("status"));
+        
+        // Set user name if available
+        String firstName = rs.getString("first_name");
+        String lastName = rs.getString("last_name");
+        if (firstName != null && lastName != null) {
+            order.setUserName(firstName + " " + lastName);
+        } else {
+            order.setUserName("User #" + order.getUserId());
+        }
+        
+        // Set payment info if available
+        order.setPaymentMethod(rs.getString("payment_method"));
+        order.setPaymentStatus(rs.getString("payment_status"));
+        
+        return order;
+    }
+
+    /**
+     * Get order count
+     * @return Total number of orders
+     */
+    public int getOrderCount() {
+        String query = "SELECT COUNT(*) FROM orders";
+
+        try (Connection conn = DBConnection.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
+    /**
+     * Get recent orders
+     * @param limit Number of orders to return
+     * @return List of recent orders
+     */
+    public List<Order> getRecentOrders(int limit) {
+        List<Order> orders = new ArrayList<>();
+        String query = "SELECT o.*, u.first_name, u.last_name, p.payment_method, p.status as payment_status " +
+                      "FROM orders o " +
+                      "LEFT JOIN users u ON o.user_id = u.id " +
+                      "LEFT JOIN payments p ON o.id = p.order_id " +
+                      "ORDER BY o.order_placed_date DESC LIMIT ?";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setInt(1, limit);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Order order = extractOrderFromResultSet(rs);
+                    orders.add(order);
+                }
+            }
+
+            // Load order items for each order
+            for (Order order : orders) {
+                loadOrderItems(order);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return orders;
+    }
+}
