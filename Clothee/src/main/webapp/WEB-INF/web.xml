@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+
+    <display-name>Clothee E-Commerce</display-name>
+
+    <!-- Welcome File List -->
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+    <!-- Servlet Mappings -->
+    <servlet>
+        <servlet-name>CustomerReviewServlet</servlet-name>
+        <servlet-class>controller.CustomerReviewServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CustomerReviewServlet</servlet-name>
+        <url-pattern>/CustomerReviewServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ProfileServlet</servlet-name>
+        <servlet-class>controller.ProfileServlet</servlet-class>
+        <multipart-config>
+            <max-file-size>5242880</max-file-size><!-- 5MB -->
+            <max-request-size>10485760</max-request-size><!-- 10MB -->
+            <file-size-threshold>1048576</file-size-threshold><!-- 1MB -->
+        </multipart-config>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProfileServlet</servlet-name>
+        <url-pattern>/ProfileServlet</url-pattern>
+    </servlet-mapping>
+    <!-- Removed duplicate mapping for UpdateProfileServlet -->
+
+    <!-- Wishlist Servlet removed -->
+
+    <!-- Admin User Servlet -->
+    <servlet>
+        <servlet-name>AdminUserServlet</servlet-name>
+        <servlet-class>controller.AdminUserServlet</servlet-class>
+        <multipart-config>
+            <max-file-size>5242880</max-file-size><!-- 5MB -->
+            <max-request-size>10485760</max-request-size><!-- 10MB -->
+            <file-size-threshold>1048576</file-size-threshold><!-- 1MB -->
+        </multipart-config>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminUserServlet</servlet-name>
+        <url-pattern>/AdminUserServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminUserServlet</servlet-name>
+        <url-pattern>/admin/AdminUserServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Dashboard Settings Servlet removed -->
+
+    <!-- User Servlet -->
+    <servlet>
+        <servlet-name>UserServlet</servlet-name>
+        <servlet-class>controller.UserServlet</servlet-class>
+        <multipart-config>
+            <max-file-size>5242880</max-file-size><!-- 5MB -->
+            <max-request-size>10485760</max-request-size><!-- 10MB -->
+            <file-size-threshold>1048576</file-size-threshold><!-- 1MB -->
+        </multipart-config>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserServlet</servlet-name>
+        <url-pattern>/UserServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserServlet</servlet-name>
+        <url-pattern>/user/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- Login Servlet -->
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>controller.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Cart Servlet -->
+    <servlet>
+        <servlet-name>CartServlet</servlet-name>
+        <servlet-class>controller.CartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CartServlet</servlet-name>
+        <url-pattern>/CartServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Action Servlet -->
+    <servlet>
+        <servlet-name>ActionServlet</servlet-name>
+        <servlet-class>controller.ActionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ActionServlet</servlet-name>
+        <url-pattern>/ActionServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- About Servlet -->
+    <servlet>
+        <servlet-name>AboutServlet</servlet-name>
+        <servlet-class>controller.AboutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AboutServlet</servlet-name>
+        <url-pattern>/AboutServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Admin Action Servlet -->
+    <servlet>
+        <servlet-name>AdminActionServlet</servlet-name>
+        <servlet-class>controller.AdminActionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminActionServlet</servlet-name>
+        <url-pattern>/AdminActionServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminActionServlet</servlet-name>
+        <url-pattern>/admin/AdminActionServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Payment Servlet -->
+    <servlet>
+        <servlet-name>PaymentServlet</servlet-name>
+        <servlet-class>controller.PaymentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PaymentServlet</servlet-name>
+        <url-pattern>/PaymentServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Order Confirmation Servlet -->
+    <servlet>
+        <servlet-name>OrderConfirmationServlet</servlet-name>
+        <servlet-class>controller.OrderConfirmationServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OrderConfirmationServlet</servlet-name>
+        <url-pattern>/OrderConfirmationServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Product Details Servlet -->
+    <servlet>
+        <servlet-name>ProductDetailsServlet</servlet-name>
+        <servlet-class>controller.ProductDetailsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProductDetailsServlet</servlet-name>
+        <url-pattern>/ProductDetailsServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Order Servlet -->
+    <servlet>
+        <servlet-name>OrderServlet</servlet-name>
+        <servlet-class>controller.OrderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OrderServlet</servlet-name>
+        <url-pattern>/OrderServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Product Servlet -->
+    <servlet>
+        <servlet-name>ProductServlet</servlet-name>
+        <servlet-class>controller.ProductServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProductServlet</servlet-name>
+        <url-pattern>/ProductServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Image Servlet -->
+    <servlet>
+        <servlet-name>ImageServlet</servlet-name>
+        <servlet-class>controller.ImageServlet</servlet-class>
+        <multipart-config>
+            <max-file-size>5242880</max-file-size><!-- 5MB -->
+            <max-request-size>10485760</max-request-size><!-- 10MB -->
+            <file-size-threshold>1048576</file-size-threshold><!-- 1MB -->
+        </multipart-config>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ImageServlet</servlet-name>
+        <url-pattern>/ImageServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Home Servlet -->
+    <servlet>
+        <servlet-name>HomeServlet</servlet-name>
+        <servlet-class>controller.HomeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HomeServlet</servlet-name>
+        <url-pattern>/HomeServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Contact Servlet -->
+    <servlet>
+        <servlet-name>ContactServlet</servlet-name>
+        <servlet-class>controller.ContactServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ContactServlet</servlet-name>
+        <url-pattern>/ContactServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Category Servlet -->
+    <servlet>
+        <servlet-name>CategoryServlet</servlet-name>
+        <servlet-class>controller.CategoryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CategoryServlet</servlet-name>
+        <url-pattern>/admin/CategoryServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CategoryServlet</servlet-name>
+        <url-pattern>/CategoryServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Settings Servlet -->
+    <servlet>
+        <servlet-name>SettingsServlet</servlet-name>
+        <servlet-class>controller.SettingsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SettingsServlet</servlet-name>
+        <url-pattern>/admin/SettingsServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Admin Product Servlet -->
+    <servlet>
+        <servlet-name>AdminProductServlet</servlet-name>
+        <servlet-class>controller.AdminProductServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminProductServlet</servlet-name>
+        <url-pattern>/admin/AdminProductServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Admin Category Servlet -->
+    <servlet>
+        <servlet-name>AdminCategoryServlet</servlet-name>
+        <servlet-class>controller.AdminCategoryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminCategoryServlet</servlet-name>
+        <url-pattern>/admin/AdminCategoryServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Register Servlet -->
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>controller.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/RegisterServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Review Servlet -->
+    <servlet>
+        <servlet-name>ReviewServlet</servlet-name>
+        <servlet-class>controller.ReviewServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReviewServlet</servlet-name>
+        <url-pattern>/ReviewServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Admin Order Servlet -->
+    <servlet>
+        <servlet-name>AdminOrderServlet</servlet-name>
+        <servlet-class>controller.AdminOrderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminOrderServlet</servlet-name>
+        <url-pattern>/admin/AdminOrderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminOrderServlet</servlet-name>
+        <url-pattern>/AdminOrderServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Logout Servlet -->
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>controller.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/LogoutServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- User Delete Servlet -->
+    <servlet>
+        <servlet-name>UserDeleteServlet</servlet-name>
+        <servlet-class>controller.UserDeleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserDeleteServlet</servlet-name>
+        <url-pattern>/UserDeleteServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Admin Message Servlet -->
+    <servlet>
+        <servlet-name>AdminMessageServlet</servlet-name>
+        <servlet-class>controller.AdminMessageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminMessageServlet</servlet-name>
+        <url-pattern>/admin/AdminMessageServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminMessageServlet</servlet-name>
+        <url-pattern>/AdminMessageServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Admin Review Servlet -->
+    <servlet>
+        <servlet-name>AdminReviewServlet</servlet-name>
+        <servlet-class>controller.AdminReviewServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminReviewServlet</servlet-name>
+        <url-pattern>/admin/AdminReviewServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Customer Message Servlet -->
+    <servlet>
+        <servlet-name>CustomerMessageServlet</servlet-name>
+        <servlet-class>controller.CustomerMessageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CustomerMessageServlet</servlet-name>
+        <url-pattern>/CustomerMessageServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerMessageServlet</servlet-name>
+        <url-pattern>/customer-messages</url-pattern>
+    </servlet-mapping>
+
+    <!-- Message Front Controller (MVC Pattern) -->
+    <servlet>
+        <servlet-name>MessageFrontController</servlet-name>
+        <servlet-class>controller.MessageFrontController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MessageFrontController</servlet-name>
+        <url-pattern>/messages/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- Message Controller -->
+    <servlet>
+        <servlet-name>MessageController</servlet-name>
+        <servlet-class>controller.MessageController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MessageController</servlet-name>
+        <url-pattern>/admin/messages/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- Message Servlet -->
+    <servlet>
+        <servlet-name>MessageServlet</servlet-name>
+        <servlet-class>controller.MessageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MessageServlet</servlet-name>
+        <url-pattern>/MessageServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Profile Image Servlet -->
+    <servlet>
+        <servlet-name>ProfileImageServlet</servlet-name>
+        <servlet-class>controller.ProfileImageServlet</servlet-class>
+        <multipart-config>
+            <max-file-size>5242880</max-file-size><!-- 5MB -->
+            <max-request-size>10485760</max-request-size><!-- 10MB -->
+            <file-size-threshold>1048576</file-size-threshold><!-- 1MB -->
+        </multipart-config>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProfileImageServlet</servlet-name>
+        <url-pattern>/ProfileImageServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Password Servlet -->
+    <servlet>
+        <servlet-name>PasswordServlet</servlet-name>
+        <servlet-class>controller.PasswordServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PasswordServlet</servlet-name>
+        <url-pattern>/PasswordServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Profile Update Servlet -->
+    <servlet>
+        <servlet-name>ProfileUpdateServlet</servlet-name>
+        <servlet-class>controller.ProfileUpdateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProfileUpdateServlet</servlet-name>
+        <url-pattern>/ProfileUpdateServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProfileUpdateServlet</servlet-name>
+        <url-pattern>/admin/ProfileUpdateServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Update Profile Servlet -->
+    <servlet>
+        <servlet-name>UpdateProfileServlet</servlet-name>
+        <servlet-class>controller.UpdateProfileServlet</servlet-class>
+        <multipart-config>
+            <max-file-size>5242880</max-file-size><!-- 5MB -->
+            <max-request-size>10485760</max-request-size><!-- 10MB -->
+            <file-size-threshold>1048576</file-size-threshold><!-- 1MB -->
+        </multipart-config>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateProfileServlet</servlet-name>
+        <url-pattern>/UpdateProfileServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- No Tab Servlet needed - using minimal JS for UI enhancement -->
+
+    <!-- Category Image Servlet -->
+    <servlet>
+        <servlet-name>CategoryImageServlet</servlet-name>
+        <servlet-class>controller.CategoryImageServlet</servlet-class>
+        <multipart-config>
+            <max-file-size>10485760</max-file-size><!-- 10MB -->
+            <max-request-size>52428800</max-request-size><!-- 50MB -->
+            <file-size-threshold>1048576</file-size-threshold><!-- 1MB -->
+        </multipart-config>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CategoryImageServlet</servlet-name>
+        <url-pattern>/CategoryImageServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Test Categories Servlet -->
+    <servlet>
+        <servlet-name>TestCategoriesServlet</servlet-name>
+        <servlet-class>controller.TestCategoriesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TestCategoriesServlet</servlet-name>
+        <url-pattern>/TestCategoriesServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Test Servlet -->
+    <servlet>
+        <servlet-name>TestServlet</servlet-name>
+        <servlet-class>controller.TestServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TestServlet</servlet-name>
+        <url-pattern>/TestServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Test Image Upload Servlet -->
+    <servlet>
+        <servlet-name>TestImageUploadServlet</servlet-name>
+        <servlet-class>controller.TestImageUploadServlet</servlet-class>
+        <multipart-config>
+            <max-file-size>5242880</max-file-size><!-- 5MB -->
+            <max-request-size>10485760</max-request-size><!-- 10MB -->
+            <file-size-threshold>1048576</file-size-threshold><!-- 1MB -->
+        </multipart-config>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TestImageUploadServlet</servlet-name>
+        <url-pattern>/TestImageUploadServlet</url-pattern>
+    </servlet-mapping>
+
+
+    <!-- Checkout Servlet -->
+    <servlet>
+        <servlet-name>CheckoutServlet</servlet-name>
+        <servlet-class>controller.CheckoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CheckoutServlet</servlet-name>
+        <url-pattern>/CheckoutServlet</url-pattern>
+    </servlet-mapping>
+
+
+    <!-- Filters -->
+    <filter>
+        <filter-name>AuthenticationFilter</filter-name>
+        <filter-class>filter.AuthenticationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthenticationFilter</filter-name>
+        <url-pattern>/CartServlet</url-pattern>
+        <url-pattern>/CheckoutServlet</url-pattern>
+        <url-pattern>/PaymentServlet</url-pattern>
+        <url-pattern>/OrderServlet</url-pattern>
+        <url-pattern>/ProfileImageServlet</url-pattern>
+        <url-pattern>/ImageServlet</url-pattern>
+        <url-pattern>/CategoryImageServlet</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>CheckoutFilter</filter-name>
+        <filter-class>filter.CheckoutFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CheckoutFilter</filter-name>
+        <url-pattern>/CartServlet</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>LoggingFilter</filter-name>
+        <filter-class>filter.LoggingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LoggingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>AdminRedirectFilter</filter-name>
+        <filter-class>filter.AdminRedirectFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AdminRedirectFilter</filter-name>
+        <url-pattern>/index.jsp</url-pattern>
+        <url-pattern>/</url-pattern>
+    </filter-mapping>
+
+    <!-- Error Pages -->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error/404.jsp</location>
+    </error-page>
+
+    <error-page>
+        <error-code>500</error-code>
+        <location>/error/500.jsp</location>
+    </error-page>
+
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/error/500.jsp</location>
+    </error-page>
+    <!-- Session Configuration -->
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+
+    <!-- Logging Configuration -->
+    <context-param>
+        <param-name>log4jConfiguration</param-name>
+        <param-value>WEB-INF/log4j2.xml</param-value>
+    </context-param>
+
+</web-app>

@@ -1,0 +1,242 @@
+/* 
+ * CLOTHEE Admin Dashboard - Reviews Blue Theme
+ * Specific styling for the reviews section with blue theme
+ */
+
+/* Review Stats Styling */
+.review-stats {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 10px;
+}
+
+.review-stats .stat-item {
+  display: flex;
+  align-items: center;
+}
+
+.review-stats .stat-label {
+  font-weight: 500;
+  margin-right: 5px;
+  color: #6c757d;
+}
+
+.review-stats .stat-value {
+  font-weight: 600;
+  color: #4361ee;
+}
+
+.review-stats .avg-rating {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #4361ee;
+}
+
+.review-stats .avg-rating i {
+  margin-left: 5px;
+  color: #f39c12;
+}
+
+/* Review Table Styling */
+.data-table .rating {
+  display: flex;
+  align-items: center;
+}
+
+.data-table .rating i {
+  color: #f39c12;
+  margin-right: 2px;
+}
+
+.data-table .rating i.far {
+  color: #e0e7ff;
+}
+
+/* Review View Styling */
+.review-view {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e0e7ff;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.review-product {
+  display: flex;
+  align-items: center;
+}
+
+.review-product-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-right: 15px;
+}
+
+.review-product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.review-product-info h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1e3a8a;
+  margin-bottom: 5px;
+}
+
+.review-product-info p {
+  color: #6c757d;
+  margin: 0;
+}
+
+.review-rating {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.review-rating .stars {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.review-rating .stars i {
+  color: #f39c12;
+  margin-left: 2px;
+}
+
+.review-rating .date {
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.review-customer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.review-customer-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 10px;
+  background-color: #e0e7ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4361ee;
+  font-weight: 600;
+}
+
+.review-customer-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.review-customer-name {
+  font-weight: 500;
+  color: #1e3a8a;
+}
+
+.review-content {
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.review-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.review-actions .btn {
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.review-actions .btn i {
+  margin-right: 5px;
+}
+
+.review-actions .btn-approve {
+  background-color: rgba(46, 204, 113, 0.1);
+  color: #2ecc71;
+}
+
+.review-actions .btn-approve:hover {
+  background-color: rgba(46, 204, 113, 0.2);
+}
+
+.review-actions .btn-reject {
+  background-color: rgba(231, 76, 60, 0.1);
+  color: #e74c3c;
+}
+
+.review-actions .btn-reject:hover {
+  background-color: rgba(231, 76, 60, 0.2);
+}
+
+.review-actions .btn-reply {
+  background-color: rgba(67, 97, 238, 0.1);
+  color: #4361ee;
+}
+
+.review-actions .btn-reply:hover {
+  background-color: rgba(67, 97, 238, 0.2);
+}
+
+/* Review Reply Form */
+.reply-form {
+  margin-top: 30px;
+  border-top: 1px solid #e0e7ff;
+  padding-top: 20px;
+}
+
+.reply-form textarea {
+  border: 1px solid #e0e7ff;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  min-height: 150px;
+  margin-bottom: 15px;
+}
+
+.reply-form textarea:focus {
+  border-color: #4361ee;
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(67, 97, 238, 0.25);
+}
+
+.reply-form .btn-send {
+  background-color: #4361ee;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.reply-form .btn-send:hover {
+  background-color: #3a56d4;
+}

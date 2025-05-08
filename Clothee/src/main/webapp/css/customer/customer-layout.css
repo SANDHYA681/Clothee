@@ -1,0 +1,281 @@
+/* Clean, responsive CSS for customer header, footer, and navbar */
+
+/* ===== Variables ===== */
+:root {
+  --primary-color: #ff8800;
+  --primary-hover: #e67a00;
+  --text-color: #333333;
+  --text-light: #777777;
+  --bg-color: #ffffff;
+  --bg-light: #f8f9fa;
+  --border-color: #eeeeee;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  --border-radius: 8px;
+}
+
+/* ===== Reset & Base Styles ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-color);
+  line-height: 1.6;
+  background-color: var(--bg-light);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ===== HEADER STYLES ===== */
+.header {
+  background-color: var(--bg-color);
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 70px;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--primary-color);
+}
+
+.logo-icon {
+  margin-right: 10px;
+  font-size: 28px;
+}
+
+/* ===== NAVBAR STYLES ===== */
+.navbar {
+  display: flex;
+  align-items: center;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 30px;
+  margin-right: 30px;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  font-weight: 500;
+  color: var(--text-color);
+  padding: 5px 0;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: var(--primary-color);
+}
+
+.nav-link.active {
+  color: var(--primary-color);
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary-color);
+}
+
+.logout-btn {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-weight: 500;
+}
+
+.logout-btn:hover {
+  background-color: var(--primary-hover);
+}
+
+.mobile-toggle {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+/* ===== FOOTER STYLES ===== */
+.footer {
+  background-color: var(--bg-color);
+  border-top: 1px solid var(--border-color);
+  padding: 40px 0 20px;
+  margin-top: 50px;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.footer-section h3 {
+  font-size: 18px;
+  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.footer-section h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 2px;
+  background-color: var(--primary-color);
+}
+
+.footer-section p {
+  margin-bottom: 15px;
+  color: var(--text-light);
+}
+
+.footer-links ul li {
+  margin-bottom: 10px;
+}
+
+.footer-links ul li a:hover {
+  color: var(--primary-color);
+}
+
+.footer-contact p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-contact p i {
+  color: var(--primary-color);
+  font-size: 16px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.social-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--bg-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-icon:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 30px;
+  margin-top: 30px;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-light);
+  font-size: 14px;
+}
+
+/* ===== RESPONSIVE STYLES ===== */
+@media (max-width: 992px) {
+  .footer-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .nav-menu {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-toggle {
+    display: block;
+  }
+  
+  .nav-menu {
+    position: fixed;
+    top: 70px;
+    left: -100%;
+    flex-direction: column;
+    background-color: var(--bg-color);
+    width: 100%;
+    text-align: center;
+    box-shadow: var(--shadow);
+    padding: 20px 0;
+    gap: 0;
+    margin-right: 0;
+  }
+  
+  .nav-menu.active {
+    left: 0;
+  }
+  
+  .nav-item {
+    margin: 15px 0;
+  }
+  
+  .nav-link.active::after {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .logo {
+    font-size: 20px;
+  }
+  
+  .logo-icon {
+    font-size: 24px;
+  }
+  
+  .logout-btn {
+    padding: 6px 15px;
+    font-size: 14px;
+  }
+}

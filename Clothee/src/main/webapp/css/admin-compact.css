@@ -1,0 +1,281 @@
+/* Ultra-compact styling for admin pages */
+.dashboard-container {
+    min-height: auto !important;
+}
+
+.main-content {
+    padding: 5px !important;
+}
+
+.content-header {
+    margin-bottom: 5px !important;
+    padding: 5px 0 !important;
+}
+
+.page-title {
+    font-size: 16px !important;
+    margin: 0 !important;
+}
+
+.btn-back {
+    padding: 4px 8px !important;
+    font-size: 11px !important;
+}
+
+.alert {
+    padding: 5px 8px !important;
+    margin-bottom: 5px !important;
+    font-size: 11px !important;
+}
+
+.form-container {
+    padding: 8px !important;
+    border-radius: 4px !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+    margin-bottom: 5px !important;
+}
+
+.form-section {
+    margin-bottom: 8px !important;
+}
+
+.section-title {
+    font-size: 13px !important;
+    margin-bottom: 5px !important;
+    padding-bottom: 3px !important;
+}
+
+.form-row {
+    gap: 5px !important;
+    margin-bottom: 5px !important;
+}
+
+.form-group {
+    margin-bottom: 5px !important;
+}
+
+.form-label {
+    margin-bottom: 2px !important;
+    font-size: 11px !important;
+}
+
+.form-control {
+    padding: 4px 6px !important;
+    font-size: 11px !important;
+    height: auto !important;
+}
+
+.items-table {
+    font-size: 11px !important;
+    margin-bottom: 5px !important;
+}
+
+.items-table th, .items-table td {
+    padding: 4px 5px !important;
+}
+
+.product-image {
+    width: 25px !important;
+    height: 25px !important;
+    margin-right: 5px !important;
+}
+
+.action-buttons {
+    gap: 5px !important;
+    margin-top: 5px !important;
+}
+
+.btn {
+    padding: 4px 8px !important;
+    font-size: 11px !important;
+    line-height: 1.2 !important;
+}
+
+/* Make the sidebar more compact */
+.sidebar-menu a {
+    padding: 6px 10px !important;
+    font-size: 11px !important;
+}
+
+.sidebar-menu a i {
+    font-size: 11px !important;
+}
+
+/* Compact card */
+.card {
+    margin-bottom: 5px !important;
+}
+
+.card-header {
+    padding: 5px 8px !important;
+}
+
+.card-title {
+    font-size: 12px !important;
+    margin: 0 !important;
+}
+
+.card-body {
+    padding: 5px !important;
+}
+
+/* Compact action buttons */
+.action-buttons {
+    gap: 3px !important;
+}
+
+.action-btn {
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.action-btn i {
+    font-size: 10px !important;
+}
+
+/* Status badge */
+.badge {
+    padding: 1px 4px !important;
+    border-radius: 3px !important;
+    font-size: 9px !important;
+}
+
+/* Reduce spacing in form rows */
+.form-row {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important;
+}
+
+/* Make tables more compact */
+.table th, .table td {
+    padding: 3px 4px !important;
+    font-size: 11px !important;
+}
+
+/* Reduce spacing in order items */
+.order-items {
+    margin-bottom: 5px !important;
+    padding: 5px !important;
+}
+
+/* Reduce spacing in order summary */
+.order-summary {
+    margin-top: 5px !important;
+    padding: 5px !important;
+}
+
+/* Reduce spacing in order details */
+.order-details {
+    padding: 5px !important;
+}
+
+/* Reduce spacing in order header */
+.order-header {
+    margin-bottom: 5px !important;
+    padding-bottom: 5px !important;
+}
+
+/* Reduce spacing in order info */
+.order-info {
+    gap: 5px !important;
+    margin-bottom: 5px !important;
+}
+
+/* Reduce spacing in info group */
+.info-group {
+    margin-bottom: 4px !important;
+}
+
+/* Reduce font size in info label */
+.info-label {
+    font-size: 10px !important;
+    margin-bottom: 1px !important;
+}
+
+/* Reduce font size in info value */
+.info-value {
+    font-size: 11px !important;
+}
+
+/* Reduce spacing in summary row */
+.summary-row {
+    margin-bottom: 3px !important;
+}
+
+/* Reduce font size in summary label */
+.summary-label {
+    font-size: 10px !important;
+}
+
+/* Reduce font size in summary value */
+.summary-value {
+    font-size: 11px !important;
+}
+
+/* Reduce spacing in total row */
+.total-row {
+    margin-top: 4px !important;
+    padding-top: 4px !important;
+}
+
+/* Reduce font size in total label */
+.total-label {
+    font-size: 11px !important;
+}
+
+/* Reduce font size in total value */
+.total-value {
+    font-size: 12px !important;
+}
+
+/* Additional styles for edit-order.jsp */
+.product-info div {
+    font-size: 11px !important;
+}
+
+/* Make select boxes smaller */
+select.form-control {
+    height: 25px !important;
+    padding: 2px 5px !important;
+}
+
+/* Make readonly inputs more compact */
+input[readonly], input:disabled {
+    background-color: #f8f9fa !important;
+    padding: 3px 5px !important;
+    height: 25px !important;
+}
+
+/* Make alert boxes more compact */
+.alert-info {
+    padding: 4px 6px !important;
+    font-size: 10px !important;
+    margin-bottom: 5px !important;
+}
+
+/* Make note text smaller */
+p {
+    font-size: 10px !important;
+    margin: 3px 0 !important;
+}
+
+/* Reduce spacing between form sections */
+.form-section + .form-section {
+    margin-top: 5px !important;
+}
+
+/* Make section titles more compact */
+.section-title {
+    padding: 3px 0 !important;
+    margin: 0 0 3px 0 !important;
+}
+
+/* Reduce table header height */
+.items-table th {
+    padding: 3px 4px !important;
+}
+
+/* Make product images smaller */
+.product-info img {
+    max-width: 20px !important;
+    max-height: 20px !important;
+}

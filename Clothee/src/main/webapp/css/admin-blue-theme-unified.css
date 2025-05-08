@@ -1,0 +1,550 @@
+/*
+ * CLOTHEE Admin Dashboard - Unified Blue Theme CSS
+ * This file provides a comprehensive blue theme for all admin pages
+ */
+
+:root {
+  /* Primary Blue Color Palette */
+  --primary: #4361ee;
+  --primary-light: #4895ef;
+  --primary-dark: #3f37c9;
+  --primary-hover: #3a56d4;
+  --secondary: #4cc9f0;
+
+  /* Status Colors */
+  --success: #2ecc71;
+  --info: #3498db;
+  --warning: #f39c12;
+  --danger: #e74c3c;
+
+  /* Grayscale */
+  --white: #ffffff;
+  --light: #f8f9fa;
+  --gray-100: #f8f9fa;
+  --gray-200: #e9ecef;
+  --gray-300: #dee2e6;
+  --gray-400: #ced4da;
+  --gray-500: #adb5bd;
+  --gray-600: #6c757d;
+  --gray-700: #495057;
+  --gray-800: #343a40;
+  --gray-900: #212529;
+  --dark: #1e3a8a;
+
+  /* Status Colors with Transparency */
+  --success-light: rgba(46, 204, 113, 0.1);
+  --info-light: rgba(52, 152, 219, 0.1);
+  --warning-light: rgba(243, 156, 18, 0.1);
+  --danger-light: rgba(231, 76, 60, 0.1);
+  --primary-light-bg: rgba(67, 97, 238, 0.1);
+}
+
+/* ===== GLOBAL STYLES ===== */
+body {
+  background-color: #f0f5ff !important;
+  color: var(--gray-800) !important;
+}
+
+a {
+  color: var(--primary) !important;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--primary-hover) !important;
+}
+
+/* ===== SIDEBAR STYLES ===== */
+.sidebar,
+.admin-sidebar {
+  background-color: #1e3a8a !important;
+  color: #ffffff !important;
+}
+
+.sidebar-header,
+.admin-sidebar-header {
+  background-color: #1e3a8a !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.logo-text,
+.admin-sidebar-logo-text {
+  color: #ffffff !important;
+}
+
+.logo-icon,
+.admin-sidebar-logo-icon {
+  color: #4cc9f0 !important;
+}
+
+.sidebar-menu .menu-item,
+.admin-sidebar-menu .admin-sidebar-item,
+.admin-sidebar-link {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.sidebar-menu .menu-item:hover,
+.sidebar-menu .menu-item.active,
+.admin-sidebar-menu .admin-sidebar-item:hover,
+.admin-sidebar-menu .admin-sidebar-item.active,
+.admin-sidebar-link:hover,
+.admin-sidebar-link.active {
+  background-color: rgba(76, 201, 240, 0.1) !important;
+  color: #ffffff !important;
+  border-left: 3px solid #4cc9f0 !important;
+}
+
+.sidebar-menu .menu-icon,
+.admin-sidebar-icon {
+  color: #4cc9f0 !important;
+}
+
+/* ===== HEADER STYLES ===== */
+.header,
+.admin-header {
+  background-color: #ffffff !important;
+  border-bottom: 1px solid #e0e7ff !important;
+}
+
+.header-actions .search-box input,
+.admin-header-search-input {
+  border: 1px solid #e0e7ff !important;
+}
+
+.header-actions .search-box button,
+.admin-header-search-icon {
+  background-color: #4361ee !important;
+  color: #ffffff !important;
+}
+
+.notification-btn,
+.admin-header-action {
+  color: #4361ee !important;
+}
+
+.notification-btn .badge,
+.admin-header-action-badge {
+  background-color: #4361ee !important;
+  color: #ffffff !important;
+}
+
+/* ===== CARD STYLES ===== */
+.card,
+.admin-card {
+  border: none !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05) !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  background-color: #ffffff !important;
+}
+
+.card-header,
+.admin-card-header {
+  background-color: #ffffff !important;
+  border-bottom: 1px solid #e0e7ff !important;
+}
+
+.card-title,
+.admin-card-title {
+  color: #1e3a8a !important;
+}
+
+/* ===== DASHBOARD STATS CARDS ===== */
+.stat-card,
+.admin-stat-card {
+  border-left: 4px solid #4361ee !important;
+  background-color: #ffffff !important;
+}
+
+.stat-card .stat-icon,
+.admin-stat-value {
+  color: #4361ee !important;
+}
+
+.stat-card .stat-value,
+.admin-stat-value {
+  color: #1e3a8a !important;
+}
+
+/* ===== TABLES STYLES ===== */
+.data-table th,
+.admin-table th {
+  background-color: #f0f5ff !important;
+  color: #1e3a8a !important;
+}
+
+.data-table tbody tr:hover,
+.admin-table tbody tr:hover {
+  background-color: rgba(67, 97, 238, 0.05) !important;
+}
+
+.data-table .btn-view,
+.admin-table .btn-view {
+  color: #4361ee !important;
+}
+
+.data-table .btn-edit,
+.admin-table .btn-edit {
+  color: #4895ef !important;
+}
+
+.data-table .btn-delete,
+.admin-table .btn-delete {
+  color: #e74c3c !important;
+}
+
+/* ===== STATUS INDICATORS ===== */
+.status {
+  padding: 5px 10px !important;
+  border-radius: 20px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+}
+
+.status-pending {
+  background-color: rgba(243, 156, 18, 0.1) !important;
+  color: #f39c12 !important;
+}
+
+.status-processing {
+  background-color: rgba(52, 152, 219, 0.1) !important;
+  color: #3498db !important;
+}
+
+.status-completed,
+.status-delivered {
+  background-color: rgba(46, 204, 113, 0.1) !important;
+  color: #2ecc71 !important;
+}
+
+.status-cancelled {
+  background-color: rgba(231, 76, 60, 0.1) !important;
+  color: #e74c3c !important;
+}
+
+.status-read {
+  background-color: rgba(46, 204, 113, 0.1) !important;
+  color: #2ecc71 !important;
+}
+
+.status-unread {
+  background-color: rgba(67, 97, 238, 0.1) !important;
+  color: #4361ee !important;
+}
+
+/* ===== BUTTONS ===== */
+.btn-primary,
+.admin-btn-primary {
+  background-color: #4361ee !important;
+  border-color: #4361ee !important;
+  color: #ffffff !important;
+}
+
+.btn-primary:hover,
+.admin-btn-primary:hover {
+  background-color: #3a56d4 !important;
+  border-color: #3a56d4 !important;
+}
+
+.btn-add {
+  background-color: #4361ee !important;
+  color: #ffffff !important;
+}
+
+.btn-add:hover {
+  background-color: #3a56d4 !important;
+}
+
+/* ===== FORMS ===== */
+.form-control:focus,
+.admin-form-control:focus {
+  border-color: #4361ee !important;
+  box-shadow: 0 0 0 0.2rem rgba(67, 97, 238, 0.25) !important;
+}
+
+/* ===== PAGINATION ===== */
+.pagination .page-item.active .page-link {
+  background-color: #4361ee !important;
+  border-color: #4361ee !important;
+}
+
+.pagination .page-link {
+  color: #4361ee !important;
+}
+
+/* ===== SECTION-SPECIFIC STYLES ===== */
+
+/* Messages */
+.message-stats .stat-item .stat-value {
+  color: #4361ee !important;
+}
+
+tr.status-unread {
+  background-color: rgba(67, 97, 238, 0.05) !important;
+}
+
+/* Reviews */
+.rating i {
+  color: #f39c12 !important;
+}
+
+.review-stats .avg-rating {
+  color: #4361ee !important;
+}
+
+/* Products */
+.product-image-container {
+  border: 1px solid #e0e7ff !important;
+}
+
+.product-card {
+  border: 1px solid #e0e7ff !important;
+}
+
+.product-card:hover {
+  border-color: #4361ee !important;
+}
+
+/* Categories */
+.category-card {
+  border: 1px solid #e0e7ff !important;
+}
+
+.category-card:hover {
+  border-color: #4361ee !important;
+}
+
+.category-header {
+  background-color: #f0f5ff !important;
+}
+
+/* Orders */
+.order-details {
+  border: 1px solid #e0e7ff !important;
+}
+
+.order-summary {
+  background-color: #f0f5ff !important;
+}
+
+/* Customers */
+.customer-card {
+  border: 1px solid #e0e7ff !important;
+}
+
+.customer-card:hover {
+  border-color: #4361ee !important;
+}
+
+.customer-info .label {
+  color: #1e3a8a !important;
+}
+
+/* ===== CUSTOM STYLES FOR SUBPAGES ===== */
+
+/* View Pages */
+.view-container {
+  background-color: #ffffff !important;
+  border-radius: 10px !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05) !important;
+  padding: 20px !important;
+  margin: 20px 0 !important;
+}
+
+.view-header {
+  border-bottom: 1px solid #e0e7ff !important;
+  padding-bottom: 15px !important;
+  margin-bottom: 20px !important;
+}
+
+.view-title {
+  color: #1e3a8a !important;
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+}
+
+/* Edit Pages */
+.edit-container {
+  background-color: #ffffff !important;
+  border-radius: 10px !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05) !important;
+  padding: 20px !important;
+  margin: 20px 0 !important;
+}
+
+.edit-header {
+  border-bottom: 1px solid #e0e7ff !important;
+  padding-bottom: 15px !important;
+  margin-bottom: 20px !important;
+}
+
+.edit-title {
+  color: #1e3a8a !important;
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+}
+
+.form-label {
+  color: #1e3a8a !important;
+  font-weight: 500 !important;
+}
+
+.form-control {
+  border: 1px solid #e0e7ff !important;
+  border-radius: 5px !important;
+}
+
+.form-control:focus {
+  border-color: #4361ee !important;
+  box-shadow: 0 0 0 0.2rem rgba(67, 97, 238, 0.25) !important;
+}
+
+.form-actions {
+  margin-top: 20px !important;
+  display: flex !important;
+  gap: 10px !important;
+}
+
+/* Delete Pages */
+.delete-container {
+  background-color: #ffffff !important;
+  border-radius: 10px !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05) !important;
+  padding: 20px !important;
+  margin: 20px 0 !important;
+}
+
+.delete-warning {
+  color: #e74c3c !important;
+  font-weight: 600 !important;
+  margin-bottom: 20px !important;
+}
+
+/* Dashboard */
+.dashboard-container {
+  display: flex !important;
+}
+
+.main-content {
+  flex: 1 !important;
+  padding: 20px !important;
+  margin-left: var(--sidebar-width, 250px) !important;
+}
+
+/* Override any existing styles with !important */
+.content-header h1,
+.page-title,
+h1, h2, h3, h4, h5, h6 {
+  color: #1e3a8a !important;
+}
+
+.btn,
+.button,
+button[type="submit"] {
+  background-color: #4361ee !important;
+  color: #ffffff !important;
+  border-color: #4361ee !important;
+}
+
+.btn:hover,
+.button:hover,
+button[type="submit"]:hover {
+  background-color: #3a56d4 !important;
+  border-color: #3a56d4 !important;
+}
+
+.btn-secondary,
+.button-secondary {
+  background-color: #4cc9f0 !important;
+  border-color: #4cc9f0 !important;
+}
+
+.btn-secondary:hover,
+.button-secondary:hover {
+  background-color: #3ab7de !important;
+  border-color: #3ab7de !important;
+}
+
+.btn-danger,
+.button-danger {
+  background-color: #e74c3c !important;
+  border-color: #e74c3c !important;
+}
+
+.btn-danger:hover,
+.button-danger:hover {
+  background-color: #c0392b !important;
+  border-color: #c0392b !important;
+}
+
+/* Make sure all tables have the blue theme */
+table th {
+  background-color: #f0f5ff !important;
+  color: #1e3a8a !important;
+}
+
+table tr:hover {
+  background-color: rgba(67, 97, 238, 0.05) !important;
+}
+
+/* Ensure all action buttons have the blue theme */
+.action-buttons a,
+.actions a,
+.btn-view, .btn-edit, .btn-delete {
+  color: #4361ee !important;
+}
+
+/* Override any existing background colors */
+.bg-primary {
+  background-color: #4361ee !important;
+}
+
+.bg-secondary {
+  background-color: #4cc9f0 !important;
+}
+
+.bg-success {
+  background-color: #2ecc71 !important;
+}
+
+.bg-danger {
+  background-color: #e74c3c !important;
+}
+
+.bg-warning {
+  background-color: #f39c12 !important;
+}
+
+.bg-info {
+  background-color: #3498db !important;
+}
+
+/* Override any existing text colors */
+.text-primary {
+  color: #4361ee !important;
+}
+
+/* Capitalize user role */
+.user-role {
+  text-transform: capitalize !important;
+}
+
+.text-secondary {
+  color: #4cc9f0 !important;
+}
+
+.text-success {
+  color: #2ecc71 !important;
+}
+
+.text-danger {
+  color: #e74c3c !important;
+}
+
+.text-warning {
+  color: #f39c12 !important;
+}
+
+.text-info {
+  color: #3498db !important;
+}

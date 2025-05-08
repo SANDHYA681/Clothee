@@ -1,0 +1,341 @@
+/* Enhanced Orders Page CSS */
+
+/* Main Container */
+.orders-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 25px;
+    margin-bottom: 30px;
+}
+
+/* Page Title */
+.page-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+
+.page-title i {
+    margin-right: 10px;
+    color: #000000;
+}
+
+/* Alert Messages */
+.alert {
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+.alert i {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.alert-success {
+    background-color: rgba(46, 204, 113, 0.1);
+    color: #2ecc71;
+    border: 1px solid rgba(46, 204, 113, 0.2);
+}
+
+.alert-danger {
+    background-color: rgba(231, 76, 60, 0.1);
+    color: #e74c3c;
+    border: 1px solid rgba(231, 76, 60, 0.2);
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.empty-state i {
+    font-size: 60px;
+    color: #ddd;
+    margin-bottom: 20px;
+}
+
+.empty-state p {
+    font-size: 18px;
+    color: #777;
+    margin-bottom: 25px;
+}
+
+.btn-primary {
+    background-color: #000000;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #333333;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Table Styles */
+.table-responsive {
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.data-table th {
+    background-color: #f8f9fa;
+    color: #495057;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    padding: 15px;
+    text-align: left;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.data-table td {
+    padding: 15px;
+    vertical-align: middle;
+    border-bottom: 1px solid #e9ecef;
+    color: #495057;
+    font-size: 14px;
+}
+
+.data-table tr:last-child td {
+    border-bottom: none;
+}
+
+.data-table tr:hover td {
+    background-color: #f8f9fa;
+}
+
+/* Order ID Column */
+.data-table td:first-child {
+    font-weight: 600;
+    color: #000000;
+}
+
+/* Badge Styles */
+.badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge.processing {
+    background-color: rgba(255, 193, 7, 0.15);
+    color: #d39e00;
+    border: 1px solid rgba(255, 193, 7, 0.3);
+}
+
+.badge.shipped {
+    background-color: rgba(23, 162, 184, 0.15);
+    color: #138496;
+    border: 1px solid rgba(23, 162, 184, 0.3);
+}
+
+.badge.delivered {
+    background-color: rgba(40, 167, 69, 0.15);
+    color: #218838;
+    border: 1px solid rgba(40, 167, 69, 0.3);
+}
+
+.badge.cancelled {
+    background-color: rgba(220, 53, 69, 0.15);
+    color: #c82333;
+    border: 1px solid rgba(220, 53, 69, 0.3);
+}
+
+.badge.pending {
+    background-color: rgba(108, 117, 125, 0.15);
+    color: #5a6268;
+    border: 1px solid rgba(108, 117, 125, 0.3);
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-view, .btn-delete {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.btn-view {
+    background-color: #000000;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+}
+
+.btn-view:hover, .btn-delete:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.btn-view:hover {
+    background-color: #333333;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+}
+
+/* Pagination Styles */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    gap: 10px;
+}
+
+.page-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    color: #495057;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid #dee2e6;
+}
+
+.page-link:hover {
+    background-color: #000000;
+    color: white;
+    border-color: #000000;
+}
+
+.page-link.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.page-numbers {
+    display: flex;
+    gap: 8px;
+}
+
+.page-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    color: #495057;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid #dee2e6;
+}
+
+.page-number:hover {
+    background-color: #e9ecef;
+}
+
+.page-number.active {
+    background-color: #000000;
+    color: white;
+    border-color: #000000;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .orders-container {
+        padding: 15px;
+    }
+    
+    .data-table th, 
+    .data-table td {
+        padding: 10px;
+    }
+    
+    .data-table th:nth-child(2), 
+    .data-table td:nth-child(2) {
+        display: none;
+    }
+    
+    .badge {
+        padding: 4px 8px;
+        font-size: 10px;
+    }
+    
+    .btn-view, .btn-delete {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .page-link {
+        padding: 8px 12px;
+    }
+    
+    .page-number {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+@media (max-width: 576px) {
+    .page-title {
+        font-size: 20px;
+    }
+    
+    .data-table th:nth-child(4), 
+    .data-table td:nth-child(4) {
+        display: none;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .page-numbers {
+        gap: 5px;
+    }
+    
+    .page-number {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+}
