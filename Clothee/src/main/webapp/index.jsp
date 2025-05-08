@@ -230,7 +230,21 @@ if (message != null && !message.isEmpty()) {
                     imageUrl = defaultImages[i % defaultImages.length];
                 } else {
                     // Use the image from the database
-                    imageUrl = request.getContextPath() + "/" + imageUrl;
+                    // First check if the file exists in the webapp directory
+                    String webappPath = request.getContextPath() + "/" + imageUrl;
+
+                    // Also check if it exists in the permanent storage location
+                    String userHome = System.getProperty("user.home");
+                    String permanentPath = userHome + File.separator + "ClotheeImages" + File.separator + imageUrl;
+                    File permanentFile = new File(permanentPath);
+
+                    if (permanentFile.exists()) {
+                        // If the file exists in permanent storage, create a servlet to serve it
+                        imageUrl = request.getContextPath() + "/CategoryImageServlet?id=" + category.getId();
+                    } else {
+                        // Otherwise use the webapp path
+                        imageUrl = webappPath;
+                    }
                 }
             %>
             <div class="category-card">

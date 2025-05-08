@@ -36,6 +36,76 @@ public class CategoryImageServlet extends HttpServlet {
         categoryDAO = new CategoryDAO();
     }
 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // Get category ID from request
+        String categoryIdStr = request.getParameter("id");
+
+        if (categoryIdStr == null || categoryIdStr.isEmpty()) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Category ID is required");
+            return;
+        }
+
+        try {
+            int categoryId = Integer.parseInt(categoryIdStr);
+
+            // Get category from database
+            Category category = categoryDAO.getCategoryById(categoryId);
+
+            if (category == null) {
+                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Category not found");
+                return;
+            }
+
+            String imageUrl = category.getImageUrl();
+            if (imageUrl == null || imageUrl.isEmpty()) {
+                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Category has no image");
+                return;
+            }
+
+            // Get the permanent path to the image
+            String userHome = System.getProperty("user.home");
+            String permanentPath = userHome + File.separator + "ClotheeImages" + File.separator + imageUrl;
+            File imageFile = new File(permanentPath);
+
+            if (!imageFile.exists()) {
+                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Image file not found");
+                return;
+            }
+
+            // Set content type based on file extension
+            String fileName = imageFile.getName();
+            String contentType = "image/jpeg"; // Default
+
+            if (fileName.endsWith(".png")) {
+                contentType = "image/png";
+            } else if (fileName.endsWith(".gif")) {
+                contentType = "image/gif";
+            } else if (fileName.endsWith(".jpg") || fileName.endsWith(".jpeg")) {
+                contentType = "image/jpeg";
+            }
+
+            response.setContentType(contentType);
+
+            // Copy the file to the response output stream
+            try (FileInputStream in = new FileInputStream(imageFile);
+                 OutputStream out = response.getOutputStream()) {
+
+                byte[] buffer = new byte[4096];
+                int bytesRead;
+
+                while ((bytesRead = in.read(buffer)) != -1) {
+                    out.write(buffer, 0, bytesRead);
+                }
+            }
+
+        } catch (NumberFormatException e) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid category ID");
+        } catch (Exception e) {
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error serving image: " + e.getMessage());
+        }
+    }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -166,8 +236,16 @@ public class CategoryImageServlet extends HttpServlet {
                 System.out.println("CategoryImageServlet - WARNING: Deployment file does not exist after writing!");
             }
 
-            // Update category image URL in database
+            // Create a permanent path reference for the database
+            // This will be a virtual path that our servlet will resolve
             String imageUrl = relativePath + "/" + newFileName;
+
+            // Make sure the image URL is stored with a consistent format
+            if (imageUrl.startsWith("/")) {
+                imageUrl = imageUrl.substring(1);
+            }
+
+            // Update category image URL in database
             boolean success = categoryDAO.updateCategoryImage(categoryId, imageUrl);
 
             if (success) {

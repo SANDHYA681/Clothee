@@ -17,11 +17,7 @@ CREATE TABLE users (
 );
 
 INSERT INTO users (first_name, last_name, email, password, phone, role, is_admin, profile_image) VALUES
-('Ram', 'Bahadur', 'ram@example.com', 'password123', '9800000001', 'user', FALSE, 'profiles/ram.jpg'),
-('Sita', 'Devi', 'sita@example.com', 'password456', '9800000002', 'admin', TRUE, 'profiles/sita.jpg'),
-('Gopal', 'Thapa', 'gopal@example.com', 'password789', '9800000003', 'user', FALSE, 'profiles/gopal.jpg'),
-('Kavita', 'Shah', 'kavita@example.com', 'password321', '9800000004', 'user', FALSE, 'profiles/kavita.jpg'),
-('Sanjay', 'Kumar', 'sanjay@example.com', 'password654', '9800000005', 'admin', FALSE, 'profiles/sanjay.jpg');
+('Sandhya', 'Timsina', 's@gmail.com', '123456', '1234567890', 'admin', TRUE, 'profiles/sandhya.jpg'),
 
 -- Create categories table
 CREATE TABLE categories (
