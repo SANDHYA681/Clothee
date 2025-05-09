@@ -1,0 +1,55 @@
+/* Dashboard Profile Upload Styles */
+
+.profile-upload-form {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.file-upload-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.file-upload-input {
+    display: none;
+}
+
+.file-upload-button {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 12px;
+}
+
+.file-upload-button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 20px;
+}
+
+/* Success and Error Messages */
+.message-container {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: var(--border-radius);
+    text-align: center;
+}
+
+.success-message {
+    background-color: rgba(46, 204, 113, 0.2);
+    color: var(--success-color);
+}
+
+.error-message {
+    background-color: rgba(231, 76, 60, 0.2);
+    color: var(--danger-color);
+}

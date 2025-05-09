@@ -1,0 +1,55 @@
+/* Orange Sidebar Menu Styles */
+.sidebar-menu {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar-menu a {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid #eee;
+}
+
+.sidebar-menu a:last-child {
+    border-bottom: none;
+}
+
+.sidebar-menu a:hover {
+    background-color: rgba(255, 136, 0, 0.1);
+    color: #ff8800;
+}
+
+.sidebar-menu a.active {
+    background-color: #ff8800;
+    color: white;
+}
+
+.sidebar-menu i {
+    width: 24px;
+    margin-right: 10px;
+    text-align: center;
+    font-size: 18px;
+    color: #ff8800;
+    transition: all 0.3s ease;
+}
+
+.sidebar-menu a.active i {
+    color: white;
+}
+
+.sidebar-menu a:hover i {
+    transform: scale(1.1);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .sidebar-menu {
+        margin-bottom: 20px;
+    }
+}

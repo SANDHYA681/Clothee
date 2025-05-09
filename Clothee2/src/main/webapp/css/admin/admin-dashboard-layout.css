@@ -1,0 +1,551 @@
+/* Admin Dashboard Layout CSS - Complete layout with header, footer, navbar and sidebar */
+
+/* ===== Variables ===== */
+:root {
+  --primary-color: #3f51b5;
+  --primary-hover: #303f9f;
+  --secondary-color: #f50057;
+  --text-color: #333333;
+  --text-light: #777777;
+  --bg-color: #ffffff;
+  --bg-light: #f5f7fa;
+  --bg-dark: #263238;
+  --border-color: #e0e0e0;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --border-radius: 4px;
+  --sidebar-width: 250px;
+  --header-height: 60px;
+  --transition: all 0.3s ease;
+}
+
+/* ===== Reset & Base Styles ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  color: var(--text-color);
+  line-height: 1.6;
+  background-color: var(--bg-light);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition);
+}
+
+ul {
+  list-style: none;
+}
+
+/* ===== Layout Structure ===== */
+.admin-dashboard {
+  display: flex;
+  min-height: 100vh;
+}
+
+.admin-content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.admin-main-content {
+  flex: 1;
+  padding: 20px;
+  margin-top: var(--header-height);
+}
+
+/* ===== Sidebar Styles ===== */
+.admin-sidebar {
+  width: var(--sidebar-width);
+  background-color: var(--bg-dark);
+  color: white;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  transition: var(--transition);
+  overflow-y: auto;
+}
+
+.admin-sidebar.collapsed {
+  width: 70px;
+}
+
+.admin-sidebar-header {
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.admin-sidebar-logo {
+  display: flex;
+  align-items: center;
+  color: white;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.admin-sidebar-logo-icon {
+  margin-right: 10px;
+  font-size: 24px;
+}
+
+.admin-sidebar.collapsed .admin-sidebar-logo-text {
+  display: none;
+}
+
+.admin-sidebar-toggle {
+  margin-left: auto;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.admin-sidebar-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.admin-sidebar-menu {
+  padding: 20px 0;
+}
+
+.admin-sidebar-item {
+  position: relative;
+}
+
+.admin-sidebar-link {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  color: rgba(255, 255, 255, 0.7);
+  transition: var(--transition);
+}
+
+.admin-sidebar-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.admin-sidebar-link.active {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.admin-sidebar-icon {
+  font-size: 18px;
+  min-width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-sidebar.collapsed .admin-sidebar-text {
+  display: none;
+}
+
+.admin-sidebar-badge {
+  margin-left: auto;
+  background-color: var(--secondary-color);
+  color: white;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 2px 6px;
+  border-radius: 10px;
+}
+
+.admin-sidebar.collapsed .admin-sidebar-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.admin-sidebar-divider {
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.1);
+  margin: 10px 0;
+}
+
+.admin-sidebar-heading {
+  padding: 10px 20px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.admin-sidebar.collapsed .admin-sidebar-heading {
+  display: none;
+}
+
+/* ===== Header Styles ===== */
+.admin-header {
+  height: var(--header-height);
+  background-color: var(--bg-color);
+  box-shadow: var(--shadow);
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: var(--sidebar-width);
+  z-index: 999;
+  transition: var(--transition);
+}
+
+.admin-sidebar.collapsed ~ .admin-content-wrapper .admin-header {
+  left: 70px;
+}
+
+.admin-header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding: 0 20px;
+}
+
+.admin-header-search {
+  position: relative;
+  width: 300px;
+}
+
+.admin-header-search-input {
+  width: 100%;
+  padding: 8px 15px 8px 35px;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  font-size: 14px;
+  background-color: var(--bg-light);
+  transition: var(--transition);
+}
+
+.admin-header-search-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  background-color: white;
+}
+
+.admin-header-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-light);
+  font-size: 14px;
+}
+
+.admin-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.admin-header-action {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-light);
+  color: var(--text-color);
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.admin-header-action:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.admin-header-action-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: var(--secondary-color);
+  color: white;
+  font-size: 10px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+}
+
+.admin-header-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+}
+
+.admin-header-user:hover {
+  background-color: var(--bg-light);
+}
+
+.admin-header-user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.admin-header-user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.admin-header-user-avatar .no-profile-image {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  color: #999;
+  font-size: 18px;
+}
+
+.admin-header-user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-header-user-name {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.admin-header-user-role {
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+/* ===== Footer Styles ===== */
+.admin-footer {
+  background-color: var(--bg-color);
+  border-top: 1px solid var(--border-color);
+  padding: 15px 20px;
+  font-size: 14px;
+  color: var(--text-light);
+  margin-left: var(--sidebar-width);
+  transition: var(--transition);
+}
+
+.admin-sidebar.collapsed ~ .admin-content-wrapper .admin-footer {
+  margin-left: 70px;
+}
+
+.admin-footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-footer-links {
+  display: flex;
+  gap: 15px;
+}
+
+.admin-footer-link:hover {
+  color: var(--primary-color);
+}
+
+/* ===== Breadcrumb Styles ===== */
+.admin-breadcrumb {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.admin-breadcrumb-item {
+  display: flex;
+  align-items: center;
+}
+
+.admin-breadcrumb-item:not(:last-child)::after {
+  content: '/';
+  margin: 0 10px;
+  color: var(--text-light);
+}
+
+.admin-breadcrumb-link {
+  color: var(--text-light);
+}
+
+.admin-breadcrumb-link:hover {
+  color: var(--primary-color);
+}
+
+.admin-breadcrumb-item:last-child .admin-breadcrumb-link {
+  color: var(--text-color);
+  font-weight: 500;
+  cursor: default;
+}
+
+/* ===== Page Header Styles ===== */
+.admin-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.admin-page-title {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.admin-page-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.admin-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 16px;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: var(--transition);
+  border: none;
+}
+
+.admin-btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.admin-btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.admin-btn-secondary {
+  background-color: var(--bg-light);
+  color: var(--text-color);
+}
+
+.admin-btn-secondary:hover {
+  background-color: var(--border-color);
+}
+
+/* ===== Responsive Styles ===== */
+@media (max-width: 992px) {
+  .admin-header-search {
+    width: 200px;
+  }
+
+  .admin-header-user-info {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-sidebar {
+    left: -250px;
+  }
+
+  .admin-sidebar.collapsed {
+    left: 0;
+    width: var(--sidebar-width);
+  }
+
+  .admin-sidebar.collapsed .admin-sidebar-text,
+  .admin-sidebar.collapsed .admin-sidebar-heading,
+  .admin-sidebar.collapsed .admin-sidebar-logo-text {
+    display: block;
+  }
+
+  .admin-header {
+    left: 0;
+  }
+
+  .admin-sidebar.collapsed ~ .admin-content-wrapper .admin-header,
+  .admin-sidebar.collapsed ~ .admin-content-wrapper .admin-footer {
+    left: 0;
+    margin-left: 0;
+  }
+
+  .admin-footer {
+    margin-left: 0;
+  }
+
+  .admin-header-search {
+    display: none;
+  }
+
+  .admin-mobile-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--bg-light);
+    color: var(--text-color);
+    cursor: pointer;
+    margin-right: 15px;
+  }
+
+  .admin-mobile-toggle:hover {
+    background-color: var(--primary-color);
+    color: white;
+  }
+
+  .admin-page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .admin-footer-container {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .admin-footer-links {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .admin-header-actions {
+    gap: 5px;
+  }
+
+  .admin-breadcrumb {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 5px;
+  }
+}

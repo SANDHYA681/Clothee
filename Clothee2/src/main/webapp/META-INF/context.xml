@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <!-- Skip unnecessary JAR scanning to improve startup time -->
+    <JarScanner>
+        <JarScanFilter
+            defaultTldScan="false"
+            tldScan="jstl-*.jar,javax.servlet.jsp.jstl-*.jar"
+            defaultPluggabilityScan="false"
+            pluggabilityScan="tomcat-*.jar" />
+    </JarScanner>
+</Context>

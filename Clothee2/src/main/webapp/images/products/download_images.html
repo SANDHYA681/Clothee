@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Product Images</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .instructions {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .category {
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #4a6bdf;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .image-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+        }
+        .image-item {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            padding: 10px;
+        }
+        .image-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 3px;
+        }
+        .image-item p {
+            margin: 10px 0 5px;
+            font-size: 14px;
+        }
+        .image-item a {
+            display: inline-block;
+            background-color: #4a6bdf;
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+        .image-item a:hover {
+            background-color: #3a5bcf;
+        }
+    </style>
+</head>
+<body>
+    <h1>Download Product Images</h1>
+    
+    <div class="instructions">
+        <h3>Instructions:</h3>
+        <ol>
+            <li>Click on the "Download" button for each image you want to use</li>
+            <li>Save the image with the filename shown (e.g., tshirt_1.jpg)</li>
+            <li>Place the image in the correct category folder:
+                <ul>
+                    <li>/images/products/men/</li>
+                    <li>/images/products/women/</li>
+                    <li>/images/products/kids/</li>
+                    <li>/images/products/accessories/</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+    
+    <div class="category">
+        <h2>Men's Products</h2>
+        <div class="image-list">
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=500&auto=format&fit=crop&q=60" alt="Men's T-Shirt 1">
+                <p>tshirt_1.jpg</p>
+                <a href="https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=800&auto=format&fit=crop&q=80" download="tshirt_1.jpg">Download</a>
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1586363104862-3a5e2ab60d99?w=500&auto=format&fit=crop&q=60" alt="Men's T-Shirt 2">
+                <p>tshirt_2.jpg</p>
+                <a href="https://images.unsplash.com/photo-1586363104862-3a5e2ab60d99?w=800&auto=format&fit=crop&q=80" download="tshirt_2.jpg">Download</a>
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&auto=format&fit=crop&q=60" alt="Men's T-Shirt 3">
+                <p>tshirt_3.jpg</p>
+                <a href="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&auto=format&fit=crop&q=80" download="tshirt_3.jpg">Download</a>
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=60" alt="Men's T-Shirt 4">
+                <p>tshirt_4.jpg</p>
+                <a href="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800&auto=format&fit=crop&q=80" download="tshirt_4.jpg">Download</a>
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=500&auto=format&fit=crop&q=60" alt="Men's Hoodie 1">
+                <p>hoodie_1.jpg</p>
+                <a href="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=800&auto=format&fit=crop&q=80" download="hoodie_1.jpg">Download</a>
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1565693413579-8a73fcc8efcd?w=500&auto=format&fit=crop&q=60" alt="Men's Hoodie 2">
+                <p>hoodie_2.jpg</p>
+                <a href="https://images.unsplash.com/photo-1565693413579-8a73fcc8efcd?w=800&auto=format&fit=crop&q=80" download="hoodie_2.jpg">Download</a>
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1509942774463-acf339cf87d5?w=500&auto=format&fit=crop&q=60" alt="Men's Hoodie 3">
+                <p>hoodie_3.jpg</p>
+                <a href="https://images.unsplash.com/photo-1509942774463-acf339cf87d5?w=800&auto=format&fit=crop&q=80" download="hoodie_3.jpg">Download</a>
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1542219550-37153d387c27?w=500&auto=format&fit=crop&q=60" alt="Men's Hoodie 4">
+                <p>hoodie_4.jpg</p>
+                <a href="https://images.unsplash.com/photo-1542219550-37153d387c27?w=800&auto=format&fit=crop&q=80" download="hoodie_4.jpg">Download</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="category">
+        <h2>Women's Products</h2>
+        <div class="image-list">
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1612336307429-8a898d10e223?w=500&auto=format&fit=crop&q=60" alt="Women's Dress 1">
+                <p>dress_1.jpg</p>
+                <a href="https://images.unsplash.com/photo-1612336307429-8a898d10e223?w=800&auto=format&fit=crop&q=80" download="dress_1.jpg">Download</a>
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=500&auto=format&fit=crop&q=60" alt="Women's Dress 2">
+                <p>dress_2.jpg</p>
+                <a href="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&auto=format&fit=crop&q=80" download="dress_2.jpg">Download</a>
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=500&auto=format&fit=crop&q=60" alt="Women's Dress 3">
+                <p>dress_3.jpg</p>
+                <a href="https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&auto=format&fit=crop&q=80" download="dress_3.jpg">Download</a>
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=500&auto=format&fit=crop&q=60" alt="Women's Dress 4">
+                <p>dress_4.jpg</p>
+                <a href="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=800&auto=format&fit=crop&q=80" download="dress_4.jpg">Download</a>
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1604695573706-53170668f6a6?w=500&auto=format&fit=crop&q=60" alt="Women's Blouse 1">
+                <p>blouse_1.jpg</p>
+                <a href="https://images.unsplash.com/photo-1604695573706-53170668f6a6?w=800&auto=format&fit=crop&q=80" download="blouse_1.jpg">Download</a>
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1559334417-a57bd929f003?w=500&auto=format&fit=crop&q=60" alt="Women's Blouse 2">
+                <p>blouse_2.jpg</p>
+                <a href="https://images.unsplash.com/photo-1559334417-a57bd929f003?w=800&auto=format&fit=crop&q=80" download="blouse_2.jpg">Download</a>
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1564257631407-4deb1f99d992?w=500&auto=format&fit=crop&q=60" alt="Women's Blouse 3">
+                <p>blouse_3.jpg</p>
+                <a href="https://images.unsplash.com/photo-1564257631407-4deb1f99d992?w=800&auto=format&fit=crop&q=80" download="blouse_3.jpg">Download</a>
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1554568218-0f1715e72254?w=500&auto=format&fit=crop&q=60" alt="Women's Blouse 4">
+                <p>blouse_4.jpg</p>
+                <a href="https://images.unsplash.com/photo-1554568218-0f1715e72254?w=800&auto=format&fit=crop&q=80" download="blouse_4.jpg">Download</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="category">
+        <h2>Kids' Products</h2>
+        <div class="image-list">
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1519238359922-989348752efb?w=500&auto=format&fit=crop&q=60" alt="Kids' Jeans 1">
+                <p>jeans_1.jpg</p>
+                <a href="https://images.unsplash.com/photo-1519238359922-989348752efb?w=800&auto=format&fit=crop&q=80" download="jeans_1.jpg">Download</a>
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1560506840-ec148e82a604?w=500&auto=format&fit=crop&q=60" alt="Kids' Jeans 2">
+                <p>jeans_2.jpg</p>
+                <a href="https://images.unsplash.com/photo-1560506840-ec148e82a604?w=800&auto=format&fit=crop&q=80" download="jeans_2.jpg">Download</a>
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1473919695995-1ca76f46c7e8?w=500&auto=format&fit=crop&q=60" alt="Kids' Jeans 3">
+                <p>jeans_3.jpg</p>
+                <a href="https://images.unsplash.com/photo-1473919695995-1ca76f46c7e8?w=800&auto=format&fit=crop&q=80" download="jeans_3.jpg">Download</a>
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1541580621-cb65cc53084b?w=500&auto=format&fit=crop&q=60" alt="Kids' Jeans 4">
+                <p>jeans_4.jpg</p>
+                <a href="https://images.unsplash.com/photo-1541580621-cb65cc53084b?w=800&auto=format&fit=crop&q=80" download="jeans_4.jpg">Download</a>
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?w=500&auto=format&fit=crop&q=60" alt="Kids' T-Shirt 1">
+                <p>tshirt_1.jpg</p>
+                <a href="https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?w=800&auto=format&fit=crop&q=80" download="tshirt_1.jpg">Download</a>
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1519238360324-0529f80c61ff?w=500&auto=format&fit=crop&q=60" alt="Kids' T-Shirt 2">
+                <p>tshirt_2.jpg</p>
+                <a href="https://images.unsplash.com/photo-1519238360324-0529f80c61ff?w=800&auto=format&fit=crop&q=80" download="tshirt_2.jpg">Download</a>
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1503919545889-aef636e10ad4?w=500&auto=format&fit=crop&q=60" alt="Kids' T-Shirt 3">
+                <p>tshirt_3.jpg</p>
+                <a href="https://images.unsplash.com/photo-1503919545889-aef636e10ad4?w=800&auto=format&fit=crop&q=80" download="tshirt_3.jpg">Download</a>
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1471286174890-9c112ffca5b4?w=500&auto=format&fit=crop&q=60" alt="Kids' T-Shirt 4">
+                <p>tshirt_4.jpg</p>
+                <a href="https://images.unsplash.com/photo-1471286174890-9c112ffca5b4?w=800&auto=format&fit=crop&q=80" download="tshirt_4.jpg">Download</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="category">
+        <h2>Accessories</h2>
+        <div class="image-list">
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1624623278313-a930126a11c3?w=500&auto=format&fit=crop&q=60" alt="Belt 1">
+                <p>belt_1.jpg</p>
+                <a href="https://images.unsplash.com/photo-1624623278313-a930126a11c3?w=800&auto=format&fit=crop&q=80" download="belt_1.jpg">Download</a>
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&auto=format&fit=crop&q=60" alt="Belt 2">
+                <p>belt_2.jpg</p>
+                <a href="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&auto=format&fit=crop&q=80" download="belt_2.jpg">Download</a>
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1611911813383-67769b37a149?w=500&auto=format&fit=crop&q=60" alt="Belt 3">
+                <p>belt_3.jpg</p>
+                <a href="https://images.unsplash.com/photo-1611911813383-67769b37a149?w=800&auto=format&fit=crop&q=80" download="belt_3.jpg">Download</a>
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1605037287297-3293a5f8b645?w=500&auto=format&fit=crop&q=60" alt="Belt 4">
+                <p>belt_4.jpg</p>
+                <a href="https://images.unsplash.com/photo-1605037287297-3293a5f8b645?w=800&auto=format&fit=crop&q=80" download="belt_4.jpg">Download</a>
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=500&auto=format&fit=crop&q=60" alt="Sunglasses 1">
+                <p>sunglasses_1.jpg</p>
+                <a href="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=800&auto=format&fit=crop&q=80" download="sunglasses_1.jpg">Download</a>
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=500&auto=format&fit=crop&q=60" alt="Sunglasses 2">
+                <p>sunglasses_2.jpg</p>
+                <a href="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=800&auto=format&fit=crop&q=80" download="sunglasses_2.jpg">Download</a>
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1577803645773-f96470509666?w=500&auto=format&fit=crop&q=60" alt="Sunglasses 3">
+                <p>sunglasses_3.jpg</p>
+                <a href="https://images.unsplash.com/photo-1577803645773-f96470509666?w=800&auto=format&fit=crop&q=80" download="sunglasses_3.jpg">Download</a>
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=500&auto=format&fit=crop&q=60" alt="Sunglasses 4">
+                <p>sunglasses_4.jpg</p>
+                <a href="https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800&auto=format&fit=crop&q=80" download="sunglasses_4.jpg">Download</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

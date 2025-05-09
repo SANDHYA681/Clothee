@@ -1,0 +1,346 @@
+/* Admin Categories CSS - Styles for the categories management page */
+
+/* Category List Styles */
+.admin-category-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.admin-category-card {
+  background-color: var(--bg-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.admin-category-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.admin-category-image {
+  height: 160px;
+  overflow: hidden;
+  position: relative;
+}
+
+.admin-category-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.3s ease;
+}
+
+.admin-category-card:hover .admin-category-image img {
+  transform: scale(1.05);
+}
+
+.admin-category-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.admin-category-card:hover .admin-category-overlay {
+  opacity: 1;
+}
+
+.admin-category-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.admin-category-action-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: white;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.admin-category-action-btn:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.admin-category-content {
+  padding: 15px;
+}
+
+.admin-category-name {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.admin-category-description {
+  font-size: 14px;
+  color: var(--text-light);
+  margin-bottom: 10px;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.admin-category-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+.admin-category-count {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.admin-category-count i {
+  color: var(--primary-color);
+}
+
+.admin-category-status {
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.admin-category-status.active {
+  background-color: rgba(76, 175, 80, 0.1);
+  color: #4caf50;
+}
+
+.admin-category-status.inactive {
+  background-color: rgba(244, 67, 54, 0.1);
+  color: #f44336;
+}
+
+/* Category Form Styles */
+.admin-category-form {
+  background-color: var(--bg-color);
+  border-radius: var(--border-radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  margin-bottom: 30px;
+}
+
+.admin-category-form-title {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.admin-category-form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.admin-category-form-group {
+  margin-bottom: 20px;
+}
+
+.admin-category-form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.admin-category-form-control {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-family: inherit;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.admin-category-form-control:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(63, 81, 181, 0.2);
+}
+
+.admin-category-form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.admin-category-form-file {
+  padding: 8px 0;
+}
+
+.admin-category-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.admin-category-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.admin-category-btn:hover {
+  background-color: var(--primary-hover);
+}
+
+.admin-category-btn-secondary {
+  background-color: #f5f5f5;
+  color: var(--text-color);
+}
+
+.admin-category-btn-secondary:hover {
+  background-color: #e0e0e0;
+}
+
+.admin-category-btn-danger {
+  background-color: #f44336;
+}
+
+.admin-category-btn-danger:hover {
+  background-color: #d32f2f;
+}
+
+/* Category Detail Styles */
+.admin-category-detail {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.admin-category-detail-image {
+  flex: 0 0 300px;
+  height: 300px;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.admin-category-detail-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.admin-category-detail-content {
+  flex: 1;
+}
+
+.admin-category-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.admin-category-detail-title {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.admin-category-detail-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.admin-category-detail-info {
+  margin-bottom: 20px;
+}
+
+.admin-category-detail-description {
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.admin-category-detail-meta {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.admin-category-detail-meta-item {
+  background-color: var(--bg-light);
+  padding: 15px;
+  border-radius: var(--border-radius);
+}
+
+.admin-category-detail-meta-label {
+  font-size: 13px;
+  color: var(--text-light);
+  margin-bottom: 5px;
+}
+
+.admin-category-detail-meta-value {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .admin-category-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .admin-category-form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  
+  .admin-category-detail {
+    flex-direction: column;
+  }
+  
+  .admin-category-detail-image {
+    flex: 0 0 auto;
+    height: 250px;
+  }
+}
+
+@media (max-width: 576px) {
+  .admin-category-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .admin-category-detail-meta {
+    grid-template-columns: 1fr;
+  }
+  
+  .admin-category-detail-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+}

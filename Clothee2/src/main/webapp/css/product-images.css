@@ -1,0 +1,106 @@
+/* Product Images CSS */
+
+/* Product image container */
+.product-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #f8f9fa;
+    aspect-ratio: 1 / 1;
+}
+
+/* Product image */
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Hover effect for product image */
+.product-image:hover img {
+    transform: scale(1.05);
+}
+
+/* Product image overlay */
+.product-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.5) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.product-image:hover::after {
+    opacity: 1;
+}
+
+/* Product card image */
+.product-card-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px 8px 0 0;
+    background-color: #f8f9fa;
+    aspect-ratio: 1 / 1;
+}
+
+.product-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-card-image img {
+    transform: scale(1.05);
+}
+
+/* Product list image */
+.product-list-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    width: 200px;
+    height: 200px;
+}
+
+.product-list-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.product-list-item:hover .product-list-image img {
+    transform: scale(1.05);
+}
+
+/* Product detail image */
+.product-detail .product-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .product-list-image {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media (max-width: 576px) {
+    .product-list-image {
+        width: 100px;
+        height: 100px;
+    }
+}

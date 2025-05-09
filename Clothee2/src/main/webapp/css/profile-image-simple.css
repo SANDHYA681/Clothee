@@ -1,0 +1,103 @@
+/* Simple CSS for profile image handling (no JavaScript) */
+
+.no-profile-image {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    border-radius: 50%;
+    color: #666;
+    text-align: center;
+}
+
+.no-profile-image i {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.no-profile-image p {
+    font-size: 10px;
+    line-height: 1.2;
+    margin: 0;
+}
+
+/* Profile image upload section */
+.profile-image-upload {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.profile-image-upload h3 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.profile-image-upload p {
+    margin-bottom: 15px;
+    color: #666;
+}
+
+.profile-image-upload .upload-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4361ee;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.profile-image-upload .upload-btn:hover {
+    background-color: #3a56d4;
+}
+
+.profile-image-upload input[type="file"] {
+    margin-top: 10px;
+}
+
+/* User avatar in sidebar and header */
+.user-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 10px;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+.user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Smaller avatar for header */
+.header-avatar {
+    width: 40px;
+    height: 40px;
+}
+
+/* Admin header avatar */
+.admin-header-user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.admin-header-user-avatar img,
+.admin-header-user-avatar .no-profile-image {
+    width: 100%;
+    height: 100%;
+}
+
+.admin-header-user-avatar .no-profile-image i {
+    font-size: 18px;
+    margin: 0;
+}
