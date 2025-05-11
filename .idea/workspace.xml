@@ -149,35 +149,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JavaScript Debug.blue-dashboard.jsp.executor": "Run",
-    "JavaScript Debug.contact-new.jsp.executor": "Run",
-    "JavaScript Debug.customer-example.jsp.executor": "Run",
-    "JavaScript Debug.customers.jsp.executor": "Run",
-    "JavaScript Debug.payment-history.jsp.executor": "Run",
-    "JavaScript Debug.test-review.jsp.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHELLCHECK.PATH": "I do mind",
-    "Tomcat Server.Tomcat 11.0.6.executor": "Run",
-    "Tomcat Server.categories.jsp.executor": "Run",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/USER/Music/clothhee/clothy/Clothee",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JavaScript Debug.blue-dashboard.jsp.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.contact-new.jsp.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.customer-example.jsp.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.customers.jsp.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.payment-history.jsp.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.test-review.jsp.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHELLCHECK.PATH&quot;: &quot;I do mind&quot;,
+    &quot;Tomcat Server.Tomcat 11.0.6.executor&quot;: &quot;Run&quot;,
+    &quot;Tomcat Server.categories.jsp.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/USER/Music/clothy/Clothee&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\USER\Music\Clothee\src\main" />
@@ -207,7 +207,7 @@
       </deployment>
       <server-settings>
         <option name="BASE_DIRECTORY_NAME" value="108e89e9-9ebe-48f8-b02f-b645e5b22384" />
-        <option name="HTTP_PORT" value="8086" />
+        <option name="HTTP_PORT" value="8081" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -347,7 +347,6 @@
       <workItem from="1745644893028" duration="14463000" />
       <workItem from="1746783494902" duration="1104000" />
       <workItem from="1746784649015" duration="1330000" />
-      <workItem from="1746932757541" duration="815000" />
     </task>
     <servers />
   </component>

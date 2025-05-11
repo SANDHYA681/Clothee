@@ -106,14 +106,6 @@ public class OrderDAO {
                 System.out.println("OrderDAO: Setting status to Pending for unpaid order");
             }
 
-            // Double-check: If payment method is Credit Card or PayPal but status is still Pending, force it to Processing
-            if ("Pending".equals(status) && paymentMethod != null &&
-                (paymentMethod.equalsIgnoreCase("Credit Card") ||
-                 paymentMethod.equalsIgnoreCase("PayPal"))) {
-                status = "Processing";
-                System.out.println("OrderDAO: Forcing status to Processing for Credit Card or PayPal payment");
-            }
-
             // Update the order object with the correct status
             order.setStatus(status);
             stmt.setString(3, status);
@@ -512,53 +504,30 @@ public class OrderDAO {
      * @return true if successful, false otherwise
      */
     public boolean updatePaymentStatus(int orderId, String paymentStatus) {
-        System.out.println("OrderDAO: Updating payment status for order ID: " + orderId + " to: " + paymentStatus);
-        Connection conn = null;
+        String query = "UPDATE payments SET status = ? WHERE order_id = ?";
 
-        try {
-            conn = DBConnection.getConnection();
-            conn.setAutoCommit(false);
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
 
-            String query = "UPDATE payments SET status = ? WHERE order_id = ?";
-
-            PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, paymentStatus);
             stmt.setInt(2, orderId);
 
             int rowsAffected = stmt.executeUpdate();
-            System.out.println("OrderDAO: Payment update result - rows affected: " + rowsAffected);
 
             // If no payment record exists, create one
             if (rowsAffected == 0) {
-                // First, get the payment method from the orders table
-                String paymentMethod = "Credit Card"; // Default
-                String getPaymentMethodQuery = "SELECT payment_method FROM orders WHERE id = ?";
-                try (PreparedStatement getStmt = conn.prepareStatement(getPaymentMethodQuery)) {
-                    getStmt.setInt(1, orderId);
-                    try (ResultSet rs = getStmt.executeQuery()) {
-                        if (rs.next()) {
-                            String method = rs.getString("payment_method");
-                            if (method != null && !method.isEmpty()) {
-                                paymentMethod = method;
-                            }
-                        }
-                    }
-                }
-
                 String insertQuery = "INSERT INTO payments (order_id, status, payment_date, payment_method, amount, user_id) " +
-                                     "SELECT ?, ?, CURRENT_TIMESTAMP, ?, total_price, user_id FROM orders WHERE id = ?";
+                                     "SELECT ?, ?, CURRENT_TIMESTAMP, 'Credit Card', total_price, user_id FROM orders WHERE id = ?";
                 try (PreparedStatement insertStmt = conn.prepareStatement(insertQuery)) {
                     insertStmt.setInt(1, orderId);
                     insertStmt.setString(2, paymentStatus);
-                    insertStmt.setString(3, paymentMethod);
-                    insertStmt.setInt(4, orderId);
+                    insertStmt.setInt(3, orderId);
                     rowsAffected = insertStmt.executeUpdate();
-                    System.out.println("OrderDAO: Created new payment record - rows affected: " + rowsAffected);
                 }
             }
 
-            // If payment status is Completed or Paid, always update order status to Processing
-            if ("Completed".equalsIgnoreCase(paymentStatus) || "Paid".equalsIgnoreCase(paymentStatus)) {
+            // If payment status is Completed or Paid, update order status to Processing if it's currently Pending
+            if (rowsAffected > 0 && ("Completed".equalsIgnoreCase(paymentStatus) || "Paid".equalsIgnoreCase(paymentStatus))) {
                 // Update order status to Processing regardless of current status
                 String updateOrderQuery = "UPDATE orders SET status = 'Processing' WHERE id = ?";
                 try (PreparedStatement updateStmt = conn.prepareStatement(updateOrderQuery)) {
@@ -568,31 +537,13 @@ public class OrderDAO {
                 }
             }
 
-            conn.commit();
             return rowsAffected > 0;
 
         } catch (SQLException e) {
-            System.out.println("OrderDAO: Error updating payment status: " + e.getMessage());
+            System.out.println("Error updating payment status: " + e.getMessage());
             e.printStackTrace();
-
-            if (conn != null) {
-                try {
-                    conn.rollback();
-                } catch (SQLException ex) {
-                    System.out.println("OrderDAO: Error rolling back transaction: " + ex.getMessage());
-                }
-            }
-
             return false;
-        } finally {
-            if (conn != null) {
-                try {
-                    conn.setAutoCommit(true);
-                    conn.close();
-                } catch (SQLException e) {
-                    System.out.println("OrderDAO: Error closing connection: " + e.getMessage());
-                }
-            }
+        }
     }
 
     /**
