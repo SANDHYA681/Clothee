@@ -139,11 +139,10 @@ CREATE TABLE cart (
 -- Create messages table
 CREATE TABLE messages (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL,
     subject VARCHAR(200) NOT NULL,
     message TEXT NOT NULL,
     is_read BOOLEAN DEFAULT FALSE,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
+   
