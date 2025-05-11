@@ -1,0 +1,340 @@
+/*
+ * CLOTHEE Admin Dashboard - Enhanced Customers Page CSS
+ * This file provides enhanced styling for the customers page
+ */
+
+/* Customer Stats Section */
+.customer-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.stat-card {
+    background-color: #ffffff;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 8px 10px;
+    border-left: 3px solid #4361ee;
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 120px;
+    max-width: 180px;
+}
+
+.stat-card:hover {
+    background-color: #f8f9fa;
+}
+
+.stat-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgba(67, 97, 238, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+    color: #4361ee;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.stat-content {
+    flex: 1;
+}
+
+.stat-value {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1e3a8a;
+    margin-bottom: 0;
+    line-height: 1.2;
+}
+
+.stat-label {
+    color: #6c757d;
+    font-size: 10px;
+    font-weight: 500;
+}
+
+/* Customer Table Styling */
+.card {
+    background-color: #ffffff;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    overflow: hidden;
+    border: none;
+}
+
+.card-header {
+    background-color: #ffffff;
+    padding: 8px 10px;
+    border-bottom: 1px solid #e0e7ff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-title {
+    color: #1e3a8a;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.btn-add {
+    background-color: #4361ee;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 8px;
+    font-size: 12px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-add i {
+    margin-right: 4px;
+    font-size: 10px;
+}
+
+.btn-add:hover {
+    background-color: #3a56d4;
+    color: #ffffff;
+}
+
+.card-body {
+    padding: 0;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.data-table th {
+    background-color: #f0f5ff;
+    color: #1e3a8a;
+    font-weight: 600;
+    padding: 6px 8px;
+    text-align: left;
+    border-bottom: 1px solid #e0e7ff;
+    white-space: nowrap;
+    font-size: 12px;
+}
+
+.data-table td {
+    padding: 6px 8px;
+    border-bottom: 1px solid #e0e7ff;
+    vertical-align: middle;
+    font-size: 12px;
+}
+
+.data-table tbody tr:hover {
+    background-color: rgba(67, 97, 238, 0.05);
+}
+
+.data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Customer Badge Styling */
+.badge {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.badge.admin {
+    background-color: rgba(67, 97, 238, 0.1);
+    color: #4361ee;
+    text-transform: capitalize;
+}
+
+.badge.customer {
+    background-color: rgba(46, 204, 113, 0.1);
+    color: #2ecc71;
+    text-transform: capitalize;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+.btn-view, .btn-edit, .btn-delete {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    text-decoration: none !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+}
+
+.btn-view {
+    background-color: #4361ee !important;
+    color: #ffffff !important;
+}
+
+.btn-view:hover {
+    background-color: #3a56d4 !important;
+    color: #ffffff !important;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(67, 97, 238, 0.3);
+}
+
+.btn-edit {
+    background-color: #3498db !important;
+    color: #ffffff !important;
+}
+
+.btn-edit:hover {
+    background-color: #2980b9 !important;
+    color: #ffffff !important;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+}
+
+.btn-delete {
+    background-color: #e74c3c !important;
+    color: #ffffff !important;
+}
+
+.btn-delete:hover {
+    background-color: #c0392b !important;
+    color: #ffffff !important;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
+}
+
+.btn-view i, .btn-edit i, .btn-delete i {
+    font-size: 12px;
+    color: #ffffff !important;
+    pointer-events: none;
+}
+
+/* Alert Messages */
+.alert {
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.alert-success {
+    background-color: rgba(46, 204, 113, 0.1);
+    color: #2ecc71;
+    border-left: 4px solid #2ecc71;
+}
+
+.alert-danger {
+    background-color: rgba(231, 76, 60, 0.1);
+    color: #e74c3c;
+    border-left: 4px solid #e74c3c;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .customer-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .btn-add {
+        margin-top: 10px;
+    }
+
+    .data-table {
+        min-width: 800px;
+    }
+
+    .action-buttons {
+        flex-wrap: nowrap;
+    }
+
+    .btn-view, .btn-edit, .btn-delete {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+@media (max-width: 576px) {
+    .action-buttons {
+        display: flex;
+        gap: 5px;
+    }
+
+    .btn-view, .btn-edit, .btn-delete {
+        width: 30px;
+        height: 30px;
+    }
+
+    .btn-view i, .btn-edit i, .btn-delete i {
+        font-size: 12px;
+    }
+}
+
+/* Animation for alerts */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.alert {
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Hover effect for table rows */
+.data-table tbody tr {
+    transition: transform 0.2s ease;
+}
+
+.data-table tbody tr:hover {
+    transform: translateX(5px);
+}
+
+/* Custom scrollbar for table */
+.table-responsive::-webkit-scrollbar {
+    height: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background: #4361ee;
+    border-radius: 4px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+    background: #3a56d4;
+}

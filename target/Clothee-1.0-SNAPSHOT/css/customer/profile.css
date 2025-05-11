@@ -1,0 +1,247 @@
+/* Profile-specific CSS for customer dashboard */
+
+/* Profile Image Preview */
+.profile-image-preview {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+    position: relative;
+    border: 4px solid var(--primary-color);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.profile-image-preview:hover {
+    transform: scale(1.05);
+}
+
+.profile-image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.profile-image-preview:hover .image-overlay {
+    opacity: 1;
+}
+
+.image-overlay i {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+/* Profile Tabs */
+.tab-nav {
+    display: flex;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 25px;
+}
+
+.tab-item {
+    padding: 15px 20px;
+    cursor: pointer;
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.tab-item i {
+    margin-right: 8px;
+    font-size: 16px;
+}
+
+.tab-item:hover {
+    color: var(--primary-color);
+}
+
+.tab-item.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+    font-weight: 600;
+}
+
+.tab-content {
+    padding: 20px 0;
+}
+
+.tab-pane {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+/* Current Picture Section */
+.current-picture {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.current-picture h4 {
+    margin-bottom: 15px;
+    color: var(--text-dark);
+    font-weight: 500;
+    font-size: 18px;
+}
+
+/* File Upload Styling */
+.custom-file-upload {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+}
+
+#file-name {
+    margin-left: 10px;
+    font-size: 14px;
+    color: var(--text-medium);
+    padding: 5px 10px;
+    background-color: var(--bg-light);
+    border-radius: 4px;
+}
+
+/* Account Actions Section */
+.account-actions {
+    margin-top: 50px;
+    padding: 25px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: var(--bg-light);
+    border-radius: var(--border-radius);
+}
+
+.account-actions h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+}
+
+.account-actions h3 i {
+    margin-right: 10px;
+    color: var(--danger-color);
+}
+
+.account-actions p {
+    margin-bottom: 20px;
+    color: var(--text-medium);
+    font-size: 14px;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(3px);
+}
+
+.modal-content {
+    background-color: var(--bg-white);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    width: 500px;
+    max-width: 90%;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    animation: modalOpen 0.3s ease;
+}
+
+@keyframes modalOpen {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--text-medium);
+    transition: var(--transition);
+}
+
+.close-modal:hover {
+    color: var(--danger-color);
+    transform: rotate(90deg);
+}
+
+/* Profile Image Upload Form */
+.profile-upload-form {
+    margin-top: 20px;
+}
+
+.profile-upload-preview {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 20px;
+    border: 3px solid var(--primary-color);
+}
+
+.profile-upload-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .tab-nav {
+        flex-direction: column;
+        border-bottom: none;
+    }
+    
+    .tab-item {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        margin-right: 0;
+    }
+    
+    .tab-item.active {
+        border-bottom: 1px solid var(--primary-color);
+        background-color: rgba(255, 107, 107, 0.1);
+    }
+    
+    .modal-content {
+        width: 95%;
+        padding: 20px;
+    }
+}

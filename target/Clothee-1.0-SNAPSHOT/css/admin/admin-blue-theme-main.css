@@ -1,0 +1,15 @@
+/*
+ * CLOTHEE Admin Dashboard - Blue Theme Main CSS
+ * This file imports all the blue theme CSS files for different sections
+ */
+
+/* Import base blue theme */
+@import url('admin-blue-theme.css');
+
+/* Import section-specific blue theme styles */
+@import url('admin-messages-blue.css');
+@import url('admin-reviews-blue.css');
+@import url('admin-customers-blue.css');
+@import url('admin-orders-blue.css');
+@import url('admin-products-blue.css');
+@import url('admin-categories-blue.css');

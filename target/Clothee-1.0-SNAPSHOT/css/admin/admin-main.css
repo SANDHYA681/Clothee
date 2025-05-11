@@ -1,0 +1,26 @@
+/*
+ * CLOTHEE Admin Dashboard - Main CSS File
+ * This file imports all the component CSS files for the admin section
+ */
+
+/* Import base styles and variables */
+@import url('admin-variables.css');
+@import url('admin-base.css');
+
+/* Import layout components */
+@import url('admin-layout.css');
+
+/* Import UI components */
+@import url('admin-components.css');
+@import url('admin-tables.css');
+@import url('admin-forms.css');
+@import url('admin-buttons.css');
+
+/* Import page-specific styles */
+@import url('admin-dashboard.css');
+@import url('admin-customers.css');
+@import url('admin-orders.css');
+@import url('admin-products.css');
+
+/* Import responsive styles */
+@import url('admin-responsive.css');

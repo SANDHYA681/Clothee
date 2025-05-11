@@ -1,0 +1,160 @@
+/* Global CSS Variables */
+:root {
+    /* Primary Colors */
+    --primary-color: #ff8800;
+    --primary-light: #ffa640;
+    --primary-dark: #e67700;
+    --primary-rgb: 255, 136, 0;
+
+    /* Secondary Colors */
+    --secondary-color: #4ecdc4;
+    --secondary-light: #6ed9d2;
+    --secondary-dark: #3dbdb3;
+    --secondary-rgb: 78, 205, 196;
+
+    /* Accent Colors */
+    --accent-color: #ffe66d;
+    --accent-light: #fff09e;
+    --accent-dark: #ffd83d;
+    --accent-rgb: 255, 230, 109;
+
+    /* State Colors */
+    --success-color: #2ecc71;
+    --success-light: #4cd787;
+    --success-dark: #27ae60;
+    --success-rgb: 46, 204, 113;
+
+    --danger-color: #e74c3c;
+    --danger-light: #eb6b5e;
+    --danger-dark: #c0392b;
+    --danger-rgb: 231, 76, 60;
+
+    --warning-color: #f39c12;
+    --warning-light: #f5b041;
+    --warning-dark: #d35400;
+    --warning-rgb: 243, 156, 18;
+
+    --info-color: #3498db;
+    --info-light: #5dade2;
+    --info-dark: #2980b9;
+    --info-rgb: 52, 152, 219;
+
+    /* Neutral Colors */
+    --dark-color: #2d3436;
+    --dark-light: #636e72;
+    --light-color: #f9f9f9;
+    --light-dark: #f1f1f1;
+    --gray-color: #dfe6e9;
+
+    /* Text Colors */
+    --text-dark: #333;
+    --text-medium: #666;
+    --text-light: #999;
+
+    /* Background Colors */
+    --bg-light: #ffffff;
+    --bg-light-alt: #f9f9f9;
+    --bg-dark: #222222;
+    --bg-dark-alt: #333333;
+
+    /* Border Colors */
+    --border-color: #eeeeee;
+    --border-light: #eeeeee;
+    --border-medium: #dddddd;
+    --border-dark: #cccccc;
+
+    /* Shadow Values */
+    --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 8px 20px rgba(0, 0, 0, 0.15);
+
+    /* Border Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-round: 50%;
+
+    /* Spacing */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    --space-xxl: 48px;
+
+    /* Font Sizes */
+    --font-xs: 12px;
+    --font-sm: 14px;
+    --font-md: 16px;
+    --font-lg: 18px;
+    --font-xl: 20px;
+    --font-xxl: 24px;
+    --font-xxxl: 32px;
+
+    /* Font Weights */
+    --weight-light: 300;
+    --weight-regular: 400;
+    --weight-medium: 500;
+    --weight-semibold: 600;
+    --weight-bold: 700;
+
+    /* Line Heights */
+    --line-height-tight: 1.2;
+    --line-height-normal: 1.5;
+    --line-height-loose: 1.8;
+
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+
+    /* Z-index Layers */
+    --z-base: 1;
+    --z-above: 10;
+    --z-dropdown: 100;
+    --z-sticky: 200;
+    --z-fixed: 300;
+    --z-modal: 400;
+    --z-popover: 500;
+    --z-tooltip: 600;
+    --z-toast: 700;
+    --z-overlay: 800;
+    --z-max: 9999;
+
+    /* Component Specific */
+    --header-height: 70px;
+    --sidebar-width: 250px;
+    --sidebar-collapsed-width: 70px;
+    --footer-height: 60px;
+    --container-max-width: 1200px;
+    --container-padding: 15px;
+
+    /* Container Widths for Responsive Design */
+    --container-sm: 540px;
+    --container-md: 720px;
+    --container-lg: 960px;
+    --container-xl: 1140px;
+    --container-xxl: 1320px;
+
+    /* Spacing Aliases for Utilities */
+    --spacing-xs: var(--space-xs);
+    --spacing-sm: var(--space-sm);
+    --spacing-md: var(--space-md);
+    --spacing-lg: var(--space-lg);
+    --spacing-xl: var(--space-xl);
+    --spacing-xxl: var(--space-xxl);
+
+    /* Button Shadows */
+    --shadow-btn: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-btn-hover: 0 6px 12px rgba(0, 0, 0, 0.15);
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+    --gradient-secondary: linear-gradient(135deg, var(--secondary-color) 0%, var(--secondary-light) 100%);
+    --gradient-accent: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-light) 100%);
+    --gradient-success: linear-gradient(135deg, var(--success-color) 0%, var(--success-light) 100%);
+    --gradient-danger: linear-gradient(135deg, var(--danger-color) 0%, var(--danger-light) 100%);
+    --gradient-warning: linear-gradient(135deg, var(--warning-color) 0%, var(--warning-light) 100%);
+    --gradient-info: linear-gradient(135deg, var(--info-color) 0%, var(--info-light) 100%);
+}

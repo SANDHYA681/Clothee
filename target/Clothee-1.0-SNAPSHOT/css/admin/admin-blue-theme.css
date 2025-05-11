@@ -1,0 +1,277 @@
+/* 
+ * CLOTHEE Admin Dashboard - Blue Theme CSS
+ * This file applies a blue color scheme to all admin sections
+ */
+
+/* Override the default variables with blue theme colors */
+:root {
+  /* Primary Blue Color Palette */
+  --primary: #4361ee;
+  --primary-light: #4895ef;
+  --primary-dark: #3f37c9;
+  --primary-hover: #3a56d4;
+  --secondary: #4cc9f0;
+  
+  /* Status Colors */
+  --success: #2ecc71;
+  --info: #3498db;
+  --warning: #f39c12;
+  --danger: #e74c3c;
+  
+  /* Status Colors with Transparency */
+  --success-light: rgba(46, 204, 113, 0.1);
+  --info-light: rgba(52, 152, 219, 0.1);
+  --warning-light: rgba(243, 156, 18, 0.1);
+  --danger-light: rgba(231, 76, 60, 0.1);
+  --primary-light-bg: rgba(67, 97, 238, 0.1);
+}
+
+/* Sidebar Styling */
+.sidebar {
+  background-color: #1e3a8a;
+}
+
+.sidebar-header {
+  background-color: #1e3a8a;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo-text {
+  color: #ffffff;
+}
+
+.logo-icon {
+  color: #4cc9f0;
+}
+
+.sidebar-menu .menu-item {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.sidebar-menu .menu-item:hover,
+.sidebar-menu .menu-item.active {
+  background-color: rgba(76, 201, 240, 0.1);
+  color: #ffffff;
+  border-left: 3px solid #4cc9f0;
+}
+
+.sidebar-menu .menu-icon {
+  color: #4cc9f0;
+}
+
+/* Header Styling */
+.header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e0e7ff;
+}
+
+.header-actions .search-box input {
+  border: 1px solid #e0e7ff;
+}
+
+.header-actions .search-box button {
+  background-color: #4361ee;
+  color: #ffffff;
+}
+
+.notification-btn {
+  color: #4361ee;
+}
+
+.notification-btn .badge {
+  background-color: #4361ee;
+}
+
+/* Card Styling */
+.card {
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e0e7ff;
+}
+
+.card-title {
+  color: #1e3a8a;
+}
+
+/* Dashboard Stats Cards */
+.stat-card {
+  border-left: 4px solid #4361ee;
+}
+
+.stat-card .stat-icon {
+  color: #4361ee;
+}
+
+.stat-card .stat-value {
+  color: #1e3a8a;
+}
+
+/* Tables Styling */
+.data-table th {
+  background-color: #f0f5ff;
+  color: #1e3a8a;
+}
+
+.data-table tbody tr:hover {
+  background-color: rgba(67, 97, 238, 0.05);
+}
+
+.data-table .btn-view {
+  color: #4361ee;
+}
+
+.data-table .btn-edit {
+  color: #4895ef;
+}
+
+.data-table .btn-delete {
+  color: #e74c3c;
+}
+
+/* Status Indicators */
+.status {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-pending {
+  background-color: rgba(243, 156, 18, 0.1);
+  color: #f39c12;
+}
+
+.status-processing {
+  background-color: rgba(52, 152, 219, 0.1);
+  color: #3498db;
+}
+
+.status-completed {
+  background-color: rgba(46, 204, 113, 0.1);
+  color: #2ecc71;
+}
+
+.status-cancelled {
+  background-color: rgba(231, 76, 60, 0.1);
+  color: #e74c3c;
+}
+
+.status-read {
+  background-color: rgba(46, 204, 113, 0.1);
+  color: #2ecc71;
+}
+
+.status-unread {
+  background-color: rgba(67, 97, 238, 0.1);
+  color: #4361ee;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: #4361ee;
+  border-color: #4361ee;
+}
+
+.btn-primary:hover {
+  background-color: #3a56d4;
+  border-color: #3a56d4;
+}
+
+.btn-add {
+  background-color: #4361ee;
+  color: #ffffff;
+}
+
+.btn-add:hover {
+  background-color: #3a56d4;
+}
+
+/* Forms */
+.form-control:focus {
+  border-color: #4361ee;
+  box-shadow: 0 0 0 0.2rem rgba(67, 97, 238, 0.25);
+}
+
+/* Pagination */
+.pagination .page-item.active .page-link {
+  background-color: #4361ee;
+  border-color: #4361ee;
+}
+
+.pagination .page-link {
+  color: #4361ee;
+}
+
+/* Section-specific styles */
+
+/* Messages */
+.message-stats .stat-item .stat-value {
+  color: #4361ee;
+}
+
+tr.status-unread {
+  background-color: rgba(67, 97, 238, 0.05);
+}
+
+/* Reviews */
+.rating i {
+  color: #f39c12;
+}
+
+.review-stats .avg-rating {
+  color: #4361ee;
+}
+
+/* Products */
+.product-image-container {
+  border: 1px solid #e0e7ff;
+}
+
+.product-card {
+  border: 1px solid #e0e7ff;
+}
+
+.product-card:hover {
+  border-color: #4361ee;
+}
+
+/* Categories */
+.category-card {
+  border: 1px solid #e0e7ff;
+}
+
+.category-card:hover {
+  border-color: #4361ee;
+}
+
+.category-header {
+  background-color: #f0f5ff;
+}
+
+/* Orders */
+.order-details {
+  border: 1px solid #e0e7ff;
+}
+
+.order-summary {
+  background-color: #f0f5ff;
+}
+
+/* Customers */
+.customer-card {
+  border: 1px solid #e0e7ff;
+}
+
+.customer-card:hover {
+  border-color: #4361ee;
+}
+
+.customer-info .label {
+  color: #1e3a8a;
+}

@@ -1,0 +1,150 @@
+/* Product Images CSS */
+
+/* Product image container */
+.product-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #f8f9fa;
+    aspect-ratio: 1 / 1;
+}
+
+/* Product image */
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Hover effect */
+.product-image:hover img {
+    transform: scale(1.05);
+}
+
+/* Product image gallery */
+.product-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Main image */
+.gallery-main {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-main img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Thumbnails container */
+.gallery-thumbnails {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+    scrollbar-width: thin;
+    scrollbar-color: #ddd #f8f9fa;
+}
+
+.gallery-thumbnails::-webkit-scrollbar {
+    height: 6px;
+}
+
+.gallery-thumbnails::-webkit-scrollbar-track {
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.gallery-thumbnails::-webkit-scrollbar-thumb {
+    background-color: #ddd;
+    border-radius: 10px;
+}
+
+/* Thumbnail item */
+.gallery-thumbnail {
+    width: 80px;
+    height: 80px;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+    flex-shrink: 0;
+}
+
+.gallery-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gallery-thumbnail.active {
+    border-color: #ff8800;
+}
+
+/* Zoom container */
+.zoom-container {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Zoom lens */
+.zoom-lens {
+    position: absolute;
+    border: 1px solid #ccc;
+    width: 100px;
+    height: 100px;
+    background-color: rgba(255, 255, 255, 0.4);
+    cursor: none;
+    display: none;
+}
+
+/* Zoom result */
+.zoom-result {
+    position: absolute;
+    top: 0;
+    right: -400px;
+    width: 400px;
+    height: 400px;
+    border: 1px solid #ccc;
+    background-color: white;
+    display: none;
+    overflow: hidden;
+    z-index: 100;
+}
+
+/* Product badges */
+.product-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    z-index: 10;
+}
+
+.badge-new {
+    background-color: #4ecdc4;
+    color: white;
+}
+
+.badge-sale {
+    background-color: #ff6b6b;
+    color: white;
+}
+
+.badge-out-of-stock {
+    background-color: #6c757d;
+    color: white;
+}

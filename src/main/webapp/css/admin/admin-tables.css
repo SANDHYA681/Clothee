@@ -1,0 +1,349 @@
+/* 
+ * CLOTHEE Admin Dashboard - Tables
+ * Contains styles for data tables and related components
+ */
+
+/* Data Tables */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-sm);
+}
+
+.data-table th,
+.data-table td {
+  padding: var(--spacing-3) var(--spacing-4);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.data-table th {
+  background-color: var(--gray-100);
+  font-weight: var(--font-weight-semibold);
+  color: var(--gray-800);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: var(--font-size-xs);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.data-table tr {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.data-table tr:last-child {
+  border-bottom: none;
+}
+
+.data-table tr:hover {
+  background-color: var(--gray-100);
+}
+
+.data-table td {
+  color: var(--gray-700);
+}
+
+.data-table th:first-child,
+.data-table td:first-child {
+  padding-left: var(--spacing-5);
+}
+
+.data-table th:last-child,
+.data-table td:last-child {
+  padding-right: var(--spacing-5);
+}
+
+/* Table with rounded corners */
+.data-table-rounded {
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.data-table-rounded th:first-child {
+  border-top-left-radius: var(--border-radius);
+}
+
+.data-table-rounded th:last-child {
+  border-top-right-radius: var(--border-radius);
+}
+
+.data-table-rounded tr:last-child td:first-child {
+  border-bottom-left-radius: var(--border-radius);
+}
+
+.data-table-rounded tr:last-child td:last-child {
+  border-bottom-right-radius: var(--border-radius);
+}
+
+/* Table with alternating row colors */
+.data-table-striped tr:nth-child(even) {
+  background-color: var(--gray-100);
+}
+
+.data-table-striped tr:hover {
+  background-color: var(--gray-200);
+}
+
+/* Table with borders */
+.data-table-bordered th,
+.data-table-bordered td {
+  border: 1px solid var(--border-color);
+}
+
+/* Table with hover effect */
+.data-table-hover tr:hover {
+  background-color: var(--gray-200);
+}
+
+/* Table with compact spacing */
+.data-table-sm th,
+.data-table-sm td {
+  padding: var(--spacing-2) var(--spacing-3);
+}
+
+/* Table with larger spacing */
+.data-table-lg th,
+.data-table-lg td {
+  padding: var(--spacing-4) var(--spacing-5);
+}
+
+/* Table Pagination */
+.table-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-3) var(--spacing-4);
+  background-color: var(--white);
+  border-top: 1px solid var(--border-color);
+}
+
+.pagination-info {
+  font-size: var(--font-size-sm);
+  color: var(--gray-600);
+}
+
+.pagination-controls {
+  display: flex;
+  gap: var(--spacing-2);
+}
+
+.pagination-button {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius);
+  background-color: var(--white);
+  border: 1px solid var(--border-color);
+  color: var(--gray-700);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.pagination-button:hover {
+  background-color: var(--gray-100);
+}
+
+.pagination-button.active {
+  background-color: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+}
+
+.pagination-button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Table Search and Filters */
+.table-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-4);
+}
+
+.table-search {
+  position: relative;
+  width: 300px;
+}
+
+.table-search input {
+  width: 100%;
+  padding: var(--spacing-2) var(--spacing-4);
+  padding-left: var(--spacing-8);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-sm);
+}
+
+.table-search i {
+  position: absolute;
+  left: var(--spacing-3);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gray-500);
+}
+
+.table-filters {
+  display: flex;
+  gap: var(--spacing-3);
+}
+
+.filter-dropdown {
+  position: relative;
+}
+
+.filter-button {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-2) var(--spacing-3);
+  background-color: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+}
+
+.filter-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 200px;
+  background-color: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  z-index: var(--z-index-dropdown);
+  display: none;
+}
+
+.filter-menu.show {
+  display: block;
+}
+
+.filter-item {
+  padding: var(--spacing-2) var(--spacing-3);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.filter-item:hover {
+  background-color: var(--gray-100);
+}
+
+/* Action Buttons in Tables */
+.action-buttons {
+  display: flex;
+  gap: var(--spacing-2);
+  justify-content: center;
+}
+
+.btn-view, 
+.btn-edit, 
+.btn-delete {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.btn-view {
+  background-color: var(--info-light);
+  color: var(--info);
+}
+
+.btn-edit {
+  background-color: var(--warning-light);
+  color: var(--warning);
+}
+
+.btn-delete {
+  background-color: var(--danger-light);
+  color: var(--danger);
+}
+
+.btn-view:hover {
+  background-color: var(--info);
+  color: var(--white);
+}
+
+.btn-edit:hover {
+  background-color: var(--warning);
+  color: var(--white);
+}
+
+.btn-delete:hover {
+  background-color: var(--danger);
+  color: var(--white);
+}
+
+/* Empty State */
+.table-empty {
+  padding: var(--spacing-8) var(--spacing-4);
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: var(--font-size-3xl);
+  color: var(--gray-400);
+  margin-bottom: var(--spacing-3);
+}
+
+.empty-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  color: var(--gray-700);
+  margin-bottom: var(--spacing-2);
+}
+
+.empty-message {
+  font-size: var(--font-size-sm);
+  color: var(--gray-600);
+  margin-bottom: var(--spacing-4);
+}
+
+/* Loading State */
+.table-loading {
+  position: relative;
+  min-height: 200px;
+}
+
+.loading-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--gray-200);
+  border-top: 3px solid var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loading-text {
+  font-size: var(--font-size-sm);
+  color: var(--gray-600);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

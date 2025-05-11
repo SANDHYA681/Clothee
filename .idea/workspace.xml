@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Clothee:war" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8bba67b1-72a7-4342-a171-b9a09ce1425e" name="Changes" comment="Hy">
+      <change afterPath="$PROJECT_DIR$/src/main/java/util/ImagePathUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/AugmentWebviewStateStore.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/AugmentWebviewStateStore.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/clothee/HelloServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/AdminActionServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AdminActionServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/AdminMessageServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AdminMessageServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/AdminOrderServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AdminOrderServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/AdminUserServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/CategoryImageServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/CategoryImageServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/CategoryServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/CategoryServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ContactServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ContactServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ImageServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/LoginServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/OrderServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/OrderServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/PaymentServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/PaymentServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ProfileImageServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ProfileImageServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ProfileServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ProfileServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/SettingsServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/SettingsServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/TestServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/UserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/UserServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/MessageDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/MessageDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/OrderDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/OrderDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/OrderDAO.java.new" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/PaymentMethodDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/PaymentMethod.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Review.java.new" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/AdminOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/AdminOrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/MessageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/PaymentMethodService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/ProductImageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/ProductImageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servlet/UpdateProfileServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/util/DatabaseInitializer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/util/DatabaseUpdater.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/util/TestDBConnection.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/clothee.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/clothee.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/payment_methods.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/template.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/template.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/common/product-details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/common/product-details.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/common/products.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/common/products.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/add-category.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/add-category.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/add-customer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/add-customer.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/add-product.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/add-product.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/appearance-settings.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/categories.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/categories.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/clean-edit-product.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/clean-edit-product.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/confirm-delete-customer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/confirm-delete-customer.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/customer-details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/customer-details.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/customers.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/customers.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/dashboard-new.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/dashboard-new.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/dashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/dashboard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/edit-category.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/edit-category.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/edit-customer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/edit-customer.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/edit-order.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/edit-order.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/includes/footer-scripts.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/includes/footer-scripts.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/includes/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/includes/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/includes/sidebar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/includes/sidebar.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/messages.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/messages.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/order-details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/order-details.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/orders.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/orders.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/products.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/products.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/profile.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/reviews.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/reviews.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/settings.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/settings.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/simple-add-product.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/simple-add-product.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/upload-product-image.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/upload-product-image.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/view-category.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/view-category.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/view-message.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/view-message.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/view-user.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/view-user.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/cart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/cart.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/contact.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/contact.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/action-buttons-fix.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/action-buttons-fix.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/admin-base.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/admin-base.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/admin-blue-theme-all.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/admin-blue-theme-all.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/admin-blue-theme-unified.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/admin-blue-theme-unified.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/admin-customers-enhanced.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/admin-customers-enhanced.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/admin-dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/admin-dashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/admin.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/admin/admin-base.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/admin/admin-base.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/admin/admin-blue.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/admin/admin-blue.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/admin/admin-dashboard-layout.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/admin/admin-dashboard-layout.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/dashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/order-details.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/order-details.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/customer/basic-orders.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/customer/basic-orders.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/customer/dashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/customer/dashboard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/customer/improved-orders.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/customer/improved-orders.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/customer/order-details-new.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/customer/order-details-new.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/customer/order-details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/customer/order-details.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/customer/orders.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/customer/orders.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/customer/payment-methods.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/customer/payment.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/customer/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/customer/profile.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/customer/reviews.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/customer/reviews.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/customer/sidebar-menu.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/customer/sidebar-menu.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/customer/simple-orders.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/customer/simple-orders.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/customer/view-review.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/customer/view-review.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/includes/admin-dashboard-header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/includes/admin-dashboard-header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/includes/admin-panel-header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/includes/admin-panel-header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/includes/enhanced-header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/includes/enhanced-header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/includes/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/includes/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/payment.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/payment.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/product-details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/product-details.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/products.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/products.jsp" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2w7MzUZPbUz8kv84xGd7F9HCvaT" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JavaScript Debug.blue-dashboard.jsp.executor": "Run",
+    "JavaScript Debug.contact-new.jsp.executor": "Run",
+    "JavaScript Debug.customer-example.jsp.executor": "Run",
+    "JavaScript Debug.customers.jsp.executor": "Run",
+    "JavaScript Debug.payment-history.jsp.executor": "Run",
+    "JavaScript Debug.test-review.jsp.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHELLCHECK.PATH": "I do mind",
+    "Tomcat Server.Tomcat 11.0.6.executor": "Run",
+    "Tomcat Server.categories.jsp.executor": "Run",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/USER/Music/clothhee/clothy/Clothee",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\USER\Music\Clothee\src\main" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Tomcat Server.Tomcat 11.0.6">
+    <configuration name="contact-new.jsp" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:8080/Clothee_war_exploded/user/contact-new.jsp">
+      <method v="2" />
+    </configuration>
+    <configuration name="customers.jsp" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:8080/Clothee_war_exploded/admin/messages/admin/customers.jsp">
+      <method v="2" />
+    </configuration>
+    <configuration name="payment-history.jsp" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:8080/Clothee_war_exploded/user/payment-history.jsp">
+      <method v="2" />
+    </configuration>
+    <configuration name="test-review.jsp" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:8080/Clothee_war_exploded/user/test-review.jsp">
+      <method v="2" />
+    </configuration>
+    <configuration name="Tomcat 11.0.6" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 11.0.6" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="UPDATING_POLICY" value="redeploy-artifacts" />
+      <deployment>
+        <artifact name="Clothee:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/Clothee_war_exploded" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="108e89e9-9ebe-48f8-b02f-b645e5b22384" />
+        <option name="HTTP_PORT" value="8086" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="54041" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Profile">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="Clothee:war" />
+        </option>
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JavaScript Debug.contact-new.jsp" />
+      <item itemvalue="JavaScript Debug.customers.jsp" />
+      <item itemvalue="JavaScript Debug.payment-history.jsp" />
+      <item itemvalue="JavaScript Debug.test-review.jsp" />
+      <item itemvalue="Tomcat Server.Tomcat 11.0.6" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.customers.jsp" />
+        <item itemvalue="JavaScript Debug.payment-history.jsp" />
+        <item itemvalue="JavaScript Debug.test-review.jsp" />
+        <item itemvalue="JavaScript Debug.contact-new.jsp" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.23774.435" />
+        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-IU-251.23774.435" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8bba67b1-72a7-4342-a171-b9a09ce1425e" name="Changes" comment="" />
+      <created>1745388423425</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1745388423425</updated>
+      <workItem from="1745388424722" duration="407000" />
+      <workItem from="1745388852308" duration="36154000" />
+      <workItem from="1745470490690" duration="6309000" />
+      <workItem from="1745479823947" duration="1127000" />
+      <workItem from="1745480969390" duration="4862000" />
+      <workItem from="1745485867146" duration="402000" />
+      <workItem from="1745486289542" duration="3496000" />
+      <workItem from="1745495983781" duration="8407000" />
+      <workItem from="1745504765024" duration="5011000" />
+      <workItem from="1745509803918" duration="7112000" />
+      <workItem from="1745519115459" duration="3066000" />
+      <workItem from="1745522213713" duration="2592000" />
+      <workItem from="1745541225591" duration="8316000" />
+      <workItem from="1745551801730" duration="13448000" />
+      <workItem from="1745567072168" duration="187000" />
+      <workItem from="1745567359231" duration="229000" />
+      <workItem from="1745567614288" duration="589000" />
+      <workItem from="1745568965545" duration="41000" />
+      <workItem from="1745569727826" duration="236000" />
+      <workItem from="1745572731037" duration="276000" />
+      <workItem from="1745576587215" duration="5761000" />
+      <workItem from="1745582404670" duration="16773000" />
+      <workItem from="1745602641630" duration="1061000" />
+      <workItem from="1745603727215" duration="2879000" />
+      <workItem from="1745606639083" duration="248000" />
+      <workItem from="1745629612606" duration="1129000" />
+      <workItem from="1745631397660" duration="3508000" />
+      <workItem from="1745635028775" duration="3595000" />
+      <workItem from="1745638740953" duration="6052000" />
+      <workItem from="1745644893028" duration="14463000" />
+      <workItem from="1746783494902" duration="1104000" />
+      <workItem from="1746784649015" duration="1330000" />
+      <workItem from="1746932757541" duration="815000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Hy" />
+    <option name="LAST_COMMIT_MESSAGE" value="Hy" />
+  </component>
+</project>

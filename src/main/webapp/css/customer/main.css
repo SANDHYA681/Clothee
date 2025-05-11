@@ -1,0 +1,10 @@
+/* Main CSS file for customer dashboard */
+@import url('dashboard-pro.css');
+@import url('components.css');
+@import url('profile.css');
+@import url('wishlist.css');
+@import url('orders.css');
+@import url('dashboard-upload.css');
+
+/* This file serves as the main entry point for all customer dashboard CSS */
+/* It imports all the necessary CSS files to maintain a clean structure */

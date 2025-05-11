@@ -1,0 +1,113 @@
+/*
+ * Action Buttons Fix - This CSS file overrides all other action button styles
+ * to ensure they are clickable and properly styled
+ */
+
+/* Action Buttons Container */
+.action-buttons {
+    display: flex !important;
+    gap: 10px !important;
+    justify-content: center !important;
+    position: relative !important;
+    z-index: 1000 !important; /* Higher z-index to ensure it's above other elements */
+}
+
+/* Common Button Styles */
+.btn-view,
+.btn-edit,
+.btn-delete {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+    position: relative !important;
+    z-index: 1001 !important; /* Even higher z-index to ensure it's above other elements */
+    transition: all 0.3s ease !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+    pointer-events: auto !important; /* Ensure clicks are captured */
+}
+
+/* View Button */
+.btn-view {
+    background-color: #4361ee !important;
+    color: #ffffff !important;
+}
+
+.btn-view:hover {
+    background-color: #3a56d4 !important;
+    color: #ffffff !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 4px 8px rgba(67, 97, 238, 0.3) !important;
+}
+
+/* Edit Button */
+.btn-edit {
+    background-color: #3498db !important;
+    color: #ffffff !important;
+}
+
+.btn-edit:hover {
+    background-color: #2980b9 !important;
+    color: #ffffff !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3) !important;
+}
+
+/* Delete Button */
+.btn-delete {
+    background-color: #e74c3c !important;
+    color: #ffffff !important;
+}
+
+.btn-delete:hover {
+    background-color: #c0392b !important;
+    color: #ffffff !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3) !important;
+}
+
+/* Button Icons */
+.btn-view i,
+.btn-edit i,
+.btn-delete i {
+    font-size: 16px !important;
+    color: #ffffff !important;
+    pointer-events: none !important; /* Ensures clicks go through to the button */
+}
+
+/* Ensure buttons are clickable on mobile devices */
+@media (max-width: 768px) {
+    .action-buttons {
+        gap: 8px !important;
+    }
+
+    .btn-view,
+    .btn-edit,
+    .btn-delete {
+        width: 32px !important;
+        height: 32px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .action-buttons {
+        gap: 5px !important;
+    }
+
+    .btn-view,
+    .btn-edit,
+    .btn-delete {
+        width: 30px !important;
+        height: 30px !important;
+    }
+
+    .btn-view i,
+    .btn-edit i,
+    .btn-delete i {
+        font-size: 14px !important;
+    }
+}
