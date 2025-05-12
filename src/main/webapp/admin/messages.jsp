@@ -108,6 +108,20 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm");
         .view-link:hover {
             background-color: #45a049;
         }
+
+        .delete-link {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #f44336;
+            color: white;
+            text-decoration: none;
+            border-radius: 3px;
+            margin-left: 5px;
+        }
+
+        .delete-link:hover {
+            background-color: #d32f2f;
+        }
     </style>
 </head>
 <body>
@@ -124,7 +138,7 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm");
                     <th>Subject</th>
                     <th>Message</th>
                     <th>Created At</th>
-                    <th>View</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -144,6 +158,7 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm");
                     <td><%= dateFormat.format(msg.getCreatedAt()) %></td>
                     <td>
                         <a href="<%= request.getContextPath() %>/AdminMessageServlet?action=view&id=<%= msg.getId() %>" class="view-link">View</a>
+                        <a href="<%= request.getContextPath() %>/AdminMessageServlet?action=delete&id=<%= msg.getId() %>" class="delete-link" onclick="return confirm('Are you sure you want to delete this message?')">Delete</a>
                     </td>
                 </tr>
             <% }

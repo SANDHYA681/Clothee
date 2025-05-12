@@ -102,7 +102,30 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm");
     <div class="container">
         <h1>Message Details</h1>
 
-        <a href="<%= request.getContextPath() %>/admin/messages.jsp" class="back-button">Back to Messages</a>
+        <div class="action-buttons">
+            <a href="<%= request.getContextPath() %>/admin/messages.jsp" class="back-button">Back to Messages</a>
+            <a href="<%= request.getContextPath() %>/AdminMessageServlet?action=delete&id=<%= message.getId() %>" class="delete-button" onclick="return confirm('Are you sure you want to delete this message?')">Delete Message</a>
+        </div>
+
+        <%
+        // Display error message if there is one
+        String error = request.getParameter("error");
+        if (error != null && !error.isEmpty()) {
+        %>
+        <div class="error-message">
+            <%= error %>
+        </div>
+        <% } %>
+
+        <%
+        // Display success message if there is one
+        String success = request.getParameter("success");
+        if (success != null && !success.isEmpty()) {
+        %>
+        <div class="success-message">
+            <%= success %>
+        </div>
+        <% } %>
 
         <div class="message-details">
             <div class="message-field">
@@ -135,6 +158,10 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm");
                 <div class="field-value message-content"><%= message.getMessage() %></div>
             </div>
 
+            <%
+            // Only show reply form for original customer messages (not admin replies)
+            if (!message.isReply()) {
+            %>
             <!-- Reply Form -->
             <div class="reply-form">
                 <h3>Reply to this message</h3>
@@ -149,6 +176,7 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm");
                     </div>
                 </form>
             </div>
+            <% } %>
 
             <!-- Replies Section -->
             <%
@@ -158,13 +186,24 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm");
             <div class="replies-section">
                 <h3>Previous Replies</h3>
                 <% for (Message reply : replies) { %>
-                <div class="reply">
+                <div class="reply" id="reply-<%= reply.getId() %>">
                     <div class="reply-header">
                         <div class="reply-sender"><%= reply.getName() %> (<%= reply.getEmail() %>)</div>
                         <div class="reply-date"><%= dateFormat.format(reply.getCreatedAt()) %></div>
                     </div>
-                    <div class="reply-content">
+                    <div class="reply-content" id="reply-content-<%= reply.getId() %>">
                         <%= reply.getMessage() %>
+                    </div>
+                    <div class="reply-actions">
+                        <button onclick="editReply(<%= reply.getId() %>)" class="edit-button">Edit</button>
+                        <a href="<%= request.getContextPath() %>/AdminMessageServlet?action=delete&id=<%= reply.getId() %>" class="delete-button" onclick="return confirm('Are you sure you want to delete this reply?')">Delete</a>
+                    </div>
+                    <div class="edit-form" id="edit-form-<%= reply.getId() %>" style="display: none;">
+                        <textarea id="edit-content-<%= reply.getId() %>" rows="5" class="form-control"><%= reply.getMessage() %></textarea>
+                        <div class="form-actions">
+                            <button onclick="saveEdit(<%= reply.getId() %>)" class="save-button">Save</button>
+                            <button onclick="cancelEdit(<%= reply.getId() %>)" class="cancel-button">Cancel</button>
+                        </div>
                     </div>
                 </div>
                 <% } %>
@@ -250,6 +289,150 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm");
         .reply-content {
             line-height: 1.5;
         }
+        /* Additional styles for action buttons */
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .delete-button {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .delete-button:hover {
+            background-color: #d32f2f;
+        }
+
+        .edit-button {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            text-decoration: none;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+        .edit-button:hover {
+            background-color: #0b7dda;
+        }
+
+        .save-button {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            text-decoration: none;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+        .save-button:hover {
+            background-color: #45a049;
+        }
+
+        .cancel-button {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #9e9e9e;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .cancel-button:hover {
+            background-color: #757575;
+        }
+
+        .reply-actions {
+            margin-top: 10px;
+        }
+
+        .edit-form {
+            margin-top: 10px;
+        }
+
+        .error-message {
+            background-color: #ffebee;
+            color: #c62828;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            border-left: 4px solid #c62828;
+        }
+
+        .success-message {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            border-left: 4px solid #2e7d32;
+        }
     </style>
+
+    <script>
+        // Function to show edit form for a reply
+        function editReply(replyId) {
+            document.getElementById('reply-content-' + replyId).style.display = 'none';
+            document.getElementById('edit-form-' + replyId).style.display = 'block';
+        }
+
+        // Function to cancel editing a reply
+        function cancelEdit(replyId) {
+            document.getElementById('reply-content-' + replyId).style.display = 'block';
+            document.getElementById('edit-form-' + replyId).style.display = 'none';
+        }
+
+        // Function to save edited reply
+        function saveEdit(replyId) {
+            const content = document.getElementById('edit-content-' + replyId).value;
+
+            // Create a form and submit it
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '<%= request.getContextPath() %>/AdminMessageServlet';
+
+            // Add action parameter
+            const actionInput = document.createElement('input');
+            actionInput.type = 'hidden';
+            actionInput.name = 'action';
+            actionInput.value = 'editReply';
+            form.appendChild(actionInput);
+
+            // Add replyId parameter
+            const replyIdInput = document.createElement('input');
+            replyIdInput.type = 'hidden';
+            replyIdInput.name = 'replyId';
+            replyIdInput.value = replyId;
+            form.appendChild(replyIdInput);
+
+            // Add content parameter
+            const contentInput = document.createElement('input');
+            contentInput.type = 'hidden';
+            contentInput.name = 'replyContent';
+            contentInput.value = content;
+            form.appendChild(contentInput);
+
+            // Add the form to the body and submit it
+            document.body.appendChild(form);
+            form.submit();
+        }
+    </script>
 </body>
 </html>

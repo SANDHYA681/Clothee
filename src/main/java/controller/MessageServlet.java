@@ -266,6 +266,19 @@ public class MessageServlet extends HttpServlet {
         try {
             int messageId = Integer.parseInt(messageIdStr);
 
+            // Get the message to check if it's already a reply
+            Message message = messageService.getMessageById(messageId);
+            if (message == null) {
+                response.sendRedirect(request.getContextPath() + "/admin/messages.jsp?error=Message+not+found");
+                return;
+            }
+
+            // Check if the message is already a reply
+            if (message.isReply()) {
+                response.sendRedirect(request.getContextPath() + "/AdminMessageServlet?action=view&id=" + messageId + "&error=Cannot+reply+to+a+reply");
+                return;
+            }
+
             // Get the admin user from the session
             HttpSession session = request.getSession();
             User admin = (User) session.getAttribute("user");

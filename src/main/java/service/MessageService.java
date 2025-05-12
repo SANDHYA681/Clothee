@@ -161,29 +161,35 @@ public class MessageService {
     public List<Message> getRepliesByParentId(int messageId) {
         System.out.println("MessageService: getRepliesByParentId called for messageId = " + messageId);
 
-        // Get the original message to find its subject
-        Message originalMessage = getMessageById(messageId);
-        if (originalMessage == null) {
-            System.out.println("MessageService: Original message not found, returning empty list");
+        try {
+            // Get the original message to find its subject
+            Message originalMessage = getMessageById(messageId);
+            if (originalMessage == null) {
+                System.out.println("MessageService: Original message not found, returning empty list");
+                return new java.util.ArrayList<>();
+            }
+
+            // Get all messages
+            List<Message> allMessages = messageDAO.getAllMessages();
+            List<Message> replies = new java.util.ArrayList<>();
+
+            // The reply subject pattern is "RE: " + original subject
+            String replySubject = "RE: " + originalMessage.getSubject();
+
+            // Find all messages that have the reply subject
+            for (Message message : allMessages) {
+                if (message.getSubject() != null && message.getSubject().equals(replySubject)) {
+                    replies.add(message);
+                }
+            }
+
+            System.out.println("MessageService: Found " + replies.size() + " replies for message ID = " + messageId);
+            return replies;
+        } catch (Exception e) {
+            System.out.println("MessageService: Error in getRepliesByParentId: " + e.getMessage());
+            e.printStackTrace();
             return new java.util.ArrayList<>();
         }
-
-        // Get all messages
-        List<Message> allMessages = messageDAO.getAllMessages();
-        List<Message> replies = new java.util.ArrayList<>();
-
-        // The reply subject pattern is "RE: " + original subject
-        String replySubject = "RE: " + originalMessage.getSubject();
-
-        // Find all messages that have the reply subject
-        for (Message message : allMessages) {
-            if (message.getSubject() != null && message.getSubject().equals(replySubject)) {
-                replies.add(message);
-            }
-        }
-
-        System.out.println("MessageService: Found " + replies.size() + " replies for message ID = " + messageId);
-        return replies;
     }
 
     /**

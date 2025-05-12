@@ -100,8 +100,13 @@ public class AdminMessageServlet extends HttpServlet {
             System.out.println("AdminMessageServlet doPost: action is null, defaulting to list");
         }
 
-        // Removed reply case since we removed that functionality
-        listMessages(request, response);
+        switch (action) {
+            case "editReply":
+                editReply(request, response);
+                break;
+            default:
+                listMessages(request, response);
+        }
     }
 
     /**
@@ -148,10 +153,12 @@ public class AdminMessageServlet extends HttpServlet {
 
             // No need to mark as read since we removed that functionality
 
-            // No need to get replies since we removed that functionality
+            // Get replies for this message
+            List<Message> replies = messageService.getRepliesByParentId(messageId);
 
             // Set attributes for the view
             request.setAttribute("message", message);
+            request.setAttribute("replies", replies);
 
             // Forward to the view
             request.getRequestDispatcher("/admin/view-message.jsp").forward(request, response);
@@ -191,7 +198,45 @@ public class AdminMessageServlet extends HttpServlet {
         }
     }
 
-    // Removed markMessageAsRead and markMessageAsUnread methods since we removed that functionality
+    /**
+     * Edit a reply message
+     */
+    private void editReply(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String replyIdStr = request.getParameter("replyId");
+        String replyContent = request.getParameter("replyContent");
 
-    // Removed replyToMessage method since we removed that functionality
+        if (replyIdStr == null || replyIdStr.trim().isEmpty() || replyContent == null || replyContent.trim().isEmpty()) {
+            response.sendRedirect(request.getContextPath() + "/AdminMessageServlet?error=Invalid reply data");
+            return;
+        }
+
+        try {
+            int replyId = Integer.parseInt(replyIdStr);
+
+            // Get the message to edit
+            Message reply = messageDAO.getMessageById(replyId);
+
+            if (reply == null) {
+                response.sendRedirect(request.getContextPath() + "/AdminMessageServlet?error=Reply not found");
+                return;
+            }
+
+            // Update the reply content
+            reply.setMessage(replyContent);
+
+            // Save the updated reply
+            boolean success = messageDAO.updateMessage(reply);
+
+            if (success) {
+                // Redirect back to the original message view
+                response.sendRedirect(request.getContextPath() + "/AdminMessageServlet?action=view&id=" + reply.getId() + "&success=Reply updated successfully");
+            } else {
+                response.sendRedirect(request.getContextPath() + "/AdminMessageServlet?action=view&id=" + reply.getId() + "&error=Failed to update reply");
+            }
+
+        } catch (NumberFormatException e) {
+            response.sendRedirect(request.getContextPath() + "/AdminMessageServlet?error=Invalid reply ID format");
+        }
+    }
 }

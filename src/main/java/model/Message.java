@@ -13,7 +13,7 @@ public class Message {
     private String subject;
     private String message;
     private Timestamp createdAt;
-    private int parentId; // ID of the message this is replying to (0 if not a reply)
+    private int parentId = 0; // ID of the message this is replying to (0 if not a reply)
 
     // Default constructor
     public Message() {

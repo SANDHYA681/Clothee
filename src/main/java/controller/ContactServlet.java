@@ -63,18 +63,26 @@ public class ContactServlet extends HttpServlet {
         if ("sendMessage".equals(action)) {
             // Check if user is logged in
             User user = (User) session.getAttribute("user");
+            String userName = null;
+            String userEmail = null;
 
             if (user == null) {
-                // User is not logged in, redirect to login page with a message
-                session.setAttribute("errorMessage", "Please log in to send a message");
-                session.setAttribute("redirectUrl", "contact-new.jsp");
-                response.sendRedirect("login.jsp");
-                return;
+                // User is not logged in, get name and email from form
+                userName = request.getParameter("name");
+                userEmail = request.getParameter("email");
+
+                if (userName == null || userName.trim().isEmpty() || userEmail == null || userEmail.trim().isEmpty()) {
+                    session.setAttribute("errorMessage", "Please provide your name and email");
+                    response.sendRedirect("ContactServlet");
+                    return;
+                }
             }
 
-            // User is logged in, proceed with sending the message
-            String userName = user.getFullName();
-            String userEmail = user.getEmail();
+            // If user is logged in, get name and email from user object
+            if (user != null) {
+                userName = user.getFullName();
+                userEmail = user.getEmail();
+            }
 
             // Get form data
             String subject = request.getParameter("subject");
@@ -97,13 +105,18 @@ public class ContactServlet extends HttpServlet {
                 message.setName(userName);
                 message.setEmail(userEmail);
 
-                // Set the user ID
-                int userId = user.getId();
-                message.setUserId(userId);
-                System.out.println("ContactServlet: User object: " + user);
-                System.out.println("ContactServlet: User ID: " + userId);
-                System.out.println("ContactServlet: Setting user ID to " + userId);
-                System.out.println("ContactServlet: Message user ID after setting: " + message.getUserId());
+                // Set the user ID if user is logged in
+                if (user != null) {
+                    int userId = user.getId();
+                    message.setUserId(userId);
+                    System.out.println("ContactServlet: User object: " + user);
+                    System.out.println("ContactServlet: User ID: " + userId);
+                    System.out.println("ContactServlet: Setting user ID to " + userId);
+                    System.out.println("ContactServlet: Message user ID after setting: " + message.getUserId());
+                } else {
+                    System.out.println("ContactServlet: User is not logged in, setting user ID to 0");
+                    message.setUserId(0);
+                }
 
                 // Set creation timestamp
                 message.setCreatedAt(new Timestamp(new Date().getTime()));

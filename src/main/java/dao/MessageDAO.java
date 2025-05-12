@@ -25,7 +25,7 @@ public class MessageDAO {
         System.out.println("MessageDAO: addMessage called for message with subject = " + message.getSubject());
 
         // Simple query for messages with only the essential fields
-        String query = "INSERT INTO messages (user_id, name, email, subject, message, created_at, parent_id) VALUES (?, ?, ?, ?, ?, NOW(), ?)";
+        String query = "INSERT INTO messages (user_id, name, email, subject, message, created_at) VALUES (?, ?, ?, ?, ?, NOW())";
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
@@ -47,7 +47,6 @@ public class MessageDAO {
             stmt.setString(3, message.getEmail());
             stmt.setString(4, message.getSubject());
             stmt.setString(5, message.getMessage());
-            stmt.setInt(6, message.getParentId()); // Set the parent ID
 
             // Execute the query
             int rowsAffected = stmt.executeUpdate();
@@ -81,62 +80,8 @@ public class MessageDAO {
     public boolean addReply(Message reply) {
         System.out.println("MessageDAO: addReply called for parentId = " + reply.getParentId());
 
-        try (Connection conn = DBConnection.getConnection()) {
-            if (conn == null) {
-                System.out.println("MessageDAO: Database connection is null");
-                return false;
-            }
-
-            // Start transaction
-            conn.setAutoCommit(false);
-
-            try {
-                // 1. First add the reply as a new message
-                System.out.println("MessageDAO: Adding reply as a new message");
-                boolean added = addMessage(reply);
-
-                if (!added) {
-                    System.out.println("MessageDAO: Failed to add reply as a new message");
-                    conn.rollback();
-                    return false;
-                }
-
-                System.out.println("MessageDAO: Reply added as a new message with ID = " + reply.getId());
-
-                // 2. Mark the original message as both read and replied
-                System.out.println("MessageDAO: Marking original message as read and replied");
-                String updateQuery = "UPDATE messages SET is_read = TRUE, read_at = NOW(), is_replied = TRUE WHERE id = ?";
-
-                try (PreparedStatement stmt = conn.prepareStatement(updateQuery)) {
-                    stmt.setInt(1, reply.getParentId());
-                    int rowsAffected = stmt.executeUpdate();
-
-                    if (rowsAffected <= 0) {
-                        System.out.println("MessageDAO: Failed to mark original message as read and replied");
-                        conn.rollback();
-                        return false;
-                    }
-                }
-
-                // Commit the transaction
-                conn.commit();
-                System.out.println("MessageDAO: Original message marked as read and replied successfully");
-                return true;
-
-            } catch (SQLException e) {
-                conn.rollback();
-                System.out.println("MessageDAO: SQL error in addReply: " + e.getMessage());
-                e.printStackTrace();
-                return false;
-            } finally {
-                conn.setAutoCommit(true);
-            }
-
-        } catch (SQLException e) {
-            System.out.println("MessageDAO: Error in addReply: " + e.getMessage());
-            e.printStackTrace();
-            return false;
-        }
+        // Since we're simplifying the database schema, we'll just add the reply as a new message
+        return addMessage(reply);
     }
 
     /**
@@ -166,74 +111,27 @@ public class MessageDAO {
 
             System.out.println("MessageDAO: Original message found: ID = " + originalMessage.getId() + ", Subject = " + originalMessage.getSubject());
 
-            // Create a connection for transaction
-            Connection conn = DBConnection.getConnection();
-            if (conn == null) {
-                System.out.println("MessageDAO: Failed to get database connection");
+            // Create a reply message object
+            Message replyMessage = new Message();
+            replyMessage.setName(adminName);
+            replyMessage.setEmail(adminEmail);
+            replyMessage.setSubject("RE: " + originalMessage.getSubject());
+            replyMessage.setMessage(replyContent);
+            replyMessage.setCreatedAt(new java.sql.Timestamp(System.currentTimeMillis()));
+
+            System.out.println("MessageDAO: Creating reply to message ID = " + messageId);
+
+            // Add the reply using the addMessage method
+            boolean replyAdded = addMessage(replyMessage);
+            if (!replyAdded) {
+                System.out.println("MessageDAO: Failed to add reply message");
                 return false;
             }
 
-            System.out.println("MessageDAO: Database connection established for transaction");
+            System.out.println("MessageDAO: Reply added successfully");
+            return true;
 
-            // Disable auto-commit for transaction
-            conn.setAutoCommit(false);
-            System.out.println("MessageDAO: Auto-commit disabled for transaction");
-
-            try {
-                // 1. Always mark the original message as read AND replied
-                String readAndReplyQuery = "UPDATE messages SET is_read = TRUE, read_at = NOW(), is_replied = TRUE WHERE id = ?";
-                try (PreparedStatement readReplyStmt = conn.prepareStatement(readAndReplyQuery)) {
-                    readReplyStmt.setInt(1, messageId);
-                    int updateResult = readReplyStmt.executeUpdate();
-
-                    if (updateResult <= 0) {
-                        System.out.println("MessageDAO: Failed to mark message as read and replied");
-                        conn.rollback();
-                        return false;
-                    }
-                    System.out.println("MessageDAO: Original message marked as read and replied");
-                }
-
-                // 2. Create a reply message object
-                Message replyMessage = new Message();
-                replyMessage.setName(adminName);
-                replyMessage.setEmail(adminEmail);
-                replyMessage.setSubject("RE: " + originalMessage.getSubject());
-                replyMessage.setMessage(replyContent);
-
-                replyMessage.setParentId(messageId); // Set parent ID
-
-
-                System.out.println("MessageDAO: Creating reply with parent_id = " + messageId + ", is_reply = true");
-
-                // 3. Add the reply using the addMessage method
-                boolean replyAdded = addMessage(replyMessage);
-                if (!replyAdded) {
-                    System.out.println("MessageDAO: Failed to add reply message");
-                    conn.rollback();
-                    return false;
-                }
-
-                int replyId = replyMessage.getId();
-                System.out.println("MessageDAO: Reply added with ID = " + replyId + ", parent_id = " + messageId + ", is_reply = true");
-
-                // Commit the transaction
-                conn.commit();
-                System.out.println("MessageDAO: Reply added successfully via direct method");
-                return true;
-
-            } catch (SQLException e) {
-                System.out.println("MessageDAO: SQL error in directReply: " + e.getMessage());
-                e.printStackTrace();
-                conn.rollback();
-                return false;
-            } finally {
-                // Restore auto-commit
-                conn.setAutoCommit(true);
-                conn.close();
-            }
-
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println("MessageDAO: Error in directReply: " + e.getMessage());
             e.printStackTrace();
             return false;
@@ -246,21 +144,9 @@ public class MessageDAO {
      * @return true if successful, false otherwise
      */
     public boolean markMessageAsRead(int messageId) {
-        String query = "UPDATE messages SET is_read = TRUE, read_at = NOW() WHERE id = ?";
-
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-
-            stmt.setInt(1, messageId);
-
-            int rowsAffected = stmt.executeUpdate();
-            return rowsAffected > 0;
-
-        } catch (SQLException e) {
-            System.out.println("Error marking message as read: " + e.getMessage());
-            e.printStackTrace();
-            return false;
-        }
+        // Since we're removing is_read field, we'll just check if the message exists
+        Message message = getMessageById(messageId);
+        return message != null;
     }
 
     /**
@@ -301,17 +187,11 @@ public class MessageDAO {
                 return;
             }
 
-            // Check if columns exist
-            boolean hasParentId = columnExists("parent_id");
+            // Check if user_id column exists
             boolean hasUserId = columnExists("user_id");
 
             // Add missing columns
             try (Statement stmt = conn.createStatement()) {
-                if (!hasParentId) {
-                    stmt.executeUpdate("ALTER TABLE messages ADD COLUMN parent_id INT DEFAULT 0");
-                    System.out.println("Added parent_id column to messages table");
-                }
-
                 if (!hasUserId) {
                     stmt.executeUpdate("ALTER TABLE messages ADD COLUMN user_id INT DEFAULT NULL");
                     stmt.executeUpdate("ALTER TABLE messages ADD FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL");
@@ -343,6 +223,33 @@ public class MessageDAO {
 
         } catch (SQLException e) {
             System.out.println("Error deleting message: " + e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
+     * Update a message
+     * @param message Message object to update
+     * @return true if successful, false otherwise
+     */
+    public boolean updateMessage(Message message) {
+        String query = "UPDATE messages SET name = ?, email = ?, subject = ?, message = ? WHERE id = ?";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setString(1, message.getName());
+            stmt.setString(2, message.getEmail());
+            stmt.setString(3, message.getSubject());
+            stmt.setString(4, message.getMessage());
+            stmt.setInt(5, message.getId());
+
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0;
+
+        } catch (SQLException e) {
+            System.out.println("Error updating message: " + e.getMessage());
             e.printStackTrace();
             return false;
         }
@@ -423,22 +330,10 @@ public class MessageDAO {
      */
     public List<Message> getUnreadMessages() {
         List<Message> messages = new ArrayList<>();
-        String query = "SELECT * FROM messages WHERE is_read = FALSE AND is_reply = FALSE ORDER BY created_at DESC";
 
-        try (Connection conn = DBConnection.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(query)) {
-
-            while (rs.next()) {
-                messages.add(extractMessageFromResultSet(rs));
-            }
-
-        } catch (SQLException e) {
-            System.out.println("Error getting unread messages: " + e.getMessage());
-            e.printStackTrace();
-        }
-
-        return messages;
+        // Since we're removing is_read and is_reply fields, we'll return all messages
+        // In a real implementation, you would use a different approach to track message status
+        return getAllMessages();
     }
 
     /**
@@ -446,23 +341,9 @@ public class MessageDAO {
      * @return List of replied messages
      */
     public List<Message> getRepliedMessages() {
-        List<Message> messages = new ArrayList<>();
-        String query = "SELECT * FROM messages WHERE is_replied = TRUE ORDER BY created_at DESC";
-
-        try (Connection conn = DBConnection.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(query)) {
-
-            while (rs.next()) {
-                messages.add(extractMessageFromResultSet(rs));
-            }
-
-        } catch (SQLException e) {
-            System.out.println("Error getting replied messages: " + e.getMessage());
-            e.printStackTrace();
-        }
-
-        return messages;
+        // Since we're removing is_replied field, we'll return all messages
+        // In a real implementation, you would use a different approach to track message status
+        return getAllMessages();
     }
 
     /**
@@ -558,41 +439,10 @@ public class MessageDAO {
      */
     public boolean markMessageAsReplied(int messageId) {
         System.out.println("MessageDAO: markMessageAsReplied called for messageId = " + messageId);
-        String query = "UPDATE messages SET is_replied = TRUE, is_read = TRUE, read_at = NOW() WHERE id = ?";
 
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-
-            if (conn == null) {
-                System.out.println("MessageDAO: Database connection is null");
-                return false;
-            }
-
-            System.out.println("MessageDAO: Database connection established");
-
-            stmt.setInt(1, messageId);
-            System.out.println("MessageDAO: Executing query: " + query + " with messageId = " + messageId);
-
-            int rowsAffected = stmt.executeUpdate();
-            System.out.println("MessageDAO: Query executed, rowsAffected = " + rowsAffected);
-
-            if (rowsAffected > 0) {
-                System.out.println("MessageDAO: Message marked as replied and read successfully");
-                return true;
-            } else {
-                System.out.println("MessageDAO: No rows affected, message not found or already replied");
-                return false;
-            }
-
-        } catch (SQLException e) {
-            System.out.println("MessageDAO: Error marking message as replied: " + e.getMessage());
-            e.printStackTrace();
-            return false;
-        } catch (Exception e) {
-            System.out.println("MessageDAO: Unexpected error: " + e.getMessage());
-            e.printStackTrace();
-            return false;
-        }
+        // Since we're removing is_replied and is_read fields, we'll just check if the message exists
+        Message message = getMessageById(messageId);
+        return message != null;
     }
 
     /**
@@ -601,21 +451,9 @@ public class MessageDAO {
      * @return true if successful, false otherwise
      */
     public boolean markMessageAsUnread(int messageId) {
-        String query = "UPDATE messages SET is_read = FALSE, read_at = NULL WHERE id = ?";
-
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-
-            stmt.setInt(1, messageId);
-
-            int rowsAffected = stmt.executeUpdate();
-            return rowsAffected > 0;
-
-        } catch (SQLException e) {
-            System.out.println("Error marking message as unread: " + e.getMessage());
-            e.printStackTrace();
-            return false;
-        }
+        // Since we're removing is_read field, we'll just check if the message exists
+        Message message = getMessageById(messageId);
+        return message != null;
     }
 
     /**
@@ -626,50 +464,30 @@ public class MessageDAO {
     public List<Message> getRepliesByParentId(int parentId) {
         List<Message> replies = new ArrayList<>();
 
-        // First, check if the parent_id column exists
-        if (!columnExists("parent_id")) {
-            System.out.println("MessageDAO: parent_id column doesn't exist in messages table");
+        // Get the original message to find its subject
+        Message originalMessage = getMessageById(parentId);
+        if (originalMessage == null) {
+            System.out.println("MessageDAO: Original message not found, returning empty list");
             return replies;
         }
 
-        // Use a query that filters by parent_id to get replies
-        String query = "SELECT * FROM messages WHERE parent_id = ? ORDER BY created_at ASC";
+        // Get all messages
+        List<Message> allMessages = getAllMessages();
 
-        System.out.println("MessageDAO: Getting replies for parent ID = " + parentId);
-        System.out.println("MessageDAO: Using query: " + query);
+        // The reply subject pattern is "RE: " + original subject
+        String replySubject = "RE: " + originalMessage.getSubject();
 
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
+        System.out.println("MessageDAO: Looking for replies with subject = " + replySubject);
 
-            if (conn == null) {
-                System.out.println("MessageDAO: Database connection is null");
-                return replies;
+        // Find all messages that have the reply subject
+        for (Message message : allMessages) {
+            if (message.getSubject() != null && message.getSubject().equals(replySubject)) {
+                replies.add(message);
+                System.out.println("MessageDAO: Found reply ID = " + message.getId() + ", From: " + message.getName());
             }
-
-            stmt.setInt(1, parentId);
-
-            try (ResultSet rs = stmt.executeQuery()) {
-                int count = 0;
-                while (rs.next()) {
-                    count++;
-                    Message reply = extractMessageFromResultSet(rs);
-
-                    // Double-check that this is actually a reply to the parent message
-                    if (reply.getParentId() == parentId) {
-                        replies.add(reply);
-                        System.out.println("MessageDAO: Found reply ID = " + reply.getId() + ", From: " + reply.getName() + ", is_reply = " + (reply.getParentId() > 0));
-                    } else {
-                        System.out.println("MessageDAO: Warning - Found message with parent_id = " + reply.getParentId() + " but expected " + parentId);
-                    }
-                }
-                System.out.println("MessageDAO: Found " + count + " replies for parent ID = " + parentId);
-            }
-
-        } catch (SQLException e) {
-            System.out.println("Error getting replies: " + e.getMessage());
-            e.printStackTrace();
         }
 
+        System.out.println("MessageDAO: Found " + replies.size() + " replies for message ID = " + parentId);
         return replies;
     }
 
@@ -695,6 +513,16 @@ public class MessageDAO {
                 // Column doesn't exist, set default value
                 message.setUserId(0);
                 System.out.println("MessageDAO: user_id column doesn't exist, setting default userId = 0");
+            }
+
+            // Try to get parentId if the column exists
+            try {
+                message.setParentId(rs.getInt("parent_id"));
+                System.out.println("MessageDAO: Set parentId = " + message.getParentId());
+            } catch (SQLException e) {
+                // Column doesn't exist, set default value
+                message.setParentId(0);
+                System.out.println("MessageDAO: parent_id column doesn't exist, setting default parentId = 0");
             }
 
             message.setName(rs.getString("name"));

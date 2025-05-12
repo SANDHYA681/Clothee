@@ -128,7 +128,7 @@ CREATE TABLE cart (
     id INT AUTO_INCREMENT PRIMARY KEY,
     quantity INT NOT NULL DEFAULT 1,
     added_date DATETIME,
-    user_id INT,
+    user_id INT,    efew    q
     product_id INT,
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (product_id) REFERENCES products(id)

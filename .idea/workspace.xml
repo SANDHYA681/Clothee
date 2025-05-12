@@ -9,7 +9,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8bba67b1-72a7-4342-a171-b9a09ce1425e" name="Changes" comment="Hy" />
+    <list default="true" id="8bba67b1-72a7-4342-a171-b9a09ce1425e" name="Changes" comment="Hy">
+      <change beforePath="$PROJECT_DIR$/.idea/AugmentWebviewStateStore.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/AugmentWebviewStateStore.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/AdminMessageServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AdminMessageServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ContactServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ContactServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/MessageServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MessageServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/MessageDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/MessageDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/MessageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/clothee.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/clothee.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/messages.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/messages.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/view-message.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/view-message.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/clothee.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/clothee.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/AdminMessageServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/AdminMessageServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/ContactServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/ContactServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/MessageServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/MessageServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/dao/MessageDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/dao/MessageDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/model/Message.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/model/Message.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/service/MessageService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/service/MessageService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/messages.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/messages.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/view-message.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/view-message.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/clothee.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/clothee.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controller/AdminMessageServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/AdminMessageServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controller/ContactServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/ContactServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controller/MessageServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/MessageServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dao/MessageDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dao/MessageDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/model/Message.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/Message.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/service/MessageService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/service/MessageService.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
