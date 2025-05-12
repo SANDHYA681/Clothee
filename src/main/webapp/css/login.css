@@ -170,13 +170,13 @@
 }
 
 /* Tab Styles */
-.form-tabs {
+.tabs {
   display: flex;
   margin-bottom: 30px;
   border-bottom: 1px solid #eee;
 }
 
-.form-tab {
+.tab-btn {
   flex: 1;
   text-align: center;
   padding: 15px;
@@ -185,18 +185,22 @@
   color: #777;
   position: relative;
   transition: all 0.3s ease;
+  background: none;
+  border: none;
+  text-decoration: none;
+  display: block;
 }
 
-.form-tab:hover {
+.tab-btn:hover {
   color: var(--primary-color);
   transform: translateY(-3px);
 }
 
-.form-tab.active {
+.tab-btn.active {
   color: var(--primary-color);
 }
 
-.form-tab::after {
+.tab-btn::after {
   content: "";
   position: absolute;
   bottom: -1px;
@@ -207,11 +211,11 @@
   transition: width 0.3s ease;
 }
 
-.form-tab:hover::after {
+.tab-btn:hover::after {
   width: 100%;
 }
 
-.form-tab.active::after {
+.tab-btn.active::after {
   width: 100%;
   background-color: var(--primary-color);
 }
@@ -305,8 +309,24 @@
   font-size: 16px;
 }
 
-/* Password Field */
-.password-field {
+/* Input with Icon */
+.input-with-icon {
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #777;
+}
+
+.input-with-icon .form-control {
+  padding-left: 45px;
+}
+
+.password-input {
   position: relative;
 }
 
@@ -315,14 +335,20 @@
   right: 15px;
   top: 50%;
   transform: translateY(-50%);
-  cursor: pointer;
+  background: none;
+  border: none;
   color: #777;
-  transition: all 0.3s ease;
+  cursor: pointer;
+  padding: 0;
 }
 
 .password-toggle:hover {
   color: var(--primary-color);
-  transform: translateY(-50%) scale(1.2);
+}
+
+/* Password Field */
+.password-field {
+  position: relative;
 }
 
 /* Checkbox Styles */

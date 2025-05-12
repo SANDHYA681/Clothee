@@ -20,7 +20,7 @@
                 }
                 %>
                 <button class="tab-btn <%= (tab == null || "customer".equals(tab)) ? "active" : "" %>" data-tab="customer">Customer Login</button>
-                <a href= "admin-login.jsp" > Admin Login</a>
+                <a href="admin-login.jsp" class="tab-btn <%= "admin".equals(tab) ? "active" : "" %>">Admin Login</a>
             </div>
 
             <%

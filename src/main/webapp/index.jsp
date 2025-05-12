@@ -92,7 +92,7 @@ if (message != null && !message.isEmpty()) {
     <div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
         <div style="display: flex; align-items: center; gap: 10px;">
             <i class="fas fa-user-shield" style="font-size: 18px;"></i>
-            <span>Admin? <a href="direct-admin-login.jsp" style="color: white; text-decoration: underline; font-weight: bold;">Login here</a></span>
+            <span>Admin? <a href="admin-login.jsp" style="color: white; text-decoration: underline; font-weight: bold;">Login here</a></span>
         </div>
         <div style="display: flex; align-items: center; gap: 10px;">
             <i class="fas fa-user-plus" style="font-size: 18px;"></i>
