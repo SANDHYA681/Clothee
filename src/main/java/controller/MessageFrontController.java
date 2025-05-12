@@ -253,9 +253,12 @@ public class MessageFrontController extends HttpServlet {
             }
             System.out.println("MessageFrontController: Access granted for message ID = " + messageId);
 
-            // Get data from model via service layer - this also marks the message as read
+            // Get data from model via service layer
             System.out.println("MessageFrontController: Getting message with replies for ID = " + messageId);
             Message message = messageService.getMessageWithReplies(messageId);
+
+            // Get replies for this message
+            List<Message> replies = messageService.getRepliesByParentId(messageId);
 
             // Validate message exists (should never happen after access check, but just in case)
             if (message == null) {
@@ -265,11 +268,7 @@ public class MessageFrontController extends HttpServlet {
             }
             System.out.println("MessageFrontController: Message found, ID = " + message.getId() + ", Subject = " + message.getSubject());
 
-            // Get related data from model
-            System.out.println("MessageFrontController: Getting replies for message ID = " + messageId);
-            List<Message> replies = messageService.getRepliesByParentId(messageId);
-
-            // Logging
+            // Logging for replies
             System.out.println("MessageFrontController: Found " + replies.size() + " replies for message ID " + messageId);
             for (Message reply : replies) {
                 System.out.println("MessageFrontController: Reply ID: " + reply.getId() + ", From: " + reply.getName() + ", Content: " +

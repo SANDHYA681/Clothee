@@ -86,32 +86,37 @@ public class ContactServlet extends HttpServlet {
                 return;
             }
 
-            // Ensure the user_id column exists in the messages table
-            MessageDAO messageDAO = new MessageDAO();
-            messageDAO.ensureReplyColumns();
-            System.out.println("ContactServlet: Ensured that user_id column exists in messages table");
+            // Initialize success flag
+            boolean success = false;
 
-            // Create message
-            Message message = new Message();
-            message.setSubject(subject);
-            message.setMessage(messageText);
-            message.setName(userName);
-            message.setEmail(userEmail);
+            try {
+                // Create message
+                Message message = new Message();
+                message.setSubject(subject);
+                message.setMessage(messageText);
+                message.setName(userName);
+                message.setEmail(userEmail);
 
-            // Set the user ID
-            int userId = user.getId();
-            message.setUserId(userId);
-            System.out.println("ContactServlet: User object: " + user);
-            System.out.println("ContactServlet: User ID: " + userId);
-            System.out.println("ContactServlet: Setting user ID to " + userId);
-            System.out.println("ContactServlet: Message user ID after setting: " + message.getUserId());
+                // Set the user ID
+                int userId = user.getId();
+                message.setUserId(userId);
+                System.out.println("ContactServlet: User object: " + user);
+                System.out.println("ContactServlet: User ID: " + userId);
+                System.out.println("ContactServlet: Setting user ID to " + userId);
+                System.out.println("ContactServlet: Message user ID after setting: " + message.getUserId());
 
-            // Set message as unread and set creation timestamp
-            message.setRead(false);
-            message.setCreatedAt(new Timestamp(new Date().getTime()));
+                // Set creation timestamp
+                message.setCreatedAt(new Timestamp(new Date().getTime()));
 
-            // Save message
-            boolean success = messageService.saveMessage(message);
+                // Save message
+                success = messageService.saveMessage(message);
+            } catch (Exception e) {
+                System.out.println("ContactServlet: Error sending message: " + e.getMessage());
+                e.printStackTrace();
+                session.setAttribute("errorMessage", "Failed to send message. Please try again. Error: " + e.getMessage());
+                response.sendRedirect("ContactServlet");
+                return;
+            }
 
             if (success) {
                 session.setAttribute("successMessage", "Your message has been sent successfully");

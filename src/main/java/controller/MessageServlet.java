@@ -124,10 +124,9 @@ public class MessageServlet extends HttpServlet {
      */
     private void listMessages(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Message> messages = messageService.getAllMessages();
-        int unreadCount = messageService.getUnreadMessageCount();
 
+        // Removed unreadCount since we removed that functionality
         request.setAttribute("messages", messages);
-        request.setAttribute("unreadCount", unreadCount);
         request.getRequestDispatcher("/admin/messages.jsp").forward(request, response);
     }
 
@@ -149,12 +148,6 @@ public class MessageServlet extends HttpServlet {
             if (message == null) {
                 response.sendRedirect(request.getContextPath() + "/MessageServlet?error=Message+not+found");
                 return;
-            }
-
-            // Mark message as read if it's not already
-            if (!message.isRead()) {
-                messageService.markMessageAsRead(messageId);
-                message.setRead(true);
             }
 
             // Get replies for this message
@@ -277,24 +270,28 @@ public class MessageServlet extends HttpServlet {
             HttpSession session = request.getSession();
             User admin = (User) session.getAttribute("user");
 
-            // Get admin name and email with null checks
-            String adminName = "Admin";
-            String adminEmail = "admin@clothee.com";
-
-            if (admin != null) {
-                adminName = admin.getFullName() != null ? admin.getFullName() : adminName;
-                adminEmail = admin.getEmail() != null ? admin.getEmail() : adminEmail;
-            } else {
-                System.out.println("MessageServlet: Warning - admin user is null, using default values");
+            if (admin == null) {
+                response.sendRedirect(request.getContextPath() + "/LoginServlet?error=You+must+be+logged+in+as+an+admin+to+reply+to+messages");
+                return;
             }
 
-            // Use the MessageService to handle the reply with admin info
-            boolean success = messageService.replyToMessage(messageId, replyContent, adminName, adminEmail);
+            // Get admin name and email
+            String adminName = admin.getFullName();
+            String adminEmail = admin.getEmail();
+
+            if (adminName == null || adminName.trim().isEmpty() ||
+                adminEmail == null || adminEmail.trim().isEmpty()) {
+                response.sendRedirect(request.getContextPath() + "/AdminMessageServlet?action=view&id=" + messageId + "&error=Your+profile+is+incomplete.+Please+update+your+name+and+email+before+replying.");
+                return;
+            }
+
+            // Use the MessageService to handle the reply
+            boolean success = messageService.replyToMessage(messageId, replyContent, adminName, adminEmail, admin.getId());
 
             if (success) {
-                response.sendRedirect(request.getContextPath() + "/admin/AdminMessageServlet?action=view&id=" + messageId + "&message=Reply+sent+successfully");
+                response.sendRedirect(request.getContextPath() + "/AdminMessageServlet?action=view&id=" + messageId + "&success=Reply+sent+successfully");
             } else {
-                response.sendRedirect(request.getContextPath() + "/admin/AdminMessageServlet?action=view&id=" + messageId + "&error=Failed+to+send+reply");
+                response.sendRedirect(request.getContextPath() + "/AdminMessageServlet?action=view&id=" + messageId + "&error=Failed+to+send+reply");
             }
 
         } catch (NumberFormatException e) {

@@ -144,5 +144,8 @@ CREATE TABLE messages (
     email VARCHAR(100) NOT NULL,
     subject VARCHAR(200) NOT NULL,
     message TEXT NOT NULL,
-    is_read BOOLEAN DEFAULT FALSE,
-   
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
+);
+

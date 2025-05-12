@@ -139,7 +139,7 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm");
     <div class="message-container">
         <div class="message-header">
             <h1 class="message-title">My Messages</h1>
-            <a href="../contact.jsp" class="btn-view">Send New Message</a>
+            <a href="<%=request.getContextPath()%>/ContactServlet" class="btn-view">Send New Message</a>
         </div>
 
         <%
@@ -162,7 +162,7 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm");
             <% if (messages.isEmpty()) { %>
                 <div class="empty-message">
                     <p>You don't have any messages yet.</p>
-                    <p>Need help? <a href="../contact.jsp">Contact us</a></p>
+                    <p>Need help? <a href="<%=request.getContextPath()%>/ContactServlet">Contact us</a></p>
                 </div>
             <% } else { %>
                 <% for (Message message : messages) { %>

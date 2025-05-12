@@ -22,65 +22,10 @@ public class MessageDAO {
      * @return true if successful, false otherwise
      */
     public boolean addMessage(Message message) {
-        // Ensure required columns exist
-        ensureReplyColumns();
-
         System.out.println("MessageDAO: addMessage called for message with subject = " + message.getSubject());
 
-        // Check if this is a reply message
-        if (message.isReply() && message.getParentId() > 0) {
-            // Use a query that includes reply-specific fields and user_id
-            String query = "INSERT INTO messages (user_id, name, email, subject, message, is_read, created_at, parent_id, is_reply) VALUES (?, ?, ?, ?, ?, ?, NOW(), ?, ?)";
-
-            try (Connection conn = DBConnection.getConnection();
-                 PreparedStatement stmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
-
-                if (conn == null) {
-                    System.out.println("MessageDAO: Database connection is null");
-                    return false;
-                }
-
-                System.out.println("MessageDAO: Database connection established for adding reply");
-
-                // Set the parameters
-                stmt.setInt(1, message.getUserId()); // Set the user ID
-                stmt.setString(2, message.getName());
-                stmt.setString(3, message.getEmail());
-                stmt.setString(4, message.getSubject());
-                stmt.setString(5, message.getMessage());
-                stmt.setBoolean(6, message.isRead());
-                stmt.setInt(7, message.getParentId());
-                stmt.setBoolean(8, true); // This is a reply
-
-                // Execute the query
-                int rowsAffected = stmt.executeUpdate();
-
-                if (rowsAffected > 0) {
-                    try (ResultSet rs = stmt.getGeneratedKeys()) {
-                        if (rs.next()) {
-                            int generatedId = rs.getInt(1);
-                            message.setId(generatedId);
-                            System.out.println("MessageDAO: Reply added successfully with ID = " + generatedId);
-
-                            // Mark the original message as replied
-                            markMessageAsReplied(message.getParentId());
-                            return true;
-                        }
-                    }
-                }
-
-                System.out.println("MessageDAO: Failed to add reply");
-                return false;
-
-            } catch (SQLException e) {
-                System.out.println("Error adding reply: " + e.getMessage());
-                e.printStackTrace();
-                return false;
-            }
-        }
-
-        // For regular messages, include user_id in the query
-        String query = "INSERT INTO messages (user_id, name, email, subject, message, is_read, created_at) VALUES (?, ?, ?, ?, ?, ?, NOW())";
+        // Simple query for messages with only the essential fields
+        String query = "INSERT INTO messages (user_id, name, email, subject, message, created_at, parent_id) VALUES (?, ?, ?, ?, ?, NOW(), ?)";
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
@@ -92,7 +37,7 @@ public class MessageDAO {
 
             System.out.println("MessageDAO: Database connection established for addMessage");
 
-            // Set the basic parameters
+            // Set the parameters
             int userId = message.getUserId();
             System.out.println("MessageDAO: Message object: " + message);
             System.out.println("MessageDAO: User ID from message: " + userId);
@@ -102,7 +47,7 @@ public class MessageDAO {
             stmt.setString(3, message.getEmail());
             stmt.setString(4, message.getSubject());
             stmt.setString(5, message.getMessage());
-            stmt.setBoolean(6, false); // New messages are unread
+            stmt.setInt(6, message.getParentId()); // Set the parent ID
 
             // Execute the query
             int rowsAffected = stmt.executeUpdate();
@@ -255,10 +200,9 @@ public class MessageDAO {
                 replyMessage.setEmail(adminEmail);
                 replyMessage.setSubject("RE: " + originalMessage.getSubject());
                 replyMessage.setMessage(replyContent);
-                replyMessage.setRead(true); // Admin's reply is already read
+
                 replyMessage.setParentId(messageId); // Set parent ID
-                replyMessage.setReply(true); // Mark as a reply
-                replyMessage.setReplied(false); // This reply hasn't been replied to
+
 
                 System.out.println("MessageDAO: Creating reply with parent_id = " + messageId + ", is_reply = true");
 
@@ -348,7 +292,7 @@ public class MessageDAO {
     }
 
     /**
-     * Ensure the messages table has the necessary columns for replies and user_id
+     * Ensure the messages table has the necessary columns for replies
      */
     public void ensureReplyColumns() {
         try (Connection conn = DBConnection.getConnection()) {
@@ -359,32 +303,19 @@ public class MessageDAO {
 
             // Check if columns exist
             boolean hasParentId = columnExists("parent_id");
-            boolean hasIsReply = columnExists("is_reply");
-            boolean hasIsReplied = columnExists("is_replied");
-            boolean hasReadAt = columnExists("read_at");
             boolean hasUserId = columnExists("user_id");
 
             // Add missing columns
             try (Statement stmt = conn.createStatement()) {
                 if (!hasParentId) {
-                    stmt.executeUpdate("ALTER TABLE messages ADD COLUMN parent_id INT DEFAULT NULL");
-                }
-
-                if (!hasIsReply) {
-                    stmt.executeUpdate("ALTER TABLE messages ADD COLUMN is_reply BOOLEAN DEFAULT FALSE");
-                }
-
-                if (!hasIsReplied) {
-                    stmt.executeUpdate("ALTER TABLE messages ADD COLUMN is_replied BOOLEAN DEFAULT FALSE");
-                }
-
-                if (!hasReadAt) {
-                    stmt.executeUpdate("ALTER TABLE messages ADD COLUMN read_at TIMESTAMP NULL");
+                    stmt.executeUpdate("ALTER TABLE messages ADD COLUMN parent_id INT DEFAULT 0");
+                    System.out.println("Added parent_id column to messages table");
                 }
 
                 if (!hasUserId) {
                     stmt.executeUpdate("ALTER TABLE messages ADD COLUMN user_id INT DEFAULT NULL");
                     stmt.executeUpdate("ALTER TABLE messages ADD FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL");
+                    System.out.println("Added user_id column to messages table");
                 }
             }
 
@@ -701,11 +632,8 @@ public class MessageDAO {
             return replies;
         }
 
-        // Ensure the necessary columns exist
-        ensureReplyColumns();
-
-        // Use a query that filters by parent_id and is_reply to ensure we get only actual replies
-        String query = "SELECT * FROM messages WHERE parent_id = ? AND is_reply = TRUE ORDER BY created_at ASC";
+        // Use a query that filters by parent_id to get replies
+        String query = "SELECT * FROM messages WHERE parent_id = ? ORDER BY created_at ASC";
 
         System.out.println("MessageDAO: Getting replies for parent ID = " + parentId);
         System.out.println("MessageDAO: Using query: " + query);
@@ -729,7 +657,7 @@ public class MessageDAO {
                     // Double-check that this is actually a reply to the parent message
                     if (reply.getParentId() == parentId) {
                         replies.add(reply);
-                        System.out.println("MessageDAO: Found reply ID = " + reply.getId() + ", From: " + reply.getName() + ", is_reply = " + reply.isReply());
+                        System.out.println("MessageDAO: Found reply ID = " + reply.getId() + ", From: " + reply.getName() + ", is_reply = " + (reply.getParentId() > 0));
                     } else {
                         System.out.println("MessageDAO: Warning - Found message with parent_id = " + reply.getParentId() + " but expected " + parentId);
                     }
@@ -781,41 +709,11 @@ public class MessageDAO {
             message.setMessage(rs.getString("message"));
             System.out.println("MessageDAO: Set message content");
 
-            message.setRead(rs.getBoolean("is_read"));
-            System.out.println("MessageDAO: Set isRead = " + message.isRead());
-
             message.setCreatedAt(rs.getTimestamp("created_at"));
             System.out.println("MessageDAO: Set createdAt = " + message.getCreatedAt());
         } catch (SQLException e) {
             System.out.println("MessageDAO: Error extracting basic message fields: " + e.getMessage());
             throw e;
-        }
-
-        // Check if read_at column exists
-        try {
-            message.setReadAt(rs.getTimestamp("read_at"));
-            System.out.println("MessageDAO: Set readAt = " + message.getReadAt());
-        } catch (SQLException e) {
-            System.out.println("MessageDAO: read_at column doesn't exist, ignoring");
-            // Column doesn't exist, ignore
-        }
-
-        // Check if reply-related columns exist
-        try {
-            message.setParentId(rs.getInt("parent_id"));
-            System.out.println("MessageDAO: Set parentId = " + message.getParentId());
-
-            message.setReply(rs.getBoolean("is_reply"));
-            System.out.println("MessageDAO: Set isReply = " + message.isReply());
-
-            message.setReplied(rs.getBoolean("is_replied"));
-            System.out.println("MessageDAO: Set isReplied = " + message.isReplied());
-        } catch (SQLException e) {
-            System.out.println("MessageDAO: Reply-related columns don't exist, setting defaults: " + e.getMessage());
-            // Columns don't exist, set defaults
-            message.setParentId(0);
-            message.setReply(false);
-            message.setReplied(false);
         }
 
         System.out.println("MessageDAO: Successfully extracted message: ID=" + message.getId() + ", Subject=" + message.getSubject());

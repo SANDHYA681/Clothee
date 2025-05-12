@@ -2,7 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="model.User" %>
 <%@ page import="model.Message" %>
-<%@ page import="dao.MessageDAO" %>
+<%@ page import="service.MessageService" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 
 <%
@@ -19,9 +19,9 @@ if (!user.isAdmin()) {
     return;
 }
 
-// Get all messages directly from the database
-MessageDAO messageDAO = new MessageDAO();
-List<Message> messages = messageDAO.getAllMessages();
+// Get all messages using the service layer (following MVC pattern)
+MessageService messageService = new MessageService();
+List<Message> messages = messageService.getAllMessages();
 
 // Format date
 SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm");

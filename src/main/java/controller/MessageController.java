@@ -52,15 +52,9 @@ public class MessageController extends HttpServlet {
         String action = request.getParameter("action");
         System.out.println("MessageController doPost: action parameter = " + action);
 
-        if ("reply".equals(action)) {
+        if ("reply".equals(action) || pathInfo == null || pathInfo.equals("/")) {
             // Handle reply action
             replyMessage(request, response);
-        } else if (pathInfo == null || pathInfo.equals("/")) {
-            // Handle message reply (for backward compatibility)
-            replyMessage(request, response);
-        } else if (pathInfo.equals("/mark-read")) {
-            // Mark message as read
-            markMessageAsRead(request, response);
         } else {
             // 404 - Not found
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
@@ -71,23 +65,9 @@ public class MessageController extends HttpServlet {
      * List all messages
      */
     private void listMessages(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Get filter parameter (all, unread)
-        String filter = request.getParameter("filter");
-        List<Message> messages;
-
-        if ("unread".equals(filter)) {
-            messages = messageDAO.getUnreadMessages();
-            request.setAttribute("filter", "unread");
-        } else {
-            messages = messageDAO.getAllMessages();
-            request.setAttribute("filter", "all");
-        }
-
-        // Get unread count for display in sidebar
-        int unreadCount = messageDAO.getUnreadMessageCount();
-
+        // We no longer filter by read status
+        List<Message> messages = messageDAO.getAllMessages();
         request.setAttribute("messages", messages);
-        request.setAttribute("unreadCount", unreadCount);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/admin/messages/list.jsp");
         dispatcher.forward(request, response);
@@ -114,12 +94,7 @@ public class MessageController extends HttpServlet {
                 return;
             }
 
-            // Mark message as read if it's not already read
-            if (!message.isRead()) {
-                messageDAO.markMessageAsRead(messageId);
-                // Refresh message to get updated read status
-                message = messageDAO.getMessageById(messageId);
-            }
+            // We no longer track read status
 
             request.setAttribute("message", message);
 
@@ -160,31 +135,7 @@ public class MessageController extends HttpServlet {
         }
     }
 
-    /**
-     * Mark message as read
-     */
-    private void markMessageAsRead(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Get message ID from request parameter
-        String messageIdParam = request.getParameter("id");
-
-        if (messageIdParam == null || messageIdParam.isEmpty()) {
-            response.sendRedirect(request.getContextPath() + "/admin/messages");
-            return;
-        }
-
-        try {
-            int messageId = Integer.parseInt(messageIdParam);
-            boolean marked = messageDAO.markMessageAsRead(messageId);
-
-            // Send plain text response
-            response.setContentType("text/plain");
-            response.getWriter().write(marked ? "success" : "error");
-
-        } catch (NumberFormatException e) {
-            response.setContentType("text/plain");
-            response.getWriter().write("error");
-        }
-    }
+    // Removed markMessageAsRead method since we no longer track read status
 
     /**
      * Reply to a message
@@ -262,10 +213,10 @@ public class MessageController extends HttpServlet {
 
             reply.setSubject("RE: " + originalMessage.getSubject());
             reply.setMessage(replyContent);
-            reply.setRead(true);
+
             reply.setParentId(messageId);
-            reply.setReply(true);
-            reply.setReplied(false);
+
+
 
             // Set creation timestamp
             System.out.println("MessageController: Setting creation timestamp");

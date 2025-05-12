@@ -12,50 +12,28 @@ public class Message {
     private String email;
     private String subject;
     private String message;
-    private boolean isRead;
     private Timestamp createdAt;
-    private Timestamp readAt;
-    private int parentId; // For reply threads
-    private boolean isReply; // Whether this message is a reply
-    private boolean isReplied; // Whether this message has been replied to
+    private int parentId; // ID of the message this is replying to (0 if not a reply)
 
     // Default constructor
     public Message() {
-        this.parentId = 0;
-        this.isReply = false;
-        this.isReplied = false;
     }
 
     // Constructor with fields
-    public Message(int id, int userId, String name, String email, String subject, String message, boolean isRead, Timestamp createdAt, Timestamp readAt) {
+    public Message(int id, int userId, String name, String email, String subject, String message, Timestamp createdAt, int parentId) {
         this.id = id;
         this.userId = userId;
         this.name = name;
         this.email = email;
         this.subject = subject;
         this.message = message;
-        this.isRead = isRead;
         this.createdAt = createdAt;
-        this.readAt = readAt;
-        this.parentId = 0;
-        this.isReply = false;
-        this.isReplied = false;
+        this.parentId = parentId;
     }
 
-    // Constructor with reply fields
-    public Message(int id, int userId, String name, String email, String subject, String message, boolean isRead, Timestamp createdAt, Timestamp readAt, int parentId, boolean isReply, boolean isReplied) {
-        this.id = id;
-        this.userId = userId;
-        this.name = name;
-        this.email = email;
-        this.subject = subject;
-        this.message = message;
-        this.isRead = isRead;
-        this.createdAt = createdAt;
-        this.readAt = readAt;
-        this.parentId = parentId;
-        this.isReply = isReply;
-        this.isReplied = isReplied;
+    // Constructor without parentId for backward compatibility
+    public Message(int id, int userId, String name, String email, String subject, String message, Timestamp createdAt) {
+        this(id, userId, name, email, subject, message, createdAt, 0);
     }
 
     // Getters and Setters
@@ -107,28 +85,12 @@ public class Message {
         this.message = message;
     }
 
-    public boolean isRead() {
-        return isRead;
-    }
-
-    public void setRead(boolean isRead) {
-        this.isRead = isRead;
-    }
-
     public Timestamp getCreatedAt() {
         return createdAt;
     }
 
     public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
-    }
-
-    public Timestamp getReadAt() {
-        return readAt;
-    }
-
-    public void setReadAt(Timestamp readAt) {
-        this.readAt = readAt;
     }
 
     public int getParentId() {
@@ -139,20 +101,30 @@ public class Message {
         this.parentId = parentId;
     }
 
+    // Helper method to check if this message is a reply
     public boolean isReply() {
-        return isReply;
+        // Since we're removing parent_id, we'll determine if it's a reply based on the subject
+        return subject != null && subject.startsWith("RE: ");
     }
 
-    public void setReply(boolean isReply) {
-        this.isReply = isReply;
-    }
+    // Transient field to store if this message has been replied to
+    // This won't be stored in the database but can be set by the service layer
+    private transient boolean replied = false;
 
+    // Helper method to check if this message has been replied to
     public boolean isReplied() {
-        return isReplied;
+        return replied;
     }
 
-    public void setReplied(boolean isReplied) {
-        this.isReplied = isReplied;
+    // Setter for replied status
+    public void setReplied(boolean replied) {
+        this.replied = replied;
+    }
+
+    // Helper method to check if this message has been read
+    // Since we're not tracking read status in the database, we'll assume all messages are read
+    public boolean isRead() {
+        return true;
     }
 
     // Helper methods
@@ -178,9 +150,9 @@ public class Message {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", subject='" + subject + '\'' +
-                ", isRead=" + isRead +
+                ", message='" + message + '\'' +
                 ", createdAt=" + createdAt +
-                ", readAt=" + readAt +
+                ", parentId=" + parentId +
                 '}';
     }
 }

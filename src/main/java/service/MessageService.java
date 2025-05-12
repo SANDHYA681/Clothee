@@ -35,7 +35,6 @@ public class MessageService {
         message.setEmail(email);
         message.setSubject(subject);
         message.setMessage(messageContent);
-        message.setRead(false);
         message.setCreatedAt(new Timestamp(new Date().getTime()));
 
         // Add the message to the database
@@ -57,28 +56,6 @@ public class MessageService {
                 System.out.println("MessageService: Set createdAt to current time");
             }
 
-            // Set read status if not set
-            if (!message.isRead()) {
-                message.setRead(false);
-                System.out.println("MessageService: Set isRead to false");
-            }
-
-            // Initialize other fields if not set
-            if (message.getParentId() <= 0) {
-                message.setParentId(0);
-                System.out.println("MessageService: Set parentId to 0");
-            }
-
-            if (!message.isReply()) {
-                message.setReply(false);
-                System.out.println("MessageService: Set isReply to false");
-            }
-
-            if (!message.isReplied()) {
-                message.setReplied(false);
-                System.out.println("MessageService: Set isReplied to false");
-            }
-
             System.out.println("MessageService: Calling messageDAO.addMessage");
             boolean result = messageDAO.addMessage(message);
             System.out.println("MessageService: messageDAO.addMessage returned " + result);
@@ -88,15 +65,6 @@ public class MessageService {
             e.printStackTrace();
             return false;
         }
-    }
-
-    /**
-     * Mark message as read
-     * @param messageId Message ID
-     * @return true if update successful, false otherwise
-     */
-    public boolean markMessageAsRead(int messageId) {
-        return messageDAO.markMessageAsRead(messageId);
     }
 
     /**
@@ -126,37 +94,30 @@ public class MessageService {
     }
 
     /**
-     * Get unread messages
-     * @return List of unread messages
-     */
-    public List<Message> getUnreadMessages() {
-        return messageDAO.getUnreadMessages();
-    }
-
-    /**
-     * Get recent messages
-     * @param limit Number of messages to return
-     * @return List of recent messages
-     */
-    public List<Message> getRecentMessages(int limit) {
-        return messageDAO.getRecentMessages(limit);
-    }
-
-    /**
-     * Get unread message count
-     * @return Number of unread messages
-     */
-    public int getUnreadMessageCount() {
-        return messageDAO.getUnreadMessageCount();
-    }
-
-    /**
      * Get messages by user ID
      * @param userId User ID
      * @return List of messages from user
      */
     public List<Message> getMessagesByUserId(int userId) {
-        return messageDAO.getMessagesByUserId(userId);
+        List<Message> messages = messageDAO.getMessagesByUserId(userId);
+
+        // For each message, check if there are any replies
+        for (Message message : messages) {
+            // Get all messages to check for replies
+            List<Message> allMessages = messageDAO.getAllMessages();
+
+            // Check if any message is a reply to this one (has "RE: " + original subject)
+            String replySubject = "RE: " + message.getSubject();
+            for (Message potentialReply : allMessages) {
+                if (potentialReply.getSubject() != null && potentialReply.getSubject().equals(replySubject)) {
+                    // Found a reply, mark the original message as replied
+                    message.setReplied(true);
+                    break;
+                }
+            }
+        }
+
+        return messages;
     }
 
     /**
@@ -165,83 +126,64 @@ public class MessageService {
      * @param replyContent Reply content
      * @param adminName Admin name
      * @param adminEmail Admin email
-     * @param adminId Admin user ID (optional)
+     * @param adminId Admin user ID
      * @return true if successful, false otherwise
      */
     public boolean replyToMessage(int messageId, String replyContent, String adminName, String adminEmail, int adminId) {
-        System.out.println("MessageService: replyToMessage called for messageId = " + messageId);
-
         // Get the original message
-        Message message = messageDAO.getMessageById(messageId);
-        if (message == null) {
+        Message originalMessage = getMessageById(messageId);
+        if (originalMessage == null) {
             System.out.println("MessageService: Original message not found");
             return false;
         }
-
-        System.out.println("MessageService: Original message found: " + message.getSubject());
 
         // Create a reply message
         Message reply = new Message();
         reply.setName(adminName);
         reply.setEmail(adminEmail);
-        reply.setSubject("RE: " + message.getSubject());
+        reply.setSubject("RE: " + originalMessage.getSubject());
         reply.setMessage(replyContent);
-        reply.setRead(true); // Admin's reply is already read
-        reply.setCreatedAt(new Timestamp(new Date().getTime()));
-        reply.setParentId(messageId);
-        reply.setReply(true);
-
-        // Set the user ID to the admin's user ID - this is crucial for the SQL query to work
         reply.setUserId(adminId);
-        System.out.println("MessageService: Setting admin user ID to " + adminId);
+        // Not setting parentId as we're removing that field
+        reply.setCreatedAt(new Timestamp(new Date().getTime()));
 
-        System.out.println("MessageService: Adding reply to database");
+        System.out.println("MessageService: Created reply to message ID = " + messageId);
 
-        // Add the reply to the database
-        boolean success = messageDAO.addMessage(reply);
-
-        if (success) {
-            System.out.println("MessageService: Reply added successfully");
-            // Mark the original message as replied
-            messageDAO.markMessageAsReplied(messageId);
-            return true;
-        }
-
-        System.out.println("MessageService: Failed to add reply");
-        return false;
-    }
-
-    /**
-     * Reply to a message (legacy method for backward compatibility)
-     * @param messageId Message ID to reply to
-     * @param replyContent Reply content
-     * @return true if successful, false otherwise
-     */
-    public boolean replyToMessage(int messageId, String replyContent) {
-        // Use default admin name and email
-        return replyToMessage(messageId, replyContent, "Admin", "admin@clothee.com", 1);
-    }
-
-    /**
-     * Reply to a message (legacy method for backward compatibility)
-     * @param messageId Message ID to reply to
-     * @param replyContent Reply content
-     * @param adminName Admin name
-     * @param adminEmail Admin email
-     * @return true if successful, false otherwise
-     */
-    public boolean replyToMessage(int messageId, String replyContent, String adminName, String adminEmail) {
-        // Use default admin ID
-        return replyToMessage(messageId, replyContent, adminName, adminEmail, 1);
+        // Save the reply
+        return messageDAO.addMessage(reply);
     }
 
     /**
      * Get replies for a message
-     * @param messageId Parent message ID
-     * @return List of reply messages
+     * @param messageId Message ID
+     * @return List of replies
      */
     public List<Message> getRepliesByParentId(int messageId) {
-        return messageDAO.getRepliesByParentId(messageId);
+        System.out.println("MessageService: getRepliesByParentId called for messageId = " + messageId);
+
+        // Get the original message to find its subject
+        Message originalMessage = getMessageById(messageId);
+        if (originalMessage == null) {
+            System.out.println("MessageService: Original message not found, returning empty list");
+            return new java.util.ArrayList<>();
+        }
+
+        // Get all messages
+        List<Message> allMessages = messageDAO.getAllMessages();
+        List<Message> replies = new java.util.ArrayList<>();
+
+        // The reply subject pattern is "RE: " + original subject
+        String replySubject = "RE: " + originalMessage.getSubject();
+
+        // Find all messages that have the reply subject
+        for (Message message : allMessages) {
+            if (message.getSubject() != null && message.getSubject().equals(replySubject)) {
+                replies.add(message);
+            }
+        }
+
+        System.out.println("MessageService: Found " + replies.size() + " replies for message ID = " + messageId);
+        return replies;
     }
 
     /**
@@ -269,28 +211,35 @@ public class MessageService {
     }
 
     /**
-     * Get message with replies
-     * Business logic method to get a message and its replies in one call
+     * Get message by ID
+     * This method replaces getMessageWithReplies to avoid using parent_id
      * @param messageId Message ID
-     * @return Message object with replies set, or null if not found
+     * @return Message object if found, null otherwise
      */
     public Message getMessageWithReplies(int messageId) {
+        System.out.println("MessageService: getMessageWithReplies called for messageId = " + messageId);
+
+        // Simply get the message by ID without relying on parent_id
         Message message = getMessageById(messageId);
+
         if (message == null) {
+            System.out.println("MessageService: Message not found with ID = " + messageId);
             return null;
         }
 
-        // Mark as read if not already
-        if (!message.isRead()) {
-            markMessageAsRead(messageId);
-            message.setRead(true);
+        // Check if there are any replies to this message
+        List<Message> allMessages = messageDAO.getAllMessages();
+        String replySubject = "RE: " + message.getSubject();
+
+        for (Message potentialReply : allMessages) {
+            if (potentialReply.getSubject() != null && potentialReply.getSubject().equals(replySubject)) {
+                // Found a reply, mark the original message as replied
+                message.setReplied(true);
+                break;
+            }
         }
 
-        // Get replies
-        List<Message> replies = getRepliesByParentId(messageId);
-
-        // We could extend the Message class to include a replies field,
-        // but for now we'll just return the message and let the controller handle the replies separately
+        System.out.println("MessageService: Message found with ID = " + messageId + ", replied = " + message.isReplied());
         return message;
     }
 }

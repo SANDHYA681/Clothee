@@ -134,7 +134,122 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm");
                 <div class="field-label">Message:</div>
                 <div class="field-value message-content"><%= message.getMessage() %></div>
             </div>
+
+            <!-- Reply Form -->
+            <div class="reply-form">
+                <h3>Reply to this message</h3>
+                <form action="<%= request.getContextPath() %>/MessageServlet" method="post">
+                    <input type="hidden" name="action" value="reply">
+                    <input type="hidden" name="messageId" value="<%= message.getId() %>">
+                    <div class="form-group">
+                        <textarea name="replyContent" rows="5" class="form-control" placeholder="Type your reply here..." required></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="reply-button">Send Reply</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Replies Section -->
+            <%
+            List<Message> replies = (List<Message>) request.getAttribute("replies");
+            if (replies != null && !replies.isEmpty()) {
+            %>
+            <div class="replies-section">
+                <h3>Previous Replies</h3>
+                <% for (Message reply : replies) { %>
+                <div class="reply">
+                    <div class="reply-header">
+                        <div class="reply-sender"><%= reply.getName() %> (<%= reply.getEmail() %>)</div>
+                        <div class="reply-date"><%= dateFormat.format(reply.getCreatedAt()) %></div>
+                    </div>
+                    <div class="reply-content">
+                        <%= reply.getMessage() %>
+                    </div>
+                </div>
+                <% } %>
+            </div>
+            <% } %>
         </div>
     </div>
+
+    <style>
+        /* Additional styles for replies and reply form */
+        .reply-form {
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .reply-form h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: Arial, sans-serif;
+            resize: vertical;
+        }
+
+        .form-actions {
+            margin-top: 10px;
+        }
+
+        .reply-button {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .reply-button:hover {
+            background-color: #45a049;
+        }
+
+        .replies-section {
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .replies-section h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .reply {
+            background-color: #f9f9f9;
+            border-left: 3px solid #4CAF50;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+
+        .reply-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .reply-sender {
+            font-weight: bold;
+        }
+
+        .reply-date {
+            color: #777;
+        }
+
+        .reply-content {
+            line-height: 1.5;
+        }
+    </style>
 </body>
 </html>
