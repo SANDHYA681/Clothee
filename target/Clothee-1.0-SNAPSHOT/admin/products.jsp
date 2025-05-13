@@ -260,7 +260,15 @@ if (products == null) {
                 </a>
                 <div class="user-info">
                     <div class="user-avatar">
-                        <img src="../images/default-profile.jpg" alt="Admin">
+                        <% if (user.getProfileImage() != null && !user.getProfileImage().isEmpty()) { %>
+                            <% if (user.getProfileImage().startsWith("images/")) { %>
+                                <img src="<%=request.getContextPath()%>/<%= user.getProfileImage() %>" alt="<%= user.getFullName() %>">
+                            <% } else { %>
+                                <img src="<%=request.getContextPath()%>/images/avatars/<%= user.getProfileImage() %>" alt="<%= user.getFullName() %>">
+                            <% } %>
+                        <% } else { %>
+                            <img src="<%=request.getContextPath()%>/images/avatars/default-avatar.jpg" alt="Default Profile Image">
+                        <% } %>
                     </div>
                     <div class="user-details">
                         <h4><%= user.getFirstName() %></h4>

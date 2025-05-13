@@ -106,10 +106,7 @@
                                 <img src="<%=request.getContextPath()%>/images/avatars/<%= user.getProfileImage() %>" alt="<%= user.getFullName() %>" id="profileImagePreview">
                             <% } %>
                         <% } else { %>
-                            <div class="no-profile-image" id="profileImagePlaceholder">
-                                <i class="fas fa-user"></i>
-                                <p>No profile image</p>
-                            </div>
+                            <img src="<%=request.getContextPath()%>/images/avatars/default-avatar.jpg" alt="Default Profile Image" id="profileImagePreview">
                         <% } %>
                         <div class="user-avatar-overlay">
                             <a href="<%=request.getContextPath()%>/ProfileImageServlet" class="btn-change-avatar">
@@ -284,6 +281,33 @@
                         </button>
                     </div>
                 </form>
+            </div>
+
+            <div class="profile-card">
+                <div class="profile-card-header">
+                    <h2 class="profile-card-title">Profile Picture</h2>
+                </div>
+
+                <div class="profile-picture-container" style="text-align: center; margin: 20px 0;">
+                    <h4 style="margin-bottom: 15px;">Current Profile Picture</h4>
+                    <div style="width: 150px; height: 150px; margin: 0 auto; border-radius: 50%; overflow: hidden; border: 3px solid var(--primary-color);">
+                        <% if (user.getProfileImage() != null && !user.getProfileImage().isEmpty()) { %>
+                            <% if (user.getProfileImage().startsWith("images/")) { %>
+                                <img src="<%=request.getContextPath()%>/<%= user.getProfileImage() %>" alt="<%= user.getFullName() %>" style="width: 100%; height: 100%; object-fit: cover;">
+                            <% } else { %>
+                                <img src="<%=request.getContextPath()%>/images/avatars/<%= user.getProfileImage() %>" alt="<%= user.getFullName() %>" style="width: 100%; height: 100%; object-fit: cover;">
+                            <% } %>
+                        <% } else { %>
+                            <img src="<%=request.getContextPath()%>/images/avatars/default-avatar.jpg" alt="Default Profile Image" style="width: 100%; height: 100%; object-fit: cover;">
+                        <% } %>
+                    </div>
+
+                    <div style="margin-top: 20px;">
+                        <a href="<%=request.getContextPath()%>/ProfileImageServlet" class="btn btn-primary" style="display: inline-block; padding: 10px 20px;">
+                            <i class="fas fa-upload"></i> <%= user.getProfileImage() != null && !user.getProfileImage().isEmpty() ? "Change" : "Upload" %> Profile Picture
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

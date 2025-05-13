@@ -12,13 +12,20 @@
     <list default="true" id="8bba67b1-72a7-4342-a171-b9a09ce1425e" name="Changes" comment="Hy">
       <change beforePath="$PROJECT_DIR$/.idea/AugmentWebviewStateStore.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/AugmentWebviewStateStore.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin-login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin-login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ProfileImageServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ProfileImageServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/categories.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/categories.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/products.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/products.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/profile.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/sidebar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/sidebar.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/customer/profile-image-upload.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/customer/profile-image-upload.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/customer/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/customer/profile.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin-login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin-login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/ProfileImageServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/ProfileImageServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/profile.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/sidebar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/sidebar.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/customer/profile-image-upload.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/customer/profile-image-upload.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/customer/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/customer/profile.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controller/ProfileImageServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/ProfileImageServlet.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -41,11 +41,13 @@
         <div class="user-info">
             <div class="user-avatar">
                 <% if (currentUser.getProfileImage() != null && !currentUser.getProfileImage().isEmpty()) { %>
-                    <img src="<%= request.getContextPath() %>/images/avatars/<%= currentUser.getProfileImage() %>" alt="<%= currentUser.getFullName() %>">
+                    <% if (currentUser.getProfileImage().startsWith("images/")) { %>
+                        <img src="<%=request.getContextPath()%>/<%= currentUser.getProfileImage() %>" alt="<%= currentUser.getFullName() %>">
+                    <% } else { %>
+                        <img src="<%=request.getContextPath()%>/images/avatars/<%= currentUser.getProfileImage() %>" alt="<%= currentUser.getFullName() %>">
+                    <% } %>
                 <% } else { %>
-                    <div class="no-profile-image">
-                        <i class="fas fa-user"></i>
-                    </div>
+                    <img src="<%=request.getContextPath()%>/images/avatars/default-avatar.jpg" alt="Default Profile Image">
                 <% } %>
             </div>
             <h3 class="user-name"><%= currentUser.getFullName() %></h3>

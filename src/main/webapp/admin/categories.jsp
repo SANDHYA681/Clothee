@@ -122,11 +122,13 @@ if (deleteId != null && !deleteId.isEmpty()) {
                 <div class="user-info">
                     <div class="user-avatar">
                         <% if (user.getProfileImage() != null && !user.getProfileImage().isEmpty()) { %>
-                            <img src="<%= request.getContextPath() %>/images/avatars/<%= user.getProfileImage() %>" alt="<%= user.getFullName() %>">
+                            <% if (user.getProfileImage().startsWith("images/")) { %>
+                                <img src="<%=request.getContextPath()%>/<%= user.getProfileImage() %>" alt="<%= user.getFullName() %>">
+                            <% } else { %>
+                                <img src="<%=request.getContextPath()%>/images/avatars/<%= user.getProfileImage() %>" alt="<%= user.getFullName() %>">
+                            <% } %>
                         <% } else { %>
-                            <div class="no-profile-image">
-                                <i class="fas fa-user"></i>
-                            </div>
+                            <img src="<%=request.getContextPath()%>/images/avatars/default-avatar.jpg" alt="Default Profile Image">
                         <% } %>
                     </div>
                     <div class="user-details">

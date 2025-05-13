@@ -53,8 +53,12 @@ public class ProfileImageServlet extends HttpServlet {
             return;
         }
 
-        // Forward to the profile image upload page
-        request.getRequestDispatcher("/customer/profile-image-upload.jsp").forward(request, response);
+        // Forward to the appropriate profile image upload page based on user role
+        if (user.isAdmin()) {
+            request.getRequestDispatcher("/admin/profile-image-upload.jsp").forward(request, response);
+        } else {
+            request.getRequestDispatcher("/customer/profile-image-upload.jsp").forward(request, response);
+        }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

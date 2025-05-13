@@ -505,11 +505,7 @@
                                 <img src="<%=request.getContextPath()%>/images/avatars/<%= user.getProfileImage() %>" alt="<%= user.getFullName() %>">
                             <% } %>
                         <% } else { %>
-                            <div class="no-profile-image">
-                                <i class="fas fa-user"></i>
-                                <p>No profile image</p>
-                                <p>Upload one below</p>
-                            </div>
+                            <img src="<%=request.getContextPath()%>/images/avatars/default-avatar.jpg" alt="Default Profile Image">
                         <% } %>
                     </div>
                     <h3 class="user-name"><%= user.getFirstName() + " " + user.getLastName() %></h3>
@@ -660,11 +656,7 @@
                                             <img src="<%= request.getContextPath() %>/images/avatars/<%= user.getProfileImage() %>" alt="<%= user.getFullName() %>">
                                         <% } %>
                                     <% } else { %>
-                                        <div class="no-profile-image">
-                                            <i class="fas fa-user"></i>
-                                            <p>No profile image</p>
-                                            <p>Upload one below</p>
-                                        </div>
+                                        <img src="<%= request.getContextPath() %>/images/avatars/default-avatar.jpg" alt="Default Profile Image">
                                     <% } %>
                                 </div>
                             </div>
