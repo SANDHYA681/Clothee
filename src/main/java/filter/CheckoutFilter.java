@@ -56,15 +56,8 @@ public class CheckoutFilter implements Filter {
                     return;
                 }
 
-                // Check if user has a shipping address
+                // Get cart address information
                 Cart cartAddress = cartService.getCartAddress(user.getId());
-
-                if (cartAddress == null || cartAddress.getStreet() == null || cartAddress.getStreet().isEmpty()) {
-                    // No address, redirect to address page
-                    session.setAttribute("errorMessage", "Please provide your shipping address before proceeding to checkout.");
-                    httpResponse.sendRedirect(httpRequest.getContextPath() + "/CartServlet?action=viewAddress");
-                    return;
-                }
 
                 // All validations passed, continue with checkout
                 System.out.println("CheckoutFilter: All validations passed, proceeding to checkout");

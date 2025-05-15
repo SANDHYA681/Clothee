@@ -2,29 +2,27 @@
 <%
     String currentPage = request.getRequestURI();
     String pageName = currentPage.substring(currentPage.lastIndexOf("/") + 1);
-    
+
     // Get user information if logged in
     String userRole = (String) session.getAttribute("userRole");
     Integer userId = (Integer) session.getAttribute("userId");
     String userName = (String) session.getAttribute("userName");
     String userEmail = (String) session.getAttribute("userEmail");
-    
+
     if (userName == null) userName = "Customer";
     if (userEmail == null) userEmail = "customer@example.com";
-    
+
     // Redirect if not logged in
     if (userRole == null || userId == null) {
         response.sendRedirect(request.getContextPath() + "/login.jsp?error=You must be logged in to access this page");
         return;
     }
-    
+
     // Get cart count if available
     Integer cartCount = (Integer) session.getAttribute("cartCount");
     if (cartCount == null) cartCount = 0;
-    
-    // Get wishlist count if available
-    Integer wishlistCount = (Integer) session.getAttribute("wishlistCount");
-    if (wishlistCount == null) wishlistCount = 0;
+
+    // Wishlist functionality removed
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +50,7 @@
                     <i class="fas fa-chevron-left"></i>
                 </div>
             </div>
-            
+
             <div class="sidebar-user">
                 <div class="sidebar-user-avatar">
                     <img src="<%=request.getContextPath()%>/images/avatars/default-avatar.jpg" alt="User Avatar">
@@ -60,7 +58,7 @@
                 <div class="sidebar-user-name"><%= userName %></div>
                 <div class="sidebar-user-email"><%= userEmail %></div>
             </div>
-            
+
             <div class="sidebar-menu">
                 <div class="sidebar-heading">My Account</div>
                 <ul>
@@ -83,7 +81,7 @@
                         </a>
                     </li>
                 </ul>
-                
+
                 <div class="sidebar-heading">Shopping</div>
                 <ul>
                     <li class="sidebar-item">
@@ -92,15 +90,7 @@
                             <span class="sidebar-text">My Orders</span>
                         </a>
                     </li>
-                    <li class="sidebar-item">
-                        <a href="<%=request.getContextPath()%>/customer/wishlist.jsp" class="sidebar-link <%= pageName.equals("wishlist.jsp") ? "active" : "" %>">
-                            <span class="sidebar-icon"><i class="fas fa-heart"></i></span>
-                            <span class="sidebar-text">Wishlist</span>
-                            <% if (wishlistCount > 0) { %>
-                            <span class="sidebar-badge"><%= wishlistCount %></span>
-                            <% } %>
-                        </a>
-                    </li>
+                    <!-- Wishlist functionality removed -->
                     <li class="sidebar-item">
                         <a href="<%=request.getContextPath()%>/customer/reviews.jsp" class="sidebar-link <%= pageName.equals("reviews.jsp") ? "active" : "" %>">
                             <span class="sidebar-icon"><i class="fas fa-star"></i></span>
@@ -108,9 +98,9 @@
                         </a>
                     </li>
                 </ul>
-                
+
                 <div class="sidebar-divider"></div>
-                
+
                 <ul>
                     <li class="sidebar-item">
                         <a href="<%=request.getContextPath()%>/index.jsp" class="sidebar-link">
@@ -127,7 +117,7 @@
                 </ul>
             </div>
         </aside>
-        
+
         <!-- Main Content Wrapper -->
         <div class="content-wrapper">
             <!-- Header -->
@@ -136,19 +126,14 @@
                     <div class="mobile-toggle" id="mobileToggle">
                         <i class="fas fa-bars"></i>
                     </div>
-                    
+
                     <div class="header-search">
                         <input type="text" class="header-search-input" placeholder="Search products...">
                         <span class="header-search-icon"><i class="fas fa-search"></i></span>
                     </div>
-                    
+
                     <div class="header-actions">
-                        <a href="<%=request.getContextPath()%>/customer/wishlist.jsp" class="header-action" title="Wishlist">
-                            <i class="fas fa-heart"></i>
-                            <% if (wishlistCount > 0) { %>
-                            <span class="header-action-badge"><%= wishlistCount %></span>
-                            <% } %>
-                        </a>
+                        <!-- Wishlist functionality removed -->
                         <a href="<%=request.getContextPath()%>/CartServlet?action=view" class="header-action" title="Shopping Cart">
                             <i class="fas fa-shopping-cart"></i>
                             <% if (cartCount > 0) { %>
@@ -167,6 +152,6 @@
                     </div>
                 </div>
             </header>
-            
+
             <!-- Main Content -->
             <main class="main-content">

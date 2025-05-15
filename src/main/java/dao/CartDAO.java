@@ -339,34 +339,24 @@ public class CartDAO {
      * Update cart address information
      * @param userId User ID
      * @param fullName Full name
-     * @param street Street address
-     * @param city City
-     * @param state State
-     * @param zipCode Zip code
      * @param country Country
      * @param phone Phone number
      * @return true if successful, false otherwise
      */
-    public boolean updateCartAddress(int userId, String fullName, String street, String city,
-                                    String state, String zipCode, String country, String phone) {
+    public boolean updateCartAddress(int userId, String fullName, String country, String phone) {
         // First, check if we need to alter the cart table to add address columns
         ensureAddressColumnsExist();
 
         // Now update the address information
-        String query = "UPDATE cart SET full_name = ?, street = ?, city = ?, state = ?, "
-                     + "zip_code = ?, country = ?, phone = ? WHERE user_id = ?";
+        String query = "UPDATE cart SET full_name = ?, country = ?, phone = ? WHERE user_id = ?";
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
             stmt.setString(1, fullName);
-            stmt.setString(2, street);
-            stmt.setString(3, city);
-            stmt.setString(4, state);
-            stmt.setString(5, zipCode);
-            stmt.setString(6, country);
-            stmt.setString(7, phone);
-            stmt.setInt(8, userId);
+            stmt.setString(2, country);
+            stmt.setString(3, phone);
+            stmt.setInt(4, userId);
 
             int rowsAffected = stmt.executeUpdate();
             return rowsAffected > 0;
@@ -415,7 +405,7 @@ public class CartDAO {
         }
 
         // Now get the address information
-        String query = "SELECT full_name, street, city, state, zip_code, country, phone "
+        String query = "SELECT full_name, country, phone "
                      + "FROM cart WHERE user_id = ? LIMIT 1";
 
         try (Connection conn = DBConnection.getConnection();
@@ -426,10 +416,6 @@ public class CartDAO {
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     cart.setFullName(rs.getString("full_name"));
-                    cart.setStreet(rs.getString("street"));
-                    cart.setCity(rs.getString("city"));
-                    cart.setState(rs.getString("state"));
-                    cart.setZipCode(rs.getString("zip_code"));
                     cart.setCountry(rs.getString("country"));
                     cart.setPhone(rs.getString("phone"));
                 }
@@ -456,10 +442,6 @@ public class CartDAO {
             } catch (SQLException e) {
                 // Column doesn't exist, add it
                 stmt.executeUpdate("ALTER TABLE cart ADD COLUMN full_name VARCHAR(100)");
-                stmt.executeUpdate("ALTER TABLE cart ADD COLUMN street VARCHAR(255)");
-                stmt.executeUpdate("ALTER TABLE cart ADD COLUMN city VARCHAR(100)");
-                stmt.executeUpdate("ALTER TABLE cart ADD COLUMN state VARCHAR(100)");
-                stmt.executeUpdate("ALTER TABLE cart ADD COLUMN zip_code VARCHAR(20)");
                 stmt.executeUpdate("ALTER TABLE cart ADD COLUMN country VARCHAR(100)");
                 stmt.executeUpdate("ALTER TABLE cart ADD COLUMN phone VARCHAR(20)");
 

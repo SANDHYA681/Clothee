@@ -34,12 +34,7 @@
         return;
     }
 
-    if (cartAddress == null || cartAddress.getStreet() == null || cartAddress.getStreet().isEmpty()) {
-        // Redirect to address page if no address
-        session.setAttribute("errorMessage", "Please provide your shipping address before proceeding to checkout.");
-        response.sendRedirect(request.getContextPath() + "/CartServlet?action=viewAddress");
-        return;
-    }
+    // Get cart address information
 
     // Calculate totals
     double subtotal = cartService.getCartTotal(user.getId());

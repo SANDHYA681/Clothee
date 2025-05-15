@@ -22,9 +22,7 @@
     Integer cartCount = (Integer) session.getAttribute("cartCount");
     if (cartCount == null) cartCount = 0;
 
-    // Get wishlist count if available
-    Integer wishlistCount = (Integer) session.getAttribute("wishlistCount");
-    if (wishlistCount == null) wishlistCount = 0;
+    // Wishlist functionality removed
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -102,15 +100,7 @@
                             <span class="customer-sidebar-text">My Orders</span>
                         </a>
                     </li>
-                    <li class="customer-sidebar-item">
-                        <a href="<%=request.getContextPath()%>/customer/wishlist.jsp" class="customer-sidebar-link <%= pageName.equals("wishlist.jsp") ? "active" : "" %>">
-                            <span class="customer-sidebar-icon"><i class="fas fa-heart"></i></span>
-                            <span class="customer-sidebar-text">Wishlist</span>
-                            <% if (wishlistCount > 0) { %>
-                            <span class="customer-sidebar-badge"><%= wishlistCount %></span>
-                            <% } %>
-                        </a>
-                    </li>
+                    <!-- Wishlist functionality removed -->
                     <li class="customer-sidebar-item">
                         <a href="<%=request.getContextPath()%>/customer/reviews.jsp" class="customer-sidebar-link <%= pageName.equals("reviews.jsp") ? "active" : "" %>">
                             <span class="customer-sidebar-icon"><i class="fas fa-star"></i></span>
@@ -153,12 +143,7 @@
                     </div>
 
                     <div class="customer-header-actions">
-                        <a href="<%=request.getContextPath()%>/customer/wishlist.jsp" class="customer-header-action" title="Wishlist">
-                            <i class="fas fa-heart"></i>
-                            <% if (wishlistCount > 0) { %>
-                            <span class="customer-header-action-badge"><%= wishlistCount %></span>
-                            <% } %>
-                        </a>
+                        <!-- Wishlist functionality removed -->
                         <a href="<%=request.getContextPath()%>/CartServlet?action=view" class="customer-header-action" title="Shopping Cart">
                             <i class="fas fa-shopping-cart"></i>
                             <% if (cartCount > 0) { %>

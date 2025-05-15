@@ -120,17 +120,12 @@ public class CartService {
      * Update cart address
      * @param userId User ID
      * @param fullName Full name
-     * @param street Street address
-     * @param city City
-     * @param state State
-     * @param zipCode Zip code
      * @param country Country
      * @param phone Phone number
      * @return true if update successful, false otherwise
      */
-    public boolean updateCartAddress(int userId, String fullName, String street, String city,
-                                    String state, String zipCode, String country, String phone) {
-        return cartDAO.updateCartAddress(userId, fullName, street, city, state, zipCode, country, phone);
+    public boolean updateCartAddress(int userId, String fullName, String country, String phone) {
+        return cartDAO.updateCartAddress(userId, fullName, country, phone);
     }
 
     /**

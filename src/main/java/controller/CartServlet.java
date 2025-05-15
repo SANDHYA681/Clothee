@@ -335,19 +335,11 @@ public class CartServlet extends HttpServlet {
 
         // Get form data
         String fullName = request.getParameter("fullName");
-        String street = request.getParameter("street");
-        String city = request.getParameter("city");
-        String state = request.getParameter("state");
-        String zipCode = request.getParameter("zipCode");
         String country = request.getParameter("country");
         String phone = request.getParameter("phone");
 
         // Validate form data
         if (fullName == null || fullName.trim().isEmpty() ||
-            street == null || street.trim().isEmpty() ||
-            city == null || city.trim().isEmpty() ||
-            state == null || state.trim().isEmpty() ||
-            zipCode == null || zipCode.trim().isEmpty() ||
             country == null || country.trim().isEmpty() ||
             phone == null || phone.trim().isEmpty()) {
 
@@ -358,7 +350,7 @@ public class CartServlet extends HttpServlet {
         }
 
         // Update cart address
-        boolean success = cartService.updateCartAddress(userId, fullName, street, city, state, zipCode, country, phone);
+        boolean success = cartService.updateCartAddress(userId, fullName, country, phone);
 
         if (success) {
             // Set success message
@@ -470,14 +462,6 @@ public class CartServlet extends HttpServlet {
 
         // Get cart address
         model.Cart cartAddress = cartService.getCartAddress(userId);
-
-        // Check if address is missing, redirect to address page if needed
-        if (cartAddress == null || cartAddress.getStreet() == null || cartAddress.getStreet().isEmpty()) {
-            // No address, redirect to address page
-            session.setAttribute("errorMessage", "Please provide your shipping address before proceeding to checkout.");
-            response.sendRedirect(request.getContextPath() + "/CartServlet?action=viewAddress");
-            return;
-        }
 
         // Calculate totals
         double subtotal = cartService.getCartTotal(userId);

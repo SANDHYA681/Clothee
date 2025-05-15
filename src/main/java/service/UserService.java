@@ -171,6 +171,24 @@ public class UserService {
     }
 
     /**
+     * Check if phone number already exists
+     * @param phone Phone number to check
+     * @return true if phone number exists, false otherwise
+     */
+    public boolean phoneExists(String phone) {
+        return userDAO.phoneExists(phone);
+    }
+
+    /**
+     * Check if first name already exists
+     * @param firstName First name to check
+     * @return true if first name exists, false otherwise
+     */
+    public boolean firstNameExists(String firstName) {
+        return userDAO.firstNameExists(firstName);
+    }
+
+    /**
      * Add a new user (for admin use)
      * @param user User to add
      * @return true if successful, false otherwise

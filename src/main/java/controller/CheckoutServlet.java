@@ -71,15 +71,8 @@ public class CheckoutServlet extends HttpServlet {
             return;
         }
 
-        // Check if we have address information
+        // Get cart address information
         Cart cartAddress = cartService.getCartAddress(user.getId());
-
-        if (cartAddress == null || cartAddress.getStreet() == null || cartAddress.getStreet().isEmpty()) {
-            // Redirect to address page with error message
-            session.setAttribute("errorMessage", "Please provide your shipping address before proceeding to checkout.");
-            response.sendRedirect(request.getContextPath() + "/CartServlet?action=viewAddress");
-            return;
-        }
 
         // Pre-fill user information
         request.setAttribute("user", user);
@@ -135,21 +128,12 @@ public class CheckoutServlet extends HttpServlet {
         String fullName = request.getParameter("fullName");
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
-        String address = request.getParameter("address");
-        String city = request.getParameter("city");
-        String state = request.getParameter("state");
-        String zipCode = request.getParameter("zipCode");
         String country = cartAddress.getCountry(); // Use existing country if not provided in form
 
         // Update cart address with form data if provided
-        if (fullName != null && !fullName.isEmpty() &&
-            address != null && !address.isEmpty() &&
-            city != null && !city.isEmpty() &&
-            state != null && !state.isEmpty() &&
-            zipCode != null && !zipCode.isEmpty()) {
-
+        if (fullName != null && !fullName.isEmpty() && phone != null && !phone.isEmpty()) {
             // Update cart address
-            cartService.updateCartAddress(user.getId(), fullName, address, city, state, zipCode, country, phone);
+            cartService.updateCartAddress(user.getId(), fullName, country, phone);
 
             // Get updated cart address
             cartAddress = cartService.getCartAddress(user.getId());

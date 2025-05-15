@@ -657,6 +657,41 @@ public class UserDAO {
         return false;
     }
 
+    /**
+     * Check if a phone number already exists in the database
+     *
+     * @param phone Phone number to check
+     * @return true if the phone number exists, false otherwise
+     */
+    public boolean phoneExists(String phone) {
+        // If phone is null or empty, return false
+        if (phone == null || phone.trim().isEmpty()) {
+            return false;
+        }
+
+        String query = "SELECT COUNT(*) FROM users WHERE phone = ?";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setString(1, phone);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    boolean exists = rs.getInt(1) > 0;
+                    System.out.println("phoneExists: Phone number '" + phone + "' exists: " + exists);
+                    return exists;
+                }
+            }
+
+        } catch (SQLException e) {
+            System.err.println("SQL Error in phoneExists for phone '" + phone + "': " + e.getMessage());
+            e.printStackTrace();
+            throw new RuntimeException("Failed to check phone existence: " + e.getMessage(), e);
+        }
+
+        return false;
+    }
+
     public boolean validatePassword(int userId, String password) {
         String query = "SELECT password FROM users WHERE id = ?";
 

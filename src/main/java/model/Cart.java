@@ -16,10 +16,6 @@ public class Cart {
 
     // Address fields
     private String fullName;
-    private String street;
-    private String city;
-    private String state;
-    private String zipCode;
     private String country;
     private String phone;
 
@@ -86,37 +82,7 @@ public class Cart {
         this.fullName = fullName;
     }
 
-    public String getStreet() {
-        return street;
-    }
 
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
 
     public String getCountry() {
         return country;
@@ -207,10 +173,6 @@ public class Cart {
                 ", shipping=" + getShipping() +
                 ", total=" + getTotal() +
                 ", fullName='" + fullName + '\'' +
-                ", street='" + street + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                ", zipCode='" + zipCode + '\'' +
                 ", country='" + country + '\'' +
                 ", phone='" + phone + '\'' +
                 '}';

@@ -12,6 +12,7 @@ import jakarta.servlet.http.Part;
 import model.User;
 import service.UserService;
 import service.UserImageService;
+import util.ValidationUtil;
 
 /**
  * Servlet implementation class UserServlet
@@ -201,7 +202,7 @@ public class UserServlet extends HttpServlet {
         String confirmPassword = request.getParameter("confirmPassword");
         String phone = request.getParameter("phone");
 
-        // Validate input
+        // Validate required fields
         if (firstName == null || lastName == null || email == null || password == null ||
             firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty()) {
             request.setAttribute("errorMessage", "All fields are required");
@@ -209,8 +210,50 @@ public class UserServlet extends HttpServlet {
             return;
         }
 
+        // Validate name format (alphabetic characters only)
+        if (!ValidationUtil.isValidName(firstName)) {
+            request.setAttribute("errorMessage", "First name must contain only alphabetic characters");
+            request.getRequestDispatcher("/WEB-INF/views/common/register.jsp").forward(request, response);
+            return;
+        }
+
+        if (!ValidationUtil.isValidName(lastName)) {
+            request.setAttribute("errorMessage", "Last name must contain only alphabetic characters");
+            request.getRequestDispatcher("/WEB-INF/views/common/register.jsp").forward(request, response);
+            return;
+        }
+
+        // Validate email format
+        if (!ValidationUtil.isValidEmail(email)) {
+            request.setAttribute("errorMessage", "Please enter a valid email address");
+            request.getRequestDispatcher("/WEB-INF/views/common/register.jsp").forward(request, response);
+            return;
+        }
+
+        // Validate password (at least 6 characters)
+        if (!ValidationUtil.isValidPassword(password)) {
+            request.setAttribute("errorMessage", "Password must be at least 6 characters long");
+            request.getRequestDispatcher("/WEB-INF/views/common/register.jsp").forward(request, response);
+            return;
+        }
+
+        // Validate password confirmation
         if (!password.equals(confirmPassword)) {
             request.setAttribute("errorMessage", "Passwords do not match");
+            request.getRequestDispatcher("/WEB-INF/views/common/register.jsp").forward(request, response);
+            return;
+        }
+
+        // Validate phone number format (only digits allowed)
+        if (!ValidationUtil.isValidPhone(phone)) {
+            request.setAttribute("errorMessage", "Phone number must contain only digits");
+            request.getRequestDispatcher("/WEB-INF/views/common/register.jsp").forward(request, response);
+            return;
+        }
+
+        // Check if first name already exists (unique username)
+        if (userService.firstNameExists(firstName)) {
+            request.setAttribute("errorMessage", "Username already exists. Please choose a different first name");
             request.getRequestDispatcher("/WEB-INF/views/common/register.jsp").forward(request, response);
             return;
         }
@@ -218,6 +261,13 @@ public class UserServlet extends HttpServlet {
         // Check if email already exists
         if (userService.emailExists(email)) {
             request.setAttribute("errorMessage", "Email already exists");
+            request.getRequestDispatcher("/WEB-INF/views/common/register.jsp").forward(request, response);
+            return;
+        }
+
+        // Check if phone number already exists (only if phone is provided)
+        if (phone != null && !phone.isEmpty() && userService.phoneExists(phone)) {
+            request.setAttribute("errorMessage", "Phone number already exists");
             request.getRequestDispatcher("/WEB-INF/views/common/register.jsp").forward(request, response);
             return;
         }
@@ -265,6 +315,23 @@ public class UserServlet extends HttpServlet {
             return;
         }
 
+        // Validate name format (alphabetic characters only)
+        if (!ValidationUtil.isValidName(firstName)) {
+            response.sendRedirect("UserServlet?action=profile&tab=" + tab + "&error=" + java.net.URLEncoder.encode("First name must contain only alphabetic characters", "UTF-8"));
+            return;
+        }
+
+        if (!ValidationUtil.isValidName(lastName)) {
+            response.sendRedirect("UserServlet?action=profile&tab=" + tab + "&error=" + java.net.URLEncoder.encode("Last name must contain only alphabetic characters", "UTF-8"));
+            return;
+        }
+
+        // Validate phone number format (only digits allowed)
+        if (!ValidationUtil.isValidPhone(phone)) {
+            response.sendRedirect("UserServlet?action=profile&tab=" + tab + "&error=" + java.net.URLEncoder.encode("Phone number must contain only digits", "UTF-8"));
+            return;
+        }
+
         // Update user
         boolean success = userService.updateUserProfile(userId, firstName, lastName, phone);
 
@@ -309,6 +376,12 @@ public class UserServlet extends HttpServlet {
         if (currentPassword == null || newPassword == null || confirmPassword == null ||
             currentPassword.isEmpty() || newPassword.isEmpty() || confirmPassword.isEmpty()) {
             response.sendRedirect("UserServlet?action=profile&tab=" + tab + "&error=" + java.net.URLEncoder.encode("All password fields are required", "UTF-8"));
+            return;
+        }
+
+        // Validate new password length (at least 6 characters)
+        if (!ValidationUtil.isValidPassword(newPassword)) {
+            response.sendRedirect("UserServlet?action=profile&tab=" + tab + "&error=" + java.net.URLEncoder.encode("New password must be at least 6 characters long", "UTF-8"));
             return;
         }
 

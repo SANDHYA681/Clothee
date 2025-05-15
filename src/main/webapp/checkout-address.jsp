@@ -193,25 +193,7 @@
                         <input type="text" id="fullName" name="fullName" value="<%= cartAddress != null && cartAddress.getFullName() != null ? cartAddress.getFullName() : user.getFirstName() + " " + user.getLastName() %>" required>
                     </div>
 
-                    <div class="form-group">
-                        <label for="street">Street Address</label>
-                        <input type="text" id="street" name="street" value="<%= cartAddress != null && cartAddress.getStreet() != null ? cartAddress.getStreet() : "" %>" required>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="city">City</label>
-                        <input type="text" id="city" name="city" value="<%= cartAddress != null && cartAddress.getCity() != null ? cartAddress.getCity() : "" %>" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="state">State/Province</label>
-                        <input type="text" id="state" name="state" value="<%= cartAddress != null && cartAddress.getState() != null ? cartAddress.getState() : "" %>" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="zipCode">Zip/Postal Code</label>
-                        <input type="text" id="zipCode" name="zipCode" value="<%= cartAddress != null && cartAddress.getZipCode() != null ? cartAddress.getZipCode() : "" %>" required>
-                    </div>
 
                     <div class="form-group">
                         <label for="country">Country</label>
