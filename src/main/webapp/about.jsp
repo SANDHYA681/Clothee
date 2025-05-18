@@ -9,18 +9,18 @@
 </div>
 
 <section class="section">
-    <div class="container">
-        <div class="row">
-            <div class="col-2">
+    <div class="page-container">
+        <div class="content-section">
+            <div class="column-half">
                 <img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="About CLOTHEE" class="about-image">
             </div>
-            <div class="col-2">
+            <div class="column-half">
                 <div class="about-content">
                     <h2 class="section-title" style="text-align: left;">Our Story</h2>
                     <p>CLOTHEE was founded in 2010 with a simple mission: to provide high-quality, trendy clothing at affordable prices. What started as a small boutique in the heart of the city has now grown into a global brand with a presence in over 20 countries.</p>
                     <p>Our journey has been one of passion, dedication, and a relentless pursuit of excellence. We believe that fashion should be accessible to everyone, and this belief drives everything we do.</p>
                     <p>Over the years, we have expanded our product range to include clothing for men, women, and children, as well as accessories and footwear. Despite our growth, we remain committed to our core values of quality, affordability, and customer satisfaction.</p>
-                    <a href="#" class="btn">Learn More</a>
+                    <a href="#" class="action-button primary-button">Learn More</a>
                 </div>
             </div>
         </div>
@@ -28,13 +28,13 @@
 </section>
 
 <section class="section bg-light">
-    <div class="container">
+    <div class="page-container">
         <h2 class="section-title">Our Mission & Vision</h2>
-        <div class="row">
-            <div class="col-2">
-                <div class="card">
+        <div class="content-section">
+            <div class="column-half">
+                <div class="product-card">
                     <a href="#" class="card-link"></a>
-                    <div class="card-content">
+                    <div class="product-card-body">
                         <div class="mission-icon">
                             <i class="fas fa-bullseye"></i>
                         </div>
@@ -43,10 +43,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-2">
-                <div class="card">
+            <div class="column-half">
+                <div class="product-card">
                     <a href="#" class="card-link"></a>
-                    <div class="card-content">
+                    <div class="product-card-body">
                         <div class="mission-icon">
                             <i class="fas fa-eye"></i>
                         </div>
@@ -60,13 +60,13 @@
 </section>
 
 <section class="section">
-    <div class="container">
+    <div class="page-container">
         <h2 class="section-title">Our Values</h2>
-        <div class="row">
-            <div class="col-3">
+        <div class="content-section">
+            <div class="column-third">
                 <div class="value-card clickable">
                     <a href="#" class="card-link"></a>
-                    <div class="card-content">
+                    <div class="product-card-body">
                         <div class="value-icon">
                             <i class="fas fa-star"></i>
                         </div>
@@ -75,10 +75,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="column-third">
                 <div class="value-card clickable">
                     <a href="#" class="card-link"></a>
-                    <div class="card-content">
+                    <div class="product-card-body">
                         <div class="value-icon">
                             <i class="fas fa-heart"></i>
                         </div>
@@ -87,10 +87,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="column-third">
                 <div class="value-card clickable">
                     <a href="#" class="card-link"></a>
-                    <div class="card-content">
+                    <div class="product-card-body">
                         <div class="value-icon">
                             <i class="fas fa-leaf"></i>
                         </div>
@@ -99,10 +99,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="column-third">
                 <div class="value-card clickable">
                     <a href="#" class="card-link"></a>
-                    <div class="card-content">
+                    <div class="product-card-body">
                         <div class="value-icon">
                             <i class="fas fa-users"></i>
                         </div>
@@ -111,10 +111,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="column-third">
                 <div class="value-card clickable">
                     <a href="#" class="card-link"></a>
-                    <div class="card-content">
+                    <div class="product-card-body">
                         <div class="value-icon">
                             <i class="fas fa-lightbulb"></i>
                         </div>
@@ -123,10 +123,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="column-third">
                 <div class="value-card clickable">
                     <a href="#" class="card-link"></a>
-                    <div class="card-content">
+                    <div class="product-card-body">
                         <div class="value-icon">
                             <i class="fas fa-handshake"></i>
                         </div>

@@ -52,22 +52,29 @@ public class UserImageService {
             // Process the uploaded file
             String fileName = getSubmittedFileName(filePart);
             if (fileName == null || fileName.isEmpty()) {
+                System.out.println("UserImageService - Submitted filename is null or empty");
                 return null;
             }
+            System.out.println("UserImageService - Original filename: " + fileName);
 
             String fileExtension = getFileExtension(fileName);
             if (!isValidImageExtension(fileExtension)) {
                 System.out.println("UserImageService - Invalid image extension: " + fileExtension);
                 return null;
             }
+            System.out.println("UserImageService - File extension: " + fileExtension);
 
-            String newFileName = "user_" + userId + fileExtension;
+            // Create a unique filename based on user ID and timestamp to avoid conflicts
+            String timestamp = String.valueOf(System.currentTimeMillis());
+            String newFileName = "user_" + userId + "_" + timestamp + fileExtension;
+            System.out.println("UserImageService - New filename: " + newFileName);
 
-            // Create the relative path
+            // Create the relative path for URLs
             String relativePath = "images/avatars";
 
-            // Create the deployment directory path
+            // Create the deployment directory path (where the web server can find the file)
             String deploymentPath = uploadPath + File.separator + relativePath;
+            System.out.println("UserImageService - Deployment path: " + deploymentPath);
 
             // Ensure deployment directory exists
             boolean deploymentDirCreated = ensureDirectoryExists(deploymentPath);
@@ -81,49 +88,72 @@ public class UserImageService {
             boolean permanentDirCreated = ensureDirectoryExists(permanentPath);
             System.out.println("UserImageService - Created permanent directory: " + permanentDirCreated);
 
-            // Write the file to deployment path
-            String deploymentFilePath = deploymentPath + File.separator + newFileName;
-            filePart.write(deploymentFilePath);
-            System.out.println("UserImageService - Image saved to deployment path: " + deploymentFilePath);
+            // First, write the file to the permanent location
+            String permanentFilePath = permanentPath + File.separator + newFileName;
+            System.out.println("UserImageService - Permanent file path: " + permanentFilePath);
 
-            // Verify the file was written successfully
-            File deploymentFile = new File(deploymentFilePath);
-            if (deploymentFile.exists()) {
-                System.out.println("UserImageService - Deployment file exists: " + deploymentFile.exists());
-                System.out.println("UserImageService - Deployment file size: " + deploymentFile.length() + " bytes");
+            try {
+                // Write to permanent location first
+                filePart.write(permanentFilePath);
+                System.out.println("UserImageService - Image saved to permanent path: " + permanentFilePath);
 
-                // Copy the file to the permanent location
-                try {
-                    // Create permanent file path
-                    String permanentFilePath = permanentPath + File.separator + newFileName;
-
-                    // Copy the file
-                    boolean copied = copyFile(deploymentFilePath, permanentFilePath);
-                    System.out.println("UserImageService - File copied to permanent path: " + copied);
-                } catch (Exception e) {
-                    System.out.println("UserImageService - Error copying file to permanent path: " + e.getMessage());
-                    // Continue even if permanent copy fails
+                // Verify the permanent file was written successfully
+                File permanentFile = new File(permanentFilePath);
+                if (permanentFile.exists()) {
+                    System.out.println("UserImageService - Permanent file exists: " + permanentFile.exists());
+                    System.out.println("UserImageService - Permanent file size: " + permanentFile.length() + " bytes");
+                } else {
+                    System.out.println("UserImageService - WARNING: Permanent file does not exist after writing");
                 }
-            } else {
-                System.out.println("UserImageService - Deployment file does not exist after writing");
+
+                // Now copy to deployment location
+                String deploymentFilePath = deploymentPath + File.separator + newFileName;
+                boolean copied = copyFile(permanentFilePath, deploymentFilePath);
+                System.out.println("UserImageService - File copied to deployment path: " + copied);
+
+                // Verify the deployment file exists
+                File deploymentFile = new File(deploymentFilePath);
+                if (deploymentFile.exists()) {
+                    System.out.println("UserImageService - Deployment file exists: " + deploymentFile.exists());
+                    System.out.println("UserImageService - Deployment file size: " + deploymentFile.length() + " bytes");
+                } else {
+                    System.out.println("UserImageService - WARNING: Deployment file does not exist after copying");
+                }
+            } catch (Exception e) {
+                System.out.println("UserImageService - Error writing file: " + e.getMessage());
+                e.printStackTrace();
+
+                // Try writing directly to deployment path as fallback
+                try {
+                    String deploymentFilePath = deploymentPath + File.separator + newFileName;
+                    filePart.write(deploymentFilePath);
+                    System.out.println("UserImageService - Fallback: Image saved to deployment path: " + deploymentFilePath);
+                } catch (Exception ex) {
+                    System.out.println("UserImageService - Fallback failed: " + ex.getMessage());
+                    ex.printStackTrace();
+                    return null;
+                }
             }
 
-            // Create the final image URL
+            // Create the final image URL (always use forward slashes for URLs)
             String imageUrl = relativePath + "/" + newFileName;
             System.out.println("UserImageService - Final image URL: " + imageUrl);
 
-            // Update the user's profile image URL immediately
+            // Update the user's profile image URL in the database
             boolean updated = false;
             try {
                 updated = updateUserProfileImage(userId, imageUrl);
                 System.out.println("UserImageService - User profile updated with new image URL: " + updated);
+                if (!updated) {
+                    System.out.println("UserImageService - WARNING: Failed to update user profile with new image URL");
+                }
             } catch (Exception e) {
                 System.out.println("UserImageService - Error updating user profile image: " + e.getMessage());
                 e.printStackTrace();
                 // Continue even if update fails - at least the file was uploaded
             }
 
-            return imageUrl; // Using forward slash for URLs
+            return imageUrl;
         } catch (Exception e) {
             System.out.println("Error in uploadProfileImage: " + e.getMessage());
             e.printStackTrace();
@@ -264,7 +294,8 @@ public class UserImageService {
         try {
             // First, try to use a fixed, absolute path that will definitely persist
             // This path should be outside the deployment directory but accessible by the web server
-            // Use the user's home directory
+
+            // Use the user's home directory as the primary storage location
             String userHome = System.getProperty("user.home");
             String fixedPath = userHome + File.separator + "ClotheeImages" + File.separator + relativePath;
             System.out.println("UserImageService - Using fixed path in user home: " + fixedPath);
@@ -281,7 +312,24 @@ public class UserImageService {
                 return fixedPath;
             }
 
-            // If the fixed path doesn't work, try to find the project root directory
+            // If user home directory doesn't work, try the system temp directory
+            String tempDir = System.getProperty("java.io.tmpdir");
+            String tempPath = tempDir + File.separator + "ClotheeImages" + File.separator + relativePath;
+            System.out.println("UserImageService - Using temp directory path: " + tempPath);
+            File tempDirFile = new File(tempPath);
+
+            // Ensure the temp directory exists
+            if (!tempDirFile.exists()) {
+                boolean created = tempDirFile.mkdirs();
+                System.out.println("UserImageService - Created temp directory: " + created + " at " + tempPath);
+                if (created) {
+                    return tempPath;
+                }
+            } else {
+                return tempPath;
+            }
+
+            // If both user home and temp directory don't work, try to find the project root directory
             File deploymentDir = new File(deploymentRoot);
 
             // Check if deployment directory exists
@@ -293,17 +341,13 @@ public class UserImageService {
 
             // Try to navigate up to find the project root
             File projectRoot = deploymentDir;
-            if (deploymentDir.getParentFile() != null) {
-                projectRoot = deploymentDir.getParentFile();
+            for (int i = 0; i < 3; i++) {
                 if (projectRoot.getParentFile() != null) {
                     projectRoot = projectRoot.getParentFile();
-                    if (projectRoot.getParentFile() != null) {
-                        projectRoot = projectRoot.getParentFile();
-                    }
                 }
             }
 
-            // Create the permanent path
+            // Create the permanent path in the project root
             String permanentPath = projectRoot.getAbsolutePath() + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + relativePath;
             System.out.println("UserImageService - Project root: " + projectRoot.getAbsolutePath());
             System.out.println("UserImageService - Permanent path: " + permanentPath);

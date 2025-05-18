@@ -14,8 +14,12 @@
         return;
     }
 
-    // Get cart address from request
-    Cart cartAddress = (Cart) request.getAttribute("cartAddress");
+    // Get cart address from service
+    CartService addressService = new CartService();
+    String cartAddress = addressService.getCartAddress(user.getId());
+
+    // Get user's name for the form
+    String fullName = user.getFirstName() + " " + user.getLastName();
 
     // Get cart items and total
     CartService cartService = new CartService();
@@ -190,37 +194,17 @@
 
                     <div class="form-group">
                         <label for="fullName">Full Name</label>
-                        <input type="text" id="fullName" name="fullName" value="<%= cartAddress != null && cartAddress.getFullName() != null ? cartAddress.getFullName() : user.getFirstName() + " " + user.getLastName() %>" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="street">Street Address</label>
-                        <input type="text" id="street" name="street" value="<%= cartAddress != null && cartAddress.getStreet() != null ? cartAddress.getStreet() : "" %>" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="city">City</label>
-                        <input type="text" id="city" name="city" value="<%= cartAddress != null && cartAddress.getCity() != null ? cartAddress.getCity() : "" %>" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="state">State/Province</label>
-                        <input type="text" id="state" name="state" value="<%= cartAddress != null && cartAddress.getState() != null ? cartAddress.getState() : "" %>" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="zipCode">Zip/Postal Code</label>
-                        <input type="text" id="zipCode" name="zipCode" value="<%= cartAddress != null && cartAddress.getZipCode() != null ? cartAddress.getZipCode() : "" %>" required>
+                        <input type="text" id="fullName" name="fullName" value="<%= fullName %>" required>
                     </div>
 
                     <div class="form-group">
                         <label for="country">Country</label>
-                        <input type="text" id="country" name="country" value="<%= cartAddress != null && cartAddress.getCountry() != null ? cartAddress.getCountry() : "" %>" required>
+                        <input type="text" id="country" name="country" value="United States" required>
                     </div>
 
                     <div class="form-group">
                         <label for="phone">Phone Number</label>
-                        <input type="text" id="phone" name="phone" value="<%= cartAddress != null && cartAddress.getPhone() != null ? cartAddress.getPhone() : "" %>" required>
+                        <input type="text" id="phone" name="phone" value="<%= user.getPhone() != null ? user.getPhone() : "" %>" required>
                     </div>
 
                     <button type="submit" class="btn-continue">Continue to Payment</button>

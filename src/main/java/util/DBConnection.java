@@ -58,15 +58,5 @@ public class DBConnection {
         }
     }
 
-    public static boolean testConnection() {
-        try (Connection conn = getConnection()) {
-            boolean isConnected = conn != null && !conn.isClosed();
-            System.out.println("Database connection test: " + (isConnected ? "Successful" : "Failed"));
-            return isConnected;
-        } catch (SQLException e) {
-            System.err.println("Error testing database connection: " + e.getMessage());
-            e.printStackTrace();
-            return false;
-        }
-    }
+    // Test-related code removed
 }

@@ -71,10 +71,7 @@
                         <span class="info-value status-<%= order.getStatus().toLowerCase() %>"><%= order.getStatus() %></span>
                     </div>
 
-                    <div class="info-item">
-                        <span class="info-label">Payment Method:</span>
-                        <span class="info-value"><%= order.getPaymentMethod() != null ? order.getPaymentMethod() : "Credit Card" %></span>
-                    </div>
+
 
                     <div class="info-item">
                         <span class="info-label">Payment Status:</span>
@@ -82,13 +79,13 @@
                     </div>
 
                     <div class="info-item">
-                        <span class="info-label">Shipping Address:</span>
-                        <span class="info-value"><%= order.getShippingAddress() %></span>
+                        <span class="info-label">Shipping Status:</span>
+                        <span class="info-value status-processing">Processing</span>
                     </div>
 
                     <div class="info-item">
-                        <span class="info-label">Shipping Status:</span>
-                        <span class="info-value status-processing">Processing</span>
+                        <span class="info-label">Shipping Address:</span>
+                        <span class="info-value"><%= request.getAttribute("shippingAddress") != null ? (String)request.getAttribute("shippingAddress") : "Not specified" %></span>
                     </div>
                 </div>
 

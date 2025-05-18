@@ -1,6 +1,6 @@
-/* 
+/*
  * Custom CSS for Admin Orders - Following MVC Pattern
- * No Bootstrap, JSON, or JS dependencies
+ * Pure CSS implementation for the admin orders interface
  */
 
 /* Base Styles */
@@ -356,16 +356,16 @@ select.form-control {
     .order-stats {
         flex-direction: column;
     }
-    
+
     .data-table {
         display: block;
         overflow-x: auto;
     }
-    
+
     .action-buttons {
         flex-direction: column;
     }
-    
+
     .btn {
         width: 100%;
         margin-bottom: 5px;

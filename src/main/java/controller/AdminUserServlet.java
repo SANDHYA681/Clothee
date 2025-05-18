@@ -95,6 +95,9 @@ public class AdminUserServlet extends HttpServlet {
             case "delete":
                 deleteUser(request, response);
                 break;
+            case "showAddForm":
+                showAddForm(request, response);
+                break;
             default:
                 listUsers(request, response);
         }
@@ -124,6 +127,9 @@ public class AdminUserServlet extends HttpServlet {
         }
 
         switch (action) {
+            case "add":
+                addUser(request, response);
+                break;
             case "delete":
                 deleteUser(request, response);
                 break;
@@ -310,6 +316,124 @@ public class AdminUserServlet extends HttpServlet {
             // Set error message in session
             HttpSession session = request.getSession();
             session.setAttribute("errorMessage", "Error confirming user deletion: " + e.getMessage());
+
+            // Redirect to customers page
+            response.sendRedirect(request.getContextPath() + "/admin/customers.jsp");
+        }
+    }
+
+    /**
+     * Show the add user form
+     */
+    private void showAddForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            // Forward to add-customer.jsp
+            request.getRequestDispatcher("/admin/add-customer.jsp").forward(request, response);
+        } catch (Exception e) {
+            System.out.println("AdminUserServlet: Error in showAddForm: " + e.getMessage());
+            e.printStackTrace();
+
+            // Set error message in session
+            HttpSession session = request.getSession();
+            session.setAttribute("errorMessage", "Error showing add form: " + e.getMessage());
+
+            // Redirect to customers page
+            response.sendRedirect(request.getContextPath() + "/admin/customers.jsp");
+        }
+    }
+
+    /**
+     * Add a new user
+     */
+    private void addUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            // Get form parameters
+            String firstName = request.getParameter("first_name");
+            String lastName = request.getParameter("last_name");
+            String email = request.getParameter("email");
+            String password = request.getParameter("password");
+            String phone = request.getParameter("phone");
+            String role = request.getParameter("role");
+            String profileImage = request.getParameter("profileImage");
+
+            // Validate input
+            if (firstName == null || firstName.trim().isEmpty() ||
+                lastName == null || lastName.trim().isEmpty() ||
+                email == null || email.trim().isEmpty() ||
+                password == null || password.trim().isEmpty()) {
+
+                // Set form values as request attributes for repopulating the form
+                request.setAttribute("firstName", firstName);
+                request.setAttribute("lastName", lastName);
+                request.setAttribute("email", email);
+                request.setAttribute("phone", phone);
+                request.setAttribute("error", "All required fields must be filled out");
+
+                // Forward back to the form
+                request.getRequestDispatcher("/admin/add-customer.jsp").forward(request, response);
+                return;
+            }
+
+            // Validate email format
+            if (!ValidationUtil.isValidEmail(email)) {
+                request.setAttribute("firstName", firstName);
+                request.setAttribute("lastName", lastName);
+                request.setAttribute("email", email);
+                request.setAttribute("phone", phone);
+                request.setAttribute("error", "Invalid email format");
+                request.getRequestDispatcher("/admin/add-customer.jsp").forward(request, response);
+                return;
+            }
+
+            // Check if email already exists
+            if (userService.emailExists(email)) {
+                request.setAttribute("firstName", firstName);
+                request.setAttribute("lastName", lastName);
+                request.setAttribute("email", email);
+                request.setAttribute("phone", phone);
+                request.setAttribute("error", "Email already exists");
+                request.getRequestDispatcher("/admin/add-customer.jsp").forward(request, response);
+                return;
+            }
+
+            // Create new user
+            User newUser = new User();
+            newUser.setFirstName(firstName);
+            newUser.setLastName(lastName);
+            newUser.setEmail(email);
+            newUser.setPassword(password); // Password will be hashed in the service layer
+            newUser.setPhone(phone);
+            newUser.setRole(role != null ? role : "user");
+            newUser.setProfileImage(profileImage != null ? profileImage : "default.jpg");
+
+            // Add user to database
+            boolean success = userService.addUser(newUser);
+
+            if (success) {
+                // Set success message in session
+                HttpSession session = request.getSession();
+                session.setAttribute("successMessage", "User added successfully");
+
+                // Redirect to customers page
+                response.sendRedirect(request.getContextPath() + "/admin/customers.jsp");
+            } else {
+                // Set error message and form values
+                request.setAttribute("firstName", firstName);
+                request.setAttribute("lastName", lastName);
+                request.setAttribute("email", email);
+                request.setAttribute("phone", phone);
+                request.setAttribute("error", "Failed to add user");
+
+                // Forward back to the form
+                request.getRequestDispatcher("/admin/add-customer.jsp").forward(request, response);
+            }
+        } catch (Exception e) {
+            System.out.println("AdminUserServlet: Error in addUser: " + e.getMessage());
+            e.printStackTrace();
+
+            // Set error message in session
+            HttpSession session = request.getSession();
+            session.setAttribute("errorMessage", "Error adding user: " + e.getMessage());
 
             // Redirect to customers page
             response.sendRedirect(request.getContextPath() + "/admin/customers.jsp");

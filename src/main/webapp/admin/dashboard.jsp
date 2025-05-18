@@ -145,12 +145,12 @@ DecimalFormat currencyFormat = new DecimalFormat("$#,##0.00");
 
         <div class="main-content">
             <% if (successMessage != null && !successMessage.isEmpty()) { %>
-            <div class="alert alert-success">
+            <div class="notification notification-success">
                 <%= successMessage %>
             </div>
             <% } %>
             <% if (errorMessage != null && !errorMessage.isEmpty()) { %>
-            <div class="alert alert-danger">
+            <div class="notification notification-danger">
                 <%= errorMessage %>
             </div>
             <% } %>
@@ -376,53 +376,8 @@ DecimalFormat currencyFormat = new DecimalFormat("$#,##0.00");
         </div>
     </div>
 
-    <script>
-        // Toggle sidebar on mobile
-        document.addEventListener('DOMContentLoaded', function() {
-            const toggleSidebar = document.getElementById('toggleSidebar');
-            const sidebarToggle = document.getElementById('sidebarToggle');
-            const sidebar = document.getElementById('sidebar');
-
-            if (toggleSidebar && sidebar) {
-                toggleSidebar.addEventListener('click', function() {
-                    sidebar.classList.toggle('active');
-                    document.querySelector('.main-content').classList.toggle('sidebar-active');
-                });
-            }
-
-            if (sidebarToggle && sidebar) {
-                sidebarToggle.addEventListener('click', function() {
-                    sidebar.classList.toggle('collapsed');
-
-                    // Change icon based on sidebar state
-                    const icon = sidebarToggle.querySelector('i');
-                    if (sidebar.classList.contains('collapsed')) {
-                        icon.classList.remove('fa-chevron-left');
-                        icon.classList.add('fa-chevron-right');
-                    } else {
-                        icon.classList.remove('fa-chevron-right');
-                        icon.classList.add('fa-chevron-left');
-                    }
-
-                    // Save sidebar state to localStorage
-                    if (sidebar.classList.contains('collapsed')) {
-                        localStorage.setItem('sidebarState', 'collapsed');
-                    } else {
-                        localStorage.setItem('sidebarState', 'expanded');
-                    }
-                });
-
-                // Check if sidebar state is saved in localStorage
-                const sidebarState = localStorage.getItem('sidebarState');
-                if (sidebarState === 'collapsed') {
-                    sidebar.classList.add('collapsed');
-                    const icon = sidebarToggle.querySelector('i');
-                    icon.classList.remove('fa-chevron-left');
-                    icon.classList.add('fa-chevron-right');
-                }
-            }
-        });
-    </script>
+    <!-- Minimal UI enhancements are loaded in the header.jsp file -->
+    <!-- No additional JavaScript needed here -->
 
     <!-- Include common footer scripts -->
     <jsp:include page="includes/footer-scripts.jsp" />

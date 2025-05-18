@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="model.User" %>
 <%@ page import="model.Cart" %>
-<%@ page import="dao.CartDAO" %>
+<%@ page import="service.CartService" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
 
@@ -32,10 +32,11 @@
         session.removeAttribute("addressErrorMessage");
     }
 
-    // Get user cart address
-    CartDAO cartDAO = new CartDAO();
-    Cart cartAddress = cartDAO.getCartAddressByUserId(user.getId());
-    boolean hasAddress = cartAddress != null && cartAddress.getStreet() != null && !cartAddress.getStreet().isEmpty();
+    // Get user shipping address
+    CartService cartService = new CartService();
+    String shippingAddress = cartService.getCartAddress(user.getId());
+    // Check if user has a shipping address
+    boolean hasAddress = shippingAddress != null && !shippingAddress.isEmpty();
 %>
 
 <!DOCTYPE html>
@@ -533,7 +534,7 @@
             <div class="dashboard-header">
                 <h1 class="page-title">My Addresses</h1>
                 <div class="header-actions">
-                    <!-- Wishlist icon removed -->
+                    <!-- User account navigation -->
                     <a href="<%=request.getContextPath()%>/cart.jsp" class="header-action" title="Cart">
                         <i class="fas fa-shopping-cart"></i>
                     </a>
@@ -568,13 +569,9 @@
                             <div class="address-card default">
                                 <span class="default-badge">Default</span>
                                 <div class="address-content">
-                                    <div class="address-line"><strong>Full Name:</strong> <%= cartAddress.getFullName() %></div>
-                                    <div class="address-line"><strong>Street:</strong> <%= cartAddress.getStreet() %></div>
-                                    <div class="address-line"><strong>City:</strong> <%= cartAddress.getCity() %></div>
-                                    <div class="address-line"><strong>State:</strong> <%= cartAddress.getState() %></div>
-                                    <div class="address-line"><strong>Zip Code:</strong> <%= cartAddress.getZipCode() %></div>
-                                    <div class="address-line"><strong>Country:</strong> <%= cartAddress.getCountry() %></div>
-                                    <div class="address-line"><strong>Phone:</strong> <%= cartAddress.getPhone() %></div>
+                                    <div class="address-line"><strong>Shipping Address:</strong> <%= shippingAddress %></div>
+                                    <div class="address-line"><strong>Full Name:</strong> <%= user.getFirstName() + " " + user.getLastName() %></div>
+                                    <div class="address-line"><strong>Phone:</strong> <%= user.getPhone() != null ? user.getPhone() : "Not provided" %></div>
                                 </div>
                                 <div class="address-actions">
                                     <a href="<%=request.getContextPath()%>/customer/edit-addresses.jsp" class="address-action edit">
@@ -585,13 +582,13 @@
                     <% } %>
 
                     <div style="display: flex; gap: 15px; margin-top: 20px;">
-                        <a href="<%=request.getContextPath()%>/customer/edit-addresses.jsp?checkout=true" class="btn" style="background-color: #ff8800 !important; font-size: 16px; padding: 12px 20px; box-shadow: 0 4px 8px rgba(255, 136, 0, 0.3); position: relative; overflow: hidden; display: inline-block; text-decoration: none;">
+                        <a href="<%=request.getContextPath()%>/customer/edit-addresses.jsp?checkout=true" class="action-button" style="background-color: #ff8800 !important; font-size: 16px; padding: 12px 20px; box-shadow: 0 4px 8px rgba(255, 136, 0, 0.3); position: relative; overflow: hidden; display: inline-block; text-decoration: none;">
                             <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>Add New Address
                             <span style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent); transform: translateX(-100%); animation: shine 2s infinite;"></span>
                         </a>
 
                         <% if (hasAddress) { %>
-                        <a href="<%=request.getContextPath()%>/PaymentServlet?action=checkout" class="btn" style="background-color: #28a745 !important; color: white; font-size: 16px; padding: 12px 20px; box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3); position: relative; overflow: hidden; display: inline-block; text-decoration: none;">
+                        <a href="<%=request.getContextPath()%>/PaymentServlet?action=checkout" class="action-button" style="background-color: #28a745 !important; color: white; font-size: 16px; padding: 12px 20px; box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3); position: relative; overflow: hidden; display: inline-block; text-decoration: none;">
                             <i class="fas fa-credit-card" style="margin-right: 8px;"></i>Proceed to Payment
                             <span style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent); transform: translateX(-100%); animation: shine 2s infinite;"></span>
                         </a>

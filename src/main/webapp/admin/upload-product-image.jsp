@@ -347,7 +347,7 @@ if (products == null) {
                 <% } %>
 
                 <div class="upload-container">
-                    <form action="../ProductImageUploadServlet" method="post" enctype="multipart/form-data" id="uploadForm">
+                    <form action="../ImageServlet" method="post" enctype="multipart/form-data" id="uploadForm">
                         <% if (product != null) { %>
                             <input type="hidden" name="productId" value="<%= product.getId() %>">
                             <input type="hidden" name="category" value="<%= product.getCategory() %>">

@@ -109,7 +109,7 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm");
             gap: 10px;
         }
 
-        .btn-view {
+        .action-button {
             padding: 5px 15px;
             background-color: #ff8800;
             color: white;
@@ -120,7 +120,7 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm");
             text-decoration: none;
         }
 
-        .btn-view:hover {
+        .action-button:hover {
             background-color: #e67a00;
         }
 
@@ -138,7 +138,7 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm");
     <div class="message-container">
         <div class="message-header">
             <h1 class="message-title">My Messages</h1>
-            <a href="../contact.jsp" class="btn-view">Send New Message</a>
+            <a href="<%=request.getContextPath()%>/contact.jsp" class="action-button">Send New Message</a>
         </div>
 
         <%
@@ -161,13 +161,13 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm");
             <% if (messages.isEmpty()) { %>
                 <div class="empty-message">
                     <p>You don't have any messages yet.</p>
-                    <p>Need help? <a href="../contact.jsp">Contact us</a></p>
+                    <p>Need help? <a href="<%=request.getContextPath()%>/contact.jsp">Contact us</a></p>
                 </div>
             <% } else { %>
                 <% for (Message message : messages) { %>
                     <div class="message-item">
                         <div class="message-subject">
-                            <a href="<%=request.getContextPath()%>/CustomerMessageServlet?action=view&id=<%= message.getId() %>">
+                            <a href="<%=request.getContextPath()%>/messages?action=view&id=<%= message.getId() %>">
                                 <%= message.getSubject() %>
                             </a>
                         </div>
@@ -178,7 +178,7 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm");
                             <span class="message-status status-unread">New message</span>
                         <% } %>
                         <div class="message-actions">
-                            <a href="<%=request.getContextPath()%>/CustomerMessageServlet?action=view&id=<%= message.getId() %>" class="btn-view">View</a>
+                            <a href="<%=request.getContextPath()%>/messages?action=view&id=<%= message.getId() %>" class="action-button">View</a>
                         </div>
                     </div>
                 <% } %>

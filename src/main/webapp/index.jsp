@@ -14,76 +14,34 @@
 String message = request.getParameter("message");
 if (message != null && !message.isEmpty()) {
 %>
-<div class="alert alert-success" style="margin: 10px auto; max-width: 800px; text-align: center; padding: 10px; background-color: #d4edda; color: #155724; border-radius: 5px;">
+<div class="success-notification" style="margin: 10px auto; max-width: 800px; text-align: center;">
     <%= message %>
 </div>
 <% } %>
 
 <%
-    // Create slides directly in the JSP
-    List<Slide> slides = new ArrayList<>();
+    // Get slides from request attribute (set by HomeServlet)
+    List<Slide> slides = (List<Slide>) request.getAttribute("slides");
+    Integer currentSlideIndex = (Integer) request.getAttribute("currentSlide");
 
-    // Add slides
-    slides.add(new Slide(
-        "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-        "Elevate Your Style",
-        "Discover the latest trends in fashion and express yourself with our premium collection of clothing and accessories.",
-        "ProductServlet?category=new",
-        "Shop Now",
-        "ProductServlet?category=sale",
-        "View Sale"
-    ));
-
-    slides.add(new Slide(
-        "https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1771&q=80",
-        "Summer Collection 2023",
-        "Beat the heat with our cool and comfortable summer collection.",
-        "ProductServlet?category=summer",
-        "Explore Collection",
-        null,
-        null
-    ));
-
-    slides.add(new Slide(
-        "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-        "Exclusive Discounts",
-        "Up to 50% off on selected items. Limited time offer!",
-        "ProductServlet?category=sale",
-        "Shop Sale",
-        null,
-        null
-    ));
-
-    // Get current slide (default to 0)
-    int currentSlide = 0;
-    String slideParam = request.getParameter("slide");
-    if (slideParam != null) {
-        if ("next".equals(slideParam)) {
-            Integer sessionSlide = (Integer) session.getAttribute("currentSlide");
-            if (sessionSlide != null) {
-                currentSlide = (sessionSlide + 1) % slides.size();
-            }
-        } else if ("prev".equals(slideParam)) {
-            Integer sessionSlide = (Integer) session.getAttribute("currentSlide");
-            if (sessionSlide != null) {
-                currentSlide = (sessionSlide - 1 + slides.size()) % slides.size();
-            }
-        } else {
-            try {
-                currentSlide = Integer.parseInt(slideParam);
-                if (currentSlide < 0 || currentSlide >= slides.size()) {
-                    currentSlide = 0;
-                }
-            } catch (NumberFormatException e) {
-                currentSlide = 0;
-            }
-        }
+    // Default slide if not set by servlet
+    Slide mainSlide;
+    if (slides != null && !slides.isEmpty() && currentSlideIndex != null) {
+        mainSlide = slides.get(currentSlideIndex);
+    } else {
+        // Fallback slide if HomeServlet didn't set the attributes
+        mainSlide = new Slide(
+            "images/hero-clothes.jpg",
+            "Elevate Your Style",
+            "Discover the latest trends in fashion and express yourself with our premium collection of clothing and accessories.",
+            "ProductServlet?category=new",
+            "Shop Now",
+            "ProductServlet?category=sale",
+            "View Sale"
+        );
     }
 
-    // Store current slide in session
-    session.setAttribute("currentSlide", currentSlide);
-
-    // Countdown timer calculation removed as requested
+    // Initialize date formatter for product display
 %>
 
 <!-- Admin Login Banner -->
@@ -91,69 +49,47 @@ if (message != null && !message.isEmpty()) {
 <div style="background-color: #4a6bdf; color: white; padding: 10px 0; text-align: center;">
     <div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
         <div style="display: flex; align-items: center; gap: 10px;">
-            <i class="fas fa-user-shield" style="font-size: 18px;"></i>
+            <span class="icon icon-user-shield" style="font-size: 18px;"></span>
             <span>Admin? <a href="admin-login.jsp" style="color: white; text-decoration: underline; font-weight: bold;">Login here</a></span>
         </div>
         <div style="display: flex; align-items: center; gap: 10px;">
-            <i class="fas fa-user-plus" style="font-size: 18px;"></i>
+            <span class="icon icon-user-plus" style="font-size: 18px;"></span>
             <span>New user? <a href="register.jsp" style="color: white; text-decoration: underline; font-weight: bold;">Register here</a></span>
         </div>
     </div>
 </div>
 <% } %>
 
-<!-- Hero Section with Modern Slider -->
+<!-- Hero Section with Single Image -->
 <section class="hero-slider">
     <div class="slider-container">
-        <%
-        if (slides != null && !slides.isEmpty()) {
-            for (int i = 0; i < slides.size(); i++) {
-                Slide slide = slides.get(i);
-        %>
-        <div class="slide <%= i == currentSlide ? "active" : "" %>">
-            <div class="slide-bg" style="background-image: url('<%= slide.getImageUrl() %>');"></div>
+        <div class="slide active">
+            <div class="slide-bg" style="background-image: url('<%=request.getContextPath()%>/<%= mainSlide.getImageUrl().startsWith("/") ? mainSlide.getImageUrl().substring(1) : mainSlide.getImageUrl() %>');"></div>
             <div class="slide-overlay"></div>
             <div class="slide-content">
                 <div class="slide-text-container">
-                    <h1 class="slide-title"><%= slide.getTitle() %></h1>
-                    <p class="slide-subtitle"><%= slide.getSubtitle() %></p>
+                    <h1 class="slide-title"><%= mainSlide.getTitle() %></h1>
+                    <p class="slide-subtitle"><%= mainSlide.getSubtitle() %></p>
                     <div class="slide-buttons">
-                        <a href="<%= slide.getPrimaryButtonUrl() %>" class="btn btn-primary"><%= slide.getPrimaryButtonText() %></a>
-                        <% if (slide.getSecondaryButtonUrl() != null && slide.getSecondaryButtonText() != null) { %>
-                        <a href="<%= slide.getSecondaryButtonUrl() %>" class="btn btn-outline"><%= slide.getSecondaryButtonText() %></a>
+                        <a href="<%= mainSlide.getPrimaryButtonUrl() %>" class="action-button primary-button"><%= mainSlide.getPrimaryButtonText() %></a>
+                        <% if (mainSlide.getSecondaryButtonUrl() != null && mainSlide.getSecondaryButtonText() != null) { %>
+                        <a href="<%= mainSlide.getSecondaryButtonUrl() %>" class="action-button outline-primary-button"><%= mainSlide.getSecondaryButtonText() %></a>
                         <% } %>
                     </div>
                 </div>
             </div>
-        </div>
-        <%
-            }
-        }
-        %>
-        <a href="index.jsp?slide=prev" class="slider-arrow prev"><i class="fas fa-chevron-left"></i></a>
-        <a href="index.jsp?slide=next" class="slider-arrow next"><i class="fas fa-chevron-right"></i></a>
-        <div class="slider-dots">
-            <%
-            if (slides != null) {
-                for (int i = 0; i < slides.size(); i++) {
-            %>
-            <a href="index.jsp?slide=<%= i %>" class="dot <%= i == currentSlide ? "active" : "" %>" data-slide="<%= i %>"></a>
-            <%
-                }
-            }
-            %>
         </div>
     </div>
 </section>
 
 <!-- Features Section with Modern Design -->
 <section class="features">
-    <div class="container">
+    <div class="page-container">
         <div class="features-grid">
             <div class="feature-item">
                 <div class="feature-icon">
                     <div class="icon-circle">
-                        <i class="fas fa-truck"></i>
+                        <span class="icon icon-truck"></span>
                     </div>
                 </div>
                 <div class="feature-content">
@@ -164,7 +100,7 @@ if (message != null && !message.isEmpty()) {
             <div class="feature-item">
                 <div class="feature-icon">
                     <div class="icon-circle">
-                        <i class="fas fa-undo"></i>
+                        <span class="icon icon-undo"></span>
                     </div>
                 </div>
                 <div class="feature-content">
@@ -175,7 +111,7 @@ if (message != null && !message.isEmpty()) {
             <div class="feature-item support-247">
                 <div class="feature-icon">
                     <div class="icon-circle">
-                        <i class="fas fa-headset"></i>
+                        <span class="icon icon-headset"></span>
                     </div>
                 </div>
                 <div class="feature-content">
@@ -186,7 +122,7 @@ if (message != null && !message.isEmpty()) {
             <div class="feature-item">
                 <div class="feature-icon">
                     <div class="icon-circle">
-                        <i class="fas fa-lock"></i>
+                        <span class="icon icon-lock"></span>
                     </div>
                 </div>
                 <div class="feature-content">
@@ -200,7 +136,7 @@ if (message != null && !message.isEmpty()) {
 
 <!-- Categories Section -->
 <section class="categories">
-    <div class="container">
+    <div class="page-container">
         <div class="section-title">
             <h2>Shop By Category</h2>
         </div>
@@ -218,14 +154,14 @@ if (message != null && !message.isEmpty()) {
                 String imageUrl = category.getImageUrl();
                 // Use default image if no image is set
                 if (imageUrl == null || imageUrl.isEmpty()) {
-                    // Default images based on category index
+                    // Default images based on category index (using local images)
                     String[] defaultImages = {
-                        "https://images.unsplash.com/photo-1581044777550-4cfa60707c03?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=772&q=80",
-                        "https://images.unsplash.com/photo-1617137968427-85924c800a22?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-                        "https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
-                        "https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80",
-                        "https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
-                        "https://images.unsplash.com/photo-1562157873-818bc0726f68?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=654&q=80"
+                        "images/categories/category1.jpg",
+                        "images/categories/category2.jpg",
+                        "images/categories/category3.jpg",
+                        "images/categories/category4.jpg",
+                        "images/categories/category5.jpg",
+                        "images/categories/category6.jpg"
                     };
                     imageUrl = defaultImages[i % defaultImages.length];
                 } else {
@@ -245,7 +181,7 @@ if (message != null && !message.isEmpty()) {
             <% if (categories.isEmpty()) { %>
             <!-- Default categories if no categories in database -->
             <div class="category-card">
-                <img src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=772&q=80" alt="Women's Fashion">
+                <img src="<%=request.getContextPath()%>/images/categories/category_1.jpg" alt="Women's Fashion">
                 <div class="category-content">
                     <h3 class="category-title">Women's Fashion</h3>
                     <a href="ProductServlet?category=women" class="category-link">Shop Now <i class="fas fa-arrow-right"></i></a>
@@ -253,7 +189,7 @@ if (message != null && !message.isEmpty()) {
             </div>
 
             <div class="category-card">
-                <img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Men's Fashion">
+                <img src="<%=request.getContextPath()%>/images/categories/category_2.jpg" alt="Men's Fashion">
                 <div class="category-content">
                     <h3 class="category-title">Men's Fashion</h3>
                     <a href="ProductServlet?category=men" class="category-link">Shop Now <i class="fas fa-arrow-right"></i></a>
@@ -261,7 +197,7 @@ if (message != null && !message.isEmpty()) {
             </div>
 
             <div class="category-card">
-                <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="Accessories">
+                <img src="<%=request.getContextPath()%>/images/categories/category_3.jpg" alt="Accessories">
                 <div class="category-content">
                     <h3 class="category-title">Accessories</h3>
                     <a href="ProductServlet?category=accessories" class="category-link">Shop Now <i class="fas fa-arrow-right"></i></a>
@@ -274,7 +210,7 @@ if (message != null && !message.isEmpty()) {
 
 <!-- Featured Products -->
 <section class="featured-products">
-    <div class="container">
+    <div class="page-container">
         <div class="section-title">
             <h2>Featured Products</h2>
         </div>
@@ -283,7 +219,7 @@ if (message != null && !message.isEmpty()) {
             <!-- Product 2 -->
             <div class="product-card">
                 <div class="product-img">
-                    <img src="https://images.unsplash.com/photo-1611312449408-fcece27cdbb7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=869&q=80" alt="Denim Jacket">
+                    <img src="<%=request.getContextPath()%>/images/products/product1.jpg" alt="Denim Jacket">
                     <span class="product-tag tag-sale">-25%</span>
                     <div class="product-actions">
                         <a href="CartServlet?action=add&productId=2&quantity=1" class="product-action-btn">
@@ -314,7 +250,7 @@ if (message != null && !message.isEmpty()) {
             <!-- Product 3 -->
             <div class="product-card">
                 <div class="product-img">
-                    <img src="https://images.unsplash.com/photo-1612336307429-8a898d10e223?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Summer Dress">
+                    <img src="<%=request.getContextPath()%>/images/products/product2.jpg" alt="Summer Dress">
                     <div class="product-actions">
                         <a href="CartServlet?action=add&productId=3&quantity=1" class="product-action-btn">
                             <i class="fas fa-shopping-cart"></i>
@@ -344,49 +280,49 @@ if (message != null && !message.isEmpty()) {
 </section>
 
 <!-- Special Offer with Image Background -->
-<section class="special-offer" style="background-image: url('https://images.unsplash.com/photo-1607083206968-13611e3d76db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2215&q=80'); background-size: cover; background-position: center;">
-    <div class="container">
+<section class="special-offer">
+    <div class="page-container">
         <div class="offer-content">
             <span class="offer-subtitle">Limited Time Offer</span>
             <h2 class="offer-title">Summer Sale</h2>
             <p class="offer-description">Get up to 50% off on our summer collection. Hurry up before the offer ends!</p>
 
 
-            <a href="ProductServlet?category=sale" class="btn btn-animated">Shop Now</a>
+            <a href="ProductServlet?category=sale" class="action-button primary-button animated-button">Shop Now <i class="fas fa-arrow-right"></i></a>
         </div>
     </div>
 </section>
 
 <!-- Collection Showcase -->	`
 <section class="collection-showcase">
-    <div class="container">
+    <div class="page-container">
         <div class="section-title">
             <h2>Our Collections</h2>
         </div>
 
         <div class="collections-grid">
             <div class="collection-item large">
-                <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Premium Collection">
+                <img src="<%=request.getContextPath()%>/images/collections/collection1.jpg" alt="Premium Collection">
                 <div class="collection-content">
                     <h3>Premium Collection</h3>
                     <p>Luxury fabrics and exclusive designs</p>
-                    <a href="ProductServlet?category=premium" class="btn btn-sm">Explore</a>
+                    <a href="ProductServlet?category=premium" class="action-button primary-button action-button-small">Explore</a>
                 </div>
             </div>
 
             <div class="collection-item">
-                <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Casual Collection">
+                <img src="<%=request.getContextPath()%>/images/collections/collection2.jpg" alt="Casual Collection">
                 <div class="collection-content">
                     <h3>Casual Wear</h3>
-                    <a href="ProductServlet?category=casual" class="btn btn-sm">Explore</a>
+                    <a href="ProductServlet?category=casual" class="action-button primary-button action-button-small">Explore</a>
                 </div>
             </div>
 
             <div class="collection-item">
-                <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=783&q=80" alt="Formal Collection">
+                <img src="<%=request.getContextPath()%>/images/collections/collection3.jpg" alt="Formal Collection">
                 <div class="collection-content">
                     <h3>Formal Wear</h3>
-                    <a href="ProductServlet?category=formal" class="btn btn-sm">Explore</a>
+                    <a href="ProductServlet?category=formal" class="action-button primary-button action-button-small">Explore</a>
                 </div>
             </div>
         </div>
@@ -395,7 +331,7 @@ if (message != null && !message.isEmpty()) {
 
 <!-- Testimonials -->
 <section class="testimonials">
-    <div class="container">
+    <div class="page-container">
         <div class="section-title">
             <h2>What Our Customers Say</h2>
         </div>
@@ -405,7 +341,7 @@ if (message != null && !message.isEmpty()) {
                 <p class="testimonial-text">I absolutely love the quality of clothes from Clothee. The fabrics are premium and the designs are trendy. Will definitely shop again!</p>
                 <div class="testimonial-author">
                     <div class="author-img">
-                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Sarah Johnson">
+                        <img src="<%=request.getContextPath()%>/images/testimonials/customer1.jpg" alt="Sandhya">
                     </div>
                     <h4 class="author-name">Sandhya </h4>
                     <span class="author-role">Regular Customer</span>

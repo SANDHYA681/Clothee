@@ -35,6 +35,8 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Message</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         * {
             font-family: Arial, sans-serif;
@@ -103,8 +105,8 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm");
         <h1>Message Details</h1>
 
         <div class="action-buttons">
-            <a href="<%= request.getContextPath() %>/admin/messages.jsp" class="back-button">Back to Messages</a>
-            <a href="<%= request.getContextPath() %>/AdminMessageServlet?action=delete&id=<%= message.getId() %>" class="delete-button" onclick="return confirm('Are you sure you want to delete this message?')">Delete Message</a>
+            <a href="<%= request.getContextPath() %>/admin/messages.jsp" class="back-button"><i class="fas fa-arrow-left"></i> Back to Messages</a>
+            <a href="<%= request.getContextPath() %>/AdminMessageServlet?action=delete&id=<%= message.getId() %>" class="delete-button" onclick="return confirm('Are you sure you want to delete this message?')"><i class="fas fa-trash"></i> Delete Message</a>
         </div>
 
         <%
@@ -113,7 +115,7 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm");
         if (error != null && !error.isEmpty()) {
         %>
         <div class="error-message">
-            <%= error %>
+            <i class="fas fa-exclamation-circle"></i> <%= error %>
         </div>
         <% } %>
 
@@ -123,7 +125,7 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm");
         if (success != null && !success.isEmpty()) {
         %>
         <div class="success-message">
-            <%= success %>
+            <i class="fas fa-check-circle"></i> <%= success %>
         </div>
         <% } %>
 
@@ -172,7 +174,7 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm");
                         <textarea name="replyContent" rows="5" class="form-control" placeholder="Type your reply here..." required></textarea>
                     </div>
                     <div class="form-actions">
-                        <button type="submit" class="reply-button">Send Reply</button>
+                        <button type="submit" class="reply-button"><i class="fas fa-paper-plane"></i> Send Reply</button>
                     </div>
                 </form>
             </div>
@@ -195,14 +197,14 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm");
                         <%= reply.getMessage() %>
                     </div>
                     <div class="reply-actions">
-                        <button onclick="editReply(<%= reply.getId() %>)" class="edit-button">Edit</button>
-                        <a href="<%= request.getContextPath() %>/AdminMessageServlet?action=delete&id=<%= reply.getId() %>" class="delete-button" onclick="return confirm('Are you sure you want to delete this reply?')">Delete</a>
+                        <button onclick="editReply(<%= reply.getId() %>)" class="edit-button"><i class="fas fa-edit"></i> Edit</button>
+                        <a href="<%= request.getContextPath() %>/AdminMessageServlet?action=delete&id=<%= reply.getId() %>" class="delete-button" onclick="return confirm('Are you sure you want to delete this reply?')"><i class="fas fa-trash"></i> Delete</a>
                     </div>
                     <div class="edit-form" id="edit-form-<%= reply.getId() %>" style="display: none;">
                         <textarea id="edit-content-<%= reply.getId() %>" rows="5" class="form-control"><%= reply.getMessage() %></textarea>
                         <div class="form-actions">
-                            <button onclick="saveEdit(<%= reply.getId() %>)" class="save-button">Save</button>
-                            <button onclick="cancelEdit(<%= reply.getId() %>)" class="cancel-button">Cancel</button>
+                            <button onclick="saveEdit(<%= reply.getId() %>)" class="save-button"><i class="fas fa-save"></i> Save</button>
+                            <button onclick="cancelEdit(<%= reply.getId() %>)" class="cancel-button"><i class="fas fa-times"></i> Cancel</button>
                         </div>
                     </div>
                 </div>

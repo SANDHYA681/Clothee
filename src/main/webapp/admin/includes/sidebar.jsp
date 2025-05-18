@@ -52,7 +52,7 @@
             <span>Products</span>
         </a>
         <a href="<%= request.getContextPath() %>/admin/categories.jsp" class="admin-menu-item <%= pageName.equals("categories.jsp") || pageName.equals("add-category.jsp") || pageName.equals("edit-category.jsp") || pageName.equals("view-category.jsp") || pageName.equals("delete-category.jsp") ? "active" : "" %>">
-            <i class="fas fa-tags admin-menu-icon"></i>
+            <i class="fas fa-tag admin-menu-icon"></i>
             <span>Categories</span>
         </a>
         <a href="<%= request.getContextPath() %>/admin/orders.jsp" class="admin-menu-item <%= pageName.equals("orders.jsp") || pageName.equals("view-order.jsp") || pageName.equals("edit-order.jsp") || pageName.equals("delete-order.jsp") ? "active" : "" %>">
@@ -60,7 +60,7 @@
             <span>Orders</span>
         </a>
         <a href="<%= request.getContextPath() %>/admin/customers.jsp" class="admin-menu-item <%= pageName.equals("customers.jsp") || pageName.equals("add-customer.jsp") || pageName.equals("edit-customer.jsp") || pageName.equals("view-customer.jsp") || pageName.equals("delete-customer.jsp") ? "active" : "" %>">
-            <i class="fas fa-users admin-menu-icon"></i>
+            <i class="fas fa-user admin-menu-icon"></i>
             <span>Customers</span>
         </a>
         <a href="<%= request.getContextPath() %>/admin/reviews.jsp" class="admin-menu-item <%= pageName.equals("reviews.jsp") || pageName.equals("view-review.jsp") || pageName.equals("edit-review.jsp") || pageName.equals("delete-review.jsp") ? "active" : "" %>">

@@ -8,6 +8,7 @@
 
     <!-- Welcome File List -->
     <welcome-file-list>
+        <welcome-file>HomeServlet</welcome-file>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
@@ -206,15 +207,7 @@
         <url-pattern>/HomeServlet</url-pattern>
     </servlet-mapping>
 
-    <!-- Contact Servlet -->
-    <servlet>
-        <servlet-name>ContactServlet</servlet-name>
-        <servlet-class>controller.ContactServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ContactServlet</servlet-name>
-        <url-pattern>/ContactServlet</url-pattern>
-    </servlet-mapping>
+    <!-- Contact Servlet - Functionality moved to MessageServlet -->
 
     <!-- Category Servlet -->
     <servlet>
@@ -314,19 +307,7 @@
         <url-pattern>/UserDeleteServlet</url-pattern>
     </servlet-mapping>
 
-    <!-- Admin Message Servlet -->
-    <servlet>
-        <servlet-name>AdminMessageServlet</servlet-name>
-        <servlet-class>controller.AdminMessageServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AdminMessageServlet</servlet-name>
-        <url-pattern>/admin/AdminMessageServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>AdminMessageServlet</servlet-name>
-        <url-pattern>/AdminMessageServlet</url-pattern>
-    </servlet-mapping>
+    <!-- Admin Message Servlet - Functionality moved to MessageServlet -->
 
     <!-- Admin Review Servlet -->
     <servlet>
@@ -337,49 +318,49 @@
         <servlet-name>AdminReviewServlet</servlet-name>
         <url-pattern>/admin/AdminReviewServlet</url-pattern>
     </servlet-mapping>
-
-    <!-- Customer Message Servlet -->
-    <servlet>
-        <servlet-name>CustomerMessageServlet</servlet-name>
-        <servlet-class>controller.CustomerMessageServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
-        <servlet-name>CustomerMessageServlet</servlet-name>
-        <url-pattern>/CustomerMessageServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CustomerMessageServlet</servlet-name>
-        <url-pattern>/customer-messages</url-pattern>
+        <servlet-name>AdminReviewServlet</servlet-name>
+        <url-pattern>/AdminReviewServlet</url-pattern>
     </servlet-mapping>
 
-    <!-- Message Front Controller (MVC Pattern) -->
-    <servlet>
-        <servlet-name>MessageFrontController</servlet-name>
-        <servlet-class>controller.MessageFrontController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>MessageFrontController</servlet-name>
-        <url-pattern>/messages/*</url-pattern>
-    </servlet-mapping>
-
-    <!-- Message Controller -->
-    <servlet>
-        <servlet-name>MessageController</servlet-name>
-        <servlet-class>controller.MessageController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>MessageController</servlet-name>
-        <url-pattern>/admin/messages/*</url-pattern>
-    </servlet-mapping>
-
-    <!-- Message Servlet -->
+    <!-- Consolidated Message Servlet - Handles all message-related operations -->
     <servlet>
         <servlet-name>MessageServlet</servlet-name>
         <servlet-class>controller.MessageServlet</servlet-class>
     </servlet>
+    <!-- Map all message-related URL patterns to the consolidated MessageServlet -->
     <servlet-mapping>
         <servlet-name>MessageServlet</servlet-name>
         <url-pattern>/MessageServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MessageServlet</servlet-name>
+        <url-pattern>/CustomerMessageServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MessageServlet</servlet-name>
+        <url-pattern>/customer-messages</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MessageServlet</servlet-name>
+        <url-pattern>/messages/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MessageServlet</servlet-name>
+        <url-pattern>/admin/messages/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MessageServlet</servlet-name>
+        <url-pattern>/admin/AdminMessageServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MessageServlet</servlet-name>
+        <url-pattern>/AdminMessageServlet</url-pattern>
+    </servlet-mapping>
+    <!-- Using /ContactServlet instead of /contact for backward compatibility -->
+    <servlet-mapping>
+        <servlet-name>MessageServlet</servlet-name>
+        <url-pattern>/ContactServlet</url-pattern>
     </servlet-mapping>
 
     <!-- Profile Image Servlet -->
@@ -453,41 +434,6 @@
         <url-pattern>/CategoryImageServlet</url-pattern>
     </servlet-mapping>
 
-    <!-- Test Categories Servlet -->
-    <servlet>
-        <servlet-name>TestCategoriesServlet</servlet-name>
-        <servlet-class>controller.TestCategoriesServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>TestCategoriesServlet</servlet-name>
-        <url-pattern>/TestCategoriesServlet</url-pattern>
-    </servlet-mapping>
-
-    <!-- Test Servlet -->
-    <servlet>
-        <servlet-name>TestServlet</servlet-name>
-        <servlet-class>controller.TestServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>TestServlet</servlet-name>
-        <url-pattern>/TestServlet</url-pattern>
-    </servlet-mapping>
-
-    <!-- Test Image Upload Servlet -->
-    <servlet>
-        <servlet-name>TestImageUploadServlet</servlet-name>
-        <servlet-class>controller.TestImageUploadServlet</servlet-class>
-        <multipart-config>
-            <max-file-size>5242880</max-file-size><!-- 5MB -->
-            <max-request-size>10485760</max-request-size><!-- 10MB -->
-            <file-size-threshold>1048576</file-size-threshold><!-- 1MB -->
-        </multipart-config>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>TestImageUploadServlet</servlet-name>
-        <url-pattern>/TestImageUploadServlet</url-pattern>
-    </servlet-mapping>
-
 
     <!-- Checkout Servlet -->
     <servlet>
@@ -500,7 +446,7 @@
     </servlet-mapping>
 
 
-    <!-- Filters -->
+    <!-- Authentication and Security Filters -->
     <filter>
         <filter-name>AuthenticationFilter</filter-name>
         <filter-class>filter.AuthenticationFilter</filter-class>
@@ -534,15 +480,6 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <filter>
-        <filter-name>AdminRedirectFilter</filter-name>
-        <filter-class>filter.AdminRedirectFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>AdminRedirectFilter</filter-name>
-        <url-pattern>/index.jsp</url-pattern>
-        <url-pattern>/</url-pattern>
-    </filter-mapping>
 
     <!-- Error Pages -->
     <error-page>

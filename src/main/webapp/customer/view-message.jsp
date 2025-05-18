@@ -13,7 +13,7 @@ List<Message> replies = (List<Message>) request.getAttribute("replies");
 // Null checks - these should never happen if the controller is working correctly
 // but it's good practice to handle potential errors in the view
 if (user == null || message == null) {
-    response.sendRedirect(request.getContextPath() + "/customer-messages");
+    response.sendRedirect(request.getContextPath() + "/messages");
     return;
 }
 
@@ -166,7 +166,7 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm");
     <div class="message-container">
         <div class="message-header">
             <h1 class="message-title">Message Details</h1>
-            <a href="<%=request.getContextPath()%>/customer-messages" class="btn-back">
+            <a href="<%=request.getContextPath()%>/messages" class="btn-back">
                 <i class="fas fa-arrow-left"></i> Back to Messages
             </a>
         </div>

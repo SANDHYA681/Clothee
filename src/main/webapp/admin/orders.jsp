@@ -198,9 +198,7 @@ session.removeAttribute("errorMessage");
             </div>
             <% } %>
 
-            <!-- Fix Paid Orders button removed as requested -->
-
-            <!-- Order Statistics -->
+            <!-- Order Statistics Section -->
             <div class="card" style="margin-bottom: 10px;">
                 <div class="card-header">
                     <h2 class="card-title"><i class="fas fa-chart-pie"></i> Order Statistics</h2>
@@ -290,8 +288,8 @@ session.removeAttribute("errorMessage");
                                             <td><%= currencyFormat.format(order.getTotalPrice()) %></td>
                                             <td>
                                                 <%
-                                                String paymentMethod = order.getPaymentMethod();
-                                                boolean isPaid = paymentMethod != null && (paymentMethod.equalsIgnoreCase("Credit Card") || paymentMethod.equalsIgnoreCase("PayPal"));
+                                                // Assume all orders are paid
+                                                boolean isPaid = true;
 
                                                 // Only show the order status in this column (not payment status)
                                                 String displayStatus = order.getStatus();
@@ -305,17 +303,14 @@ session.removeAttribute("errorMessage");
                                             </td>
                                             <td>
                                                 <%
-                                                // Determine payment status based on payment method
-                                                String paymentStatus = "Pending";
-                                                if (isPaid) {
-                                                    paymentStatus = "Paid";
-                                                } else if (order.getStatus().equalsIgnoreCase("Cancelled")) {
+                                                // Determine payment status
+                                                String paymentStatus = "Paid";
+                                                if (order.getStatus().equalsIgnoreCase("Cancelled")) {
                                                     paymentStatus = "Cancelled";
                                                 }
 
-                                                // Show payment method as tooltip
-                                                String paymentTooltip = paymentMethod != null && !paymentMethod.isEmpty() ?
-                                                    paymentMethod : "Not specified";
+                                                // Set tooltip
+                                                String paymentTooltip = "Payment processed";
                                                 %>
                                                 <span class="badge badge-<%= paymentStatus.toLowerCase() %>" title="<%= paymentTooltip %>"><%= paymentStatus %></span>
                                             </td>
@@ -363,8 +358,7 @@ session.removeAttribute("errorMessage");
         </div>
     </div>
 
-    <!-- Modal has been removed to comply with project requirements (no JavaScript) -->
-    <!-- Status updates can be handled through direct links to the update page instead -->
+    <!-- Status updates are handled through direct links to the update page -->
 
     <!-- Add minimal JavaScript for sidebar toggle -->
     <script>

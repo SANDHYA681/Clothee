@@ -1,10 +1,14 @@
-/* Main CSS file for customer dashboard */
-@import url('dashboard-pro.css');
-@import url('components.css');
-@import url('profile.css');
-@import url('wishlist.css');
-@import url('orders.css');
-@import url('dashboard-upload.css');
+/**
+ * Clothee E-commerce - Customer Dashboard Styles
+ *
+ * This is the primary stylesheet that imports all customer dashboard components.
+ * It follows a modular approach for better organization and maintainability.
+ */
 
-/* This file serves as the main entry point for all customer dashboard CSS */
-/* It imports all the necessary CSS files to maintain a clean structure */
+/* Import customer dashboard components */
+@import url('dashboard-pro.css');    /* Dashboard layout and structure */
+@import url('components.css');       /* Reusable UI components */
+@import url('profile.css');          /* Customer profile styles */
+@import url('wishlist.css');         /* Wishlist page styles */
+@import url('orders.css');           /* Order history styles */
+@import url('dashboard-upload.css'); /* File upload functionality */

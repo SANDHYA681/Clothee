@@ -105,7 +105,7 @@
     --container-xxl: 1320px;
 }
 
-/* Dark Mode Variables (for future implementation) */
+/* Dark Mode Variables */
 .dark-mode {
     --primary-color: #ff9933;
     --secondary-color: #5edcd4;

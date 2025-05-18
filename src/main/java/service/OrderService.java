@@ -9,6 +9,7 @@ import java.util.Map;
 import dao.CartDAO;
 import dao.OrderDAO;
 import dao.ProductDAO;
+import dao.ShippingDAO;
 import model.Cart;
 import model.CartItem;
 import model.Order;
@@ -23,6 +24,7 @@ public class OrderService {
     private CartDAO cartDAO;
     private ProductDAO productDAO;
     private ProductService productService;
+    private ShippingDAO shippingDAO;
 
     /**
      * Constructor
@@ -32,16 +34,15 @@ public class OrderService {
         this.cartDAO = new CartDAO();
         this.productDAO = new ProductDAO();
         this.productService = new ProductService();
+        this.shippingDAO = new ShippingDAO();
     }
 
     /**
      * Create a new order from cart
      * @param userId User ID
-     * @param paymentMethod Payment method
-     * @param shippingAddress Shipping address
      * @return Order object if creation successful, null otherwise
      */
-    public Order createOrderFromCart(int userId, String paymentMethod, String shippingAddress) {
+    public Order createOrderFromCart(int userId) {
         // Get user's cart items
         List<CartItem> cartItems = cartDAO.getCartItemsByUserId(userId);
 
@@ -61,32 +62,21 @@ public class OrderService {
             }
         }
 
-        // Get cart address if not provided
-        if (shippingAddress == null || shippingAddress.isEmpty()) {
-            Cart cartAddress = cartDAO.getCartAddressByUserId(userId);
-            if (cartAddress != null && cartAddress.getStreet() != null && !cartAddress.getStreet().isEmpty()) {
-                // Format the address properly
-                shippingAddress = cartAddress.getFullName() + ", " +
-                                cartAddress.getStreet() + ", " +
-                                cartAddress.getCity() + ", " +
-                                cartAddress.getState() + " " +
-                                cartAddress.getZipCode() + ", " +
-                                cartAddress.getCountry() + ", " +
-                                cartAddress.getPhone();
-            }
-        }
+        // No need to get shipping address
+
+        // Calculate total price including tax and shipping
+        double subtotal = cart.getSubtotal();
+        double shipping = subtotal > 50 ? 0.00 : 5.99; // Apply shipping rule
+        double tax = subtotal * 0.1; // 10% tax
+        double total = subtotal + shipping + tax;
 
         // Create order
         Order order = new Order();
         order.setUserId(userId);
-        order.setTotalPrice(cart.getTotal());
+        order.setTotalPrice(total); // Use the calculated total with tax and shipping
         order.setStatus("Processing");
         order.setOrderDate(new Timestamp(new Date().getTime()));
-        order.setShippingAddress(shippingAddress);
-        order.setPaymentMethod(paymentMethod);
-
-        // Create payment record separately
-        // This will be handled by the OrderDAO when creating the order
+        // No shipping address or payment method needed
 
         // Create order in database
         boolean success = orderDAO.createOrder(order);
@@ -208,9 +198,57 @@ public class OrderService {
         // In a real application, this would integrate with a payment gateway
         // For now, we'll just simulate a successful payment
 
-        // This should create a new payment record in the payments table
-        // For now, we'll just return true
-        return true;
+        try {
+            // Get the order to get the total price and user ID
+            Order order = orderDAO.getOrderById(orderId);
+            if (order == null) {
+                return false;
+            }
+
+            // The order.getTotalPrice() should already include tax and shipping
+            // since we've updated the createOrderFromCart and placeOrder methods
+
+            // Check if a payment record already exists for this order
+            java.sql.Connection conn = util.DBConnection.getConnection();
+            try {
+                // First check if a payment record already exists
+                String checkQuery = "SELECT id FROM payments WHERE order_id = ?";
+                java.sql.PreparedStatement checkStmt = conn.prepareStatement(checkQuery);
+                checkStmt.setInt(1, orderId);
+                java.sql.ResultSet rs = checkStmt.executeQuery();
+
+                if (rs.next()) {
+                    // Payment record already exists, no need to create another one
+                    System.out.println("OrderService: Payment record already exists for order ID: " + orderId);
+                    rs.close();
+                    checkStmt.close();
+                    return true;
+                }
+                rs.close();
+                checkStmt.close();
+
+                // Create payment record
+                String query = "INSERT INTO payments (order_id, payment_method, status, payment_date, amount, user_id) VALUES (?, ?, ?, NOW(), ?, ?)";
+                java.sql.PreparedStatement stmt = conn.prepareStatement(query);
+                stmt.setInt(1, orderId);
+                stmt.setString(2, paymentMethod);
+                stmt.setString(3, "Completed");
+                stmt.setDouble(4, order.getTotalPrice()); // This now includes tax and shipping
+                stmt.setInt(5, order.getUserId());
+
+                int rowsAffected = stmt.executeUpdate();
+                stmt.close();
+                return rowsAffected > 0;
+            } finally {
+                if (conn != null) {
+                    conn.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error processing payment: " + e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
     }
 
     /**
@@ -256,6 +294,25 @@ public class OrderService {
             }
         }
 
+        // Calculate subtotal from cart items
+        double subtotal = 0.0;
+        for (java.util.Map.Entry<Integer, Integer> entry : cartItems.entrySet()) {
+            int productId = entry.getKey();
+            int quantity = entry.getValue();
+            Product product = productDAO.getProductById(productId);
+            if (product != null) {
+                subtotal += product.getPrice() * quantity;
+            }
+        }
+
+        // Calculate shipping and tax
+        double shipping = subtotal > 50 ? 0.00 : 5.99; // Apply shipping rule
+        double tax = subtotal * 0.1; // 10% tax
+        double total = subtotal + shipping + tax;
+
+        // Update order with the correct total price
+        order.setTotalPrice(total);
+
         // Create order in database
         boolean success = orderDAO.createOrder(order);
 
@@ -299,5 +356,24 @@ public class OrderService {
      */
     public boolean deleteOrder(int orderId) {
         return orderDAO.deleteOrder(orderId);
+    }
+
+    /**
+     * Create or update shipping record
+     * @param orderId Order ID
+     * @param status Shipping status
+     * @return true if successful, false otherwise
+     */
+    public boolean createOrUpdateShipping(int orderId, String status) {
+        return shippingDAO.updateShippingStatus(orderId, status);
+    }
+
+    /**
+     * Get shipping record by order ID
+     * @param orderId Order ID
+     * @return Shipping object if found, null otherwise
+     */
+    public model.Shipping getShippingByOrderId(int orderId) {
+        return shippingDAO.getShippingByOrderId(orderId);
     }
 }

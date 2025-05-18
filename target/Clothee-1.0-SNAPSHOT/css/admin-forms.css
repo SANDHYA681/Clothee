@@ -4,7 +4,7 @@
  */
 
 /* ===== BUTTONS ===== */
-.btn {
+.action-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -17,81 +17,81 @@
   outline: none;
 }
 
-.btn i {
+.action-button i {
   margin-right: var(--spacing-2);
 }
 
-.btn-primary {
+.action-button-primary {
   background-color: var(--primary);
   color: var(--white);
 }
 
-.btn-primary:hover {
+.action-button-primary:hover {
   background-color: var(--primary-dark);
   box-shadow: var(--shadow);
 }
 
-.btn-secondary {
+.action-button-secondary {
   background-color: var(--gray-200);
   color: var(--gray-800);
 }
 
-.btn-secondary:hover {
+.action-button-secondary:hover {
   background-color: var(--gray-300);
 }
 
-.btn-success {
+.action-button-success {
   background-color: var(--success);
   color: var(--white);
 }
 
-.btn-success:hover {
+.action-button-success:hover {
   background-color: #218838;
 }
 
-.btn-danger {
+.action-button-danger {
   background-color: var(--danger);
   color: var(--white);
 }
 
-.btn-danger:hover {
+.action-button-danger:hover {
   background-color: #c82333;
 }
 
-.btn-info {
+.action-button-info {
   background-color: var(--info);
   color: var(--white);
 }
 
-.btn-info:hover {
+.action-button-info:hover {
   background-color: #138496;
 }
 
-.btn-warning {
+.action-button-warning {
   background-color: var(--warning);
   color: var(--dark);
 }
 
-.btn-warning:hover {
+.action-button-warning:hover {
   background-color: #e0a800;
 }
 
-.btn-sm {
+.action-button-sm {
   padding: var(--spacing-1) var(--spacing-3);
   font-size: var(--font-size-xs);
 }
 
-.btn-lg {
+.action-button-lg {
   padding: var(--spacing-3) var(--spacing-5);
   font-size: var(--font-size-base);
 }
 
-.btn-block {
+.action-button-block {
   display: block;
   width: 100%;
 }
 
-.btn-add {
+.action-button-add {
   display: inline-flex;
   align-items: center;
   padding: var(--spacing-2) var(--spacing-4);
@@ -102,11 +102,11 @@
   font-weight: var(--font-weight-medium);
 }
 
-.btn-add i {
+.action-button-add i {
   margin-right: var(--spacing-2);
 }
 
-.btn-add:hover {
+.action-button-add:hover {
   background-color: var(--primary-dark);
   box-shadow: var(--shadow);
 }

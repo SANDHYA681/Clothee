@@ -14,8 +14,12 @@
         return;
     }
 
-    // Get cart address from request
-    Cart cartAddress = (Cart) request.getAttribute("cartAddress");
+    // Get cart address from service
+    CartService addressService = new CartService();
+    String cartAddress = addressService.getCartAddress(user.getId());
+
+    // Get user's name for the form
+    String fullName = user.getFirstName() + " " + user.getLastName();
 
     // Get cart items and total
     CartService cartService = new CartService();
@@ -190,19 +194,17 @@
 
                     <div class="form-group">
                         <label for="fullName">Full Name</label>
-                        <input type="text" id="fullName" name="fullName" value="<%= cartAddress != null && cartAddress.getFullName() != null ? cartAddress.getFullName() : user.getFirstName() + " " + user.getLastName() %>" required>
+                        <input type="text" id="fullName" name="fullName" value="<%= fullName %>" required>
                     </div>
-
-
 
                     <div class="form-group">
                         <label for="country">Country</label>
-                        <input type="text" id="country" name="country" value="<%= cartAddress != null && cartAddress.getCountry() != null ? cartAddress.getCountry() : "" %>" required>
+                        <input type="text" id="country" name="country" value="United States" required>
                     </div>
 
                     <div class="form-group">
                         <label for="phone">Phone Number</label>
-                        <input type="text" id="phone" name="phone" value="<%= cartAddress != null && cartAddress.getPhone() != null ? cartAddress.getPhone() : "" %>" required>
+                        <input type="text" id="phone" name="phone" value="<%= user.getPhone() != null ? user.getPhone() : "" %>" required>
                     </div>
 
                     <button type="submit" class="btn-continue">Continue to Payment</button>

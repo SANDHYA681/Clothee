@@ -25,8 +25,7 @@
     // Get cart items directly from database
     List<CartItem> cartItems = cartService.getUserCartItems(user.getId());
 
-    // Get cart address
-    Cart cartAddress = cartService.getCartAddress(user.getId());
+    // No need to get cart address
 
     if (cartItems == null || cartItems.isEmpty()) {
         // Redirect to cart if empty
@@ -34,12 +33,7 @@
         return;
     }
 
-    if (cartAddress == null || cartAddress.getStreet() == null || cartAddress.getStreet().isEmpty()) {
-        // Redirect to address page if no address
-        session.setAttribute("errorMessage", "Please provide your shipping address before proceeding to checkout.");
-        response.sendRedirect(request.getContextPath() + "/CartServlet?action=viewAddress");
-        return;
-    }
+    // Get cart address information
 
     // Calculate totals
     double subtotal = cartService.getCartTotal(user.getId());
@@ -78,48 +72,23 @@
                 <form action="<%=request.getContextPath()%>/CheckoutServlet" method="post">
                     <input type="hidden" name="action" value="placeOrder">
 
+                    <div class="order-review-message">
+                        <p>Please provide your shipping information and review your order details before proceeding to payment.</p>
+                    </div>
+
                     <div class="form-group">
                         <label for="fullName">Full Name</label>
-                        <input type="text" id="fullName" name="fullName" value="<%= user.getFullName() %>" required>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" value="<%= user.getEmail() %>" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="phone">Phone</label>
-                            <input type="tel" id="phone" name="phone" value="<%= user.getPhone() != null ? user.getPhone() : "" %>" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="address">Address</label>
-                        <input type="text" id="address" name="address" value="<%= cartAddress != null ? cartAddress.getStreet() : "" %>" required>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="city">City</label>
-                            <input type="text" id="city" name="city" value="<%= cartAddress != null ? cartAddress.getCity() : "" %>" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="state">State</label>
-                            <input type="text" id="state" name="state" value="<%= cartAddress != null ? cartAddress.getState() : "" %>" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="zipCode">Zip Code</label>
-                            <input type="text" id="zipCode" name="zipCode" value="<%= cartAddress != null ? cartAddress.getZipCode() : "" %>" required>
-                        </div>
+                        <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
                     </div>
 
                     <div class="form-group">
                         <label for="country">Country</label>
-                        <input type="text" id="country" name="country" value="<%= cartAddress != null ? cartAddress.getCountry() : "" %>" required>
+                        <input type="text" id="country" name="country" placeholder="Enter your country" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="text" id="phone" name="phone" placeholder="Enter your phone number" required>
                     </div>
 
                     <div class="form-actions">

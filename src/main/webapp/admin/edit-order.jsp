@@ -52,12 +52,8 @@ if (order == null) {
 SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm:ss");
 DecimalFormat currencyFormat = new DecimalFormat("$#,##0.00");
 
-// Check if order is paid
-boolean isPaid = false;
-String paymentMethod = order != null ? order.getPaymentMethod() : null;
-if (paymentMethod != null && (paymentMethod.equalsIgnoreCase("Credit Card") || paymentMethod.equalsIgnoreCase("PayPal"))) {
-    isPaid = true;
-}
+// Assume all orders are paid
+boolean isPaid = true;
 
 // Get status options for dropdown - exclude Cancelled for paid orders
 String[] statusOptions;
@@ -500,8 +496,7 @@ session.removeAttribute("errorMessage");
                                 <label for="status" class="form-label">Status</label>
                                 <select name="status" id="status" class="form-control">
                                     <% if (isPaid) { %>
-                                    <!-- Note about paid orders -->
-                                    <option value="" disabled>Paid orders cannot be cancelled</option>
+                                    <!-- Placeholder for paid orders -->
                                     <% } %>
                                     <% for (String statusOption : statusOptions) { %>
                                         <option value="<%= statusOption %>" <%= order.getStatus().equals(statusOption) ? "selected" : "" %>><%= statusOption %></option>
@@ -530,20 +525,8 @@ session.removeAttribute("errorMessage");
                     </div>
 
                     <div class="form-section">
-                        <h2 class="section-title">Shipping Information</h2>
-                        <div class="form-group">
-                            <label for="shippingAddress" class="form-label">Shipping Address</label>
-                            <textarea name="shippingAddress" id="shippingAddress" class="form-control" rows="3" readonly><%= order.getShippingAddress() != null ? order.getShippingAddress() : "" %></textarea>
-                        </div>
-                    </div>
-
-                    <div class="form-section">
                         <h2 class="section-title">Payment Information</h2>
                         <div class="form-row">
-                            <div class="form-group">
-                                <label for="paymentMethod" class="form-label">Payment Method</label>
-                                <input type="text" name="paymentMethod" id="paymentMethod" class="form-control" value="<%= order.getPaymentMethod() != null ? order.getPaymentMethod() : "" %>" readonly>
-                            </div>
                             <div class="form-group">
                                 <label for="totalPrice" class="form-label">Total Price</label>
                                 <input type="number" name="totalPrice" id="totalPrice" class="form-control" value="<%= order.getTotalPrice() %>" step="0.01" min="0" readonly>
@@ -601,7 +584,7 @@ session.removeAttribute("errorMessage");
                                 <% } %>
                             </tbody>
                         </table>
-                        <p>Note: To modify order items, please cancel this order and create a new one.</p>
+
                     </div>
 
                     <div class="action-buttons">

@@ -291,15 +291,11 @@ public class AdminOrderServlet extends HttpServlet {
 
         String orderIdStr = request.getParameter("orderId");
         String status = request.getParameter("status");
-        String shippingAddress = request.getParameter("shippingAddress");
-        String paymentMethod = request.getParameter("paymentMethod");
         String totalPriceStr = request.getParameter("totalPrice");
 
         System.out.println("AdminOrderServlet: updateOrder called with parameters:");
         System.out.println("  orderId: " + orderIdStr);
         System.out.println("  status: " + status);
-        System.out.println("  shippingAddress: " + shippingAddress);
-        System.out.println("  paymentMethod: " + paymentMethod);
         System.out.println("  totalPrice: " + totalPriceStr);
 
         if (orderIdStr == null || orderIdStr.trim().isEmpty()) {
@@ -344,12 +340,8 @@ public class AdminOrderServlet extends HttpServlet {
             System.out.println("AdminOrderServlet: Found order with ID: " + orderId);
             System.out.println("AdminOrderServlet: Current order state: " + order);
 
-            // Check if order is paid
-            boolean isPaid = false;
-            String currentPaymentMethod = order.getPaymentMethod();
-            if (currentPaymentMethod != null && (currentPaymentMethod.equalsIgnoreCase("Credit Card") || currentPaymentMethod.equalsIgnoreCase("PayPal"))) {
-                isPaid = true;
-            }
+            // Check if order is paid - we'll assume all orders are paid
+            boolean isPaid = true;
 
             // Don't allow setting a paid order to Cancelled
             if (isPaid && status.equalsIgnoreCase("Cancelled")) {
@@ -417,12 +409,8 @@ public class AdminOrderServlet extends HttpServlet {
                 return;
             }
 
-            // Check if the order has been paid
-            boolean isPaid = false;
-            String paymentMethod = order.getPaymentMethod();
-            if (paymentMethod != null && (paymentMethod.equalsIgnoreCase("Credit Card") || paymentMethod.equalsIgnoreCase("PayPal"))) {
-                isPaid = true;
-            }
+            // Check if the order has been paid - we'll assume all orders are paid
+            boolean isPaid = true;
 
             // Also check payment status in the payments table
             boolean hasCompletedPayment = orderService.hasCompletedPayment(orderId);
@@ -477,12 +465,8 @@ public class AdminOrderServlet extends HttpServlet {
                 return;
             }
 
-            // Check if the order has been paid
-            boolean isPaid = false;
-            String paymentMethod = order.getPaymentMethod();
-            if (paymentMethod != null && (paymentMethod.equalsIgnoreCase("Credit Card") || paymentMethod.equalsIgnoreCase("PayPal"))) {
-                isPaid = true;
-            }
+            // Check if the order has been paid - we'll assume all orders are paid
+            boolean isPaid = true;
 
             // Also check payment status in the payments table
             boolean hasCompletedPayment = orderService.hasCompletedPayment(orderId);

@@ -9,7 +9,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CLOTHEE - <%= pageName.replace(".jsp", "").toUpperCase() %></title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/variables.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/custom/main.css">
@@ -22,6 +21,14 @@
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/product-button-fix.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/product-text-fix.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/product-badge-fix.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/special-offer.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/collections.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Minimal UI Enhancements JavaScript - Only for essential visual effects -->
+    <script src="<%=request.getContextPath()%>/js/minimal-ui.js" defer></script>
 
     <% if (currentPage.contains("/admin/")) { %>
     <!-- Admin specific CSS -->
@@ -155,7 +162,7 @@
                         <i class="fas fa-envelope"></i>
                     </a>
 
-                    <!-- Wishlist Icon removed -->
+                    <!-- End of user navigation icons -->
                 <% } %>
 
                 <!-- Logout Icon -->

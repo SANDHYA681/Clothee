@@ -10,7 +10,7 @@
 </div>
 
 <section class="login-section">
-    <div class="container">
+    <div class="page-container">
         <div class="form-container">
             <div class="tabs">
                 <button class="tab-btn <%= (request.getAttribute("activeTab") == null || "customer".equals(request.getAttribute("activeTab"))) ? "active" : "" %>" data-tab="customer">Customer Login</button>
@@ -18,13 +18,13 @@
             </div>
 
             <% if (request.getAttribute("error") != null) { %>
-            <div class="alert alert-danger">
+            <div class="notification notification-danger">
                 <%= request.getAttribute("error") %>
             </div>
             <% } %>
 
             <% if (request.getAttribute("message") != null) { %>
-            <div class="alert alert-success">
+            <div class="notification notification-success">
                 <%= request.getAttribute("message") %>
             </div>
             <% } %>
@@ -43,7 +43,7 @@
                         <label class="form-label" for="customerEmail">Email Address</label>
                         <div class="input-with-icon">
                             <i class="fas fa-envelope input-icon"></i>
-                            <input type="email" id="customerEmail" name="email" class="form-control" required>
+                            <input type="email" id="customerEmail" name="email" class="input-field" required>
                         </div>
                     </div>
 
@@ -51,7 +51,7 @@
                         <label class="form-label" for="customerPassword">Password</label>
                         <div class="input-with-icon password-input">
                             <i class="fas fa-lock input-icon"></i>
-                            <input type="password" id="customerPassword" name="password" class="form-control" required>
+                            <input type="password" id="customerPassword" name="password" class="input-field" required>
                             <button type="button" class="password-toggle" onclick="togglePassword('customerPassword')">
                                 <i class="fas fa-eye"></i>
                             </button>
@@ -67,7 +67,7 @@
                     </div>
 
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-animated">Login <i class="fas fa-sign-in-alt"></i></button>
+                        <button type="submit" class="action-button primary-button animated-button">Login <i class="fas fa-sign-in-alt"></i></button>
                     </div>
 
                     <div class="form-footer">
@@ -87,7 +87,7 @@
                         <label class="form-label" for="adminEmail">Email Address</label>
                         <div class="input-with-icon">
                             <i class="fas fa-envelope input-icon"></i>
-                            <input type="email" id="adminEmail" name="email" class="form-control" required>
+                            <input type="email" id="adminEmail" name="email" class="input-field" required>
                         </div>
                     </div>
 
@@ -95,7 +95,7 @@
                         <label class="form-label" for="adminPassword">Password</label>
                         <div class="input-with-icon password-input">
                             <i class="fas fa-lock input-icon"></i>
-                            <input type="password" id="adminPassword" name="password" class="form-control" required>
+                            <input type="password" id="adminPassword" name="password" class="input-field" required>
                             <button type="button" class="password-toggle" onclick="togglePassword('adminPassword')">
                                 <i class="fas fa-eye"></i>
                             </button>
@@ -103,7 +103,7 @@
                     </div>
 
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-animated">Login <i class="fas fa-sign-in-alt"></i></button>
+                        <button type="submit" class="action-button primary-button animated-button">Login <i class="fas fa-sign-in-alt"></i></button>
                     </div>
                 </form>
             </div>
@@ -118,18 +118,18 @@
             // Remove active class from all buttons and content
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-            
+
             // Add active class to clicked button and corresponding content
             this.classList.add('active');
             document.getElementById(this.dataset.tab + '-tab').classList.add('active');
         });
     });
-    
+
     // Password toggle - UI enhancement only
     function togglePassword(inputId) {
         const passwordInput = document.getElementById(inputId);
         const icon = passwordInput.nextElementSibling.querySelector('i');
-        
+
         if (passwordInput.type === 'password') {
             passwordInput.type = 'text';
             icon.classList.remove('fa-eye');

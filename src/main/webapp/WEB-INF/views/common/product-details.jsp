@@ -135,12 +135,12 @@
                             <button type="submit" class="add-to-cart-btn" <%= product.getStock() <= 0 ? "disabled" : "" %>>
                                 <i class="fas fa-shopping-cart"></i> Add to Cart
                             </button>
-                            <!-- Wishlist button removed -->
+                            <!-- Product purchase options -->
                         <% } else { %>
                             <a href="LoginServlet?message=<%= java.net.URLEncoder.encode("Please login to add items to your cart", "UTF-8") %>&redirectUrl=<%= java.net.URLEncoder.encode("ProductDetailsServlet?id=" + product.getId(), "UTF-8") %>" class="add-to-cart-btn" style="text-decoration: none;">
                                 <i class="fas fa-shopping-cart"></i> Login to Add to Cart
                             </a>
-                            <!-- Wishlist button removed -->
+                            <!-- End of product actions -->
                         <% } %>
                     </form>
                 </div>
@@ -209,7 +209,7 @@
                                         <input type="hidden" name="quantity" value="1">
                                         <button type="submit" class="btn-add-cart">Add to Cart</button>
                                     </form>
-                                    <!-- Wishlist button removed -->
+                                    <!-- End of product card actions -->
                                 </div>
                             </div>
 

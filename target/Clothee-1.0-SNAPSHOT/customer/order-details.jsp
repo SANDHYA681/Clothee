@@ -481,7 +481,7 @@
                     <a href="<%=request.getContextPath()%>/CartServlet?action=view" class="header-action" title="Cart">
                         <i class="fas fa-shopping-cart"></i>
                     </a>
-                    <!-- Wishlist icon removed -->
+                    <!-- User account navigation -->
                     <a href="<%=request.getContextPath()%>/index.jsp" class="header-action" title="Back to Shop">
                         <i class="fas fa-store"></i>
                     </a>
@@ -550,19 +550,7 @@
                     </div>
                 </div>
 
-                <div class="order-details-section">
-                    <h2 class="section-title">Shipping Address</h2>
-                    <div class="shipping-address">
-                        <div class="address-line"><%= order.getShippingAddress() != null ? order.getShippingAddress() : "No shipping address provided" %></div>
-                    </div>
-                </div>
 
-                <div class="order-details-section">
-                    <h2 class="section-title">Payment Method</h2>
-                    <div class="payment-method">
-                        <div class="payment-info"><%= order.getPaymentMethod() != null ? order.getPaymentMethod() : "No payment method provided" %></div>
-                    </div>
-                </div>
 
                 <div class="action-buttons">
                     <div class="navigation-buttons">

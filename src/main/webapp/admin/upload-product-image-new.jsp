@@ -48,30 +48,30 @@ if (errorMessage != null) {
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-        
+
         .form-group {
             margin-bottom: 20px;
         }
-        
+
         .form-label {
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
         }
-        
+
         .form-control {
             width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 4px;
         }
-        
+
         .btn-container {
             display: flex;
             justify-content: space-between;
             margin-top: 20px;
         }
-        
+
         .btn {
             padding: 10px 20px;
             border: none;
@@ -79,30 +79,30 @@ if (errorMessage != null) {
             cursor: pointer;
             font-weight: 500;
         }
-        
+
         .btn-primary {
             background-color: #4a6bdf;
             color: white;
         }
-        
+
         .btn-secondary {
             background-color: #6c757d;
             color: white;
             text-decoration: none;
         }
-        
+
         .alert {
             padding: 10px 15px;
             margin-bottom: 20px;
             border-radius: 4px;
         }
-        
+
         .alert-success {
             background-color: #d4edda;
             color: #155724;
             border: 1px solid #c3e6cb;
         }
-        
+
         .alert-danger {
             background-color: #f8d7da;
             color: #721c24;
@@ -164,10 +164,10 @@ if (errorMessage != null) {
                 <% } %>
 
                 <div class="upload-container">
-                    <form action="<%=request.getContextPath()%>/ProductImageUploadServlet" method="post" enctype="multipart/form-data">
+                    <form action="<%=request.getContextPath()%>/ImageServlet" method="post" enctype="multipart/form-data">
                         <% if (product != null) { %>
                             <input type="hidden" name="productId" value="<%= product.getId() %>">
-                            
+
                             <div class="form-group">
                                 <label class="form-label">Product:</label>
                                 <input type="text" class="form-control" value="<%= product.getName() %>" readonly>

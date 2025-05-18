@@ -82,17 +82,32 @@
                     </div>
                     <% } %>
 
-                    <form action="<%= request.getContextPath() %>/ContactServlet" method="post" class="contact-form" style="display: flex; flex-direction: column; gap: 20px;">
-                    <input type="hidden" name="action" value="sendMessage">
+                    <%
+                    // Check if user is logged in
+                    User user = (User) session.getAttribute("user");
+                    if (user == null) {
+                    %>
+                    <div class="message-response info">
+                        <p><strong>Please Note:</strong> You need to be logged in to send a message. <a href="<%= request.getContextPath() %>/login.jsp?returnUrl=<%= java.net.URLEncoder.encode(request.getContextPath() + "/contact.jsp", "UTF-8") %>" style="color: #0056b3; text-decoration: underline;">Click here to login</a> or <a href="<%= request.getContextPath() %>/register.jsp?returnUrl=<%= java.net.URLEncoder.encode(request.getContextPath() + "/contact.jsp", "UTF-8") %>" style="color: #0056b3; text-decoration: underline;">register</a> if you don't have an account.</p>
+                    </div>
+                    <% } %>
+
+                    <form action="<%= request.getContextPath() %>/MessageServlet" method="post" class="contact-form" style="display: flex; flex-direction: column; gap: 20px;">
+                    <input type="hidden" name="action" value="send">
+                    <!-- Debug info to help troubleshoot -->
+                    <div style="display: none;">
+                        <p>Form action: <%= request.getContextPath() %>/MessageServlet</p>
+                        <p>Form method: POST</p>
+                        <p>Action parameter: send</p>
+                    </div>
                         <%
-                        // Check if user is logged in
-                        User user = (User) session.getAttribute("user");
-                        Integer userId = null;
+                        // Using contactUserId to avoid conflict with userId from header.jsp
+                        Integer contactUserId = null;
                         String userName = null;
                         String userEmail = null;
 
                         if (user != null) {
-                            userId = user.getId();
+                            contactUserId = user.getId();
                             userName = user.getFullName();
                             userEmail = user.getEmail();
                         }
@@ -137,7 +152,7 @@
     </div>
 </section>
 
-<!-- Map section removed as requested -->
+<!-- Contact information section -->
 
 <style>
     .message-response {
@@ -157,6 +172,12 @@
         background-color: #f8d7da;
         color: #721c24;
         border: 1px solid #f5c6cb;
+    }
+
+    .message-response.info {
+        background-color: #cce5ff;
+        color: #004085;
+        border: 1px solid #b8daff;
     }
 
     /* Additional styles to ensure proper display */

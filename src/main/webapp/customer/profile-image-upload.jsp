@@ -176,12 +176,27 @@
                 <form class="upload-form" action="<%=request.getContextPath()%>/ProfileImageServlet" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label class="form-label" for="profileImage">Select a new profile image:</label>
-                        <input type="file" id="profileImage" name="profileImage" class="form-control" accept="image/*" required>
+                        <input type="file" id="profileImage" name="profileImage" class="form-control" accept="image/jpeg,image/png,image/gif" required>
                         <small>Supported formats: JPG, JPEG, PNG, GIF. Max size: 5MB.</small>
                     </div>
 
+                    <div class="current-image">
+                        <p><strong>Current Profile Image:</strong></p>
+                        <div style="width: 100px; height: 100px; border-radius: 50%; overflow: hidden; margin: 10px auto; border: 2px solid #ddd;">
+                            <% if (user.getProfileImage() != null && !user.getProfileImage().isEmpty()) { %>
+                                <% if (user.getProfileImage().startsWith("images/")) { %>
+                                    <img src="<%=request.getContextPath()%>/<%= user.getProfileImage() %>" alt="<%= user.getFullName() %>" style="width: 100%; height: 100%; object-fit: cover;">
+                                <% } else { %>
+                                    <img src="<%=request.getContextPath()%>/images/avatars/<%= user.getProfileImage() %>" alt="<%= user.getFullName() %>" style="width: 100%; height: 100%; object-fit: cover;">
+                                <% } %>
+                            <% } else { %>
+                                <img src="<%=request.getContextPath()%>/images/avatars/default-avatar.jpg" alt="Default Profile Image" style="width: 100%; height: 100%; object-fit: cover;">
+                            <% } %>
+                        </div>
+                    </div>
+
                     <div class="btn-container">
-                        <a href="profile.jsp" class="btn btn-secondary">Cancel</a>
+                        <a href="<%=request.getContextPath()%>/customer/profile.jsp?tab=profile-picture" class="btn btn-secondary">Cancel</a>
                         <button type="submit" class="btn btn-primary">Upload Image</button>
                     </div>
                 </form>

@@ -10,7 +10,7 @@
 </div>
 
 <section class="login-section">
-    <div class="container">
+    <div class="page-container">
         <div class="form-container">
             <div class="tabs">
                 <%
@@ -31,7 +31,7 @@
 
             if (error != null) {
             %>
-            <div class="alert alert-danger">
+            <div class="error-notification">
                 <%= error %>
             </div>
             <% } %>
@@ -44,7 +44,7 @@
 
             if (message != null) {
             %>
-            <div class="alert alert-success">
+            <div class="success-notification">
                 <%= message %>
             </div>
             <% } %>
@@ -54,7 +54,12 @@
                     <input type="hidden" name="userType" value="customer">
 
                     <%
+                    // Check for redirectUrl or returnUrl parameters
                     String redirectUrl = request.getParameter("redirectUrl");
+                    if (redirectUrl == null) {
+                        redirectUrl = request.getParameter("returnUrl");
+                    }
+
                     if (redirectUrl == null && request.getAttribute("redirectUrl") != null) {
                         redirectUrl = (String) request.getAttribute("redirectUrl");
                     }
@@ -95,7 +100,7 @@
                     </div>
 
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-animated">Login <i class="fas fa-sign-in-alt"></i></button>
+                        <button type="submit" class="action-button primary-button animated-button">Login <i class="fas fa-sign-in-alt"></i></button>
                     </div>
 
                     <div class="form-footer">
@@ -134,7 +139,7 @@
                     </div>
 
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-animated">Login <i class="fas fa-sign-in-alt"></i></button>
+                        <button type="submit" class="action-button primary-button animated-button">Login <i class="fas fa-sign-in-alt"></i></button>
                     </div>
                 </form>
             </div>

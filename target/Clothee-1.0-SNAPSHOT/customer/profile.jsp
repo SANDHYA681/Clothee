@@ -329,11 +329,11 @@
         }
 
         /* Form Styles */
-        .form-group {
+        .input-group {
             margin-bottom: 25px;
         }
 
-        .form-group label {
+        .input-group label {
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
@@ -341,7 +341,7 @@
             font-size: 15px;
         }
 
-        .form-control {
+        .input-field {
             width: 100%;
             padding: 14px 15px;
             border: 1px solid rgba(0, 0, 0, 0.1);
@@ -352,28 +352,28 @@
             background-color: var(--bg-light);
         }
 
-        .form-control:focus {
+        .input-field:focus {
             border-color: var(--primary-color);
             outline: none;
             box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.2);
             background-color: white;
         }
 
-        .form-text {
+        .input-help {
             font-size: 12px;
             color: var(--text-medium);
             margin-top: 5px;
             display: block;
         }
 
-        .form-actions {
+        .action-buttons {
             display: flex;
             justify-content: flex-end;
             gap: 10px;
             margin-top: 30px;
         }
 
-        .btn {
+        .button {
             padding: 12px 25px;
             border-radius: var(--border-radius);
             font-weight: 500;
@@ -387,35 +387,35 @@
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .btn i {
+        .button i {
             margin-right: 8px;
         }
 
-        .btn:hover {
+        .button:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
         }
 
-        .btn-secondary {
+        .button-secondary {
             background-color: var(--bg-light);
             color: var(--text-dark);
         }
 
-        .btn-secondary:hover {
+        .button-secondary:hover {
             background-color: #e0e0e0;
         }
 
-        .btn-danger {
+        .button-danger {
             background-color: var(--danger-color);
             color: white;
         }
 
-        .btn-danger:hover {
+        .button-danger:hover {
             background-color: #c0392b;
         }
 
-        /* Alert Styles */
-        .alert {
+        /* Message Styles */
+        .message {
             padding: 15px 20px;
             border-radius: var(--border-radius);
             margin-bottom: 25px;
@@ -423,7 +423,7 @@
             padding-left: 45px;
         }
 
-        .alert::before {
+        .message::before {
             font-family: "Font Awesome 5 Free";
             font-weight: 900;
             position: absolute;
@@ -433,39 +433,39 @@
             font-size: 18px;
         }
 
-        .alert-success {
+        .message-success {
             background-color: rgba(46, 204, 113, 0.1);
             border-left: 4px solid var(--success-color);
             color: var(--success-color);
         }
 
-        .alert-success::before {
+        .message-success::before {
             content: "\f058"; /* check-circle */
         }
 
-        .alert-danger {
+        .message-danger {
             background-color: rgba(231, 76, 60, 0.1);
             border-left: 4px solid var(--danger-color);
             color: var(--danger-color);
         }
 
-        .alert-danger::before {
+        .message-danger::before {
             content: "\f057"; /* times-circle */
         }
 
         /* Two-column layout for forms */
-        .form-row {
+        .input-row {
             display: flex;
             gap: 20px;
             margin-bottom: 0;
         }
 
-        .form-row .form-group {
+        .input-row .input-group {
             flex: 1;
         }
 
         @media (max-width: 768px) {
-            .form-row {
+            .input-row {
                 flex-direction: column;
                 gap: 0;
             }
@@ -486,9 +486,8 @@
 </head>
 <body>
     <div class="dashboard-container">
-        <div class="toggle-sidebar" id="toggleSidebar">
-            <i class="fas fa-bars"></i>
-        </div>
+        <!-- Dashboard layout structure -->
+        <!-- Mobile users can use browser back button instead -->
 
         <div class="sidebar" id="sidebar">
             <div class="sidebar-header">
@@ -554,60 +553,60 @@
                 </div>
 
                 <% if (successMessage != null) { %>
-                <div class="alert alert-success">
+                <div class="message message-success">
                     <%= successMessage %>
                 </div>
                 <% } %>
 
                 <% if (errorMessage != null) { %>
-                <div class="alert alert-danger">
+                <div class="message message-danger">
                     <%= errorMessage %>
                 </div>
                 <% } %>
 
                 <div class="profile-tabs">
                     <div class="tab-nav">
-                        <div class="tab-item active" data-tab="personal-info">
+                        <a href="<%= request.getContextPath() %>/customer/profile.jsp?tab=personal-info" class="tab-item <%= request.getParameter("tab") == null || "personal-info".equals(request.getParameter("tab")) ? "active" : "" %>">
                             <i class="fas fa-user-edit"></i> Personal Information
-                        </div>
-                        <div class="tab-item" data-tab="change-password">
+                        </a>
+                        <a href="<%= request.getContextPath() %>/customer/profile.jsp?tab=change-password" class="tab-item <%= "change-password".equals(request.getParameter("tab")) ? "active" : "" %>">
                             <i class="fas fa-key"></i> Change Password
-                        </div>
-                        <div class="tab-item" data-tab="profile-picture">
+                        </a>
+                        <a href="<%= request.getContextPath() %>/customer/profile.jsp?tab=profile-picture" class="tab-item <%= "profile-picture".equals(request.getParameter("tab")) ? "active" : "" %>">
                             <i class="fas fa-camera"></i> Profile Picture
-                        </div>
+                        </a>
                     </div>
 
                     <div class="tab-content">
                         <!-- Personal Information Tab -->
-                        <div class="tab-pane active" id="personal-info">
+                        <div class="tab-pane <%= request.getParameter("tab") == null || "personal-info".equals(request.getParameter("tab")) ? "active" : "" %>" id="personal-info">
                             <form action="<%= request.getContextPath() %>/ProfileServlet" method="post">
                                 <input type="hidden" name="action" value="updateProfile">
 
-                                <div class="form-row">
-                                    <div class="form-group">
+                                <div class="input-row">
+                                    <div class="input-group">
                                         <label for="firstName">First Name</label>
-                                        <input type="text" id="firstName" name="firstName" class="form-control" value="<%= user.getFirstName() %>" required>
+                                        <input type="text" id="firstName" name="firstName" class="input-field" value="<%= user.getFirstName() %>" required>
                                     </div>
 
-                                    <div class="form-group">
+                                    <div class="input-group">
                                         <label for="lastName">Last Name</label>
-                                        <input type="text" id="lastName" name="lastName" class="form-control" value="<%= user.getLastName() %>" required>
+                                        <input type="text" id="lastName" name="lastName" class="input-field" value="<%= user.getLastName() %>" required>
                                     </div>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="input-group">
                                     <label for="email">Email Address</label>
-                                    <input type="email" id="email" name="email" class="form-control" value="<%= user.getEmail() %>" required>
+                                    <input type="email" id="email" name="email" class="input-field" value="<%= user.getEmail() %>" required>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="input-group">
                                     <label for="phone">Phone Number</label>
-                                    <input type="tel" id="phone" name="phone" class="form-control" value="<%= user.getPhone() != null ? user.getPhone() : "" %>" placeholder="Enter your phone number">
+                                    <input type="tel" id="phone" name="phone" class="input-field" value="<%= user.getPhone() != null ? user.getPhone() : "" %>" placeholder="Enter your phone number">
                                 </div>
 
-                                <div class="form-actions">
-                                    <button type="submit" class="btn" style="background-color: var(--primary-color); color: white;">
+                                <div class="action-buttons">
+                                    <button type="submit" class="button" style="background-color: var(--primary-color); color: white;">
                                         <i class="fas fa-save"></i> Save Changes
                                     </button>
                                 </div>
@@ -615,29 +614,29 @@
                         </div>
 
                         <!-- Change Password Tab -->
-                        <div class="tab-pane" id="change-password">
+                        <div class="tab-pane <%= "change-password".equals(request.getParameter("tab")) ? "active" : "" %>" id="change-password">
                             <form action="<%= request.getContextPath() %>/PasswordServlet" method="post">
 
-                                <div class="form-group">
+                                <div class="input-group">
                                     <label for="currentPassword">Current Password</label>
-                                    <input type="password" id="currentPassword" name="currentPassword" class="form-control" required>
+                                    <input type="password" id="currentPassword" name="currentPassword" class="input-field" required>
                                 </div>
 
-                                <div class="form-row">
-                                    <div class="form-group">
+                                <div class="input-row">
+                                    <div class="input-group">
                                         <label for="newPassword">New Password</label>
-                                        <input type="password" id="newPassword" name="newPassword" class="form-control" required>
-                                        <small class="form-text">Password must be at least 8 characters long.</small>
+                                        <input type="password" id="newPassword" name="newPassword" class="input-field" required>
+                                        <small class="input-help">Password must be at least 8 characters long.</small>
                                     </div>
 
-                                    <div class="form-group">
+                                    <div class="input-group">
                                         <label for="confirmPassword">Confirm New Password</label>
-                                        <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" required>
+                                        <input type="password" id="confirmPassword" name="confirmPassword" class="input-field" required>
                                     </div>
                                 </div>
 
-                                <div class="form-actions">
-                                    <button type="submit" class="btn" style="background-color: var(--primary-color); color: white;">
+                                <div class="action-buttons">
+                                    <button type="submit" class="button" style="background-color: var(--primary-color); color: white;">
                                         <i class="fas fa-key"></i> Change Password
                                     </button>
                                 </div>
@@ -645,7 +644,7 @@
                         </div>
 
                         <!-- Profile Picture Tab -->
-                        <div class="tab-pane" id="profile-picture">
+                        <div class="tab-pane <%= "profile-picture".equals(request.getParameter("tab")) ? "active" : "" %>" id="profile-picture">
                             <div class="current-picture">
                                 <h4>Current Profile Picture</h4>
                                 <div class="profile-image-preview">
@@ -661,8 +660,8 @@
                                 </div>
                             </div>
 
-                            <div class="form-actions" style="text-align: center; margin-top: 20px;">
-                                <a href="<%=request.getContextPath()%>/ProfileImageServlet" class="btn btn-primary">
+                            <div class="action-buttons" style="text-align: center; margin-top: 20px;">
+                                <a href="<%=request.getContextPath()%>/ProfileImageServlet" class="button" style="background-color: var(--primary-color); color: white;">
                                     <i class="fas fa-upload"></i> Upload New Picture
                                 </a>
                             </div>
@@ -670,102 +669,11 @@
                     </div>
                 </div>
 
-                <div class="account-actions">
-                    <h3><i class="fas fa-exclamation-triangle"></i> Account Actions</h3>
-                    <p>These actions are permanent and cannot be undone.</p>
-
-                    <button id="deactivateAccountBtn" class="btn btn-danger">
-                        <i class="fas fa-user-slash"></i> Deactivate Account
-                    </button>
-                </div>
-
-                <!-- Deactivate Account Modal -->
-                <div id="deactivateModal" class="modal">
-                    <div class="modal-content">
-                        <span class="close-modal">&times;</span>
-                        <div style="text-align: center; margin-bottom: 20px;">
-                            <div style="width: 70px; height: 70px; background-color: rgba(231, 76, 60, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
-                                <i class="fas fa-exclamation-triangle" style="font-size: 30px; color: var(--danger-color);"></i>
-                            </div>
-                            <h3 style="font-size: 22px; margin-bottom: 10px; color: var(--text-dark);">Deactivate Account</h3>
-                            <p style="color: var(--text-medium); margin-bottom: 20px;">Are you sure you want to deactivate your account? This action cannot be undone.</p>
-                        </div>
-
-                        <form action="<%= request.getContextPath() %>/UpdateProfileServlet" method="post">
-                            <input type="hidden" name="action" value="deleteAccount">
-
-                            <div class="form-group">
-                                <label for="deactivatePassword">Enter your password to confirm</label>
-                                <input type="password" id="deactivatePassword" name="password" class="form-control" required>
-                                <small class="form-text">For security reasons, please enter your current password to confirm this action.</small>
-                            </div>
-
-                            <div class="form-actions" style="justify-content: center;">
-                                <button type="button" id="cancelDeactivate" class="btn btn-secondary">
-                                    <i class="fas fa-times"></i> Cancel
-                                </button>
-                                <button type="submit" class="btn btn-danger">
-                                    <i class="fas fa-user-slash"></i> Deactivate Account
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                <!-- End of profile management section -->
             </div>
         </div>
     </div>
 
-    <script>
-        // Minimal JavaScript for UI enhancement (tab switching)
-        const tabItems = document.querySelectorAll('.tab-item');
-        const tabPanes = document.querySelectorAll('.tab-pane');
-
-        tabItems.forEach(item => {
-            item.addEventListener('click', function() {
-                // Remove active class from all tabs
-                tabItems.forEach(tab => tab.classList.remove('active'));
-                tabPanes.forEach(pane => pane.classList.remove('active'));
-
-                // Add active class to clicked tab
-                this.classList.add('active');
-
-                // Show corresponding tab pane
-                const tabId = this.getAttribute('data-tab');
-                document.getElementById(tabId).classList.add('active');
-            });
-        });
-
-        // Modal functionality
-        const deactivateBtn = document.getElementById('deactivateAccountBtn');
-        const deactivateModal = document.getElementById('deactivateModal');
-        const closeModal = document.querySelector('.close-modal');
-        const cancelBtn = document.getElementById('cancelDeactivate');
-
-        deactivateBtn.addEventListener('click', function() {
-            deactivateModal.style.display = 'flex';
-        });
-
-        closeModal.addEventListener('click', function() {
-            deactivateModal.style.display = 'none';
-        });
-
-        cancelBtn.addEventListener('click', function() {
-            deactivateModal.style.display = 'none';
-        });
-
-        window.addEventListener('click', function(event) {
-            if (event.target == deactivateModal) {
-                deactivateModal.style.display = 'none';
-            }
-        });
-
-        // Toggle sidebar on mobile
-        const toggleSidebar = document.getElementById('toggleSidebar');
-        const sidebar = document.getElementById('sidebar');
-
-        toggleSidebar.addEventListener('click', () => {
-            sidebar.classList.toggle('active');
-        });
-    </script>
+    <!-- All functionality is handled through server-side processing -->
 </body>
 </html>

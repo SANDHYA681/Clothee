@@ -22,7 +22,7 @@
     Integer cartCount = (Integer) session.getAttribute("cartCount");
     if (cartCount == null) cartCount = 0;
 
-    // Wishlist functionality removed
+    // Initialize cart count
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -133,7 +133,7 @@
                     </div>
 
                     <div class="header-actions">
-                        <!-- Wishlist functionality removed -->
+                        <!-- Shopping cart section -->
                         <a href="<%=request.getContextPath()%>/CartServlet?action=view" class="header-action" title="Shopping Cart">
                             <i class="fas fa-shopping-cart"></i>
                             <% if (cartCount > 0) { %>

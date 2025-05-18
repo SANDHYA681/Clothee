@@ -116,15 +116,7 @@ public class AdminCategoryServlet extends HttpServlet {
             throws ServletException, IOException {
         System.out.println("\n===== ADMIN CATEGORY SERVLET - ADD CATEGORY =====");
 
-        // Test database connection first
-        boolean connectionOk = util.DBConnection.testConnection();
-        System.out.println("Database connection test: " + (connectionOk ? "OK" : "FAILED"));
 
-        if (!connectionOk) {
-            request.setAttribute("error", "Database connection failed. Please try again later.");
-            request.getRequestDispatcher("/admin/simple-add-category.jsp").forward(request, response);
-            return;
-        }
 
         String name = request.getParameter("name");
         String description = request.getParameter("description");

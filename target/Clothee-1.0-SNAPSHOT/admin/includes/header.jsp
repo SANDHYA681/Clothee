@@ -48,13 +48,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= pageTitle %> - CLOTHEE Admin</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/admin/admin-blue.css">
     <!-- Unified Blue Theme CSS - Applied to all admin pages -->
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/admin-blue-theme-all.css">
     <!-- Profile image CSS -->
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/profile-image.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <div class="admin-container">
@@ -99,12 +100,12 @@
 
             <% if (successMessage != null && !successMessage.isEmpty()) { %>
             <div class="admin-alert admin-alert-success">
-                <i class="fas fa-check-circle"></i> <%= successMessage %>
+                <i class="fas fa-check"></i> <%= successMessage %>
             </div>
             <% } %>
 
             <% if (errorMessage != null && !errorMessage.isEmpty()) { %>
             <div class="admin-alert admin-alert-danger">
-                <i class="fas fa-exclamation-circle"></i> <%= errorMessage %>
+                <i class="fas fa-exclamation"></i> <%= errorMessage %>
             </div>
             <% } %>

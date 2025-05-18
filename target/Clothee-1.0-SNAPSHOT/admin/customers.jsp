@@ -93,13 +93,7 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
             <div class="dashboard-header">
                 <h1 class="page-title">Customer Management</h1>
                 <div class="header-actions">
-                    <a href="${baseUrl != null ? baseUrl : request.getContextPath().concat('/admin/')}notifications.jsp" class="header-action" title="Notifications">
-                        <i class="fas fa-bell"></i>
-                    </a>
-                    <a href="${baseUrl != null ? baseUrl : request.getContextPath().concat('/admin/')}messages.jsp" class="header-action" title="Messages">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-
+                    <!-- Header actions area -->
                 </div>
             </div>
 
@@ -236,7 +230,7 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
                                             <a href="<%= request.getContextPath() %>/AdminUserServlet?action=view&id=<%= user.getId() %>" class="btn-view" title="View">
                                                 <i class="fas fa-eye"></i>
                                             </a>
-                                            <!-- Edit functionality removed as per requirements -->
+                                            <!-- View customer details -->
                                             <% if (user.getId() != currentUser.getId() && !user.isAdmin()) { %>
                                                 <a href="<%= request.getContextPath() %>/AdminUserServlet?action=confirmDelete&id=<%= user.getId() %>" class="btn-delete" title="Delete">
                                                     <i class="fas fa-trash"></i>

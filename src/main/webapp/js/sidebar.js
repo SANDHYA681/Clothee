@@ -1,4 +1,4 @@
-// Toggle sidebar on mobile
+// Custom sidebar toggle functionality
 document.addEventListener('DOMContentLoaded', function() {
     const toggleSidebar = document.getElementById('toggleSidebar');
     const sidebar = document.getElementById('sidebar');

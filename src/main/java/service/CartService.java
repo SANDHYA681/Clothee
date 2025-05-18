@@ -15,12 +15,24 @@ public class CartService {
     private CartDAO cartDAO;
     private ProductDAO productDAO;
 
+    // Static map to store shipping addresses by user ID
+    private static java.util.Map<Integer, String> shippingAddresses = new java.util.HashMap<>();
+
     /**
      * Constructor
      */
     public CartService() {
         this.cartDAO = new CartDAO();
         this.productDAO = new ProductDAO();
+    }
+
+    /**
+     * Get shipping address for a user
+     * @param userId User ID
+     * @return Shipping address or empty string if not found
+     */
+    public static String getShippingAddress(int userId) {
+        return shippingAddresses.getOrDefault(userId, "");
     }
 
     /**
@@ -117,23 +129,52 @@ public class CartService {
     }
 
     /**
-     * Update cart address
+     * Get cart for a user
+     * @param userId User ID
+     * @return Cart object
+     */
+    public Cart getCart(int userId) {
+        return cartDAO.getCartByUserId(userId);
+    }
+
+    /**
+     * Get cart address for a user
+     * Note: As per requirements, cart no longer stores address information
+     * @param userId User ID
+     * @return String containing the shipping address or empty string if not found
+     */
+    public String getCartAddress(int userId) {
+        // Return the shipping address from the static map
+        return shippingAddresses.getOrDefault(userId, "");
+    }
+
+    /**
+     * Update cart address for a user
+     * Note: We store this in a static map, not in the cart table
      * @param userId User ID
      * @param fullName Full name
      * @param country Country
      * @param phone Phone number
-     * @return true if update successful, false otherwise
+     * @return Always returns true as we store this in memory
      */
-    public boolean updateCartAddress(int userId, String fullName, String country, String phone) {
-        return cartDAO.updateCartAddress(userId, fullName, country, phone);
-    }
+    public boolean updateCartAddress(Integer userId, String fullName, String country, String phone) {
+        // Create a simple address string
+        StringBuilder addressBuilder = new StringBuilder();
+        if (fullName != null && !fullName.isEmpty()) {
+            addressBuilder.append(fullName);
+        }
+        if (country != null && !country.isEmpty()) {
+            if (addressBuilder.length() > 0) addressBuilder.append(", ");
+            addressBuilder.append(country);
+        }
+        if (phone != null && !phone.isEmpty()) {
+            if (addressBuilder.length() > 0) addressBuilder.append(", ");
+            addressBuilder.append("Phone: ").append(phone);
+        }
 
-    /**
-     * Get cart address
-     * @param userId User ID
-     * @return Cart with address information
-     */
-    public Cart getCartAddress(int userId) {
-        return cartDAO.getCartAddressByUserId(userId);
+        // Store the shipping address in the static map
+        shippingAddresses.put(userId, addressBuilder.toString());
+
+        return true;
     }
 }

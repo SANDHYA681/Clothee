@@ -34,7 +34,7 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             padding: 20px;
             background-color: #f4f4f4;
         }
-        .container {
+        .page-container {
             background-color: white;
             padding: 20px;
             border-radius: 5px;
@@ -56,7 +56,7 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         th {
             background-color: #f2f2f2;
         }
-        .btn {
+        .action-button {
             display: inline-block;
             padding: 5px 10px;
             background-color: #4CAF50;
@@ -65,10 +65,10 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             border-radius: 3px;
             margin-right: 5px;
         }
-        .btn-view {
+        .view-button {
             background-color: #2196F3;
         }
-        .btn-cancel {
+        .cancel-button {
             background-color: #f44336;
         }
         .empty-message {
@@ -102,7 +102,7 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="page-container">
         <h1>My Orders</h1>
 
         <div class="nav-links">
@@ -145,7 +145,7 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                         <td><%= order.getStatus() %></td>
                         <td>$<%= String.format("%.2f", order.getTotalPrice()) %></td>
                         <td>
-                            <a href="<%= request.getContextPath() %>/OrderServlet?action=viewOrder&id=<%= order.getId() %>" class="btn btn-view">View</a>
+                            <a href="<%= request.getContextPath() %>/OrderServlet?action=viewOrder&id=<%= order.getId() %>" class="action-button view-button">View</a>
                         </td>
                     </tr>
                 <% } %>

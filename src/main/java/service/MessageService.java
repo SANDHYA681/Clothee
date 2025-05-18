@@ -144,7 +144,7 @@ public class MessageService {
         reply.setSubject("RE: " + originalMessage.getSubject());
         reply.setMessage(replyContent);
         reply.setUserId(adminId);
-        // Not setting parentId as we're removing that field
+        reply.setParentId(messageId); // Set the parent ID to link the reply to the original message
         reply.setCreatedAt(new Timestamp(new Date().getTime()));
 
         System.out.println("MessageService: Created reply to message ID = " + messageId);
@@ -159,13 +159,10 @@ public class MessageService {
      * @return List of replies
      */
     public List<Message> getRepliesByParentId(int messageId) {
-        System.out.println("MessageService: getRepliesByParentId called for messageId = " + messageId);
-
         try {
             // Get the original message to find its subject
             Message originalMessage = getMessageById(messageId);
             if (originalMessage == null) {
-                System.out.println("MessageService: Original message not found, returning empty list");
                 return new java.util.ArrayList<>();
             }
 
@@ -245,7 +242,6 @@ public class MessageService {
             }
         }
 
-        System.out.println("MessageService: Message found with ID = " + messageId + ", replied = " + message.isReplied());
         return message;
     }
 }

@@ -656,22 +656,15 @@ String[] statusOptions = {"Pending", "Processing", "Shipped", "Delivered", "Canc
                             <div class="info-value"><%= order.getOrderDate() != null ? dateFormat.format(order.getOrderDate()) : "Not available" %></div>
                         </div>
                         <div class="info-group">
-                            <div class="info-label">Payment Method</div>
-                            <div class="info-value"><%= order.getPaymentMethod() != null ? order.getPaymentMethod() : "Not specified" %></div>
-                        </div>
-                        <div class="info-group">
                             <div class="info-label">Payment Status</div>
                             <div class="info-value">
                                 <%
-                                // Determine payment status based on payment method
-                                String paymentMethod = order.getPaymentMethod();
-                                boolean isPaid = paymentMethod != null && (paymentMethod.equalsIgnoreCase("Credit Card") || paymentMethod.equalsIgnoreCase("PayPal"));
-                                String paymentStatus = isPaid ? "Paid" : "Pending";
+                                String paymentStatus = "Paid";
                                 if (order.getStatus().equalsIgnoreCase("Cancelled")) {
                                     paymentStatus = "Cancelled";
                                 }
                                 %>
-                                <span class="badge badge-<%= paymentStatus.toLowerCase() %>" style="padding: 5px 10px; border-radius: 4px; font-size: 12px; font-weight: 500; background-color: <%= isPaid ? "#4ecdc4" : "#ffa502" %>; color: white;"><%= paymentStatus %></span>
+                                <span class="badge badge-<%= paymentStatus.toLowerCase() %>" style="padding: 5px 10px; border-radius: 4px; font-size: 12px; font-weight: 500; background-color: <%= "#4ecdc4" %>; color: white;"><%= paymentStatus %></span>
                             </div>
                         </div>
                     </div>
@@ -699,12 +692,7 @@ String[] statusOptions = {"Pending", "Processing", "Shipped", "Delivered", "Canc
                         </div>
                     </div>
 
-                    <div>
-                        <div class="info-group">
-                            <div class="info-label">Shipping Address</div>
-                            <div class="info-value"><%= order.getShippingAddress() != null ? order.getShippingAddress() : "Not specified" %></div>
-                        </div>
-                    </div>
+
                 </div>
 
                 <form action="<%= request.getContextPath() %>/AdminOrderServlet" method="post">

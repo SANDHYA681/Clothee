@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="model.User" %>
 <%@ page import="model.Cart" %>
-<%@ page import="dao.CartDAO" %>
+<%@ page import="service.CartService" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
 
@@ -33,9 +33,10 @@
     }
 
     // Get user cart address
-    CartDAO cartDAO = new CartDAO();
-    Cart cartAddress = cartDAO.getCartAddressByUserId(user.getId());
-    boolean hasAddress = cartAddress != null && cartAddress.getStreet() != null && !cartAddress.getStreet().isEmpty();
+    CartService cartService = new CartService();
+    String shippingAddress = cartService.getCartAddress(user.getId());
+    // Since we no longer store detailed address information in cart, this will always be false
+    boolean hasAddress = shippingAddress != null && !shippingAddress.isEmpty();
 
     // Get address ID from request if available
     String addressIdStr = request.getParameter("addressId");
@@ -431,56 +432,17 @@
 
                     <div class="form-group">
                         <label for="fullName">Full Name</label>
-                        <input type="text" id="fullName" name="fullName" value="<%= cartAddress != null ? cartAddress.getFullName() : "" %>" required>
+                        <input type="text" id="fullName" name="fullName" value="<%= user.getFirstName() + " " + user.getLastName() %>" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="street">Street Address</label>
-                        <input type="text" id="street" name="street" value="<%= cartAddress != null ? cartAddress.getStreet() : "" %>" required>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="city">City</label>
-                            <input type="text" id="city" name="city" value="<%= cartAddress != null ? cartAddress.getCity() : "" %>" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="state">State/Province</label>
-                            <input type="text" id="state" name="state" value="<%= cartAddress != null ? cartAddress.getState() : "" %>" required>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="zipCode">Zip/Postal Code</label>
-                            <input type="text" id="zipCode" name="zipCode" value="<%= cartAddress != null ? cartAddress.getZipCode() : "" %>" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="country">Country</label>
-                            <select id="country" name="country" required>
-                                <option value="">Select Country</option>
-                                <option value="United States" <%= cartAddress != null && "United States".equals(cartAddress.getCountry()) ? "selected" : "" %>>United States</option>
-                                <option value="Canada" <%= cartAddress != null && "Canada".equals(cartAddress.getCountry()) ? "selected" : "" %>>Canada</option>
-                                <option value="United Kingdom" <%= cartAddress != null && "United Kingdom".equals(cartAddress.getCountry()) ? "selected" : "" %>>United Kingdom</option>
-                                <option value="Australia" <%= cartAddress != null && "Australia".equals(cartAddress.getCountry()) ? "selected" : "" %>>Australia</option>
-                                <option value="India" <%= cartAddress != null && "India".equals(cartAddress.getCountry()) ? "selected" : "" %>>India</option>
-                                <option value="Germany" <%= cartAddress != null && "Germany".equals(cartAddress.getCountry()) ? "selected" : "" %>>Germany</option>
-                                <option value="France" <%= cartAddress != null && "France".equals(cartAddress.getCountry()) ? "selected" : "" %>>France</option>
-                                <option value="Japan" <%= cartAddress != null && "Japan".equals(cartAddress.getCountry()) ? "selected" : "" %>>Japan</option>
-                                <option value="China" <%= cartAddress != null && "China".equals(cartAddress.getCountry()) ? "selected" : "" %>>China</option>
-                                <option value="Brazil" <%= cartAddress != null && "Brazil".equals(cartAddress.getCountry()) ? "selected" : "" %>>Brazil</option>
-                                <option value="Mexico" <%= cartAddress != null && "Mexico".equals(cartAddress.getCountry()) ? "selected" : "" %>>Mexico</option>
-                                <option value="South Africa" <%= cartAddress != null && "South Africa".equals(cartAddress.getCountry()) ? "selected" : "" %>>South Africa</option>
-                                <option value="Other" <%= cartAddress != null && "Other".equals(cartAddress.getCountry()) ? "selected" : "" %>>Other</option>
-                            </select>
-                        </div>
+                        <label for="country">Country</label>
+                        <input type="text" id="country" name="country" value="United States" required>
                     </div>
 
                     <div class="form-group">
                         <label for="phone">Phone Number</label>
-                        <input type="text" id="phone" name="phone" value="<%= cartAddress != null ? cartAddress.getPhone() : "" %>" required>
+                        <input type="text" id="phone" name="phone" value="<%= user.getPhone() != null ? user.getPhone() : "" %>" required>
                     </div>
 
                     <div class="form-actions">

@@ -33,7 +33,8 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Message Management</title>
-    <!-- No external CSS libraries -->
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         * {
             font-family: Arial, sans-serif;
@@ -128,7 +129,7 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm");
     <div class="container">
         <h1>Message Management</h1>
 
-        <a href="<%= request.getContextPath() %>/admin/dashboard.jsp" class="back-button">Back to Dashboard</a>
+        <a href="<%= request.getContextPath() %>/admin/dashboard.jsp" class="back-button"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
         <table>
             <thead>
                 <tr>
@@ -157,8 +158,8 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm");
                     <td><div class="message-text"><%= msg.getMessage().length() > 50 ? msg.getMessage().substring(0, 47) + "..." : msg.getMessage() %></div></td>
                     <td><%= dateFormat.format(msg.getCreatedAt()) %></td>
                     <td>
-                        <a href="<%= request.getContextPath() %>/AdminMessageServlet?action=view&id=<%= msg.getId() %>" class="view-link">View</a>
-                        <a href="<%= request.getContextPath() %>/AdminMessageServlet?action=delete&id=<%= msg.getId() %>" class="delete-link" onclick="return confirm('Are you sure you want to delete this message?')">Delete</a>
+                        <a href="<%= request.getContextPath() %>/AdminMessageServlet?action=view&id=<%= msg.getId() %>" class="view-link"><i class="fas fa-eye"></i> View</a>
+                        <a href="<%= request.getContextPath() %>/AdminMessageServlet?action=delete&id=<%= msg.getId() %>" class="delete-link" onclick="return confirm('Are you sure you want to delete this message?')"><i class="fas fa-trash"></i> Delete</a>
                     </td>
                 </tr>
             <% }

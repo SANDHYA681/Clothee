@@ -26,6 +26,9 @@
         return;
     }
 
+    // Get shipping information
+    model.Shipping shipping = (model.Shipping) request.getAttribute("shipping");
+
     // Get navigation info
     Integer currentOrderIndex = (Integer) request.getAttribute("currentOrderIndex");
     Integer totalOrders = (Integer) request.getAttribute("totalOrders");
@@ -91,6 +94,32 @@
 
         .nav-icon i {
             font-size: 18px;
+        }
+
+        /* Info section styles */
+        .info-section {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .info-section:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .info-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .info-content {
+            font-size: 16px;
+            color: #333;
+            line-height: 1.5;
         }
 
         .cart-count {
@@ -254,21 +283,27 @@
                         <span><i class="fas fa-info-circle"></i> Order Information</span>
                     </div>
                     <div class="order-card-body">
-                        <div class="info-box">
-                            <div class="info-box-title">
-                                <i class="fas fa-map-marker-alt"></i> Shipping Address
-                            </div>
-                            <div class="info-box-content">
-                                <%= order.getShippingAddress() != null ? order.getShippingAddress() : "No shipping address provided" %>
+                        <div class="info-section">
+                            <h3 class="info-title">Shipping Address</h3>
+                            <div class="info-content">
+                                <% if (shipping != null && shipping.getShippingAddress() != null && !shipping.getShippingAddress().isEmpty()) { %>
+                                    <%= shipping.getShippingAddress() %>
+                                <% } else { %>
+                                    No shipping address available
+                                <% } %>
                             </div>
                         </div>
 
-                        <div class="info-box">
-                            <div class="info-box-title">
-                                <i class="fas fa-credit-card"></i> Payment Method
-                            </div>
-                            <div class="info-box-content">
-                                <%= order.getPaymentMethod() != null ? order.getPaymentMethod() : "No payment method provided" %>
+                        <div class="info-section">
+                            <h3 class="info-title">Shipping Status</h3>
+                            <div class="info-content">
+                                <% if (shipping != null && shipping.getShippingStatus() != null) { %>
+                                    <span class="status-badge <%= shipping.getShippingStatus().toLowerCase() %>">
+                                        <%= shipping.getShippingStatus() %>
+                                    </span>
+                                <% } else { %>
+                                    <span class="status-badge processing">Processing</span>
+                                <% } %>
                             </div>
                         </div>
                     </div>

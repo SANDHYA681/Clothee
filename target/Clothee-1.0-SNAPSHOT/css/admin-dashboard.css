@@ -3,10 +3,11 @@
  * This file imports all the component CSS files
  */
 
+@import url('custom.css'); /* Custom CSS framework */
 @import url('admin-base.css');
 @import url('admin-components.css');
 @import url('admin-forms.css');
 @import url('admin-pages.css');
 @import url('admin/admin-dashboard-tables.css'); /* Enhanced tables styling */
-@import url('admin-blue-theme-all.css'); /* Blue theme styling */
+@import url('admin-blue-theme-all.css'); /* Theme styling */
 @import url('admin-sidebar-toggle.css'); /* Sidebar toggle functionality */

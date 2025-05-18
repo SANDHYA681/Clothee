@@ -29,7 +29,7 @@
 <body>
     <!-- HEADER -->
     <header class="admin-header">
-        <div class="container admin-header-container">
+        <div class="page-container admin-header-container">
             <!-- Logo -->
             <a href="<%=request.getContextPath()%>/admin/dashboard.jsp" class="admin-logo">
                 <span class="admin-logo-icon"><i class="fas fa-tshirt"></i></span>

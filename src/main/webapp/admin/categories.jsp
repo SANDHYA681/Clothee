@@ -73,7 +73,7 @@ if (deleteId != null && !deleteId.isEmpty()) {
     <link rel="stylesheet" href="../css/admin-dashboard.css">
     <link rel="stylesheet" href="../css/admin-categories-enhanced.css">
     <style>
-        /* Additional custom styles can be added here if needed */
+        /* Custom styles for category management */
 
         /* Custom styles for category thumbnail in table view */
         .category-thumbnail {
@@ -184,7 +184,7 @@ if (deleteId != null && !deleteId.isEmpty()) {
                     <i class="fas fa-bars"></i>
                 </button>
 
-                <!-- Search box and notifications removed as requested -->
+                <!-- Header actions area -->
             </div>
 
             <div class="content">
@@ -226,9 +226,7 @@ if (deleteId != null && !deleteId.isEmpty()) {
                             <a href="<%= request.getContextPath() %>/admin/AdminCategoryServlet?action=showAddForm" class="btn-primary" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 4px; margin-right: 10px;">
                                 <i class="fas fa-plus"></i> Add New Category
                             </a>
-                            <a href="<%= request.getContextPath() %>/admin/test-category.jsp" class="btn-secondary" style="display: inline-block; padding: 10px 20px; background-color: #6c757d; color: white; text-decoration: none; border-radius: 4px;">
-                                <i class="fas fa-database"></i> Test Database
-                            </a>
+
                         </div>
                     </div>
                     <% } %>
