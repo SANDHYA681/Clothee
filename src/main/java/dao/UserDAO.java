@@ -617,7 +617,7 @@ public class UserDAO {
     /**
      * Check if a username exists in the database
      * Note: In the current schema, we're using email as the username
-     * In a future version with a separate username field, this would check that field
+     * The system uses email addresses for user identification
      *
      * @param username Username to check
      * @return true if username exists, false otherwise

@@ -85,7 +85,9 @@ public class CategoryImageServlet extends HttpServlet {
             }
 
             String fileExtension = fileName.substring(fileName.lastIndexOf("."));
-            String newFileName = "category_" + categoryId + fileExtension;
+            // Add timestamp to filename to prevent caching issues
+            String timestamp = String.valueOf(System.currentTimeMillis());
+            String newFileName = "category_" + categoryId + "_" + timestamp + fileExtension;
 
             // Save the file to a permanent location
             String relativePath = "images/categories";

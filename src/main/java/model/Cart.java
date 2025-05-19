@@ -14,11 +14,6 @@ public class Cart {
     private Timestamp updatedAt;
     private List<CartItem> items;
 
-    // Address fields
-    private String fullName;
-    private String country;
-    private String phone;
-
     // Default constructor
     public Cart() {
         this.items = new ArrayList<>();
@@ -74,31 +69,7 @@ public class Cart {
         this.items = items;
     }
 
-    public String getFullName() {
-        return fullName;
-    }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
 
     // Helper methods
     public void addItem(CartItem item) {
@@ -162,6 +133,8 @@ public class Cart {
         return getSubtotal() + getShipping() + getTax();
     }
 
+    // We no longer store address information in the cart as per requirements
+
     @Override
     public String toString() {
         return "Cart{" +
@@ -172,9 +145,6 @@ public class Cart {
                 ", tax=" + getTax() +
                 ", shipping=" + getShipping() +
                 ", total=" + getTotal() +
-                ", fullName='" + fullName + '\'' +
-                ", country='" + country + '\'' +
-                ", phone='" + phone + '\'' +
                 '}';
     }
 }

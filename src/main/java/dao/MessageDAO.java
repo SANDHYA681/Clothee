@@ -24,8 +24,8 @@ public class MessageDAO {
     public boolean addMessage(Message message) {
         System.out.println("MessageDAO: addMessage called for message with subject = " + message.getSubject());
 
-        // Simple query for messages with only the essential fields
-        String query = "INSERT INTO messages (user_id, name, email, subject, message, created_at) VALUES (?, ?, ?, ?, ?, NOW())";
+        // Query for messages with essential fields including parent_id
+        String query = "INSERT INTO messages (user_id, name, email, subject, message, created_at, parent_id) VALUES (?, ?, ?, ?, ?, NOW(), ?)";
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
@@ -47,6 +47,7 @@ public class MessageDAO {
             stmt.setString(3, message.getEmail());
             stmt.setString(4, message.getSubject());
             stmt.setString(5, message.getMessage());
+            stmt.setInt(6, message.getParentId()); // Set the parent ID
 
             // Execute the query
             int rowsAffected = stmt.executeUpdate();
@@ -187,8 +188,9 @@ public class MessageDAO {
                 return;
             }
 
-            // Check if user_id column exists
+            // Check if user_id and parent_id columns exist
             boolean hasUserId = columnExists("user_id");
+            boolean hasParentId = columnExists("parent_id");
 
             // Add missing columns
             try (Statement stmt = conn.createStatement()) {
@@ -196,6 +198,11 @@ public class MessageDAO {
                     stmt.executeUpdate("ALTER TABLE messages ADD COLUMN user_id INT DEFAULT NULL");
                     stmt.executeUpdate("ALTER TABLE messages ADD FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL");
                     System.out.println("Added user_id column to messages table");
+                }
+
+                if (!hasParentId) {
+                    stmt.executeUpdate("ALTER TABLE messages ADD COLUMN parent_id INT DEFAULT 0");
+                    System.out.println("Added parent_id column to messages table");
                 }
             }
 
@@ -464,26 +471,52 @@ public class MessageDAO {
     public List<Message> getRepliesByParentId(int parentId) {
         List<Message> replies = new ArrayList<>();
 
-        // Get the original message to find its subject
-        Message originalMessage = getMessageById(parentId);
-        if (originalMessage == null) {
-            System.out.println("MessageDAO: Original message not found, returning empty list");
-            return replies;
-        }
+        // Check if parent_id column exists
+        if (!columnExists("parent_id")) {
+            System.out.println("MessageDAO: parent_id column doesn't exist, using subject-based approach");
 
-        // Get all messages
-        List<Message> allMessages = getAllMessages();
+            // Get the original message to find its subject
+            Message originalMessage = getMessageById(parentId);
+            if (originalMessage == null) {
+                System.out.println("MessageDAO: Original message not found, returning empty list");
+                return replies;
+            }
 
-        // The reply subject pattern is "RE: " + original subject
-        String replySubject = "RE: " + originalMessage.getSubject();
+            // Get all messages
+            List<Message> allMessages = getAllMessages();
 
-        System.out.println("MessageDAO: Looking for replies with subject = " + replySubject);
+            // The reply subject pattern is "RE: " + original subject
+            String replySubject = "RE: " + originalMessage.getSubject();
 
-        // Find all messages that have the reply subject
-        for (Message message : allMessages) {
-            if (message.getSubject() != null && message.getSubject().equals(replySubject)) {
-                replies.add(message);
-                System.out.println("MessageDAO: Found reply ID = " + message.getId() + ", From: " + message.getName());
+            System.out.println("MessageDAO: Looking for replies with subject = " + replySubject);
+
+            // Find all messages that have the reply subject
+            for (Message message : allMessages) {
+                if (message.getSubject() != null && message.getSubject().equals(replySubject)) {
+                    replies.add(message);
+                    System.out.println("MessageDAO: Found reply ID = " + message.getId() + ", From: " + message.getName());
+                }
+            }
+        } else {
+            // Use parent_id column to find replies
+            String query = "SELECT * FROM messages WHERE parent_id = ? ORDER BY created_at ASC";
+
+            try (Connection conn = DBConnection.getConnection();
+                 PreparedStatement stmt = conn.prepareStatement(query)) {
+
+                stmt.setInt(1, parentId);
+
+                try (ResultSet rs = stmt.executeQuery()) {
+                    while (rs.next()) {
+                        Message reply = extractMessageFromResultSet(rs);
+                        replies.add(reply);
+                        System.out.println("MessageDAO: Found reply ID = " + reply.getId() + ", From: " + reply.getName());
+                    }
+                }
+
+            } catch (SQLException e) {
+                System.out.println("Error getting replies by parent ID: " + e.getMessage());
+                e.printStackTrace();
             }
         }
 

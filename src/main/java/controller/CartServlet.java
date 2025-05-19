@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.List;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -349,7 +348,20 @@ public class CartServlet extends HttpServlet {
             return;
         }
 
-        // Update cart address
+        // Create a shipping address string
+        StringBuilder addressBuilder = new StringBuilder();
+        addressBuilder.append(fullName);
+        if (country != null && !country.isEmpty()) {
+            addressBuilder.append(", ").append(country);
+        }
+        if (phone != null && !phone.isEmpty()) {
+            addressBuilder.append(", Phone: ").append(phone);
+        }
+
+        // Store the shipping address in the session for later use when creating orders
+        session.setAttribute("shipping_address_" + userId, addressBuilder.toString());
+
+        // Call the service method (which now just returns true)
         boolean success = cartService.updateCartAddress(userId, fullName, country, phone);
 
         if (success) {
@@ -401,7 +413,7 @@ public class CartServlet extends HttpServlet {
         }
 
         // Get cart address
-        model.Cart cartAddress = cartService.getCartAddress(userId);
+        String cartAddress = cartService.getCartAddress(userId);
 
         // Set cart address in request
         request.setAttribute("cartAddress", cartAddress);
@@ -432,11 +444,11 @@ public class CartServlet extends HttpServlet {
             return;
         }
 
-        // Get cart address
-        model.Cart cartAddress = cartService.getCartAddress(userId);
+        // Get cart address (now returns a String, not a Cart object)
+        String shippingAddress = cartService.getCartAddress(userId);
 
-        // Set cart address in request
-        request.setAttribute("cartAddress", cartAddress);
+        // Set shipping address in request
+        request.setAttribute("shippingAddress", shippingAddress);
 
         // Forward to customer address page
         request.getRequestDispatcher("/customer/addresses.jsp").forward(request, response);
@@ -460,8 +472,8 @@ public class CartServlet extends HttpServlet {
             return;
         }
 
-        // Get cart address
-        model.Cart cartAddress = cartService.getCartAddress(userId);
+        // Get cart address (now returns a String, not a Cart object)
+        String shippingAddress = cartService.getCartAddress(userId);
 
         // Calculate totals
         double subtotal = cartService.getCartTotal(userId);
@@ -471,7 +483,7 @@ public class CartServlet extends HttpServlet {
 
         // Store checkout information in session for checkout page
         session.setAttribute("checkoutCartItems", cartItems);
-        session.setAttribute("checkoutCartAddress", cartAddress);
+        session.setAttribute("checkoutShippingAddress", shippingAddress);
         session.setAttribute("checkoutSubtotal", subtotal);
         session.setAttribute("checkoutShipping", shipping);
         session.setAttribute("checkoutTax", tax);

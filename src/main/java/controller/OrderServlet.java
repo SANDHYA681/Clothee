@@ -193,8 +193,12 @@ public class OrderServlet extends HttpServlet {
             request.setAttribute("hasPrevious", currentIndex > 0);
             request.setAttribute("hasNext", currentIndex < userOrders.size() - 1);
 
-            // Set order in request
+            // Get shipping information for this order
+            model.Shipping shipping = orderService.getShippingByOrderId(orderId);
+
+            // Set order and shipping in request
             request.setAttribute("order", order);
+            request.setAttribute("shipping", shipping);
 
             // Forward to order details page
             request.getRequestDispatcher("/customer/order-details-new.jsp").forward(request, response);

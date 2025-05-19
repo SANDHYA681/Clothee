@@ -73,6 +73,18 @@ public class AdminProductServlet extends HttpServlet {
             case "delete":
                 deleteProduct(request, response);
                 break;
+            case "search":
+                searchProducts(request, response);
+                break;
+            case "toggleSidebar":
+                toggleSidebar(request, response);
+                break;
+            case "showImageForm":
+                showImageForm(request, response);
+                break;
+            case "toggleFeatured":
+                toggleFeatured(request, response);
+                break;
             default:
                 listProducts(request, response);
         }
@@ -122,7 +134,7 @@ public class AdminProductServlet extends HttpServlet {
 
         // Set products in request and forward to JSP
         request.setAttribute("products", products);
-        request.getRequestDispatcher("/admin/centered-products.jsp").forward(request, response);
+        request.getRequestDispatcher("/admin/products.jsp").forward(request, response);
     }
 
     private void showAddProductForm(HttpServletRequest request, HttpServletResponse response)
@@ -183,8 +195,8 @@ public class AdminProductServlet extends HttpServlet {
                 // Set context path for CSS and JS files
                 request.setAttribute("contextPath", request.getContextPath());
 
-                System.out.println("Edit Product Form - Forwarding to clean-edit-product.jsp");
-                request.getRequestDispatcher("/admin/clean-edit-product.jsp").forward(request, response);
+                System.out.println("Edit Product Form - Forwarding to edit-product.jsp");
+                request.getRequestDispatcher("/admin/edit-product.jsp").forward(request, response);
             } catch (Exception e) {
                 System.out.println("Edit Product Form - Error preparing form data: " + e.getMessage());
                 e.printStackTrace();
@@ -484,7 +496,7 @@ public class AdminProductServlet extends HttpServlet {
                     request.setAttribute("product", product);
                     request.setAttribute("categories", categories);
                     request.setAttribute("error", "Failed to update product");
-                    request.getRequestDispatcher("/admin/clean-edit-product.jsp").forward(request, response);
+                    request.getRequestDispatcher("/admin/edit-product.jsp").forward(request, response);
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Error parsing numeric values: " + e.getMessage());
@@ -494,7 +506,7 @@ public class AdminProductServlet extends HttpServlet {
                 request.setAttribute("product", existingProduct);
                 request.setAttribute("categories", categories);
                 request.setAttribute("error", "Invalid price or stock value");
-                request.getRequestDispatcher("/admin/clean-edit-product.jsp").forward(request, response);
+                request.getRequestDispatcher("/admin/edit-product.jsp").forward(request, response);
             }
         } catch (Exception e) {
             System.out.println("Error in updateProduct: " + e.getMessage());
@@ -554,6 +566,178 @@ public class AdminProductServlet extends HttpServlet {
             System.out.println("Error in deleteProduct: " + e.getMessage());
             e.printStackTrace();
             response.sendRedirect(request.getContextPath() + "/admin/AdminProductServlet?error=An error occurred while deleting the product");
+        }
+    }
+
+    /**
+     * Search products by name, description, or category
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
+     * @throws ServletException
+     * @throws IOException
+     */
+    private void searchProducts(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            String query = request.getParameter("query");
+            System.out.println("Search Products - Query: " + query);
+
+            List<Product> products;
+
+            if (query == null || query.trim().isEmpty()) {
+                // If no query, show all products
+                products = productService.getAllProducts();
+            } else {
+                // Search products by name, description, or category
+                products = productService.searchProducts(query);
+            }
+
+            request.setAttribute("products", products);
+            request.setAttribute("searchQuery", query);
+            request.getRequestDispatcher("/admin/products.jsp").forward(request, response);
+        } catch (Exception e) {
+            System.out.println("Error in searchProducts: " + e.getMessage());
+            e.printStackTrace();
+            response.sendRedirect(request.getContextPath() + "/admin/AdminProductServlet?error=An error occurred while searching products");
+        }
+    }
+
+    /**
+     * Toggle sidebar state (expanded/collapsed)
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
+     * @throws ServletException
+     * @throws IOException
+     */
+    private void toggleSidebar(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            HttpSession session = request.getSession();
+            Boolean sidebarCollapsed = (Boolean) session.getAttribute("sidebarCollapsed");
+
+            // Toggle the state
+            if (sidebarCollapsed == null) {
+                sidebarCollapsed = false;
+            }
+
+            session.setAttribute("sidebarCollapsed", !sidebarCollapsed);
+
+            // Redirect back to the products page
+            String referer = request.getHeader("Referer");
+            if (referer != null && !referer.isEmpty()) {
+                response.sendRedirect(referer);
+            } else {
+                response.sendRedirect(request.getContextPath() + "/admin/AdminProductServlet");
+            }
+        } catch (Exception e) {
+            System.out.println("Error in toggleSidebar: " + e.getMessage());
+            e.printStackTrace();
+            response.sendRedirect(request.getContextPath() + "/admin/AdminProductServlet");
+        }
+    }
+
+    /**
+     * Show image upload form for a product
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
+     * @throws ServletException
+     * @throws IOException
+     */
+    private void showImageForm(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            String idStr = request.getParameter("id");
+            System.out.println("Show Image Form - Received ID: " + idStr);
+
+            if (idStr == null || idStr.trim().isEmpty()) {
+                System.out.println("Show Image Form - ID is null or empty");
+                response.sendRedirect(request.getContextPath() + "/admin/AdminProductServlet?error=Invalid product ID");
+                return;
+            }
+
+            int id;
+            try {
+                id = Integer.parseInt(idStr);
+                System.out.println("Show Image Form - Parsed ID: " + id);
+            } catch (NumberFormatException e) {
+                System.out.println("Show Image Form - Error parsing ID: " + e.getMessage());
+                response.sendRedirect(request.getContextPath() + "/admin/AdminProductServlet?error=Invalid product ID format");
+                return;
+            }
+
+            // Get the product
+            Product product = productService.getProductById(id);
+            if (product == null) {
+                System.out.println("Show Image Form - Product not found with ID: " + id);
+                response.sendRedirect(request.getContextPath() + "/admin/AdminProductServlet?error=Product not found");
+                return;
+            }
+
+            request.setAttribute("product", product);
+            request.getRequestDispatcher("/admin/upload-product-image.jsp").forward(request, response);
+        } catch (Exception e) {
+            System.out.println("Error in showImageForm: " + e.getMessage());
+            e.printStackTrace();
+            response.sendRedirect(request.getContextPath() + "/admin/AdminProductServlet?error=An error occurred while loading the image form");
+        }
+    }
+
+    /**
+     * Toggle the featured status of a product
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
+     * @throws ServletException
+     * @throws IOException
+     */
+    private void toggleFeatured(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            String idStr = request.getParameter("id");
+            System.out.println("Toggle Featured - Received ID: " + idStr);
+
+            if (idStr == null || idStr.trim().isEmpty()) {
+                System.out.println("Toggle Featured - ID is null or empty");
+                response.sendRedirect(request.getContextPath() + "/admin/AdminProductServlet?error=Invalid product ID");
+                return;
+            }
+
+            int id;
+            try {
+                id = Integer.parseInt(idStr);
+                System.out.println("Toggle Featured - Parsed ID: " + id);
+            } catch (NumberFormatException e) {
+                System.out.println("Toggle Featured - Error parsing ID: " + e.getMessage());
+                response.sendRedirect(request.getContextPath() + "/admin/AdminProductServlet?error=Invalid product ID format");
+                return;
+            }
+
+            // Get the product
+            Product product = productService.getProductById(id);
+            if (product == null) {
+                System.out.println("Toggle Featured - Product not found with ID: " + id);
+                response.sendRedirect(request.getContextPath() + "/admin/AdminProductServlet?error=Product not found");
+                return;
+            }
+
+            System.out.println("Toggle Featured - Current featured status: " + product.isFeatured());
+
+            // Toggle the featured status
+            product.setFeatured(!product.isFeatured());
+
+            // Update the product in the database
+            boolean success = productService.updateProduct(product);
+
+            if (success) {
+                System.out.println("Toggle Featured - Product featured status updated successfully");
+                response.sendRedirect(request.getContextPath() + "/admin/AdminProductServlet?success=Product featured status updated successfully");
+            } else {
+                System.out.println("Toggle Featured - Failed to update product featured status");
+                response.sendRedirect(request.getContextPath() + "/admin/AdminProductServlet?error=Failed to update product featured status");
+            }
+        } catch (Exception e) {
+            System.out.println("Error in toggleFeatured: " + e.getMessage());
+            e.printStackTrace();
+            response.sendRedirect(request.getContextPath() + "/admin/AdminProductServlet?error=An error occurred while updating the featured status");
         }
     }
 }

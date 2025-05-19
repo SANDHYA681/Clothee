@@ -103,14 +103,13 @@ public class PaymentServlet extends HttpServlet {
 
         // Get checkout information from session
         List<CartItem> cartItems = (List<CartItem>) session.getAttribute("checkoutCartItems");
-        Cart cartAddress = (Cart) session.getAttribute("checkoutCartAddress");
         Double subtotal = (Double) session.getAttribute("checkoutSubtotal");
         Double shipping = (Double) session.getAttribute("checkoutShipping");
         Double tax = (Double) session.getAttribute("checkoutTax");
         Double total = (Double) session.getAttribute("checkoutTotal");
 
         // If checkout information is not in session, get it from the database
-        if (cartItems == null || cartAddress == null || subtotal == null || shipping == null || tax == null || total == null) {
+        if (cartItems == null || subtotal == null || shipping == null || tax == null || total == null) {
             // Get cart items
             cartItems = cartService.getUserCartItems(userId);
 
@@ -121,15 +120,7 @@ public class PaymentServlet extends HttpServlet {
                 return;
             }
 
-            // Get cart address
-            cartAddress = cartService.getCartAddress(userId);
-
-            if (cartAddress == null || cartAddress.getStreet() == null || cartAddress.getStreet().isEmpty()) {
-                // No address, redirect to address page
-                session.setAttribute("errorMessage", "Please provide your shipping address before proceeding to payment.");
-                response.sendRedirect(request.getContextPath() + "/CartServlet?action=viewAddress");
-                return;
-            }
+            // No need to get or validate shipping address
 
             // Calculate totals
             subtotal = cartService.getCartTotal(userId);
@@ -140,7 +131,6 @@ public class PaymentServlet extends HttpServlet {
 
         // Set attributes for the payment page
         request.setAttribute("cartItems", cartItems);
-        request.setAttribute("cartAddress", cartAddress);
         request.setAttribute("subtotal", subtotal);
         request.setAttribute("shipping", shipping);
         request.setAttribute("tax", tax);
@@ -170,14 +160,13 @@ public class PaymentServlet extends HttpServlet {
 
         // Get checkout information from session
         List<CartItem> cartItems = (List<CartItem>) session.getAttribute("checkoutCartItems");
-        Cart cartAddress = (Cart) session.getAttribute("checkoutCartAddress");
         Double subtotal = (Double) session.getAttribute("checkoutSubtotal");
         Double shipping = (Double) session.getAttribute("checkoutShipping");
         Double tax = (Double) session.getAttribute("checkoutTax");
         Double total = (Double) session.getAttribute("checkoutTotal");
 
         // If checkout information is not in session, get it from the database
-        if (cartItems == null || cartAddress == null || subtotal == null || shipping == null || tax == null || total == null) {
+        if (cartItems == null || subtotal == null || shipping == null || tax == null || total == null) {
             // Get cart items
             cartItems = cartService.getUserCartItems(userId);
 
@@ -188,15 +177,7 @@ public class PaymentServlet extends HttpServlet {
                 return;
             }
 
-            // Get cart address
-            cartAddress = cartService.getCartAddress(userId);
-
-            if (cartAddress == null || cartAddress.getStreet() == null || cartAddress.getStreet().isEmpty()) {
-                // No address, redirect to address page
-                session.setAttribute("errorMessage", "Please provide your shipping address before proceeding to payment.");
-                response.sendRedirect(request.getContextPath() + "/CartServlet?action=viewAddress");
-                return;
-            }
+            // No need to get or validate shipping address
 
             // Calculate totals
             subtotal = cartService.getCartTotal(userId);
@@ -215,25 +196,26 @@ public class PaymentServlet extends HttpServlet {
             return;
         }
 
-        // Create shipping address
-        String shippingAddress = cartAddress.getFullName() + ", " +
-                               cartAddress.getStreet() + ", " +
-                               cartAddress.getCity() + ", " +
-                               cartAddress.getState() + " " +
-                               cartAddress.getZipCode() + ", " +
-                               cartAddress.getCountry();
+        // No need to create shipping address
 
         // Process payment (simplified - always succeeds)
         // In a real application, this would integrate with a payment gateway
 
         // Place order using the cart items from database
-        Order createdOrder = orderService.createOrderFromCart(userId, paymentMethod, shippingAddress);
+        Order createdOrder = orderService.createOrderFromCart(userId);
+
+        // If order was created successfully, process payment
+        // Note: A payment record is already created in OrderDAO.createOrder()
+        // OrderService.processPayment() will check if a payment record exists before creating a new one
+        if (createdOrder != null) {
+            orderService.processPayment(createdOrder.getId(), paymentMethod, null);
+        }
 
         if (createdOrder != null) {
             // Order was created successfully
             // Note: Cart is already cleared in the createOrderFromCart method
 
-            // Note: We don't need to create payment or shipping records here because they're already created in OrderDAO.createOrder()
+            // Note: Payment record is created in OrderDAO.createOrder() and OrderService.processPayment() checks for duplicates
 
             // Set success message
             session.setAttribute("orderMessage", "Your order has been placed successfully!");
@@ -247,7 +229,7 @@ public class PaymentServlet extends HttpServlet {
 
             // Clear checkout information from session
             session.removeAttribute("checkoutCartItems");
-            session.removeAttribute("checkoutCartAddress");
+
             session.removeAttribute("checkoutSubtotal");
             session.removeAttribute("checkoutShipping");
             session.removeAttribute("checkoutTax");
@@ -264,49 +246,10 @@ public class PaymentServlet extends HttpServlet {
         }
     }
 
-    /**
-     * Create payment record
-     */
-    private void createPaymentRecord(int orderId, int userId, String paymentMethod, double amount) {
-        try {
-            // Create a new payment record in the database
-            String query = "INSERT INTO payments (payment_date, payment_method, status, amount, order_id, user_id) VALUES (NOW(), ?, ?, ?, ?, ?)";
-            try (Connection conn = DBConnection.getConnection();
-                 PreparedStatement stmt = conn.prepareStatement(query)) {
+    // createPaymentRecord method removed to prevent duplicate payment records
+    // Payment records are now created in OrderDAO.createOrder() and OrderService.processPayment()
 
-                stmt.setString(1, paymentMethod);
-                stmt.setString(2, "Completed");
-                stmt.setDouble(3, amount);
-                stmt.setInt(4, orderId);
-                stmt.setInt(5, userId);
-
-                stmt.executeUpdate();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Create shipping record
-     */
-    private void createShippingRecord(int orderId, String shippingAddress) {
-        try {
-            // Create a new shipping record in the database
-            String query = "INSERT INTO shipping (shipping_address, shipping_date, shipping_status, order_id) VALUES (?, NOW(), ?, ?)";
-            try (Connection conn = DBConnection.getConnection();
-                 PreparedStatement stmt = conn.prepareStatement(query)) {
-
-                stmt.setString(1, shippingAddress);
-                stmt.setString(2, "Pending");
-                stmt.setInt(3, orderId);
-
-                stmt.executeUpdate();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+    // Shipping record creation removed as it's no longer needed
 
     /**
      * View payment history

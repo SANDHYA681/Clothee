@@ -71,12 +71,8 @@ public class CheckoutServlet extends HttpServlet {
             return;
         }
 
-        // Get cart address information
-        Cart cartAddress = cartService.getCartAddress(user.getId());
-
         // Pre-fill user information
         request.setAttribute("user", user);
-        request.setAttribute("cartAddress", cartAddress);
 
         // Calculate totals
         double subtotal = cartService.getCartTotal(user.getId());
@@ -120,24 +116,27 @@ public class CheckoutServlet extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
 
+        // Get shipping information from the form
+        String fullName = request.getParameter("fullName");
+        String country = request.getParameter("country");
+        String phone = request.getParameter("phone");
+
+        // Validate shipping information
+        if (fullName == null || fullName.trim().isEmpty() ||
+            country == null || country.trim().isEmpty() ||
+            phone == null || phone.trim().isEmpty()) {
+
+            // Set error message and redirect back to checkout
+            request.setAttribute("errorMessage", "Please fill in all required shipping information fields.");
+            request.getRequestDispatcher("/checkout.jsp").forward(request, response);
+            return;
+        }
+
+        // Store shipping address in CartService
+        cartService.updateCartAddress(user.getId(), fullName, country, phone);
+
         // Get cart items from database (validation done by CheckoutFilter)
         List<CartItem> cartItems = cartService.getUserCartItems(user.getId());
-        Cart cartAddress = cartService.getCartAddress(user.getId());
-
-        // Get form data for shipping address
-        String fullName = request.getParameter("fullName");
-        String email = request.getParameter("email");
-        String phone = request.getParameter("phone");
-        String country = cartAddress.getCountry(); // Use existing country if not provided in form
-
-        // Update cart address with form data if provided
-        if (fullName != null && !fullName.isEmpty() && phone != null && !phone.isEmpty()) {
-            // Update cart address
-            cartService.updateCartAddress(user.getId(), fullName, country, phone);
-
-            // Get updated cart address
-            cartAddress = cartService.getCartAddress(user.getId());
-        }
 
         // Calculate totals
         double subtotal = cartService.getCartTotal(user.getId());
@@ -147,7 +146,6 @@ public class CheckoutServlet extends HttpServlet {
 
         // Set attributes for the payment page
         request.setAttribute("cartItems", cartItems);
-        request.setAttribute("cartAddress", cartAddress);
         request.setAttribute("subtotal", subtotal);
         request.setAttribute("shipping", shipping);
         request.setAttribute("tax", tax);
@@ -155,7 +153,6 @@ public class CheckoutServlet extends HttpServlet {
 
         // Store checkout information in session for payment page
         session.setAttribute("checkoutCartItems", cartItems);
-        session.setAttribute("checkoutCartAddress", cartAddress);
         session.setAttribute("checkoutSubtotal", subtotal);
         session.setAttribute("checkoutShipping", shipping);
         session.setAttribute("checkoutTax", tax);

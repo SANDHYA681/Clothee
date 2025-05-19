@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class AboutServlet
  */
-// Servlet mapping defined in web.xml
+        //// Servlet mapping defined in web.xml
 public class AboutServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 

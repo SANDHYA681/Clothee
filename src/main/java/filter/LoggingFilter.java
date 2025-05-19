@@ -7,14 +7,13 @@ import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
-import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * Filter to log all requests for debugging purposes
+ * Note: This filter is configured in web.xml, so we don't need the WebFilter annotation
  */
-@WebFilter(filterName = "LoggingFilter", urlPatterns = {"/*"})
 public class LoggingFilter implements Filter {
 
     @Override
@@ -25,17 +24,17 @@ public class LoggingFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        
+
         HttpServletRequest httpRequest = (HttpServletRequest) request;
-        
+
         // Log the request
         String requestURI = httpRequest.getRequestURI();
         String queryString = httpRequest.getQueryString();
         String method = httpRequest.getMethod();
-        
-        System.out.println("Request: " + method + " " + requestURI + 
+
+        System.out.println("Request: " + method + " " + requestURI +
                 (queryString != null ? "?" + queryString : ""));
-        
+
         // Continue the filter chain
         chain.doFilter(request, response);
     }

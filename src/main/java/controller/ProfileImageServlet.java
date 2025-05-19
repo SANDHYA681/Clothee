@@ -76,9 +76,18 @@ public class ProfileImageServlet extends HttpServlet {
             }
 
             System.out.println("ProfileImageServlet - User ID: " + user.getId());
+            System.out.println("ProfileImageServlet - User role: " + (user.isAdmin() ? "Admin" : "Customer"));
             System.out.println("ProfileImageServlet - Request content type: " + request.getContentType());
             System.out.println("ProfileImageServlet - Context path: " + request.getContextPath());
             System.out.println("ProfileImageServlet - Servlet path: " + request.getServletPath());
+
+            // Validate that the request is multipart
+            if (request.getContentType() == null || !request.getContentType().toLowerCase().startsWith("multipart/form-data")) {
+                System.out.println("ProfileImageServlet - Invalid content type: " + request.getContentType());
+                session.setAttribute("errorMessage", "Invalid request type. Please use the upload form.");
+                redirectToProfile(request, response, user);
+                return;
+            }
 
             System.out.println("ProfileImageServlet - Attempting to get file part");
             // Handle file upload
@@ -103,22 +112,33 @@ public class ProfileImageServlet extends HttpServlet {
 
             System.out.println("ProfileImageServlet - File size: " + filePart.getSize() + " bytes");
 
-            // Process the uploaded file - let UserImageService handle this
-            // The validation will be done inside the uploadProfileImage method
+            // Check file size limit (5MB)
+            if (filePart.getSize() > 5 * 1024 * 1024) {
+                System.out.println("ProfileImageServlet - File too large: " + filePart.getSize() + " bytes");
+                session.setAttribute("errorMessage", "File size exceeds the 5MB limit");
+                redirectToProfile(request, response, user);
+                return;
+            }
 
-            // Upload the image using the service
+            // Get the webapp root directory
             String webappRoot = request.getServletContext().getRealPath("/");
             System.out.println("ProfileImageServlet - Webapp root: " + webappRoot);
-            System.out.println("ProfileImageServlet - Real path for /images/avatars: " + request.getServletContext().getRealPath("/images/avatars"));
 
-            // Let the ImageService handle directory creation
+            // Create the images/avatars directory if it doesn't exist
+            File avatarsDir = new File(webappRoot + "images/avatars");
+            if (!avatarsDir.exists()) {
+                boolean created = avatarsDir.mkdirs();
+                System.out.println("ProfileImageServlet - Created avatars directory: " + created);
+            }
 
+            // Upload the image using the service
             String imageUrl = null;
             try {
                 // Try to upload the image
                 imageUrl = userImageService.uploadProfileImage(user.getId(), filePart, webappRoot);
 
                 if (imageUrl == null) {
+                    System.out.println("ProfileImageServlet - Image upload failed, imageUrl is null");
                     session.setAttribute("errorMessage", "Failed to upload image");
                     redirectToProfile(request, response, user);
                     return;
@@ -126,7 +146,7 @@ public class ProfileImageServlet extends HttpServlet {
 
                 System.out.println("ProfileImageServlet - Image URL: " + imageUrl);
 
-                // Verify the image file exists
+                // Verify the image file exists in the deployment directory
                 File imageFile = new File(webappRoot + imageUrl);
                 System.out.println("ProfileImageServlet - Image file exists: " + imageFile.exists());
                 System.out.println("ProfileImageServlet - Image file path: " + imageFile.getAbsolutePath());
@@ -139,6 +159,10 @@ public class ProfileImageServlet extends HttpServlet {
                     imageFile = new File(webappRoot + "images/avatars/" + fileName);
                     System.out.println("ProfileImageServlet - Trying alternate path: " + imageFile.getAbsolutePath());
                     System.out.println("ProfileImageServlet - Alternate file exists: " + imageFile.exists());
+
+                    if (!imageFile.exists()) {
+                        System.out.println("ProfileImageServlet - WARNING: Image file not found in deployment directory");
+                    }
                 }
 
             } catch (Exception e) {
@@ -156,10 +180,17 @@ public class ProfileImageServlet extends HttpServlet {
 
             // Get the updated user from the database to ensure all data is current
             User updatedUser = userDAO.getUserById(user.getId());
+            if (updatedUser != null) {
+                // Update session with the fresh user data
+                session.setAttribute("user", updatedUser);
+                System.out.println("ProfileImageServlet - Session updated with fresh user data");
+            } else {
+                System.out.println("ProfileImageServlet - WARNING: Could not retrieve updated user from database");
+                // Keep using the current user object with the updated image URL
+            }
 
-            // Update session with the fresh user data
-            session.setAttribute("user", updatedUser);
             session.setAttribute("successMessage", "Profile image updated successfully");
+            System.out.println("ProfileImageServlet - Success message set in session");
 
             // Redirect to profile page
             redirectToProfile(request, response, user);

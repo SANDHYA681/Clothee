@@ -144,7 +144,7 @@ public class MessageService {
         reply.setSubject("RE: " + originalMessage.getSubject());
         reply.setMessage(replyContent);
         reply.setUserId(adminId);
-        // Not setting parentId as we're removing that field
+        reply.setParentId(messageId); // Set the parent ID to link the reply to the original message
         reply.setCreatedAt(new Timestamp(new Date().getTime()));
 
         System.out.println("MessageService: Created reply to message ID = " + messageId);

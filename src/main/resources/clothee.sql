@@ -64,8 +64,6 @@ CREATE TABLE orders (
     order_placed_date DATETIME,
     status VARCHAR(100),
     user_id INT,
-    shipping_address TEXT,
-    payment_method VARCHAR(100),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
@@ -101,9 +99,9 @@ CREATE TABLE payments (
 -- Create shipping table
 CREATE TABLE shipping (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    shipping_address TEXT,
     shipping_date DATETIME,
     shipping_status VARCHAR(100),
+    shipping_address VARCHAR(255),
     order_id INT,
     FOREIGN KEY (order_id) REFERENCES orders(id)
 );
@@ -128,7 +126,7 @@ CREATE TABLE cart (
     id INT AUTO_INCREMENT PRIMARY KEY,
     quantity INT NOT NULL DEFAULT 1,
     added_date DATETIME,
-    user_id INT,    efew    q
+    user_id INT,
     product_id INT,
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (product_id) REFERENCES products(id)

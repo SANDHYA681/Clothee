@@ -601,7 +601,7 @@ public class ReviewDAO {
                 review.setUserName("User #" + review.getUserId()); // Default user name
             }
         } catch (SQLException e) {
-            // User name not available in result set, will be set later
+            // User name not available in result set, using default name
             review.setUserName("User #" + review.getUserId()); // Default user name
         }
 
@@ -614,7 +614,7 @@ public class ReviewDAO {
                 review.setProductName("Product #" + review.getProductId()); // Default product name
             }
         } catch (SQLException e) {
-            // Product name not available in result set, will be set later
+            // Product name not available in result set, using default name
             review.setProductName("Product #" + review.getProductId()); // Default product name
         }
 

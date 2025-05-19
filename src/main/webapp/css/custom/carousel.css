@@ -1,0 +1,332 @@
+/* CSS-only Carousel Component - No JavaScript required */
+@import url('../common/variables.css');
+
+/* Carousel Container */
+.carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Carousel Inner */
+.carousel-inner {
+  display: flex;
+  transition: transform 0.5s ease;
+  width: 100%;
+}
+
+/* Carousel Items */
+.carousel-item {
+  min-width: 100%;
+  position: relative;
+  transition: all 0.5s ease;
+}
+
+/* CSS-only Carousel using radio buttons */
+.carousel-radio {
+  display: none;
+}
+
+/* When radio is checked, show the corresponding slide */
+#carousel-1:checked ~ .carousel-inner {
+  transform: translateX(0);
+}
+
+#carousel-2:checked ~ .carousel-inner {
+  transform: translateX(-100%);
+}
+
+#carousel-3:checked ~ .carousel-inner {
+  transform: translateX(-200%);
+}
+
+#carousel-4:checked ~ .carousel-inner {
+  transform: translateX(-300%);
+}
+
+#carousel-5:checked ~ .carousel-inner {
+  transform: translateX(-400%);
+}
+
+/* Carousel Controls */
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-decoration: none;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.carousel-control-prev {
+  left: 20px;
+}
+
+.carousel-control-next {
+  right: 20px;
+}
+
+/* Carousel Indicators */
+.carousel-indicators {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.carousel-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.carousel-indicator.active,
+.carousel-indicator:hover {
+  background-color: white;
+}
+
+/* Carousel Caption */
+.carousel-caption {
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: white;
+  max-width: 80%;
+  z-index: 10;
+}
+
+.carousel-caption h3 {
+  font-size: var(--font-xl);
+  font-weight: var(--weight-bold);
+  margin-bottom: 10px;
+}
+
+.carousel-caption p {
+  font-size: var(--font-md);
+  margin-bottom: 20px;
+}
+
+/* Hero Slider Specific Styles */
+.hero-slider {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+}
+
+.slider-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 1;
+}
+
+.slide.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+.slide-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.slide-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.slide-content {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  z-index: 3;
+}
+
+.slide-text-container {
+  max-width: 800px;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.slide-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.slide-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.slide-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-decoration: none;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.slider-arrow:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.slider-arrow.prev {
+  left: 20px;
+}
+
+.slider-arrow.next {
+  right: 20px;
+}
+
+.slider-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot.active,
+.dot:hover {
+  background-color: white;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .hero-slider {
+    height: 500px;
+  }
+
+  .slide-title {
+    font-size: 2.5rem;
+  }
+
+  .slide-subtitle {
+    font-size: 1rem;
+  }
+
+  .slider-arrow {
+    width: 40px;
+    height: 40px;
+  }
+
+  .carousel-control {
+    width: 30px;
+    height: 30px;
+  }
+
+  .carousel-control-prev {
+    left: 10px;
+  }
+
+  .carousel-control-next {
+    right: 10px;
+  }
+
+  .carousel-caption h3 {
+    font-size: var(--font-lg);
+  }
+
+  .carousel-caption p {
+    font-size: var(--font-sm);
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-slider {
+    height: 400px;
+  }
+
+  .slide-title {
+    font-size: 2rem;
+  }
+
+  .slide-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .slider-arrow {
+    width: 35px;
+    height: 35px;
+  }
+
+  .carousel-control {
+    width: 25px;
+    height: 25px;
+  }
+
+  .carousel-indicator, .dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  .carousel-caption {
+    bottom: 10%;
+  }
+}

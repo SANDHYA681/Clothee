@@ -11,7 +11,9 @@ import jakarta.servlet.http.HttpSession;
 
 import model.Order;
 import model.User;
+import model.Cart;
 import service.OrderService;
+import service.CartService;
 
 /**
  * Servlet implementation class OrderConfirmationServlet
@@ -21,6 +23,7 @@ import service.OrderService;
 public class OrderConfirmationServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private OrderService orderService;
+    private CartService cartService;
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -32,6 +35,7 @@ public class OrderConfirmationServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         orderService = new OrderService();
+        cartService = new CartService();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -73,6 +77,12 @@ public class OrderConfirmationServlet extends HttpServlet {
             Double orderSubtotal = (Double) session.getAttribute("orderSubtotal");
             Double orderShipping = (Double) session.getAttribute("orderShipping");
             Double orderTax = (Double) session.getAttribute("orderTax");
+
+            // Get shipping address information
+            String shippingAddress = cartService.getCartAddress(user.getId());
+            if (shippingAddress != null && !shippingAddress.isEmpty()) {
+                request.setAttribute("shippingAddress", shippingAddress);
+            }
 
             // If order details are not in session, use the order from database
             if (confirmedOrderObj == null) {

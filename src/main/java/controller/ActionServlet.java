@@ -125,12 +125,8 @@ public class ActionServlet extends HttpServlet {
      */
     private void deleteAccount(HttpServletRequest request, HttpServletResponse response, User user)
             throws ServletException, IOException {
-        // This is just a placeholder - in a real application, you would:
-        // 1. Show a confirmation dialog
-        // 2. Implement proper account deletion logic
-        // 3. Handle dependencies (orders, reviews, etc.)
 
-        // Redirect to a confirmation page instead of returning JSON
+        // Redirect to a confirmation page
         if (user.isAdmin()) {
             response.sendRedirect(request.getContextPath() + "/admin/delete-account-confirm.jsp");
         } else {

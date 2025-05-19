@@ -1,6 +1,6 @@
 package service;
 
-import dao.fixUserDAO;
+import dao.UserDAO;
 
 /**
  * User Validator
@@ -8,10 +8,10 @@ import dao.fixUserDAO;
  */
 public class UserValidator {
 
-    private fixUserDAO userDAO;
+    private UserDAO userDAO;
 
     public UserValidator() {
-        this.userDAO = new fixUserDAO();
+        this.userDAO = new UserDAO();
     }
 
     /**

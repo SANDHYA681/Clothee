@@ -13,8 +13,6 @@ public class Order {
     private double totalPrice;
     private Date orderDate; // Maps to order_placed_date in the database
     private String status;
-    private String shippingAddress;
-    private String paymentMethod;
     private List<OrderItem> orderItems;
 
 
@@ -75,21 +73,7 @@ public class Order {
         this.status = status;
     }
 
-    public String getShippingAddress() {
-        return shippingAddress;
-    }
 
-    public void setShippingAddress(String shippingAddress) {
-        this.shippingAddress = shippingAddress;
-    }
-
-    public String getPaymentMethod() {
-        return paymentMethod;
-    }
-
-    public void setPaymentMethod(String paymentMethod) {
-        this.paymentMethod = paymentMethod;
-    }
 
     // Alias for setTotalPrice to maintain compatibility
     public void setTotalAmount(double totalAmount) {
@@ -118,8 +102,6 @@ public class Order {
                 ", totalPrice=" + totalPrice +
                 ", orderDate=" + orderDate +
                 ", status='" + status + '\'' +
-                ", shippingAddress='" + shippingAddress + '\'' +
-                ", paymentMethod='" + paymentMethod + '\'' +
                 '}';
     }
 }

@@ -1,0 +1,145 @@
+/* Pure CSS fixes for admin dashboard */
+
+/* Fix for pointer-events issue */
+* {
+    pointer-events: auto !important;
+}
+
+body {
+    pointer-events: auto !important;
+}
+
+.dashboard-container {
+    pointer-events: auto !important;
+}
+
+.dashboard-container * {
+    pointer-events: auto !important;
+}
+
+/* Fix for all links */
+a, button, input[type="submit"], input[type="button"] {
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    z-index: 100 !important;
+    position: relative !important;
+}
+
+/* Fix for specific elements */
+.quick-action-btn {
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    z-index: 100 !important;
+    position: relative !important;
+    display: block !important;
+}
+
+.dashboard-card-link {
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    z-index: 100 !important;
+    position: relative !important;
+    display: block !important;
+}
+
+.menu-item {
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    z-index: 100 !important;
+    position: relative !important;
+    display: block !important;
+}
+
+.sidebar-menu a {
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    z-index: 100 !important;
+    position: relative !important;
+    display: block !important;
+}
+
+/* Fix for z-index issues */
+.sidebar {
+    z-index: 1000 !important;
+    pointer-events: auto !important;
+}
+
+.main-content {
+    z-index: 1 !important;
+    position: relative !important;
+    pointer-events: auto !important;
+}
+
+/* Fix for quick action buttons */
+.quick-actions {
+    position: relative !important;
+    z-index: 10 !important;
+    pointer-events: auto !important;
+}
+
+.quick-action-btn {
+    position: relative !important;
+    z-index: 20 !important;
+    pointer-events: auto !important;
+}
+
+/* Fix for dashboard cards */
+.dashboard-cards {
+    position: relative !important;
+    z-index: 10 !important;
+    pointer-events: auto !important;
+}
+
+.dashboard-card {
+    position: relative !important;
+    z-index: 20 !important;
+    pointer-events: auto !important;
+}
+
+/* Fix for any potential overlays */
+.overlay, .modal, .popup {
+    z-index: 0 !important;
+    pointer-events: none !important;
+}
+
+/* Remove any potential event blockers */
+body::before, body::after,
+.dashboard-container::before, .dashboard-container::after,
+.main-content::before, .main-content::after {
+    content: none !important;
+    display: none !important;
+    pointer-events: none !important;
+}
+
+/* Fix for table actions */
+.action-btn {
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    z-index: 100 !important;
+    position: relative !important;
+    display: inline-block !important;
+}
+
+/* Fix for header actions */
+.header-action {
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    z-index: 100 !important;
+    position: relative !important;
+    display: inline-block !important;
+}
+
+/* Fix for view-all links */
+.view-all {
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    z-index: 100 !important;
+    position: relative !important;
+    display: inline-block !important;
+}
+
+/* Ensure all links are visible and clickable */
+a {
+    opacity: 1 !important;
+    visibility: visible !important;
+}

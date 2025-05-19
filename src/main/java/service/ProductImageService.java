@@ -54,7 +54,9 @@ public class ProductImageService {
             }
 
             String fileExtension = fileName.substring(fileName.lastIndexOf("."));
-            String newFileName = "product_" + productId + fileExtension;
+            // Add timestamp to filename to prevent caching issues
+            String timestamp = String.valueOf(System.currentTimeMillis());
+            String newFileName = "product_" + productId + "_" + timestamp + fileExtension;
 
             // Create a simpler directory structure
             String relativePath = "images/products";
@@ -186,7 +188,7 @@ public class ProductImageService {
     private String getPermanentPath(String webappRoot, String relativePath) {
         try {
             // Use a fixed, absolute path that will definitely persist
-            // This path should be outside the deployment directory but accessible by the web server
+            // This path is in the user's home directory for persistent storage
             // First try the user's home directory
             String userHome = System.getProperty("user.home");
             String fixedPath = userHome + File.separator + "ClotheeImages" + File.separator + relativePath;

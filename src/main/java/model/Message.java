@@ -108,7 +108,7 @@ public class Message {
     }
 
     // Transient field to store if this message has been replied to
-    // This won't be stored in the database but can be set by the service layer
+    // This is a transient field used only in memory, not stored in the database
     private transient boolean replied = false;
 
     // Helper method to check if this message has been replied to

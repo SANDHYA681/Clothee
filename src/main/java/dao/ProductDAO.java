@@ -599,10 +599,10 @@ public class ProductDAO {
      */
     private void loadProductImages(Product product) {
         try {
-            // In this implementation, we don't have a separate product_images table
+            // In this implementation, the product image is stored directly in the products table
             // The main image is stored in the products table's image_url column
-            // For now, we'll just use the main image as the only image
-            // This method can be expanded later if you add a product_images table
+            // We use the main image as the product image
+            // A more complex implementation would use a separate product_images table
 
             // Add the main image as the only image if it exists
             String imageUrl = product.getImageUrl();
@@ -695,7 +695,7 @@ public class ProductDAO {
                     System.out.println("ProductDAO - Error rolling back transaction: " + ex.getMessage());
                 }
             }
-            throw e; // Rethrow to be handled by the service/controller
+            throw e; // Propagate exception to calling method
         } finally {
             if (conn != null) {
                 try {

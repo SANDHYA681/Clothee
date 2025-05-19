@@ -126,7 +126,7 @@ public class CategoryServlet extends HttpServlet {
 
             request.getRequestDispatcher("/admin/view-category.jsp").forward(request, response);
         } else {
-            response.sendRedirect(request.getContextPath() + "/admin/categories.jsp?error=Category+not+found");
+            response.sendRedirect(request.getContextPath() + "/admin/AdminCategoryServlet?error=Category+not+found");
         }
     }
 
@@ -141,9 +141,9 @@ public class CategoryServlet extends HttpServlet {
         boolean success = categoryDAO.addCategory(category);
 
         if (success) {
-            response.sendRedirect(request.getContextPath() + "/admin/categories.jsp?message=Category+added+successfully");
+            response.sendRedirect(request.getContextPath() + "/admin/AdminCategoryServlet?message=Category+added+successfully");
         } else {
-            response.sendRedirect(request.getContextPath() + "/admin/categories.jsp?error=Failed+to+add+category");
+            response.sendRedirect(request.getContextPath() + "/admin/AdminCategoryServlet?error=Failed+to+add+category");
         }
     }
 
@@ -160,9 +160,9 @@ public class CategoryServlet extends HttpServlet {
         boolean success = categoryDAO.updateCategory(category);
 
         if (success) {
-            response.sendRedirect(request.getContextPath() + "/admin/categories.jsp?message=Category+updated+successfully");
+            response.sendRedirect(request.getContextPath() + "/admin/AdminCategoryServlet?message=Category+updated+successfully");
         } else {
-            response.sendRedirect(request.getContextPath() + "/admin/categories.jsp?error=Failed+to+update+category");
+            response.sendRedirect(request.getContextPath() + "/admin/AdminCategoryServlet?error=Failed+to+update+category");
         }
     }
 
@@ -189,14 +189,14 @@ public class CategoryServlet extends HttpServlet {
                 // Forward to edit page
                 request.getRequestDispatcher("/admin/edit-category.jsp").forward(request, response);
             } else {
-                response.sendRedirect(request.getContextPath() + "/admin/categories.jsp?error=Category+not+found");
+                response.sendRedirect(request.getContextPath() + "/admin/AdminCategoryServlet?error=Category+not+found");
             }
         } catch (NumberFormatException e) {
-            response.sendRedirect(request.getContextPath() + "/admin/categories.jsp?error=Invalid+category+ID");
+            response.sendRedirect(request.getContextPath() + "/admin/AdminCategoryServlet?error=Invalid+category+ID");
         } catch (Exception e) {
             System.out.println("Error showing edit form: " + e.getMessage());
             e.printStackTrace();
-            response.sendRedirect(request.getContextPath() + "/admin/categories.jsp?error=Error+showing+edit+form");
+            response.sendRedirect(request.getContextPath() + "/admin/AdminCategoryServlet?error=Error+showing+edit+form");
         }
     }
 
@@ -205,9 +205,9 @@ public class CategoryServlet extends HttpServlet {
         boolean success = categoryDAO.deleteCategory(categoryId);
 
         if (success) {
-            response.sendRedirect(request.getContextPath() + "/admin/categories.jsp?message=Category+deleted+successfully");
+            response.sendRedirect(request.getContextPath() + "/admin/AdminCategoryServlet?message=Category+deleted+successfully");
         } else {
-            response.sendRedirect(request.getContextPath() + "/admin/categories.jsp?error=Failed+to+delete+category");
+            response.sendRedirect(request.getContextPath() + "/admin/AdminCategoryServlet?error=Failed+to+delete+category");
         }
     }
 }
