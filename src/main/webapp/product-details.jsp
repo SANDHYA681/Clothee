@@ -76,14 +76,16 @@
 
 <section class="product-details-section">
     <div class="container">
-        <div class="breadcrumb">
-            <a href="HomeServlet">Home</a>
-            <span class="separator"><i class="fas fa-chevron-right"></i></span>
-            <a href="ProductServlet">Products</a>
-            <span class="separator"><i class="fas fa-chevron-right"></i></span>
-            <a href="ProductServlet?category=<%= product.getCategory() %>"><%= product.getCategory() %></a>
-            <span class="separator"><i class="fas fa-chevron-right"></i></span>
-            <span><%= product.getName() %></span>
+        <div class="breadcrumb-container">
+            <div class="breadcrumb">
+                <a href="HomeServlet">Home</a>
+                <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                <a href="ProductServlet">Products</a>
+                <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                <a href="ProductServlet?category=<%= product.getCategory() %>"><%= product.getCategory() %></a>
+                <span class="separator"><i class="fas fa-chevron-right"></i></span>
+                <span><%= product.getName() %></span>
+            </div>
             <% if (user != null && user.isAdmin()) { %>
             <div class="back-to-dashboard">
                 <a href="<%= request.getContextPath() %>/admin/dashboard.jsp" class="dashboard-btn">
@@ -131,7 +133,7 @@
                     <img src="<%= request.getContextPath() %>/<%= allImages.get(0) %>" alt="<%= product.getName() %>" id="mainImage">
 
                     <% if (product.isFeatured()) { %>
-                        <span class="product-badge badge-featured" style="background-color: #ffffff; color: #000000; border: 1px solid #000000; font-weight: bold; padding: 5px 10px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">Featured</span>
+                        <span class="product-badge badge-featured">Featured</span>
                     <% } %>
                 </div>
 
@@ -179,44 +181,47 @@
                     <span class="rating-count"><%= reviews.size() %> <%= reviews.size() == 1 ? "review" : "reviews" %></span>
                 </div>
 
-                <div class="product-price" style="color: #000000; font-weight: bold; font-size: 24px;">
-                    <span class="current-price" style="color: #000000;">$<%= String.format("%.2f", product.getPrice()) %></span>
+                <div class="product-price">
+                    <span class="current-price">$<%= String.format("%.2f", product.getPrice()) %></span>
                 </div>
 
                 <div class="product-description">
-                    <%= product.getDescription() %>
+                    <h3>Product Description</h3>
+                    <p><%= product.getDescription() %></p>
                 </div>
 
-                <div class="product-meta">
-                    <div class="meta-item">
-                        <span class="meta-label">SKU:</span>
-                        <span class="meta-value">CLO-<%= product.getId() %></span>
+                <div class="product-details-row">
+                    <div class="product-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">SKU:</span>
+                            <span class="meta-value">CLO-<%= product.getId() %></span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Category:</span>
+                            <span class="meta-value"><%= product.getCategory() %></span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Type:</span>
+                            <span class="meta-value"><%= product.getType() %></span>
+                        </div>
                     </div>
-                    <div class="meta-item">
-                        <span class="meta-label">Category:</span>
-                        <span class="meta-value"><%= product.getCategory() %></span>
-                    </div>
-                    <div class="meta-item">
-                        <span class="meta-label">Type:</span>
-                        <span class="meta-value"><%= product.getType() %></span>
+
+                    <div class="product-stock">
+                        <% if (product.getStock() > 10) { %>
+                            <span class="in-stock"><i class="fas fa-check-circle"></i> In Stock</span>
+                        <% } else if (product.getStock() > 0) { %>
+                            <span class="low-stock"><i class="fas fa-exclamation-circle"></i> Only <%= product.getStock() %> left</span>
+                        <% } else { %>
+                            <span class="out-of-stock"><i class="fas fa-times-circle"></i> Out of Stock</span>
+                        <% } %>
                     </div>
                 </div>
 
-                <div class="product-stock">
-                    <% if (product.getStock() > 10) { %>
-                        <span class="in-stock"><i class="fas fa-check-circle"></i> In Stock</span>
-                    <% } else if (product.getStock() > 0) { %>
-                        <span class="low-stock"><i class="fas fa-exclamation-circle"></i> Only <%= product.getStock() %> left</span>
-                    <% } else { %>
-                        <span class="out-of-stock"><i class="fas fa-times-circle"></i> Out of Stock</span>
-                    <% } %>
-                </div>
+                <form action="ProductDetailsServlet" method="get" class="product-actions-form">
+                    <input type="hidden" name="action" value="addToCart">
+                    <input type="hidden" name="id" value="<%= product.getId() %>">
 
-                <div class="product-actions">
-                    <form action="ProductDetailsServlet" method="get">
-                        <input type="hidden" name="action" value="addToCart">
-                        <input type="hidden" name="id" value="<%= product.getId() %>">
-
+                    <div class="product-actions">
                         <div class="quantity-selector">
                             <button type="button" class="quantity-btn" id="decreaseQuantity" onclick="decreaseQuantity()">-</button>
                             <input type="number" name="quantity" id="quantity" class="quantity-input" value="<%= quantity %>" min="1" max="<%= product.getStock() %>" <%= product.getStock() <= 0 ? "disabled" : "" %>>
@@ -224,52 +229,42 @@
                         </div>
 
                         <% if (user != null && !user.isAdmin()) { %>
-                            <button type="submit" class="add-to-cart-btn" <%= product.getStock() <= 0 ? "disabled" : "" %> style="color: #000000; background-color: #ffffff; border: 1px solid #000000; font-weight: bold; padding: 10px 20px; border-radius: 5px;">
+                            <button type="submit" class="add-to-cart-btn" <%= product.getStock() <= 0 ? "disabled" : "" %>>
                                 <i class="fas fa-shopping-cart"></i> Add to Cart
                             </button>
-                            <!-- Wishlist button removed -->
                         <% } else if (user != null && user.isAdmin()) { %>
                             <div class="admin-notice">
-                                <i class="fas fa-info-circle"></i> Admin users cannot add products to cart or wishlist
+                                <i class="fas fa-info-circle"></i> Admin users cannot add products to cart
                             </div>
                         <% } else { %>
-                            <a href="LoginServlet?message=<%= java.net.URLEncoder.encode("Please login to add items to your cart", "UTF-8") %>&redirectUrl=<%= java.net.URLEncoder.encode("ProductDetailsServlet?id=" + product.getId(), "UTF-8") %>" class="add-to-cart-btn" style="text-decoration: none; color: #000000; background-color: #ffffff; border: 1px solid #000000; font-weight: bold; padding: 10px 20px; border-radius: 5px; display: inline-block;">
-                                <i class="fas fa-shopping-cart"></i> Login to Add to Cart
+                            <a href="LoginServlet?message=<%= java.net.URLEncoder.encode("Please login to add items to your cart", "UTF-8") %>&redirectUrl=<%= java.net.URLEncoder.encode("ProductDetailsServlet?id=" + product.getId(), "UTF-8") %>" class="add-to-cart-btn">
+                                <i class="fas fa-shopping-cart"></i> Login to Add
                             </a>
-                            <!-- Wishlist button removed -->
                         <% } %>
-                    </form>
-                </div>
+                    </div>
+                </form>
 
-                <div class="product-review-action">
-                    <% if (user != null && !user.isAdmin()) { %>
-                        <% if (hasReviewed) { %>
-                            <a href="ReviewServlet?action=edit&reviewId=<%= userReview.getId() %>" class="btn-write-review">
-                                <i class="fas fa-edit"></i> Edit Your Review
-                            </a>
-                        <% } else { %>
-                            <a href="ReviewServlet?action=add&productId=<%= product.getId() %>" class="btn-write-review">
-                                <i class="fas fa-star"></i> Write a Review
+                <div class="product-additional-actions">
+                    <div class="product-review-action">
+                        <% if (user != null && !user.isAdmin()) { %>
+                            <% if (hasReviewed) { %>
+                                <a href="ReviewServlet?action=edit&reviewId=<%= userReview.getId() %>" class="btn-write-review">
+                                    <i class="fas fa-edit"></i> Edit Your Review
+                                </a>
+                            <% } else { %>
+                                <a href="ReviewServlet?action=add&productId=<%= product.getId() %>" class="btn-write-review">
+                                    <i class="fas fa-star"></i> Write a Review
+                                </a>
+                            <% } %>
+                        <% } else if (user == null) { %>
+                            <a href="LoginServlet?message=<%= java.net.URLEncoder.encode("Please login to write a review", "UTF-8") %>&redirectUrl=<%= java.net.URLEncoder.encode("ProductDetailsServlet?id=" + product.getId() + "&tab=reviews", "UTF-8") %>" class="btn-write-review">
+                                <i class="fas fa-star"></i> Login to Write a Review
                             </a>
                         <% } %>
-                    <% } else if (user == null) { %>
-                        <a href="LoginServlet?message=<%= java.net.URLEncoder.encode("Please login to write a review", "UTF-8") %>&redirectUrl=<%= java.net.URLEncoder.encode("ProductDetailsServlet?id=" + product.getId() + "&tab=reviews", "UTF-8") %>" class="btn-write-review">
-                            <i class="fas fa-star"></i> Login to Write a Review
+
+                        <a href="ProductDetailsServlet?id=<%= product.getId() %>&tab=reviews" class="view-reviews-link">
+                            <i class="fas fa-comments"></i> View <%= reviews.size() %> <%= reviews.size() == 1 ? "Review" : "Reviews" %>
                         </a>
-                    <% } %>
-
-                    <a href="ProductDetailsServlet?id=<%= product.getId() %>&tab=reviews" class="view-reviews-link">
-                        <i class="fas fa-comments"></i> View <%= reviews.size() %> <%= reviews.size() == 1 ? "Review" : "Reviews" %>
-                    </a>
-                </div>
-
-                <div class="product-share">
-                    <span class="share-label">Share:</span>
-                    <div class="share-links">
-                        <a href="#" class="share-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="share-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="share-link"><i class="fab fa-pinterest-p"></i></a>
-                        <a href="#" class="share-link"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -283,17 +278,18 @@
             </div>
 
             <div class="tab-content <%= tab == null || "description".equals(tab) ? "active" : "" %>" id="description">
+                <h3>Product Description</h3>
                 <p><%= product.getDescription() %></p>
             </div>
 
             <div class="tab-content <%= "additional-info".equals(tab) ? "active" : "" %>" id="additional-info">
-                <p>Additional product information:</p>
+                <h3>Additional Information</h3>
                 <ul>
-                    <li><strong>Material:</strong> 100% Cotton</li>
-                    <li><strong>Weight:</strong> 0.5 kg</li>
-                    <li><strong>Dimensions:</strong> 30 × 40 × 2 cm</li>
-                    <li><strong>Color:</strong> Multiple options available</li>
-                    <li><strong>Size:</strong> S, M, L, XL</li>
+                    <li><strong>Material:</strong> <span>100% Cotton</span></li>
+                    <li><strong>Weight:</strong> <span>0.5 kg</span></li>
+                    <li><strong>Dimensions:</strong> <span>30 × 40 × 2 cm</span></li>
+                    <li><strong>Color:</strong> <span>Multiple options available</span></li>
+                    <li><strong>Size:</strong> <span>S, M, L, XL</span></li>
                 </ul>
             </div>
 
@@ -497,7 +493,7 @@
         </div>
 
         <% if (relatedProducts != null && !relatedProducts.isEmpty()) { %>
-            <div class="related-products">
+            <div class="related-products-section">
                 <div class="section-title">
                     <h2>Related Products</h2>
                 </div>
@@ -545,32 +541,75 @@
 </section>
 
 <style>
+/* Tab Content Styles */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Product Description Styles */
+.product-description {
+    margin: 25px 0;
+    width: 100%;
+}
+
+.product-description h3 {
+    font-weight: 600;
+    color: #333;
+}
+
+.product-description p {
+    white-space: pre-line;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #333;
+    margin-top: 15px;
+}
+
 /* Reviews Styles */
+.product-additional-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    background-color: #f5f5f5;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .product-review-action {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 15px;
-    margin: 20px 0;
-    padding: 15px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    border-left: 4px solid #ff6b6b;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 .btn-write-review {
     display: inline-flex;
     align-items: center;
-    padding: 10px 20px;
-    background-color: #ff6b6b;
-    color: white;
+    padding: 10px 15px;
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #000000;
     border-radius: 4px;
     text-decoration: none;
     font-weight: 500;
     transition: all 0.3s ease;
+    font-size: 14px;
 }
 
 .btn-write-review:hover {
-    background-color: #ff5252;
+    background-color: #000000;
+    color: #ffffff;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -586,10 +625,12 @@
     text-decoration: none;
     font-weight: 500;
     transition: all 0.3s ease;
+    font-size: 14px;
 }
 
 .view-reviews-link:hover {
-    color: #ff6b6b;
+    color: #000000;
+    transform: translateY(-2px);
 }
 
 .view-reviews-link i {
@@ -613,11 +654,21 @@
 
 .reviews-summary {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #eee;
+    margin: 30px auto;
+    padding: 25px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #ffffff;
+    max-width: 500px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.reviews-summary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
 .average-rating {
@@ -637,12 +688,13 @@
 .rating-stars {
     color: #ffc107;
     font-size: 24px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .rating-count {
-    color: #777;
-    font-size: 14px;
+    color: #555;
+    font-size: 16px;
+    font-weight: 500;
 }
 
 .btn-review {
@@ -672,22 +724,35 @@
 }
 
 .reviews-list {
-    margin-top: 30px;
+    margin: 25px auto;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .review-item {
-    background-color: #f9f9f9;
+    background-color: #ffffff;
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e0e0e0;
+    width: 100%;
+    max-width: 500px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.review-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
 .review-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .reviewer-info {
@@ -696,11 +761,12 @@
 }
 
 .reviewer-avatar {
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     overflow: hidden;
     margin-right: 10px;
+    border: 1px solid #e0e0e0;
 }
 
 .reviewer-avatar img {
@@ -712,27 +778,30 @@
 .reviewer-name {
     font-weight: 600;
     color: #333;
+    font-size: 14px;
 }
 
 .reviewer-badge {
     display: inline-block;
-    background-color: #ff6b6b;
+    background-color: #000000;
     color: white;
-    font-size: 11px;
+    font-size: 10px;
     padding: 2px 6px;
     border-radius: 10px;
-    margin-left: 5px;
+    margin-left: 6px;
     vertical-align: middle;
 }
 
 .review-date {
     color: #777;
-    font-size: 14px;
+    font-size: 13px;
+    font-style: italic;
 }
 
 .review-rating {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     color: #ddd;
+    font-size: 16px;
 }
 
 .review-rating .filled {
@@ -742,56 +811,67 @@
 .review-content p {
     margin: 0;
     line-height: 1.6;
-    color: #555;
+    color: #444;
+    font-size: 13px;
 }
 
 .review-actions {
-    margin-top: 15px;
+    margin-top: 10px;
     text-align: right;
 }
 
 .review-action-link {
     color: #777;
-    margin-left: 15px;
+    margin-left: 10px;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 12px;
     transition: color 0.3s ease;
 }
 
 .review-action-link:hover {
-    color: #ff6b6b;
+    color: #000000;
 }
 
 .no-reviews {
     text-align: center;
-    padding: 40px 30px;
-    background-color: #f9f9f9;
+    padding: 25px;
+    background-color: #ffffff;
     border-radius: 8px;
     color: #555;
-    border: 1px dashed #ddd;
-    margin-top: 20px;
+    border: 1px solid #e0e0e0;
+    margin: 25px auto;
+    max-width: 500px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.no-reviews:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
 .no-reviews-icon {
-    font-size: 48px;
-    color: #ff6b6b;
-    margin-bottom: 20px;
-    opacity: 0.5;
+    font-size: 24px;
+    color: #000000;
+    margin-bottom: 10px;
+    opacity: 0.6;
 }
 
 .no-reviews h3 {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 600;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     color: #333;
 }
 
 .no-reviews p {
-    font-size: 16px;
-    margin-bottom: 25px;
-    max-width: 600px;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 0;
+    max-width: 280px;
     margin-left: auto;
     margin-right: auto;
+    color: #555;
 }
 
 .btn-review-large {
@@ -827,18 +907,20 @@
 .review-form-container {
     background-color: #f9f9f9;
     border-radius: 8px;
-    padding: 25px;
-    margin: 20px 0;
+    padding: 20px;
+    margin: 20px auto;
     border: 1px solid #eee;
+    max-width: 500px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .review-form-header {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     text-align: center;
 }
 
 .review-form-header h3 {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
     color: #333;
     margin-bottom: 5px;
@@ -847,28 +929,30 @@
 .review-form-header p {
     color: #777;
     font-size: 14px;
+    margin-bottom: 0;
 }
 
 .review-form .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .review-form .form-label {
     display: block;
     font-weight: 500;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
     color: #333;
+    font-size: 14px;
 }
 
 .review-form .form-control {
     width: 100%;
-    padding: 12px 15px;
+    padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    font-family: 'Poppins', sans-serif;
+    font-family: inherit;
     font-size: 14px;
     resize: vertical;
-    min-height: 120px;
+    min-height: 80px;
 }
 
 .review-form .form-control:focus {
@@ -884,13 +968,14 @@
 }
 
 .btn-submit-review {
-    padding: 12px 25px;
-    background-color: #ff6b6b;
+    padding: 8px 15px;
+    background-color: #000000;
     color: white;
     border: none;
     border-radius: 4px;
-    font-family: 'Poppins', sans-serif;
+    font-family: inherit;
     font-weight: 500;
+    font-size: 14px;
     cursor: pointer;
     transition: all 0.3s ease;
     display: inline-flex;
@@ -898,7 +983,7 @@
 }
 
 .btn-submit-review:hover {
-    background-color: #ff5252;
+    background-color: #333;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -911,13 +996,14 @@
 }
 
 .btn-delete-review {
-    padding: 10px 20px;
+    padding: 8px 15px;
     background-color: transparent;
     color: #e74c3c;
     border: 1px solid #e74c3c;
     border-radius: 4px;
-    font-family: 'Poppins', sans-serif;
+    font-family: inherit;
     font-weight: 500;
+    font-size: 14px;
     cursor: pointer;
     transition: all 0.3s ease;
     text-decoration: none;
@@ -939,89 +1025,109 @@
 
 /* Login to Review Styles */
 .login-to-review {
-    background-color: #f9f9f9;
+    background-color: #ffffff;
     border-radius: 8px;
-    padding: 30px;
-    margin: 20px 0;
+    padding: 25px;
+    margin: 25px auto;
     text-align: center;
-    border: 1px solid #eee;
+    border: 1px solid #e0e0e0;
+    max-width: 500px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.login-to-review:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
 .login-to-review-icon {
-    font-size: 48px;
-    color: #3498db;
-    margin-bottom: 15px;
+    font-size: 24px;
+    color: #000000;
+    margin-bottom: 10px;
     opacity: 0.7;
 }
 
 .login-to-review h3 {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 600;
     color: #333;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .login-to-review p {
-    color: #777;
-    margin-bottom: 20px;
+    color: #555;
+    margin-bottom: 12px;
+    font-size: 14px;
+    line-height: 1.5;
 }
 
 .btn-login-review {
     display: inline-flex;
     align-items: center;
-    padding: 12px 25px;
-    background-color: #3498db;
+    justify-content: center;
+    padding: 10px 20px;
+    background-color: #000000;
     color: white;
     border-radius: 4px;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
     transition: all 0.3s ease;
+    font-size: 14px;
+    border: none;
+    min-width: 180px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .btn-login-review:hover {
-    background-color: #2980b9;
+    background-color: #333;
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .btn-login-review::before {
     content: '\f2f6'; /* Sign in icon */
     font-family: 'Font Awesome 5 Free';
     font-weight: 900;
-    margin-right: 8px;
+    margin-right: 10px;
+    font-size: 14px;
 }
 
 /* Reviews Divider */
 .reviews-divider {
     display: flex;
     align-items: center;
-    margin: 30px 0;
-    color: #777;
+    margin: 30px auto;
+    color: #333;
+    max-width: 600px;
 }
 
 .reviews-divider::before,
 .reviews-divider::after {
     content: "";
     flex: 1;
-    border-bottom: 1px solid #eee;
+    border-bottom: 2px solid #e0e0e0;
 }
 
 .reviews-divider span {
-    padding: 0 15px;
+    padding: 0 20px;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 /* Star Rating Input */
 .rating-input {
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 
 .rating-label {
     display: block;
     font-weight: 500;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     color: #333;
+    font-size: 14px;
 }
 
 .star-rating {
@@ -1036,9 +1142,9 @@
 
 .star-rating label {
     cursor: pointer;
-    font-size: 30px;
+    font-size: 24px;
     color: #ddd;
-    padding: 0 5px;
+    padding: 0 3px;
     transition: all 0.2s ease;
 }
 
@@ -1050,7 +1156,7 @@
 
 .star-rating label:hover,
 .star-rating label:hover ~ label {
-    transform: scale(1.2);
+    transform: scale(1.1);
 }
 
 /* Alert Messages */
@@ -1090,12 +1196,26 @@
     background-color: #f9f9f9;
 }
 
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.breadcrumb-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
 .breadcrumb {
     display: flex;
     align-items: center;
-    margin-bottom: 30px;
     font-size: 14px;
     color: #777;
+    flex-wrap: wrap;
 }
 
 .breadcrumb a {
@@ -1105,7 +1225,7 @@
 }
 
 .breadcrumb a:hover {
-    color: #ff6b6b;
+    color: #000000;
 }
 
 .breadcrumb .separator {
@@ -1117,21 +1237,29 @@
     flex-wrap: wrap;
     gap: 40px;
     margin-bottom: 60px;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .product-gallery {
     flex: 1;
     min-width: 300px;
+    max-width: 45%;
+    position: relative;
+    padding-right: 30px;
 }
 
 .product-main-image {
     width: 100%;
-    height: 400px;
+    height: 450px;
     border-radius: 10px;
     overflow: hidden;
     margin-bottom: 20px;
     position: relative;
     border: 1px solid #e0e0e0;
+    background-color: #fff;
 }
 
 .product-main-image img {
@@ -1146,15 +1274,14 @@
     top: 15px;
     left: 15px;
     padding: 5px 10px;
-    border-radius: 20px;
+    border-radius: 5px;
     font-size: 12px;
     font-weight: 600;
     z-index: 2;
-}
-
-.badge-featured {
-    background-color: #ffc107;
-    color: #333;
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #000000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .product-thumbnails {
@@ -1162,7 +1289,7 @@
     gap: 10px;
     flex-wrap: wrap;
     margin-top: 15px;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .product-thumbnail {
@@ -1182,7 +1309,7 @@
 }
 
 .product-thumbnail.active {
-    border-color: #ff6b6b;
+    border-color: #000000;
 }
 
 .product-thumbnail img {
@@ -1194,6 +1321,17 @@
 .product-info {
     flex: 1;
     min-width: 300px;
+    max-width: 50%;
+    padding-left: 30px;
+}
+
+.product-card .product-info {
+    padding: 15px;
+    min-width: auto;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .product-category {
@@ -1231,34 +1369,70 @@
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+    color: #000000;
+    font-weight: bold;
+    font-size: 24px;
 }
 
 .current-price {
     font-size: 28px;
     font-weight: 700;
-    color: #ff6b6b;
-}
-
-.original-price {
-    font-size: 20px;
-    color: #999;
-    text-decoration: line-through;
-    margin-left: 15px;
+    color: #000000;
 }
 
 .product-description {
-    margin-bottom: 30px;
-    line-height: 1.6;
-    color: #555;
+    padding: 25px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin: 25px 0 30px 0;
+    border-left: 4px solid #000000;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    width: 100%;
+}
+
+.product-description h3 {
+    margin-top: 0;
+    color: #333;
+    font-size: 22px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #000000;
+    padding-bottom: 10px;
+    font-weight: 600;
+}
+
+.product-description p {
+    line-height: 1.9;
+    color: #333;
+    font-size: 16px;
+    font-weight: 400;
+    white-space: pre-line;
+}
+
+.product-details-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .product-meta {
-    margin-bottom: 30px;
+    flex: 1;
+    min-width: 250px;
+    background-color: #f5f5f5;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .meta-item {
     display: flex;
     margin-bottom: 10px;
+}
+
+.meta-item:last-child {
+    margin-bottom: 0;
 }
 
 .meta-label {
@@ -1272,8 +1446,15 @@
 }
 
 .product-stock {
-    margin-bottom: 20px;
+    padding: 10px 15px;
     font-size: 16px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
 }
 
 .in-stock {
@@ -1288,11 +1469,18 @@
     color: #dc3545;
 }
 
+.product-actions-form {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 30px auto;
+}
+
 .product-actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
-    margin-bottom: 30px;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
 }
 
 .quantity-selector {
@@ -1301,11 +1489,14 @@
     border: 1px solid #ddd;
     border-radius: 5px;
     overflow: hidden;
+    margin-bottom: 10px;
+    width: 100px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .quantity-btn {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1313,6 +1504,7 @@
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-size: 14px;
 }
 
 .quantity-btn:hover {
@@ -1320,39 +1512,49 @@
 }
 
 .quantity-input {
-    width: 60px;
-    height: 40px;
+    width: 40px;
+    height: 30px;
     border: none;
     text-align: center;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     color: #333;
 }
 
 .add-to-cart-btn {
     flex: 1;
-    height: 50px;
-    background-color: #ff6b6b;
-    color: white;
-    border: none;
+    height: 36px;
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #000000;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 8px;
+    text-decoration: none;
+    padding: 0 15px;
+    min-width: 160px;
 }
 
 .add-to-cart-btn:hover {
-    background-color: #ff5252;
+    background-color: #000000;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .add-to-cart-btn:disabled {
-    background-color: #ccc;
+    background-color: #f5f5f5;
+    color: #999;
+    border-color: #ddd;
     cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
 }
 
 .wishlist-btn {
@@ -1378,78 +1580,130 @@
     box-shadow: 0 4px 8px rgba(255, 136, 0, 0.3);
 }
 
-.product-share {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
 
-.share-label {
-    font-weight: 600;
-    color: #333;
-}
-
-.share-links {
-    display: flex;
-    gap: 10px;
-}
-
-.share-link {
-    width: 35px;
-    height: 35px;
-    background-color: #f5f5f5;
-    color: #333;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.share-link:hover {
-    background-color: #ff6b6b;
-    color: white;
-}
 
 .product-tabs {
+    margin-top: 40px;
     margin-bottom: 60px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .tabs-nav {
     display: flex;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 2px solid #eee;
     margin-bottom: 30px;
 }
 
 .tab-item {
-    padding: 15px 30px;
+    padding: 15px 25px;
     font-size: 16px;
     font-weight: 600;
-    color: #777;
+    color: #555;
     cursor: pointer;
     transition: all 0.3s ease;
     border-bottom: 2px solid transparent;
     text-decoration: none;
+    position: relative;
+}
+
+.tab-item:hover {
+    color: #000000;
 }
 
 .tab-item.active {
-    color: #ff6b6b;
-    border-bottom-color: #ff6b6b;
+    color: #000000;
+    border-bottom-color: #000000;
+}
+
+.review-count-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    background-color: #000000;
+    color: white;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: 5px;
 }
 
 .tab-content {
     display: none;
     line-height: 1.6;
     color: #555;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #e0e0e0;
 }
 
 .tab-content.active {
     display: block;
 }
 
-.related-products {
+.tab-content h3 {
+    margin-top: 0;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #000000;
+    padding-bottom: 12px;
+    font-weight: 600;
+}
+
+.tab-content p {
+    line-height: 1.9;
+    color: #333;
+    font-size: 16px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.tab-content ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tab-content li {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.tab-content li:last-child {
+    border-bottom: none;
+}
+
+.tab-content li strong {
+    display: inline-block;
+    width: 120px;
+    color: #333;
+}
+
+.tab-content li span {
+    color: #555;
+}
+
+.related-products-section {
     margin-top: 60px;
+    margin-bottom: 60px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
 }
 
 .section-title {
@@ -1470,7 +1724,7 @@
     position: absolute;
     width: 50px;
     height: 3px;
-    background-color: #ff6b6b;
+    background-color: #000000;
     bottom: -10px;
     left: 50%;
     transform: translateX(-50%);
@@ -1480,6 +1734,8 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 25px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .product-card {
@@ -1488,6 +1744,9 @@
     overflow: hidden;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .product-card:hover {
@@ -1548,8 +1807,25 @@
 }
 
 @media (max-width: 992px) {
+    .product-details {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-gallery,
+    .product-info {
+        max-width: 100%;
+        width: 100%;
+        padding: 0;
+    }
+
     .product-main-image {
-        height: 350px;
+        height: 400px;
+    }
+
+    .product-description,
+    .tab-content {
+        max-width: 100%;
     }
 }
 
@@ -1570,17 +1846,21 @@
         font-size: 24px;
     }
 
-    .original-price {
-        font-size: 18px;
-    }
-
     .tab-item {
-        padding: 10px 20px;
+        padding: 10px 15px;
         font-size: 14px;
     }
 
     .product-thumbnails {
-        justify-content: flex-start;
+        justify-content: center;
+    }
+
+    .tab-content {
+        padding: 20px;
+    }
+
+    .tab-content h3 {
+        font-size: 20px;
     }
 }
 
@@ -1662,18 +1942,19 @@
         background-color: #f8f9fa;
         border: 1px solid #ddd;
         border-radius: 4px;
-        padding: 10px 15px;
-        margin: 10px 0;
+        padding: 8px 12px;
+        margin: 5px 0;
         color: #6c757d;
-        font-size: 14px;
+        font-size: 13px;
         display: flex;
         align-items: center;
+        max-width: 200px;
     }
 
     .admin-notice i {
-        margin-right: 8px;
-        color: #17a2b8;
-        font-size: 16px;
+        margin-right: 6px;
+        color: #000000;
+        font-size: 14px;
     }
 
     /* Back to Dashboard Button */

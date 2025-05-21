@@ -1,0 +1,269 @@
+/* 
+ * CLOTHEE Admin Product Edit - Layout Fix
+ * Fixes for the product edit page to match the desired layout
+ */
+
+/* Content Area */
+.content {
+  flex: 1;
+  margin-left: 250px;
+  padding: 20px;
+  background-color: #f4f7fc;
+}
+
+/* Content Header */
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px 0;
+}
+
+.content-header h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
+  margin: 0;
+}
+
+/* Back Button */
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: #f8f9fa;
+  color: #333;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-back:hover {
+  background-color: #e9ecef;
+}
+
+.btn-back i {
+  margin-right: 8px;
+}
+
+/* Form Container */
+.compact-form-container {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+/* Form Grid */
+.form-grid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 30px;
+}
+
+/* Product Image Container */
+.compact-product-image-container {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.compact-product-image {
+  width: 250px;
+  height: 250px;
+  margin: 0 auto 10px;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.compact-product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.compact-product-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.compact-product-image:hover .compact-product-image-overlay {
+  opacity: 1;
+}
+
+.compact-btn-change-image {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: #fff;
+  color: #333;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.compact-btn-change-image i {
+  margin-right: 8px;
+}
+
+/* Form Groups */
+.compact-form-group {
+  margin-bottom: 15px;
+}
+
+.compact-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.compact-form-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #555;
+}
+
+.compact-form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: border-color 0.2s ease;
+}
+
+.compact-form-control:focus {
+  border-color: #1e3a8a;
+  outline: none;
+}
+
+.compact-form-control.textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+/* Checkbox Group */
+.compact-checkbox-group {
+  display: flex;
+  align-items: center;
+}
+
+.compact-checkbox-group input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+/* Form Actions */
+.compact-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.compact-btn-cancel {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background-color: #f8f9fa;
+  color: #333;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.compact-btn-cancel:hover {
+  background-color: #e9ecef;
+}
+
+.compact-btn-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background-color: #1e3a8a;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.compact-btn-submit:hover {
+  background-color: #152a66;
+}
+
+/* Alerts */
+.compact-alert {
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+}
+
+.compact-alert-success {
+  background-color: #e8f5e9;
+  border-color: #c8e6c9;
+  color: #388e3c;
+}
+
+.compact-alert-danger {
+  background-color: #ffebee;
+  border-color: #ffcdd2;
+  color: #d32f2f;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .content {
+    margin-left: 0;
+  }
+  
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .compact-product-image {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@media (max-width: 576px) {
+  .compact-form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .content-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .btn-back {
+    margin-top: 10px;
+  }
+}

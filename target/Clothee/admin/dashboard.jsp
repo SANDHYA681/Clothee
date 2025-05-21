@@ -65,85 +65,18 @@ DecimalFormat currencyFormat = new DecimalFormat("$#,##0.00");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - CLOTHEE</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/admin-dashboard.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/admin/admin-sidebar.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/admin/admin-dashboard-new.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/admin/admin-dashboard-fix.css">
 </head>
 <body>
     <div class="dashboard-container">
-        <div class="toggle-sidebar" id="toggleSidebar">
-            <i class="fas fa-bars"></i>
-        </div>
+        <!-- Include the new sidebar -->
+        <jsp:include page="includes/sidebar-new.jsp" />
 
-        <div class="sidebar" id="sidebar">
-            <div class="sidebar-header">
-                <a href="../index.jsp" class="logo">
-                    <span class="logo-icon"><i class="fas fa-tshirt"></i></span>
-                    <span class="logo-text">CLOTHEE</span>
-                </a>
-                <div class="sidebar-toggle" id="sidebarToggle">
-                    <i class="fas fa-chevron-left"></i>
-                </div>
-                <div class="user-info">
-                    <div class="user-avatar">
-                        <% if (user.getProfileImage() != null && !user.getProfileImage().isEmpty()) { %>
-                            <% if (user.getProfileImage().startsWith("images/")) { %>
-                                <img src="<%= request.getContextPath() %>/<%= user.getProfileImage() %>" alt="<%= user.getFullName() %>">
-                            <% } else { %>
-                                <img src="<%= request.getContextPath() %>/images/avatars/<%= user.getProfileImage() %>" alt="<%= user.getFullName() %>">
-                            <% } %>
-                        <% } else { %>
-                            <div class="no-profile-image">
-                                <i class="fas fa-user"></i>
-                            </div>
-                        <% } %>
-                    </div>
-                    <h3 class="user-name"><%= user.getFullName() %></h3>
-                    <p class="user-role"><%= user.getRole() %></p>
-                </div>
-            </div>
-
-            <div class="sidebar-menu">
-                <a href="<%= request.getContextPath() %>/admin/dashboard.jsp" class="menu-item active" style="cursor: pointer !important; pointer-events: auto !important;">
-                    <i class="fas fa-tachometer-alt menu-icon"></i>
-                    Dashboard
-                </a>
-                <a href="<%= request.getContextPath() %>/admin/products.jsp" class="menu-item" style="cursor: pointer !important; pointer-events: auto !important;">
-                    <i class="fas fa-box menu-icon"></i>
-                    Products
-                </a>
-                <a href="<%= request.getContextPath() %>/admin/categories.jsp" class="menu-item" style="cursor: pointer !important; pointer-events: auto !important;">
-                    <i class="fas fa-tags menu-icon"></i>
-                    Categories
-                </a>
-                <a href="<%= request.getContextPath() %>/admin/orders.jsp" class="menu-item" style="cursor: pointer !important; pointer-events: auto !important;">
-                    <i class="fas fa-shopping-bag menu-icon"></i>
-                    Orders
-                </a>
-                <a href="<%= request.getContextPath() %>/AdminUserServlet" class="menu-item" style="cursor: pointer !important; pointer-events: auto !important;">
-                    <i class="fas fa-users menu-icon"></i>
-                    Customers
-                </a>
-                <a href="<%= request.getContextPath() %>/admin/AdminReviewServlet" class="menu-item" style="cursor: pointer !important; pointer-events: auto !important;">
-                    <i class="fas fa-star menu-icon"></i>
-                    Reviews
-                </a>
-                <a href="<%= request.getContextPath() %>/admin/messages.jsp" class="menu-item" style="cursor: pointer !important; pointer-events: auto !important;">
-                    <i class="fas fa-envelope menu-icon"></i>
-                    Messages <% if (unreadMessages > 0) { %><span class="badge"><%= unreadMessages %></span><% } %>
-                </a>
-                <a href="<%= request.getContextPath() %>/admin/settings.jsp" class="menu-item" style="cursor: pointer !important; pointer-events: auto !important;">
-                    <i class="fas fa-cog menu-icon"></i>
-                    Settings
-                </a>
-                <a href="<%= request.getContextPath() %>/LogoutServlet" class="menu-item" style="cursor: pointer !important; pointer-events: auto !important;">
-                    <i class="fas fa-sign-out-alt menu-icon"></i>
-                    Logout
-                </a>
-            </div>
-        </div>
-
-        <div class="main-content">
+        <div class="content">
             <% if (successMessage != null && !successMessage.isEmpty()) { %>
             <div class="alert alert-success">
                 <%= successMessage %>
@@ -155,8 +88,8 @@ DecimalFormat currencyFormat = new DecimalFormat("$#,##0.00");
             </div>
             <% } %>
 
-            <div class="dashboard-header">
-                <h1 class="page-title">Admin Dashboard</h1>
+            <div class="content-header">
+                <h1>Admin Dashboard</h1>
                 <div class="header-actions">
                     <a href="messages.jsp" class="header-action" title="Messages <% if (unreadMessages > 0) { %>(<%=unreadMessages%> unread)<% } %>">
                         <i class="fas fa-envelope"></i>

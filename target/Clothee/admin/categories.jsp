@@ -68,10 +68,10 @@ if (deleteId != null && !deleteId.isEmpty()) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Categories</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/admin-dashboard.css">
-    <link rel="stylesheet" href="../css/admin-categories-enhanced.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/admin/admin-sidebar.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/admin-categories-enhanced.css">
     <style>
         /* Custom styles for category management */
 
@@ -113,87 +113,18 @@ if (deleteId != null && !deleteId.isEmpty()) {
 </head>
 <body>
     <div class="dashboard-container">
-        <div class="sidebar" id="sidebar">
-            <div class="sidebar-header">
-                <a href="<%= request.getContextPath() %>/index.jsp" class="logo">
-                    <span class="logo-icon"><i class="fas fa-tshirt"></i></span>
-                    <span class="logo-text">CLOTHEE</span>
-                </a>
-                <div class="user-info">
-                    <div class="user-avatar">
-                        <% if (user.getProfileImage() != null && !user.getProfileImage().isEmpty()) { %>
-                            <% if (user.getProfileImage().startsWith("images/")) { %>
-                                <img src="<%=request.getContextPath()%>/<%= user.getProfileImage() %>" alt="<%= user.getFullName() %>">
-                            <% } else { %>
-                                <img src="<%=request.getContextPath()%>/images/avatars/<%= user.getProfileImage() %>" alt="<%= user.getFullName() %>">
-                            <% } %>
-                        <% } else { %>
-                            <img src="<%=request.getContextPath()%>/images/avatars/default-avatar.jpg" alt="Default Profile Image">
-                        <% } %>
-                    </div>
-                    <div class="user-details">
-                        <h4><%= user.getFullName() %></h4>
-                        <p><%= user.getRole() %></p>
-                    </div>
-                </div>
-            </div>
+        <!-- Include the new sidebar -->
+        <jsp:include page="includes/sidebar-new.jsp" />
 
-            <div class="sidebar-menu">
-                <a href="<%= request.getContextPath() %>/admin/dashboard.jsp" class="menu-item">
-                    <span class="menu-icon"><i class="fas fa-tachometer-alt"></i></span>
-                    Dashboard
-                </a>
-                <a href="<%= request.getContextPath() %>/admin/products.jsp" class="menu-item">
-                    <span class="menu-icon"><i class="fas fa-box"></i></span>
-                    Products
-                </a>
-                <a href="<%= request.getContextPath() %>/admin/categories.jsp" class="menu-item active">
-                    <span class="menu-icon"><i class="fas fa-tags"></i></span>
-                    Categories
-                </a>
-                <a href="<%= request.getContextPath() %>/admin/orders.jsp" class="menu-item">
-                    <span class="menu-icon"><i class="fas fa-shopping-bag"></i></span>
-                    Orders
-                </a>
-                <a href="<%= request.getContextPath() %>/admin/customers.jsp" class="menu-item">
-                    <span class="menu-icon"><i class="fas fa-users"></i></span>
-                    Customers
-                </a>
-                <a href="<%= request.getContextPath() %>/admin/reviews.jsp" class="menu-item">
-                    <span class="menu-icon"><i class="fas fa-star"></i></span>
-                    Reviews
-                </a>
-                <a href="<%= request.getContextPath() %>/admin/messages.jsp" class="menu-item">
-                    <span class="menu-icon"><i class="fas fa-envelope"></i></span>
-                    Messages
-                </a>
-                <a href="<%= request.getContextPath() %>/admin/settings.jsp" class="menu-item">
-                    <span class="menu-icon"><i class="fas fa-cog"></i></span>
-                    Settings
-                </a>
-                <a href="<%= request.getContextPath() %>/LogoutServlet" class="menu-item">
-                    <span class="menu-icon"><i class="fas fa-sign-out-alt"></i></span>
-                    Logout
-                </a>
-            </div>
-        </div>
-
-        <div class="main-content">
-            <div class="header">
-                <button id="sidebarToggle" class="sidebar-toggle">
-                    <i class="fas fa-bars"></i>
+        <div class="content">
+            <div class="content-header">
+                <h1>Category Management</h1>
+                <button class="btn-add" onclick="location.href='../admin/AdminCategoryServlet?action=showAddForm'">
+                    <i class="fas fa-plus"></i> Add New Category
                 </button>
-
-                <!-- Search box and notifications removed as requested -->
             </div>
 
-            <div class="content">
-                <div class="content-header">
-                    <h1>Category Management</h1>
-                    <button class="btn-add" onclick="location.href='../admin/AdminCategoryServlet?action=showAddForm'">
-                        <i class="fas fa-plus"></i> Add New Category
-                    </button>
-                </div>
+
 
                 <%
                 String message = request.getParameter("message");
@@ -256,7 +187,7 @@ if (deleteId != null && !deleteId.isEmpty()) {
                                 <a href="<%= request.getContextPath() %>/admin/CategoryServlet?action=showEdit&id=<%= category.getId() %>" class="btn-edit">
                                     <i class="fas fa-edit"></i> Edit
                                 </a>
-                                <a href="<%= request.getContextPath() %>/admin/upload-category-image.jsp?id=<%= category.getId() %>" class="btn-upload">
+                                <a href="<%= request.getContextPath() %>/admin/upload-category-image-new.jsp?id=<%= category.getId() %>" class="btn-upload">
                                     <i class="fas fa-image"></i> Image
                                 </a>
                                 <a href="<%= request.getContextPath() %>/admin/AdminCategoryServlet?action=delete&id=<%= category.getId() %>" class="btn-delete" onclick="return confirm('Are you sure you want to delete <%= category.getName() %>?')">

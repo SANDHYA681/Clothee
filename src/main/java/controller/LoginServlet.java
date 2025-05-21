@@ -133,7 +133,7 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("user", user);
             session.setMaxInactiveInterval(30 * 60);
 
-            // Remember Me functionality has been removed
+            
 
             // Redirect
             if (redirectUrl != null && !redirectUrl.isEmpty()) {

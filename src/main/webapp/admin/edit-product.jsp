@@ -41,17 +41,20 @@ if (categories == null) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Product - Admin Dashboard</title>
-    <link rel="stylesheet" href="../css/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="../css/admin-blue-theme-all.css">
-    <link rel="stylesheet" href="../css/admin/admin-compact-forms.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/admin/admin-sidebar.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/admin-blue-theme-all.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/admin/admin-compact-forms.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/admin/admin-product-edit-fix.css">
 </head>
 <body>
     <div class="dashboard-container">
-        <div class="main-content">
-            <!-- Header removed as requested -->
+        <!-- Include the new sidebar -->
+        <jsp:include page="includes/sidebar-new.jsp" />
 
-            <div class="content">
+        <div class="content">
+            <!-- Header removed as requested -->
                 <div class="content-header">
                     <h1>Edit Product</h1>
                     <a href="<%= request.getContextPath() %>/admin/AdminProductServlet" class="btn-back">

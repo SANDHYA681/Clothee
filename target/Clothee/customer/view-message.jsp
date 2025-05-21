@@ -243,8 +243,8 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm");
     <!-- Include Footer -->
     <jsp:include page="../includes/footer.jsp" />
 
+    <!-- Alert handling -->
     <script>
-        // Auto-hide alerts after 5 seconds
         setTimeout(function() {
             const alerts = document.querySelectorAll('.alert');
             alerts.forEach(function(alert) {

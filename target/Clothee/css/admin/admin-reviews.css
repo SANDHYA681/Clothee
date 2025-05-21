@@ -1,0 +1,193 @@
+/*
+ * CLOTHEE Admin Dashboard - Reviews Management CSS
+ * Dedicated styling for the admin reviews page
+ */
+
+/* Note: Sidebar styles are now in admin-sidebar.css */
+
+/* Card Styles */
+.card {
+  background-color: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.card-header {
+  padding: 20px;
+  border-bottom: 1px solid var(--gray-200);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--gray-800);
+}
+
+.card-body {
+  padding: 20px;
+}
+
+/* Review Stats */
+.review-stats {
+  display: flex;
+  gap: 20px;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.stat-label {
+  font-weight: 600;
+  margin-right: 5px;
+  color: var(--gray-600);
+}
+
+.stat-value {
+  font-weight: 700;
+  color: var(--gray-800);
+}
+
+/* Table Styles */
+.table-responsive {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th, .data-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.data-table th {
+  background-color: var(--gray-100);
+  font-weight: 600;
+  color: var(--gray-700);
+}
+
+.data-table tbody tr:hover {
+  background-color: var(--gray-100);
+}
+
+.data-table td {
+  vertical-align: middle;
+}
+
+/* Rating Stars */
+.rating {
+  display: flex;
+  align-items: center;
+}
+
+.rating i {
+  margin-right: 2px;
+}
+
+.rating .filled {
+  color: #ffc107;
+}
+
+.rating .empty {
+  color: #ccc;
+}
+
+/* Review Comment */
+.review-comment {
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-delete {
+  color: var(--danger);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: var(--transition);
+}
+
+.btn-delete:hover {
+  color: #c82333;
+}
+
+/* Alerts */
+.alert {
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border-radius: var(--border-radius);
+  border: 1px solid transparent;
+}
+
+.alert-success {
+  background-color: rgba(46, 204, 113, 0.1);
+  border-color: rgba(46, 204, 113, 0.2);
+  color: var(--success);
+}
+
+.alert-danger {
+  background-color: rgba(231, 76, 60, 0.1);
+  border-color: rgba(231, 76, 60, 0.2);
+  color: var(--danger);
+}
+
+/* Utility Classes */
+.text-center {
+  text-align: center;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.active {
+    transform: translateX(0);
+  }
+
+  .content {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .review-stats {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .data-table th, .data-table td {
+    padding: 10px;
+  }
+
+  .review-comment {
+    max-width: 150px;
+  }
+}

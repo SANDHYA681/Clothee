@@ -1,4 +1,4 @@
-/* Main CSS file that imports all custom CSS components */
+/* Main CSS file that imports all CSS components */
 @import url('../common/variables.css');
 @import url('grid-system.css');
 @import url('buttons.css');
@@ -7,6 +7,3 @@
 @import url('card.css');
 @import url('modal.css');
 @import url('dropdown.css');
-/* Using custom icons */
-
-/* This file serves as the main entry point for all custom CSS components */

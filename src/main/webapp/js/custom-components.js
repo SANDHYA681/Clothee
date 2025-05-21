@@ -1,6 +1,6 @@
 /**
- * Custom Components JavaScript
- * This file provides functionality for custom UI components
+ * UI Components
+ * Provides functionality for user interface components
  */
 
 document.addEventListener('DOMContentLoaded', function() {

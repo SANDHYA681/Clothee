@@ -62,28 +62,26 @@ String message = request.getParameter("message");
             background-color: #f0f4f8;
             margin: 0;
             padding: 0;
+            height: 100vh;
+            width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
         }
 
         .dashboard-container {
             display: flex;
-            justify-content: center;  /* Center horizontally */
+            justify-content: center;
             align-items: center;
             width: 100%;
-            height: 100vh;
-            position: absolute;
-            top: 0;
-            left: 0;
-            transform: translateX(0);  /* Perfect center with no offset */
+            max-width: 1200px;
         }
 
         .main-content {
             width: 100%;
-            max-width: 350px;
-            margin: 0;  /* Remove margin since we're using padding-left on container */
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .content {
@@ -93,6 +91,7 @@ String message = request.getParameter("message");
             overflow: hidden;
             position: relative;
             z-index: 10;
+            width: 350px;
         }
 
         .content-header {
@@ -212,16 +211,15 @@ String message = request.getParameter("message");
         }
 
         .upload-section {
-            padding: 20px 15px 25px;
+            padding: 20px 25px 25px;
             text-align: center;
             background-color: #fff;
+            width: 100%;
         }
 
         .form-group {
             margin-bottom: 15px;
-            max-width: 260px;
-            margin-left: auto;
-            margin-right: auto;
+            width: 100%;
             position: relative;
         }
 
@@ -261,8 +259,9 @@ String message = request.getParameter("message");
         .form-actions {
             display: flex;
             justify-content: center;
-            gap: 12px;
-            margin-top: 20px;
+            gap: 15px;
+            margin-top: 25px;
+            width: 100%;
         }
 
         .btn-cancel {
@@ -348,9 +347,9 @@ String message = request.getParameter("message");
     </style>
 </head>
 <body>
-    <div class="dashboard-container" style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100vh; position: absolute; top: 0; left: 0;">
-        <div class="main-content" style="width: 100%; max-width: 350px; margin: 0 auto;">
-            <div class="content" style="margin: 0 auto; max-width: 350px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border-radius: 10px;">
+    <div class="dashboard-container">
+        <div class="main-content">
+            <div class="content">
                 <div class="content-header">
                     <h1>Upload Category Image</h1>
                     <a href="<%= request.getContextPath() %>/admin/categories.jsp" class="back-link">

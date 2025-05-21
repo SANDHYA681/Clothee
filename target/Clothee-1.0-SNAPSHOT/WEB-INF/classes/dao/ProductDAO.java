@@ -255,11 +255,6 @@ public class ProductDAO {
      */
     private void loadProductImages(Product product) {
         try {
-            // In this implementation, we don't have a separate product_images table
-            // The main image is stored in the products table's image_url column
-            // For now, we'll just use the main image as the only image
-            // This method can be expanded later if you add a product_images table
-
             // Add the main image as the only image if it exists
             String imageUrl = product.getImageUrl();
             if (imageUrl != null && !imageUrl.isEmpty()) {

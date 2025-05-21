@@ -10,252 +10,83 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8bba67b1-72a7-4342-a171-b9a09ce1425e" name="Changes" comment="Hy">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Clothee_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/AugmentWebviewStateStore.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/AugmentWebviewStateStore.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/AboutServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AboutServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ActionServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ActionServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/AdminCategoryServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AdminCategoryServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/AdminOrderServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AdminOrderServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/AdminProductServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AdminProductServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/AdminUserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AdminUserServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/CartServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/CartServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/CheckoutServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/CheckoutServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/MessageServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MessageServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/OrderConfirmationServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/OrderConfirmationServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/OrderServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/OrderServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/PaymentServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/PaymentServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ProfileImageServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ProfileImageServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/CartDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/CartDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/CategoryImageServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/CategoryImageServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/LoginServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/SettingsServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/SettingsServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/MessageDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/MessageDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/OrderDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/OrderDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/ProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/ProductDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/ReviewDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/ReviewDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/filter/AuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/filter/AuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/filter/CheckoutFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/filter/CheckoutFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/filter/LoggingFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/filter/LoggingFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Cart.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/CartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/CartService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/MessageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/ProductImageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/ProductImageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/UserImageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/UserImageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/UserValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/UserValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/util/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/DBConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/util/PasswordHasher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/PasswordHasher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/util/ValidationUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/ValidationUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/clothee.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/clothee.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/common/product-details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/common/product-details.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/add-category.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/add-product.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/add-products.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/admin-dashboard-sample.jsp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/categories.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/categories.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/confirm-delete-product.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/confirm-delete-product.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/confirm-delete-customer.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/confirm-delete-user.jsp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/customers.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/customers.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/dashboard-new.jsp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/dashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/dashboard.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/edit-order.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/edit-order.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/edit-product.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/edit-product.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/includes/admin-head.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/includes/admin-head.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/includes/footer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/includes/footer.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/includes/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/includes/header.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/includes/sidebar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/includes/sidebar.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/messages.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/messages.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/order-details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/order-details.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/orders.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/orders.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/products.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/products.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/profile-settings.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/profile-settings.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/reviews.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/reviews.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/upload-product-image-new.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/upload-product-image-new.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/upload-product-image.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/upload-product-image.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/view-message.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/view-message.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/checkout-address.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/checkout-address.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/security-settings.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/security-settings.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/settings.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/settings.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/upload-category-image.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/upload-category-image.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/cart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/cart.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/checkout.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/checkout.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/contact-backup.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/contact-new.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/contact.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/contact.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/action-buttons-fix.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/action-buttons-fix.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/admin-dashboard-complete.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/admin-dashboard-complete.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/admin-dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/admin-dashboard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/admin-new.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/admin-new.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/admin-orders-mvc.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/admin-orders-mvc.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/admin/admin-buttons.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/admin/admin-buttons.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/common.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/custom/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/custom/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/custom/buttons.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/custom/buttons.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/custom/grid-system.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/custom/grid-system.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/custom/README.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/css/custom/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/custom/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/custom/utilities.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/custom/utilities.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/customer/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/customer/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/enhanced-header-footer.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/enhanced-header-footer.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/variables.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/variables.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/customer-messages.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/customer-messages.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/customer/addresses.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/customer/addresses.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/customer/edit-addresses.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/customer/edit-addresses.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/customer/messages.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/customer/messages.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/customer/order-details-new.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/customer/order-details-new.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/customer/order-details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/customer/order-details.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/customer/profile-image-upload.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/customer/profile-image-upload.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/customer/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/customer/profile.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/custom/modal.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/custom/modal.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/product-detail.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/product-detail.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/customer/view-message.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/customer/view-message.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/error/404.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/error/404.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/includes/footer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/includes/footer.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/includes/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/includes/header.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/sidebar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/order-confirmation.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/order-confirmation.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/custom-components.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/custom-components.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/product-details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/product-details.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT.war" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/clothee.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/clothee.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/ActionServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/ActionServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/AdminCategoryServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/AdminCategoryServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/AdminMessageServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/AdminOrderServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/AdminOrderServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/AdminProductServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/AdminProductServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/AdminUserServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/AdminUserServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/CartServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/CartServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/CheckoutServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/CheckoutServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/CustomerMessageServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/ImageDownloadServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/ImageServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/ImageServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/MessageController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/MessageFrontController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/MessageServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/MessageServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/OrderConfirmationServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/OrderConfirmationServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/OrderServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/OrderServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/PaymentServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/PaymentServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/ProfileImageServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/controller/ProfileImageServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/dao/CartDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/dao/CartDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/dao/MessageDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/dao/MessageDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/dao/OrderDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/dao/OrderDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/dao/fixUserDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/filter/AdminRedirectFilter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/filter/AuthenticationFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/filter/AuthenticationFilter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/filter/CheckoutFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/filter/CheckoutFilter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/filter/LoggingFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/filter/LoggingFilter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/model/Cart.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/model/Cart.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/model/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/model/Order.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/model/SimpleMessage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/service/CartService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/service/CartService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/service/MessageService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/service/MessageService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/service/OrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/service/OrderService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/service/UserImageService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/service/UserImageService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/service/UserValidator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/service/UserValidator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/util/CheckCategories.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/util/DBConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/util/DBConnection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/util/PasswordHasher.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/util/PasswordHasher.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/views/common/product-details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/views/common/product-details.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/add-category.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/add-product.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/add-products.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/admin-dashboard-sample.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/categories.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/categories.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/confirm-delete-product.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/confirm-delete-product.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/customers.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/customers.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/dashboard-new.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/dashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/dashboard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/edit-order.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/edit-order.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/edit-product.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/edit-product.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/includes/admin-head.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/includes/admin-head.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/includes/footer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/includes/footer.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/includes/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/includes/header.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/includes/sidebar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/includes/sidebar.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/messages.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/messages.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/order-details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/order-details.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/orders.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/orders.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/products.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/reviews.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/reviews.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/upload-product-image-new.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/upload-product-image-new.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/upload-product-image.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/upload-product-image.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/view-message.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin/view-message.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/checkout-address.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/checkout-address.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/checkout.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/checkout.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/contact-backup.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/contact-new.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/contact.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/contact.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/css/action-buttons-fix.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/css/action-buttons-fix.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/css/admin-dashboard-complete.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/css/admin-dashboard-complete.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/css/admin-dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/css/admin-dashboard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/css/admin-new.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/css/admin-orders-mvc.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/css/admin-orders-mvc.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/css/admin/admin-buttons.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/css/admin/admin-buttons.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/css/common.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/css/custom/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/css/custom/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/css/custom/buttons.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/css/custom/buttons.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/css/custom/grid-system.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/css/custom/grid-system.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/css/custom/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/css/custom/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/css/custom/utilities.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/css/custom/utilities.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/css/customer/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/css/customer/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/css/enhanced-header-footer.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/css/enhanced-header-footer.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/css/variables.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/css/variables.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/customer-messages.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/customer-messages.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/customer/addresses.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/customer/addresses.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/customer/edit-addresses.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/customer/edit-addresses.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/customer/messages.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/customer/messages.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/customer/order-details-new.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/customer/order-details-new.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/customer/order-details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/customer/order-details.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/customer/profile-image-upload.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/customer/profile-image-upload.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/customer/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/customer/profile.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/customer/view-message.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/customer/view-message.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/error/404.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/error/404.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/images/avatars/user_2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/images/avatars/user_2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/images/categories/category_4.png" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/images/categories/category_4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/images/products/accessories/placeholder.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/images/products/kids/placeholder.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/images/products/men/placeholder.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/images/products/product_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/images/products/product_1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/images/products/product_9.png" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/images/products/product_9.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/images/products/women/placeholder.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/includes/footer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/includes/footer.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/includes/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/includes/header.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/js/sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/js/sidebar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/order-confirmation.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/order-confirmation.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/product-details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/product-details.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/clothee.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/clothee.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/ActionServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/ActionServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/AdminCategoryServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/AdminCategoryServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/AdminMessageServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/AdminOrderServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/AdminOrderServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/AdminProductServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/AdminProductServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/dao/ProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/WEB-INF/classes/dao/ProductDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/admin-test.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee-1.0-SNAPSHOT/customer-test.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee/WEB-INF/classes/controller/AdminUserServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee/WEB-INF/classes/controller/AdminUserServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee/WEB-INF/classes/controller/CategoryImageServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee/WEB-INF/classes/controller/CategoryImageServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee/WEB-INF/classes/controller/SettingsServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee/WEB-INF/classes/controller/SettingsServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee/WEB-INF/classes/dao/MessageDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee/WEB-INF/classes/dao/MessageDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee/WEB-INF/classes/dao/UserDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee/WEB-INF/classes/dao/UserDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee/WEB-INF/classes/model/Message.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee/WEB-INF/classes/model/Message.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee/admin-dashboard-example.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee/admin-example.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee/admin/blue-theme-demo.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee/admin/categories.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee/admin/categories.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee/admin/confirm-delete-customer.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee/admin/confirm-delete-user.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee/admin/customers.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee/admin/customers.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee/admin/dashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee/admin/dashboard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee/admin/edit-order.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee/admin/edit-order.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee/admin/edit-product.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee/admin/edit-product.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee/admin/order-details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee/admin/order-details.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee/admin/orders.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee/admin/orders.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee/admin/profile-settings.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee/admin/profile-settings.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee/admin/reviews.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee/admin/reviews.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee/admin/security-settings.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee/admin/security-settings.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee/admin/settings.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee/admin/settings.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee/admin/upload-category-image.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee/admin/upload-category-image.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee/cart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee/cart.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee/checkout.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee/checkout.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee/css/custom/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee/css/custom/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee/css/custom/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee/css/custom/modal.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee/css/custom/modal.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee/css/product-detail.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee/css/product-detail.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee/customer/view-message.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee/customer/view-message.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee/error/404.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee/error/404.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee/js/custom-components.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Clothee/product-details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Clothee/product-details.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/controller/AdminUserServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/AdminUserServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/CartServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/CartServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/CheckoutServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/CheckoutServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/CustomerMessageServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/ImageDownloadServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/MessageController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/MessageFrontController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/MessageServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/MessageServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/OrderConfirmationServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/OrderConfirmationServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/OrderServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/OrderServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/PaymentServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/PaymentServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/ProfileImageServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/ProfileImageServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dao/CartDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dao/CartDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controller/CategoryImageServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/CategoryImageServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controller/SettingsServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/SettingsServlet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/dao/MessageDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dao/MessageDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dao/OrderDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dao/OrderDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dao/fixUserDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/filter/AdminRedirectFilter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/filter/AuthenticationFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/filter/AuthenticationFilter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/filter/CheckoutFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/filter/CheckoutFilter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/filter/LoggingFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/filter/LoggingFilter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/model/Cart.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/Cart.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/model/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/Order.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/model/SimpleMessage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/service/CartService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/service/CartService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/service/MessageService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/service/MessageService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/service/OrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/service/OrderService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/service/UserImageService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/service/UserImageService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/service/UserValidator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/service/UserValidator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/util/CheckCategories.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/util/DBConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/util/DBConnection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/util/PasswordHasher.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/util/PasswordHasher.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dao/UserDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dao/UserDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/model/Message.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/Message.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -287,36 +118,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JavaScript Debug.blue-dashboard.jsp.executor": "Run",
-    "JavaScript Debug.contact-new.jsp.executor": "Run",
-    "JavaScript Debug.customer-example.jsp.executor": "Run",
-    "JavaScript Debug.customers.jsp.executor": "Run",
-    "JavaScript Debug.payment-history.jsp.executor": "Run",
-    "JavaScript Debug.test-review.jsp.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "SHELLCHECK.PATH": "I do mind",
-    "Tomcat Server.Tomcat 11.0.6.executor": "Run",
-    "Tomcat Server.categories.jsp.executor": "Run",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/USER/Music/clothy/Clothee",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JavaScript Debug.blue-dashboard.jsp.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.contact-new.jsp.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.customer-example.jsp.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.customers.jsp.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.payment-history.jsp.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.test-review.jsp.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;SHELLCHECK.PATH&quot;: &quot;I do mind&quot;,
+    &quot;Tomcat Server.Tomcat 11.0.6.executor&quot;: &quot;Run&quot;,
+    &quot;Tomcat Server.categories.jsp.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/USER/Music/clothy/Clothee&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\USER\Music\Clothee\src\main" />
@@ -346,7 +177,7 @@
       </deployment>
       <server-settings>
         <option name="BASE_DIRECTORY_NAME" value="108e89e9-9ebe-48f8-b02f-b645e5b22384" />
-        <option name="HTTP_PORT" value="8082" />
+        <option name="HTTP_PORT" value="8085" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -418,6 +249,9 @@
       </ConfigurationWrapper>
       <method v="2">
         <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="Clothee:war" />
+        </option>
         <option name="BuildArtifacts" enabled="true">
           <artifact name="Clothee:war" />
         </option>
@@ -537,6 +371,9 @@
       <workItem from="1747665401266" duration="29000" />
       <workItem from="1747667609176" duration="205000" />
       <workItem from="1747667833238" duration="144000" />
+      <workItem from="1747695348848" duration="14983000" />
+      <workItem from="1747729516617" duration="132000" />
+      <workItem from="1747823465418" duration="465000" />
     </task>
     <servers />
   </component>

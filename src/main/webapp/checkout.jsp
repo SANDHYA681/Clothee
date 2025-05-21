@@ -52,8 +52,8 @@
     </div>
 </div>
 
-<div class="checkout-message" style="background-color: #ffebcc; color: #ff8800; padding: 15px; margin: 20px auto; max-width: 1200px; border-radius: 8px; text-align: center; border-left: 5px solid #ff8800;">
-    <i class="fas fa-info-circle" style="margin-right: 10px;"></i>
+<div class="checkout-message">
+    <i class="fas fa-info-circle"></i>
     <span>You are proceeding to checkout. Please review your order details and fill in the required information to complete your purchase.</span>
 </div>
 
@@ -67,7 +67,7 @@
 
         <div class="checkout-content">
             <div class="checkout-form">
-                <h2>Shipping Information</h2>
+                <h2 class="form-title">Shipping Information</h2>
 
                 <form action="<%=request.getContextPath()%>/CheckoutServlet" method="post">
                     <input type="hidden" name="action" value="placeOrder">
@@ -92,26 +92,18 @@
                     </div>
 
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-primary" style="font-size: 18px; padding: 15px 25px; box-shadow: 0 4px 8px rgba(255, 136, 0, 0.3); position: relative; overflow: hidden;">
-                            <i class="fas fa-credit-card" style="margin-right: 10px;"></i>Proceed to Payment
-                            <span style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent); transform: translateX(-100%); animation: shine 2s infinite;"></span>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-credit-card"></i>Proceed to Payment
                         </button>
-                        <style>
-                            @keyframes shine {
-                                100% {
-                                    transform: translateX(100%);
-                                }
-                            }
-                        </style>
                         <a href="cart.jsp" class="btn btn-outline">
-                            <i class="fas fa-arrow-left" style="margin-right: 5px;"></i>Back to Cart
+                            <i class="fas fa-arrow-left"></i>Back to Cart
                         </a>
                     </div>
                 </form>
             </div>
 
             <div class="checkout-summary">
-                <h2>Order Summary</h2>
+                <h2 class="form-title">Order Summary</h2>
 
                 <div class="order-items">
                     <% for (CartItem item : cartItems) {
@@ -162,28 +154,73 @@
 
 <style>
 /* Checkout Page Styles */
+.checkout-message {
+    background-color: #ffebcc;
+    color: #ff8800;
+    padding: 15px;
+    margin: 20px auto;
+    max-width: 1200px;
+    border-radius: 8px;
+    text-align: center;
+    border-left: 5px solid #ff8800;
+    box-shadow: 0 2px 8px rgba(255, 136, 0, 0.1);
+}
+
+.checkout-message i {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
 .checkout-section {
-    padding: 60px 0;
+    padding: 40px 0 60px;
 }
 
 .checkout-content {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-content: space-between;
 }
 
-.checkout-form {
-    flex: 3;
+.checkout-form, .checkout-summary {
+    flex: 1;
     min-width: 300px;
+    max-width: 48%;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .checkout-summary {
-    flex: 2;
-    min-width: 300px;
-    background-color: #f9f9f9;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 20px;
+    align-self: flex-start;
+    margin-left: auto;
+}
+
+.form-title {
+    margin-bottom: 25px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #ff8800;
+    color: #333;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.order-review-message {
+    background-color: #fcfcfc;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 25px;
+}
+
+.order-review-message p {
+    margin: 0;
+    color: #555;
 }
 
 .form-group {
@@ -212,39 +249,63 @@ input[type="text"],
 input[type="email"],
 input[type="tel"] {
     width: 100%;
-    padding: 12px;
+    padding: 14px;
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 6px;
     font-size: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    background-color: #fcfcfc;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus {
+    outline: none;
+    border-color: #ff8800;
+    box-shadow: 0 0 0 3px rgba(255, 136, 0, 0.1);
+    background-color: #fff;
 }
 
 .form-actions {
     margin-top: 30px;
     display: flex;
     gap: 15px;
+    padding: 20px;
+    background-color: #fcfcfc;
+    border-radius: 6px;
+    border-top: 1px solid #ddd;
 }
 
 .btn {
-    padding: 12px 20px;
-    border-radius: 4px;
+    padding: 14px 24px;
+    border-radius: 6px;
     font-weight: 600;
+    font-size: 16px;
     cursor: pointer;
     transition: all 0.3s;
     text-decoration: none;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 160px;
+}
+
+.btn i {
+    margin-right: 10px;
 }
 
 .btn-primary {
     background-color: #ff8800;
     color: white;
     border: none;
-    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(255, 136, 0, 0.2);
     position: relative;
+    overflow: hidden;
 }
 
 .btn-primary:hover {
     background-color: #ff9933;
-    transform: translateY(-3px);
+    transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(255, 136, 0, 0.3);
 }
 
@@ -255,19 +316,39 @@ input[type="tel"] {
 
 .btn-outline {
     background-color: transparent;
-    color: #ff8800;
-    border: 1px solid #ff8800;
+    color: #555;
+    border: 1px solid #ddd;
 }
 
 .btn-outline:hover {
-    background-color: #ff8800;
-    color: white;
+    background-color: #f5f5f5;
+    color: #333;
+    border-color: #ccc;
 }
 
 .order-items {
     margin-bottom: 30px;
-    max-height: 300px;
+    max-height: 350px;
     overflow-y: auto;
+    padding-right: 10px;
+}
+
+.order-items::-webkit-scrollbar {
+    width: 6px;
+}
+
+.order-items::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.order-items::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 10px;
+}
+
+.order-items::-webkit-scrollbar-thumb:hover {
+    background: #ccc;
 }
 
 .order-item {
@@ -275,14 +356,20 @@ input[type="tel"] {
     align-items: center;
     padding: 15px 0;
     border-bottom: 1px solid #eee;
+    transition: background-color 0.2s;
+}
+
+.order-item:hover {
+    background-color: #fcfcfc;
 }
 
 .item-image {
-    width: 60px;
-    height: 60px;
-    border-radius: 4px;
+    width: 70px;
+    height: 70px;
+    border-radius: 6px;
     overflow: hidden;
     margin-right: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .item-image img {
@@ -299,6 +386,7 @@ input[type="tel"] {
     font-size: 16px;
     margin: 0 0 5px;
     color: #333;
+    font-weight: 600;
 }
 
 .item-price {
@@ -310,18 +398,23 @@ input[type="tel"] {
 .item-total {
     font-weight: 600;
     color: #333;
+    font-size: 16px;
 }
 
 .order-totals {
-    padding-top: 20px;
+    padding: 20px;
     border-top: 1px solid #ddd;
+    background-color: #fcfcfc;
+    border-radius: 6px;
+    margin-top: 20px;
 }
 
 .total-item {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     color: #555;
+    font-size: 15px;
 }
 
 .total-final {
@@ -329,10 +422,10 @@ input[type="tel"] {
     justify-content: space-between;
     margin-top: 20px;
     padding-top: 15px;
-    border-top: 1px solid #ddd;
-    font-size: 18px;
-    font-weight: 600;
-    color: #333;
+    border-top: 2px solid #ddd;
+    font-size: 20px;
+    font-weight: 700;
+    color: #ff8800;
 }
 
 .alert {
@@ -347,7 +440,32 @@ input[type="tel"] {
     border: 1px solid #ffcc80;
 }
 
+@media (max-width: 992px) {
+    .checkout-content {
+        flex-direction: column;
+    }
+
+    .checkout-form,
+    .checkout-summary {
+        max-width: 100%;
+        margin: 0 auto 30px;
+    }
+
+    .checkout-summary {
+        position: static;
+        margin-top: 30px;
+    }
+}
+
 @media (max-width: 768px) {
+    .checkout-message {
+        margin: 15px;
+    }
+
+    .checkout-section {
+        padding: 30px 15px;
+    }
+
     .form-row {
         flex-direction: column;
         gap: 20px;
@@ -355,11 +473,26 @@ input[type="tel"] {
 
     .form-actions {
         flex-direction: column;
+        gap: 15px;
     }
 
     .btn {
         width: 100%;
         text-align: center;
+    }
+
+    .order-item {
+        flex-wrap: wrap;
+    }
+
+    .item-image {
+        margin-bottom: 10px;
+    }
+
+    .item-total {
+        width: 100%;
+        text-align: right;
+        margin-top: 10px;
     }
 }
 </style>

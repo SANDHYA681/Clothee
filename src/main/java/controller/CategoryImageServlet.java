@@ -173,9 +173,9 @@ public class CategoryImageServlet extends HttpServlet {
             boolean success = categoryDAO.updateCategoryImage(categoryId, imageUrl);
 
             if (success) {
-                response.sendRedirect(request.getContextPath() + "/admin/categories.jsp?success=true&message=Category+image+updated+successfully");
+                response.sendRedirect(request.getContextPath() + "/admin/upload-category-image-new.jsp?id=" + categoryId + "&message=Category+image+updated+successfully");
             } else {
-                response.sendRedirect(request.getContextPath() + "/admin/categories.jsp?error=true&message=Failed+to+update+category+image");
+                response.sendRedirect(request.getContextPath() + "/admin/upload-category-image-new.jsp?id=" + categoryId + "&error=Failed+to+update+category+image");
             }
 
         } catch (NumberFormatException e) {

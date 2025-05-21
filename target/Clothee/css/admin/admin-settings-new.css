@@ -1,0 +1,172 @@
+/* 
+ * CLOTHEE Admin Settings - New Design
+ * Styling for the settings page to match the provided screenshot
+ */
+
+/* Main container */
+.settings-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  padding: 20px;
+}
+
+/* Settings header */
+.settings-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.settings-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+/* Settings cards container */
+.settings-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* Settings card */
+.settings-card {
+  flex: 1;
+  min-width: 300px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.settings-card:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Card header */
+.settings-card-header {
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.settings-card-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e3a8a;
+  margin: 0;
+}
+
+/* Card body */
+.settings-card-body {
+  color: #6c757d;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+/* Settings button */
+.settings-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  background-color: #4361ee;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.settings-btn:hover {
+  background-color: #3a56d4;
+}
+
+.settings-btn i {
+  margin-right: 8px;
+}
+
+/* Top navigation */
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #fff;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.page-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.nav-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  background-color: #f8f9fa;
+  color: #495057;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+  background-color: #e9ecef;
+}
+
+.nav-btn i {
+  margin-right: 6px;
+}
+
+/* Main content area */
+.main-content {
+  display: flex;
+  height: calc(100vh - 60px);
+}
+
+/* Sidebar is already defined in admin-sidebar.css */
+
+/* Content area */
+.content-area {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .settings-cards {
+    flex-direction: column;
+  }
+  
+  .settings-card {
+    width: 100%;
+  }
+  
+  .top-nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

@@ -1,4 +1,4 @@
-/* CSS-only Modal Component - No JavaScript required */
+/* Modal Component Styling */
 @import url('../common/variables.css');
 
 /* Modal Container */
@@ -18,7 +18,7 @@
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-/* CSS-only Modal using :target selector */
+/* Modal visibility state */
 .modal:target {
   opacity: 1;
   visibility: visible;
@@ -152,13 +152,13 @@
   .modal-dialog {
     margin: 0.5rem;
   }
-  
+
   .modal-fullscreen-sm-down .modal-dialog {
     max-width: none;
     margin: 0;
     height: 100%;
   }
-  
+
   .modal-fullscreen-sm-down .modal-content {
     height: 100%;
     border: 0;

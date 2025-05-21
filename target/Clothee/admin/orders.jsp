@@ -64,12 +64,12 @@ session.removeAttribute("errorMessage");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Orders</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/admin-dashboard.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/admin/admin-sidebar.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/admin-blue-theme-all.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/admin/admin-orders-blue.css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/action-buttons-fix.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/admin/admin-orders-fix.css">
     <style>
         /* Additional compact styles */
         .admin-content {
@@ -86,7 +86,7 @@ session.removeAttribute("errorMessage");
         .dashboard-container {
             min-height: auto;
         }
-        .main-content {
+        .content {
             padding: 10px;
         }
         .alert {
@@ -97,10 +97,6 @@ session.removeAttribute("errorMessage");
         .data-table td, .data-table th {
             padding: 4px 6px;
             font-size: 12px;
-        }
-        /* Reduce spacing in sidebar */
-        .sidebar-menu a {
-            padding: 8px 15px;
         }
         /* Compact card */
         .card {
@@ -162,16 +158,12 @@ session.removeAttribute("errorMessage");
 </head>
 <body>
     <div class="dashboard-container">
-        <div class="toggle-sidebar" id="toggleSidebar">
-            <i class="fas fa-bars"></i>
-        </div>
+        <!-- Include the new sidebar -->
+        <jsp:include page="includes/sidebar-new.jsp" />
 
-        <!-- Include sidebar -->
-        <jsp:include page="sidebar.jsp" />
-
-        <div class="main-content">
+        <div class="content">
             <div class="content-header">
-                <h1 class="page-title">Order Management</h1>
+                <h1>Order Management</h1>
             </div>
 
             <% if (successMessage != null && !successMessage.isEmpty()) { %>
@@ -201,58 +193,58 @@ session.removeAttribute("errorMessage");
             <!-- Fix Paid Orders button removed as requested -->
 
             <!-- Order Statistics -->
-            <div class="card" style="margin-bottom: 10px;">
+            <div class="card">
                 <div class="card-header">
                     <h2 class="card-title"><i class="fas fa-chart-pie"></i> Order Statistics</h2>
                 </div>
-                <div class="card-body" style="padding: 10px;">
-                    <div class="order-stats" style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px;">
-                        <div class="stat-card" style="padding: 8px; text-align: center; border-radius: 6px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); border-left: 2px solid #4361ee;">
-                            <div class="stat-icon" style="margin: 0 auto 4px; width: 30px; height: 30px; background-color: rgba(67, 97, 238, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                <i class="fas fa-shopping-bag" style="font-size: 12px; color: #4361ee;"></i>
+                <div class="card-body">
+                    <div class="order-stats">
+                        <div class="stat-card" style="border-left-color: #4361ee;">
+                            <div class="stat-icon" style="background-color: rgba(67, 97, 238, 0.1);">
+                                <i class="fas fa-shopping-bag" style="color: #4361ee;"></i>
                             </div>
-                            <div class="stat-value" style="font-size: 16px; font-weight: 700; color: #1e3a8a; margin-bottom: 2px;"><%= totalOrders %></div>
-                            <div class="stat-label" style="font-size: 10px; color: #6c757d;">Total Orders</div>
+                            <div class="stat-value"><%= totalOrders %></div>
+                            <div class="stat-label">Total Orders</div>
                         </div>
 
-                        <div class="stat-card" style="padding: 8px; text-align: center; border-radius: 6px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); border-left: 2px solid #f39c12;">
-                            <div class="stat-icon" style="margin: 0 auto 4px; width: 30px; height: 30px; background-color: rgba(243, 156, 18, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                <i class="fas fa-clock" style="font-size: 12px; color: #f39c12;"></i>
+                        <div class="stat-card" style="border-left-color: #f39c12;">
+                            <div class="stat-icon" style="background-color: rgba(243, 156, 18, 0.1);">
+                                <i class="fas fa-clock" style="color: #f39c12;"></i>
                             </div>
-                            <div class="stat-value" style="font-size: 16px; font-weight: 700; color: #1e3a8a; margin-bottom: 2px;"><%= pendingOrders %></div>
-                            <div class="stat-label" style="font-size: 10px; color: #6c757d;">Pending</div>
+                            <div class="stat-value"><%= pendingOrders %></div>
+                            <div class="stat-label">Pending</div>
                         </div>
 
-                        <div class="stat-card" style="padding: 8px; text-align: center; border-radius: 6px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); border-left: 2px solid #3498db;">
-                            <div class="stat-icon" style="margin: 0 auto 4px; width: 30px; height: 30px; background-color: rgba(52, 152, 219, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                <i class="fas fa-cog" style="font-size: 12px; color: #3498db;"></i>
+                        <div class="stat-card" style="border-left-color: #3498db;">
+                            <div class="stat-icon" style="background-color: rgba(52, 152, 219, 0.1);">
+                                <i class="fas fa-cog" style="color: #3498db;"></i>
                             </div>
-                            <div class="stat-value" style="font-size: 16px; font-weight: 700; color: #1e3a8a; margin-bottom: 2px;"><%= processingOrders %></div>
-                            <div class="stat-label" style="font-size: 10px; color: #6c757d;">Processing</div>
+                            <div class="stat-value"><%= processingOrders %></div>
+                            <div class="stat-label">Processing</div>
                         </div>
 
-                        <div class="stat-card" style="padding: 8px; text-align: center; border-radius: 6px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); border-left: 2px solid #4361ee;">
-                            <div class="stat-icon" style="margin: 0 auto 4px; width: 30px; height: 30px; background-color: rgba(67, 97, 238, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                <i class="fas fa-truck" style="font-size: 12px; color: #4361ee;"></i>
+                        <div class="stat-card" style="border-left-color: #4361ee;">
+                            <div class="stat-icon" style="background-color: rgba(67, 97, 238, 0.1);">
+                                <i class="fas fa-truck" style="color: #4361ee;"></i>
                             </div>
-                            <div class="stat-value" style="font-size: 16px; font-weight: 700; color: #1e3a8a; margin-bottom: 2px;"><%= shippedOrders %></div>
-                            <div class="stat-label" style="font-size: 10px; color: #6c757d;">Shipped</div>
+                            <div class="stat-value"><%= shippedOrders %></div>
+                            <div class="stat-label">Shipped</div>
                         </div>
 
-                        <div class="stat-card" style="padding: 8px; text-align: center; border-radius: 6px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); border-left: 2px solid #2ecc71;">
-                            <div class="stat-icon" style="margin: 0 auto 4px; width: 30px; height: 30px; background-color: rgba(46, 204, 113, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                <i class="fas fa-check-circle" style="font-size: 12px; color: #2ecc71;"></i>
+                        <div class="stat-card" style="border-left-color: #2ecc71;">
+                            <div class="stat-icon" style="background-color: rgba(46, 204, 113, 0.1);">
+                                <i class="fas fa-check-circle" style="color: #2ecc71;"></i>
                             </div>
-                            <div class="stat-value" style="font-size: 16px; font-weight: 700; color: #1e3a8a; margin-bottom: 2px;"><%= deliveredOrders %></div>
-                            <div class="stat-label" style="font-size: 10px; color: #6c757d;">Delivered</div>
+                            <div class="stat-value"><%= deliveredOrders %></div>
+                            <div class="stat-label">Delivered</div>
                         </div>
 
-                        <div class="stat-card" style="padding: 8px; text-align: center; border-radius: 6px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); border-left: 2px solid #e74c3c;">
-                            <div class="stat-icon" style="margin: 0 auto 4px; width: 30px; height: 30px; background-color: rgba(231, 76, 60, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                <i class="fas fa-times-circle" style="font-size: 12px; color: #e74c3c;"></i>
+                        <div class="stat-card" style="border-left-color: #e74c3c;">
+                            <div class="stat-icon" style="background-color: rgba(231, 76, 60, 0.1);">
+                                <i class="fas fa-times-circle" style="color: #e74c3c;"></i>
                             </div>
-                            <div class="stat-value" style="font-size: 16px; font-weight: 700; color: #1e3a8a; margin-bottom: 2px;"><%= cancelledOrders %></div>
-                            <div class="stat-label" style="font-size: 10px; color: #6c757d;">Cancelled</div>
+                            <div class="stat-value"><%= cancelledOrders %></div>
+                            <div class="stat-label">Cancelled</div>
                         </div>
                     </div>
                 </div>
@@ -362,13 +354,5 @@ session.removeAttribute("errorMessage");
 
     <!-- Modal has been removed to comply with project requirements (no JavaScript) -->
     <!-- Status updates can be handled through direct links to the update page instead -->
-
-    <!-- Add minimal JavaScript for sidebar toggle -->
-    <script>
-        document.getElementById('toggleSidebar').addEventListener('click', function() {
-            document.getElementById('sidebar').classList.toggle('collapsed');
-            document.querySelector('.main-content').classList.toggle('expanded');
-        });
-    </script>
 </body>
 </html>

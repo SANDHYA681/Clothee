@@ -181,6 +181,9 @@
 
 .related-products {
     margin-top: 60px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .related-products h2 {
@@ -194,6 +197,8 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .notification {
@@ -231,11 +236,11 @@
         width: 100%;
         padding: 0;
     }
-    
+
     .product-image {
         margin-bottom: 30px;
     }
-    
+
     .products-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -246,7 +251,7 @@
         flex-direction: column;
         align-items: stretch;
     }
-    
+
     .products-grid {
         grid-template-columns: 1fr;
     }

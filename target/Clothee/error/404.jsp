@@ -121,7 +121,7 @@
             <h3>Available Resources:</h3>
             <ul style="margin-left: 20px;">
                 <li><a href="<%= contextPath %>/index.jsp">Homepage</a></li>
-                <!-- Test links removed -->
+
                 <li><a href="<%= contextPath %>/CustomerMessageServlet">Customer Messages</a></li>
                 <li><a href="<%= contextPath %>/admin/dashboard.jsp">Admin Dashboard</a></li>
             </ul>

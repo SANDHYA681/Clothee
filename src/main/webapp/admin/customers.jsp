@@ -2,6 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="model.User" %>
 <%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="dao.MessageDAO" %>
 
 <%
 // Check if user is logged in and is an admin - this check is also done in the servlet
@@ -30,6 +31,10 @@ if (users == null) {
 String successMessage = (String) request.getAttribute("successMessage");
 String errorMessage = (String) request.getAttribute("errorMessage");
 
+// Get unread message count
+MessageDAO messageDAO = new MessageDAO();
+int unreadMessages = messageDAO.getUnreadMessageCount();
+
 // Format date
 SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
 %>
@@ -42,58 +47,25 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
     <title>Admin - Customers</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/admin-dashboard.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/admin/admin-sidebar.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/admin/admin-dashboard-new.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/admin/admin-dashboard-fix.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/admin-blue-theme-all.css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/admin-customers-enhanced.css">
-    <!-- Action buttons fix - must be loaded last to override other styles -->
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/action-buttons-fix.css">
-    <style>
-        /* Additional compact styles */
-        .admin-content {
-            padding: 10px;
-        }
-        .header {
-            margin-bottom: 10px;
-            padding: 8px 0;
-        }
-        .header h1 {
-            font-size: 18px;
-            margin: 0;
-        }
-        .dashboard-container {
-            min-height: auto;
-        }
-        .main-content {
-            padding: 10px;
-        }
-        .alert {
-            padding: 8px;
-            margin-bottom: 10px;
-        }
-        /* Make table more compact */
-        .data-table td, .data-table th {
-            padding: 4px 6px;
-        }
-        /* Reduce spacing in sidebar */
-        .sidebar-menu a {
-            padding: 8px 15px;
-        }
-    </style>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/admin/admin-customers-new.css">
 </head>
 <body>
     <div class="dashboard-container">
-        <div class="toggle-sidebar" id="toggleSidebar">
-            <i class="fas fa-bars"></i>
-        </div>
+        <!-- Include the new sidebar -->
+        <jsp:include page="includes/sidebar-new.jsp" />
 
-        <!-- Include sidebar -->
-        <jsp:include page="sidebar.jsp" />
-
-        <div class="main-content">
-            <div class="dashboard-header">
-                <h1 class="page-title">Customer Management</h1>
+        <div class="content">
+            <div class="content-header">
+                <h1>Customer Management</h1>
                 <div class="header-actions">
-                    <!-- Notification and message icons removed as requested -->
+                    <a href="messages.jsp" class="header-action" title="Messages <% if (unreadMessages > 0) { %>(<%=unreadMessages%> unread)<% } %>">
+                        <i class="fas fa-envelope"></i>
+                        <% if (unreadMessages > 0) { %><span class="header-badge"><%= unreadMessages %></span><% } %>
+                    </a>
                 </div>
             </div>
 
@@ -109,23 +81,23 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
             <% } %>
 
             <!-- Customer Statistics -->
-            <div class="customer-stats">
-                <div class="stat-card">
-                    <div class="stat-icon">
+            <div class="stats-cards">
+                <div class="stats-card">
+                    <div class="stats-card-icon">
                         <i class="fas fa-users"></i>
                     </div>
-                    <div class="stat-content">
-                        <div class="stat-value"><%= users.size() %></div>
-                        <div class="stat-label">Total Customers</div>
+                    <div class="stats-card-content">
+                        <div class="stats-card-value"><%= users.size() %></div>
+                        <div class="stats-card-label">Total Customers</div>
                     </div>
                 </div>
 
-                <div class="stat-card">
-                    <div class="stat-icon">
+                <div class="stats-card">
+                    <div class="stats-card-icon">
                         <i class="fas fa-user-shield"></i>
                     </div>
-                    <div class="stat-content">
-                        <div class="stat-value">
+                    <div class="stats-card-content">
+                        <div class="stats-card-value">
                             <%
                             int adminCount = 0;
                             for (User user : users) {
@@ -134,16 +106,16 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
                             %>
                             <%= adminCount %>
                         </div>
-                        <div class="stat-label">Administrators</div>
+                        <div class="stats-card-label">Administrators</div>
                     </div>
                 </div>
 
-                <div class="stat-card">
-                    <div class="stat-icon">
+                <div class="stats-card">
+                    <div class="stats-card-icon">
                         <i class="fas fa-user-check"></i>
                     </div>
-                    <div class="stat-content">
-                        <div class="stat-value">
+                    <div class="stats-card-content">
+                        <div class="stats-card-value">
                             <%
                             int regularCount = 0;
                             for (User user : users) {
@@ -152,16 +124,16 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
                             %>
                             <%= regularCount %>
                         </div>
-                        <div class="stat-label">Regular Customers</div>
+                        <div class="stats-card-label">Regular Customers</div>
                     </div>
                 </div>
 
-                <div class="stat-card">
-                    <div class="stat-icon">
+                <div class="stats-card">
+                    <div class="stats-card-icon">
                         <i class="fas fa-calendar-alt"></i>
                     </div>
-                    <div class="stat-content">
-                        <div class="stat-value">
+                    <div class="stats-card-content">
+                        <div class="stats-card-value">
                             <%
                             int newCustomers = 0;
                             long thirtyDaysInMillis = 30L * 24 * 60 * 60 * 1000;
@@ -175,7 +147,7 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
                             %>
                             <%= newCustomers %>
                         </div>
-                        <div class="stat-label">New (Last 30 Days)</div>
+                        <div class="stats-card-label">New (Last 30 Days)</div>
                     </div>
                 </div>
             </div>
@@ -192,13 +164,13 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
                         <table class="data-table">
                             <thead>
                                 <tr>
-                                    <th style="width: 40px;">ID</th>
-                                    <th style="width: 150px;">Name</th>
-                                    <th style="width: 150px;">Email</th>
-                                    <th style="width: 100px;">Phone</th>
-                                    <th style="width: 80px;">Role</th>
-                                    <th style="width: 120px;">Created At</th>
-                                    <th style="width: 90px;">Actions</th>
+                                    <th>ID</th>
+                                    <th>NAME</th>
+                                    <th>EMAIL</th>
+                                    <th>PHONE</th>
+                                    <th>ROLE</th>
+                                    <th>CREATED AT</th>
+                                    <th>ACTIONS</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -210,29 +182,31 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
                                             <div style="width: 24px; height: 24px; border-radius: 50%; background-color: #e0e7ff; display: flex; align-items: center; justify-content: center; margin-right: 6px; color: #4361ee; font-weight: 600; font-size: 10px;">
                                                 <%= user.getFirstName().substring(0, 1).toUpperCase() %><%= user.getLastName().substring(0, 1).toUpperCase() %>
                                             </div>
-                                            <div style="font-size: 12px;">
+                                            <div>
                                                 <%= user.getFirstName() %> <%= user.getLastName() %>
                                             </div>
                                         </div>
                                     </td>
-                                    <td style="font-size: 12px;"><%= user.getEmail() %></td>
-                                    <td style="font-size: 12px;"><%= user.getPhone() != null ? user.getPhone() : "-" %></td>
+                                    <td><%= user.getEmail() %></td>
+                                    <td><%= user.getPhone() != null ? user.getPhone() : "-" %></td>
                                     <td>
                                         <% if (user.isAdmin()) { %>
                                             <span class="badge admin"><%= user.getRole() != null ? user.getRole() : "Admin" %></span>
                                         <% } else { %>
-                                            <span class="badge customer"><%= user.getRole() != null ? user.getRole() : "Customer" %></span>
+                                            <span class="badge customer"><%= user.getRole() != null ? user.getRole() : "User" %></span>
                                         <% } %>
                                     </td>
-                                    <td style="font-size: 11px;"><%= user.getCreatedAt() != null ? dateFormat.format(user.getCreatedAt()) : "-" %></td>
+                                    <td><%= user.getCreatedAt() != null ? dateFormat.format(user.getCreatedAt()) : "-" %></td>
                                     <td>
                                         <div class="action-buttons">
                                             <a href="<%= request.getContextPath() %>/AdminUserServlet?action=view&id=<%= user.getId() %>" class="btn-view" title="View">
                                                 <i class="fas fa-eye"></i>
                                             </a>
-                                            <!-- Edit functionality removed as per requirements -->
+                                            <a href="<%= request.getContextPath() %>/AdminUserServlet?action=edit&id=<%= user.getId() %>" class="btn-edit" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
                                             <% if (user.getId() != currentUser.getId() && !user.isAdmin()) { %>
-                                                <a href="<%= request.getContextPath() %>/AdminUserServlet?action=confirmDelete&id=<%= user.getId() %>" class="btn-delete" title="Delete">
+                                                <a href="<%= request.getContextPath() %>/AdminUserServlet?action=showDeleteConfirmation&id=<%= user.getId() %>" class="btn-delete" title="Delete">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             <% } %>
@@ -248,22 +222,7 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
         </div>
     </div>
 
-    <!-- Add minimal JavaScript for sidebar toggle and delete confirmation -->
-    <script>
-        // Sidebar toggle
-        document.getElementById('toggleSidebar').addEventListener('click', function() {
-            document.getElementById('sidebar').classList.toggle('collapsed');
-            document.querySelector('.main-content').classList.toggle('expanded');
-        });
-
-        // Confirmation for delete
-        document.querySelectorAll('.btn-delete').forEach(button => {
-            button.addEventListener('click', function(e) {
-                if (!confirm('Are you sure you want to delete this user?')) {
-                    e.preventDefault();
-                }
-            });
-        });
-    </script>
+    <!-- Include common footer scripts -->
+    <jsp:include page="includes/footer-scripts.jsp" />
 </body>
 </html>

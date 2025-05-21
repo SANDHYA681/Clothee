@@ -1,0 +1,166 @@
+/*
+ * CLOTHEE Admin Dashboard - Sidebar Fix CSS
+ * Custom styling to fix sidebar issues
+ */
+
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif !important;
+    background-color: #f4f7fc !important;
+    color: #333 !important;
+    line-height: 1.6 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden !important;
+}
+
+/* Dashboard container */
+.dashboard-container {
+    display: flex !important;
+    min-height: 100vh !important;
+    position: relative !important;
+    background-color: #f4f7fc !important;
+    width: 100% !important;
+}
+
+/* Fixed sidebar */
+.sidebar {
+    position: fixed !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 250px !important;
+    height: 100vh !important;
+    background-color: #1e3a8a !important;
+    z-index: 1000 !important;
+    overflow-y: auto !important;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Sidebar header */
+.sidebar-header {
+    padding: 15px 20px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Logo */
+.logo {
+    display: flex !important;
+    align-items: center !important;
+    color: #fff !important;
+    text-decoration: none !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    margin-bottom: 15px !important;
+}
+
+.logo-icon {
+    margin-right: 10px !important;
+    font-size: 28px !important;
+}
+
+.logo-text {
+    letter-spacing: 1px !important;
+}
+
+/* User info */
+.user-info {
+    display: flex !important;
+    align-items: center !important;
+    margin-bottom: 10px !important;
+}
+
+.user-avatar {
+    width: 40px !important;
+    height: 40px !important;
+    background-color: #fff !important;
+    border-radius: 50% !important;
+    overflow: hidden !important;
+    margin-right: 10px !important;
+    border: 2px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.user-avatar img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+
+.user-details {
+    flex: 1 !important;
+}
+
+.user-details h4 {
+    color: #fff !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    margin: 0 !important;
+}
+
+/* Sidebar menu */
+.sidebar-menu {
+    margin-top: 10px !important;
+    padding: 0 !important;
+}
+
+.menu-item {
+    display: flex !important;
+    align-items: center !important;
+    padding: 14px 20px !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease !important;
+    margin-bottom: 2px !important;
+}
+
+.menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: #fff !important;
+}
+
+.menu-item.active {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    color: #fff !important;
+    font-weight: 500 !important;
+}
+
+.menu-icon {
+    margin-right: 15px !important;
+    display: inline-block !important;
+    width: 20px !important;
+    text-align: center !important;
+}
+
+/* Content area */
+.content {
+    margin-left: 250px !important;
+    padding: 20px !important;
+    transition: all 0.3s ease !important;
+    flex: 1 !important;
+}
+
+/* Mobile menu toggle */
+.mobile-menu-toggle {
+    display: none !important;
+}
+
+/* Badges */
+.badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 18px !important;
+    height: 18px !important;
+    padding: 0 5px !important;
+    background-color: #e74c3c !important;
+    color: white !important;
+    border-radius: 9px !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    margin-left: 5px !important;
+}

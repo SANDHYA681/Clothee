@@ -144,137 +144,20 @@ String[] statusOptions = {"Pending", "Processing", "Shipped", "Delivered", "Canc
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Details - Admin Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/admin-dashboard.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/admin/admin-sidebar.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/admin-blue-theme-all.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/admin/admin-orders-blue.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/admin-action-buttons.css">
-
-        .dashboard-container {
-            display: flex;
-            min-height: 100vh;
-        }
-
-        .sidebar {
-            width: var(--sidebar-width);
-            background-color: var(--dark-color);
-            color: white;
-            position: fixed;
-            height: 100vh;
-            overflow-y: auto;
-            transition: all 0.3s ease;
-        }
-
-        .sidebar-header {
-            padding: 20px;
-            text-align: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            color: white;
-            margin-bottom: 10px;
-        }
-
-        .logo-icon {
-            font-size: 24px;
-            color: var(--primary-color);
-            margin-right: 10px;
-        }
-
-        .logo-text {
-            font-size: 24px;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        .user-info {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .user-avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background-color: var(--primary-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 10px;
-            font-size: 32px;
-        }
-
-        .user-name {
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        .user-role {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .sidebar-menu {
-            padding: 20px 0;
-        }
-
-        .menu-item {
-            padding: 12px 20px;
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            color: rgba(255, 255, 255, 0.7);
-            transition: all 0.3s ease;
-        }
-
-        .menu-item:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: white;
-        }
-
-        .menu-item.active {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        .menu-icon {
-            margin-right: 15px;
-            width: 20px;
-            text-align: center;
-        }
-
-        .main-content {
-            flex: 1;
-            margin-left: var(--sidebar-width);
-            padding: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .content-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .page-title {
-            font-size: 24px;
-            font-weight: 600;
-        }
-
+    <style>
+        /* Order Details Specific Styles */
         .btn-back {
             display: inline-flex;
             align-items: center;
             padding: 8px 16px;
-            background-color: var(--light-color);
-            color: var(--dark-color);
+            background-color: #f8f9fa;
+            color: #333;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -288,7 +171,7 @@ String[] statusOptions = {"Pending", "Processing", "Shipped", "Delivered", "Canc
 
         .order-details {
             background-color: white;
-            border-radius: 10px;
+            border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             margin-bottom: 20px;
@@ -363,7 +246,7 @@ String[] statusOptions = {"Pending", "Processing", "Shipped", "Delivered", "Canc
 
         .order-items {
             background-color: white;
-            border-radius: 10px;
+            border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             margin-bottom: 20px;
@@ -405,7 +288,7 @@ String[] statusOptions = {"Pending", "Processing", "Shipped", "Delivered", "Canc
 
         .order-summary {
             background-color: white;
-            border-radius: 10px;
+            border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
@@ -440,7 +323,7 @@ String[] statusOptions = {"Pending", "Processing", "Shipped", "Delivered", "Canc
         .total-value {
             font-size: 18px;
             font-weight: 600;
-            color: var(--primary-color);
+            color: #1e3a8a;
         }
 
         .action-buttons {
@@ -459,14 +342,14 @@ String[] statusOptions = {"Pending", "Processing", "Shipped", "Delivered", "Canc
         }
 
         .btn-primary {
-            background-color: var(--primary-color);
+            background-color: #1e3a8a;
             color: white;
             border: none;
         }
 
         .btn-secondary {
-            background-color: var(--light-color);
-            color: var(--dark-color);
+            background-color: #f8f9fa;
+            color: #333;
             border: none;
         }
 
@@ -505,92 +388,16 @@ String[] statusOptions = {"Pending", "Processing", "Shipped", "Delivered", "Canc
             color: #721c24;
             border: 1px solid #f5c6cb;
         }
-
-        @media (max-width: 992px) {
-            .sidebar {
-                transform: translateX(-100%);
-            }
-
-            .sidebar.active {
-                transform: translateX(0);
-            }
-
-            .main-content {
-                margin-left: 0;
-            }
-
-            .toggle-sidebar {
-                display: flex;
-            }
-        }
     </style>
 </head>
 <body>
     <div class="dashboard-container">
-        <div class="sidebar" id="sidebar">
-            <div class="sidebar-header">
-                <a href="../index.jsp" class="logo">
-                    <span class="logo-icon"><i class="fas fa-tshirt"></i></span>
-                    <span class="logo-text">CLOTHEE</span>
-                </a>
-                <div class="user-info">
-                    <div class="user-avatar">
-                        <% if (user.getProfileImage() != null && !user.getProfileImage().isEmpty()) { %>
-                            <img src="<%= request.getContextPath() %>/<%= user.getProfileImage() %>" alt="<%= user.getFullName() %>">
-                        <% } else { %>
-                            <div class="no-profile-image">
-                                <i class="fas fa-user"></i>
-                            </div>
-                        <% } %>
-                    </div>
-                    <h3 class="user-name"><%= user.getFullName() %></h3>
-                    <p class="user-role">Admin</p>
-                </div>
-            </div>
+        <!-- Include the new sidebar -->
+        <jsp:include page="includes/sidebar-new.jsp" />
 
-            <div class="sidebar-menu">
-                <a href="<%= request.getContextPath() %>/admin/dashboard.jsp" class="menu-item">
-                    <span class="menu-icon"><i class="fas fa-tachometer-alt"></i></span>
-                    Dashboard
-                </a>
-                <a href="<%= request.getContextPath() %>/admin/products.jsp" class="menu-item">
-                    <span class="menu-icon"><i class="fas fa-box"></i></span>
-                    Products
-                </a>
-                <a href="<%= request.getContextPath() %>/admin/categories.jsp" class="menu-item">
-                    <span class="menu-icon"><i class="fas fa-tags"></i></span>
-                    Categories
-                </a>
-                <a href="<%= request.getContextPath() %>/admin/orders.jsp" class="menu-item active">
-                    <span class="menu-icon"><i class="fas fa-shopping-bag"></i></span>
-                    Orders
-                </a>
-                <a href="<%= request.getContextPath() %>/admin/customers.jsp" class="menu-item">
-                    <span class="menu-icon"><i class="fas fa-users"></i></span>
-                    Customers
-                </a>
-                <a href="<%= request.getContextPath() %>/admin/reviews.jsp" class="menu-item">
-                    <span class="menu-icon"><i class="fas fa-star"></i></span>
-                    Reviews
-                </a>
-                <a href="<%= request.getContextPath() %>/admin/messages.jsp" class="menu-item">
-                    <span class="menu-icon"><i class="fas fa-envelope"></i></span>
-                    Messages
-                </a>
-                <a href="<%= request.getContextPath() %>/admin/settings.jsp" class="menu-item">
-                    <span class="menu-icon"><i class="fas fa-cog"></i></span>
-                    Settings
-                </a>
-                <a href="<%= request.getContextPath() %>/LogoutServlet" class="menu-item">
-                    <span class="menu-icon"><i class="fas fa-sign-out-alt"></i></span>
-                    Logout
-                </a>
-            </div>
-        </div>
-
-        <div class="main-content">
+        <div class="content">
             <div class="content-header">
-                <h1 class="page-title">Order Details</h1>
+                <h1>Order Details</h1>
                 <a href="<%= request.getContextPath() %>/admin/orders.jsp" class="btn-back">
                     <i class="fas fa-arrow-left"></i> Back to Orders
                 </a>
@@ -723,7 +530,7 @@ String[] statusOptions = {"Pending", "Processing", "Shipped", "Delivered", "Canc
                         <button type="submit" class="btn btn-primary">Update Status</button>
                         <a href="<%= request.getContextPath() %>/AdminOrderServlet?action=showUpdateForm&id=<%= order.getId() %>" class="btn btn-secondary">Edit Order</a>
                         <% if (!isPaid) { %>
-                        <a href="#" onclick="confirmDelete(<%= order.getId() %>)" class="btn btn-danger">Delete Order</a>
+                        <a href="<%= request.getContextPath() %>/AdminOrderServlet?action=confirmDelete&id=<%= order.getId() %>" class="btn btn-danger" style="background-color: #dc3545; color: white;">Delete Order</a>
                         <% } else { %>
                         <span class="payment-info"><i class="fas fa-info-circle"></i> Cannot delete paid orders</span>
                         <% } %>
@@ -811,13 +618,6 @@ String[] statusOptions = {"Pending", "Processing", "Shipped", "Delivered", "Canc
             </div>
         </div>
     </div>
-    <script>
-        // Function to confirm order deletion
-        function confirmDelete(orderId) {
-            if (confirm("Are you sure you want to delete this order? This action cannot be undone.")) {
-                window.location.href = "<%= request.getContextPath() %>/AdminOrderServlet?action=delete&id=" + orderId;
-            }
-        }
-    </script>
+    <!-- No JavaScript as per requirements -->
 </body>
 </html>

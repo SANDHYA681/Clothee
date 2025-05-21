@@ -103,12 +103,10 @@ public class Message {
 
     // Helper method to check if this message is a reply
     public boolean isReply() {
-        // Since we're removing parent_id, we'll determine if it's a reply based on the subject
         return subject != null && subject.startsWith("RE: ");
     }
 
-    // Transient field to store if this message has been replied to
-    // This is a transient field used only in memory, not stored in the database
+    // Field to track if message has been replied to
     private transient boolean replied = false;
 
     // Helper method to check if this message has been replied to
@@ -122,7 +120,6 @@ public class Message {
     }
 
     // Helper method to check if this message has been read
-    // Since we're not tracking read status in the database, we'll assume all messages are read
     public boolean isRead() {
         return true;
     }

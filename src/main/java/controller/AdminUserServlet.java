@@ -90,7 +90,8 @@ public class AdminUserServlet extends HttpServlet {
                 viewUser(request, response);
                 break;
             case "confirmDelete":
-                confirmDeleteUser(request, response);
+            case "showDeleteConfirmation":
+                showDeleteConfirmation(request, response);
                 break;
             case "delete":
                 deleteUser(request, response);
@@ -253,9 +254,9 @@ public class AdminUserServlet extends HttpServlet {
     }
 
     /**
-     * Confirm delete user - shows confirmation page
+     * Show delete confirmation page
      */
-    private void confirmDeleteUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void showDeleteConfirmation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             String userIdParam = request.getParameter("id");
             HttpSession session = request.getSession();
@@ -308,7 +309,7 @@ public class AdminUserServlet extends HttpServlet {
             request.setAttribute("userToDelete", userToDelete);
 
             // Forward to confirmation page
-            request.getRequestDispatcher("/admin/confirm-delete-user.jsp").forward(request, response);
+            request.getRequestDispatcher("/admin/delete-user-confirmation.jsp").forward(request, response);
         } catch (Exception e) {
             System.out.println("AdminUserServlet: Error in confirmDeleteUser: " + e.getMessage());
             e.printStackTrace();

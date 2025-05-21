@@ -337,9 +337,6 @@ public class MessageDAO {
      */
     public List<Message> getUnreadMessages() {
         List<Message> messages = new ArrayList<>();
-
-        // Since we're removing is_read and is_reply fields, we'll return all messages
-        // In a real implementation, you would use a different approach to track message status
         return getAllMessages();
     }
 
@@ -348,8 +345,6 @@ public class MessageDAO {
      * @return List of replied messages
      */
     public List<Message> getRepliedMessages() {
-        // Since we're removing is_replied field, we'll return all messages
-        // In a real implementation, you would use a different approach to track message status
         return getAllMessages();
     }
 
@@ -473,7 +468,7 @@ public class MessageDAO {
 
         // Check if parent_id column exists
         if (!columnExists("parent_id")) {
-            System.out.println("MessageDAO: parent_id column doesn't exist, using subject-based approach");
+            System.out.println("MessageDAO: Using subject-based approach");
 
             // Get the original message to find its subject
             Message originalMessage = getMessageById(parentId);

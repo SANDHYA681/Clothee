@@ -43,8 +43,8 @@
 <section class="cart-section">
     <div class="container">
         <% if (cartMessage != null) { %>
-        <div class="alert alert-success" style="background-color: #ffebcc; color: #ff8800; padding: 15px; margin-bottom: 20px; border-radius: 4px; border-left: 5px solid #ff8800;">
-            <i class="fas fa-check-circle" style="margin-right: 10px;"></i><%= cartMessage %>
+        <div class="cart-message">
+            <i class="fas fa-check-circle"></i><%= cartMessage %>
         </div>
         <% } %>
 
@@ -58,7 +58,7 @@
         <% } else { %>
         <div class="cart-content">
             <div class="cart-items">
-                <h2>Cart Items</h2>
+                <h2 class="form-title">Cart Items</h2>
 
                 <div class="cart-header">
                     <div class="cart-product">Product</div>
@@ -110,7 +110,7 @@
             </div>
 
             <div class="cart-summary">
-                <h2>Order Summary</h2>
+                <h2 class="form-title">Order Summary</h2>
 
                 <div class="summary-item">
                     <span class="summary-label">Subtotal</span>
@@ -133,21 +133,14 @@
                 </div>
 
                 <div class="summary-actions">
-                    <a href="<%=request.getContextPath()%>/CartServlet?action=checkout" class="btn btn-primary btn-block" style="font-size: 18px; padding: 15px 20px; box-shadow: 0 4px 8px rgba(255, 136, 0, 0.3); position: relative; overflow: hidden;">
-                        <i class="fas fa-credit-card" style="margin-right: 10px;"></i>Proceed to Checkout
-                        <span style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent); transform: translateX(-100%); animation: shine 2s infinite; pointer-events: none;"></span>
+                    <a href="<%=request.getContextPath()%>/CartServlet?action=checkout" class="btn btn-primary btn-block">
+                        <i class="fas fa-credit-card"></i>Proceed to Checkout
                     </a>
-                    <style>
-                        @keyframes shine {
-                            100% {
-                                transform: translateX(100%);
-                            }
-                        }
-                    </style>
 
-                    <a href="<%=request.getContextPath()%>/CartServlet?action=clear" class="btn btn-outline btn-block">Clear Cart</a>
-
-                    <a href="<%=request.getContextPath()%>/ProductServlet" class="btn btn-link btn-block">Continue Shopping</a>
+                    <div class="secondary-actions">
+                        <a href="<%=request.getContextPath()%>/CartServlet?action=clear" class="btn btn-outline">Clear Cart</a>
+                        <a href="<%=request.getContextPath()%>/ProductServlet" class="btn btn-outline">Continue Shopping</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -157,8 +150,25 @@
 
 <style>
 /* Cart Page Styles */
+.cart-message {
+    background-color: #ffebcc;
+    color: #ff8800;
+    padding: 15px;
+    margin: 20px auto;
+    max-width: 1200px;
+    border-radius: 8px;
+    text-align: center;
+    border-left: 5px solid #ff8800;
+    box-shadow: 0 2px 8px rgba(255, 136, 0, 0.1);
+}
+
+.cart-message i {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
 .cart-section {
-    padding: 60px 0;
+    padding: 40px 0 60px;
 }
 
 .empty-cart {
@@ -187,20 +197,27 @@
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-content: space-between;
 }
 
-.cart-items {
-    flex: 2;
+.cart-items, .cart-summary {
+    flex: 1;
     min-width: 300px;
+    max-width: 48%;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .cart-summary {
-    flex: 1;
-    min-width: 300px;
-    background-color: #f9f9f9;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 20px;
+    align-self: flex-start;
+    margin-left: auto;
 }
 
 .cart-header {
@@ -226,11 +243,12 @@
 }
 
 .product-image {
-    width: 80px;
-    height: 80px;
-    border-radius: 4px;
+    width: 70px;
+    height: 70px;
+    border-radius: 6px;
     overflow: hidden;
     margin-right: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .product-image img {
@@ -243,6 +261,7 @@
     font-size: 16px;
     margin: 0 0 5px;
     color: #333;
+    font-weight: 600;
 }
 
 .product-category {
@@ -300,47 +319,87 @@
 .summary-item {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     color: #555;
+    font-size: 15px;
+    padding: 8px 0;
 }
 
 .summary-total {
     display: flex;
     justify-content: space-between;
-    margin: 20px 0;
-    padding-top: 20px;
-    border-top: 1px solid #ddd;
-    font-size: 18px;
-    font-weight: 600;
-    color: #333;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 2px solid #ddd;
+    font-size: 20px;
+    font-weight: 700;
+    color: #ff8800;
 }
 
 .summary-actions {
     margin-top: 30px;
+    padding: 20px;
+    background-color: #fcfcfc;
+    border-radius: 6px;
+    border-top: 1px solid #ddd;
+}
+
+.form-title {
+    margin-bottom: 25px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #ff8800;
+    color: #333;
+    font-size: 22px;
+    font-weight: 600;
 }
 
 .btn-block {
     display: block;
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     text-align: center;
+}
+
+.secondary-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.secondary-actions .btn {
+    flex: 1;
+}
+
+.btn {
+    padding: 14px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 160px;
+}
+
+.btn i {
+    margin-right: 10px;
 }
 
 .btn-primary {
     background-color: #ff8800;
     color: white;
     border: none;
-    padding: 12px 20px;
-    border-radius: 4px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(255, 136, 0, 0.2);
     position: relative;
+    overflow: hidden;
 }
 
 .btn-primary:hover {
     background-color: #ff9933;
-    transform: translateY(-3px);
+    transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(255, 136, 0, 0.3);
 }
 
@@ -351,34 +410,42 @@
 
 .btn-outline {
     background-color: transparent;
-    color: #ff8800;
-    border: 1px solid #ff8800;
-    padding: 12px 20px;
-    border-radius: 4px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
+    color: #555;
+    border: 1px solid #ddd;
 }
 
 .btn-outline:hover {
-    background-color: #ff8800;
-    color: white;
+    background-color: #f5f5f5;
+    color: #333;
+    border-color: #ccc;
 }
 
-.btn-link {
-    background: none;
-    color: #555;
-    text-decoration: none;
-    padding: 12px 20px;
-    display: inline-block;
-    text-align: center;
-}
+@media (max-width: 992px) {
+    .cart-content {
+        flex-direction: column;
+    }
 
-.btn-link:hover {
-    color: #ff8800;
+    .cart-items,
+    .cart-summary {
+        max-width: 100%;
+        margin: 0 auto 30px;
+    }
+
+    .cart-summary {
+        position: static;
+        margin-top: 30px;
+    }
 }
 
 @media (max-width: 768px) {
+    .cart-message {
+        margin: 15px;
+    }
+
+    .cart-section {
+        padding: 30px 15px;
+    }
+
     .cart-header {
         display: none;
     }
@@ -388,7 +455,7 @@
         gap: 15px;
         padding: 20px;
         margin-bottom: 20px;
-        background-color: #f9f9f9;
+        background-color: #fcfcfc;
         border-radius: 8px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     }
@@ -423,6 +490,11 @@
 
     .cart-action {
         justify-content: flex-end;
+    }
+
+    .secondary-actions {
+        flex-direction: column;
+        gap: 15px;
     }
 }
 </style>

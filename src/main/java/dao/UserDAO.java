@@ -100,7 +100,7 @@ public class UserDAO {
         }
 
         // Use a more specific query that only updates the fields we want to change
-        String query = "UPDATE users SET first_name = ?, last_name = ?, email = ?, phone = ?, " +
+        String query = "UPDATE users SET first_name = ?, last_name = ?, email = ?, phone = ?, profile_image = ?, " +
                        "updated_at = CURRENT_TIMESTAMP WHERE id = ?";
 
         try (Connection conn = DBConnection.getConnection();
@@ -111,13 +111,15 @@ public class UserDAO {
             stmt.setString(2, user.getLastName());
             stmt.setString(3, user.getEmail());
             stmt.setString(4, user.getPhone() != null ? user.getPhone() : "");
-            stmt.setInt(5, user.getId());
+            stmt.setString(5, user.getProfileImage());
+            stmt.setInt(6, user.getId());
 
             System.out.println("UserDAO.updateUserWithRole - Executing update query");
             System.out.println("UserDAO.updateUserWithRole - firstName: " + user.getFirstName());
             System.out.println("UserDAO.updateUserWithRole - lastName: " + user.getLastName());
             System.out.println("UserDAO.updateUserWithRole - email: " + user.getEmail());
             System.out.println("UserDAO.updateUserWithRole - phone: " + (user.getPhone() != null ? user.getPhone() : ""));
+            System.out.println("UserDAO.updateUserWithRole - profileImage: " + user.getProfileImage());
 
             int rowsAffected = stmt.executeUpdate();
             System.out.println("UserDAO.updateUserWithRole - Update result: " + rowsAffected + " rows affected");
@@ -142,7 +144,7 @@ public class UserDAO {
 
         // Use a more specific query that only updates the fields we want to change
         // This version doesn't include the role column
-        String query = "UPDATE users SET first_name = ?, last_name = ?, email = ?, phone = ?, " +
+        String query = "UPDATE users SET first_name = ?, last_name = ?, email = ?, phone = ?, profile_image = ?, " +
                        "updated_at = CURRENT_TIMESTAMP WHERE id = ?";
 
         try (Connection conn = DBConnection.getConnection();
@@ -153,7 +155,8 @@ public class UserDAO {
             stmt.setString(2, user.getLastName());
             stmt.setString(3, user.getEmail());
             stmt.setString(4, user.getPhone() != null ? user.getPhone() : "");
-            stmt.setInt(5, user.getId());
+            stmt.setString(5, user.getProfileImage());
+            stmt.setInt(6, user.getId());
 
             System.out.println("UserDAO.updateUserWithoutRole - Executing update query");
 
