@@ -21,12 +21,22 @@
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/product-button-fix.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/product-text-fix.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/product-badge-fix.css">
+<<<<<<< HEAD:target/Clothee/includes/header.jsp
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/footer-fix.css">
+=======
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/special-offer.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/collections.css">
+>>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8:target/Clothee-1.0-SNAPSHOT/includes/header.jsp
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
+<<<<<<< HEAD:target/Clothee/includes/header.jsp
     <!-- No JavaScript - Following MVC Pattern -->
+=======
+    <!-- Minimal UI Enhancements JavaScript - Only for essential visual effects -->
+    <script src="<%=request.getContextPath()%>/js/minimal-ui.js" defer></script>
+>>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8:target/Clothee-1.0-SNAPSHOT/includes/header.jsp
 
     <% if (currentPage.contains("/admin/")) { %>
     <!-- Admin specific CSS -->
@@ -160,7 +170,7 @@
                         <i class="fas fa-envelope"></i>
                     </a>
 
-                    <!-- Wishlist Icon removed -->
+                    <!-- End of user navigation icons -->
                 <% } %>
 
                 <!-- Logout Icon -->

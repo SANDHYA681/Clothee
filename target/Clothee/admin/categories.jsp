@@ -122,6 +122,11 @@ if (deleteId != null && !deleteId.isEmpty()) {
                 <button class="btn-add" onclick="location.href='../admin/AdminCategoryServlet?action=showAddForm'">
                     <i class="fas fa-plus"></i> Add New Category
                 </button>
+<<<<<<< HEAD:target/Clothee/admin/categories.jsp
+=======
+
+                <!-- Header actions area -->
+>>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8:target/Clothee-1.0-SNAPSHOT/admin/categories.jsp
             </div>
 
 
@@ -157,7 +162,11 @@ if (deleteId != null && !deleteId.isEmpty()) {
                             <a href="<%= request.getContextPath() %>/admin/AdminCategoryServlet?action=showAddForm" class="btn-primary" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 4px; margin-right: 10px;">
                                 <i class="fas fa-plus"></i> Add New Category
                             </a>
+<<<<<<< HEAD:target/Clothee/admin/categories.jsp
                             <!-- Test database button removed -->
+=======
+
+>>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8:target/Clothee-1.0-SNAPSHOT/admin/categories.jsp
                         </div>
                     </div>
                     <% } %>

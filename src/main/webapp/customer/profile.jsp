@@ -486,7 +486,11 @@
 </head>
 <body>
     <div class="dashboard-container">
+<<<<<<< HEAD
         <!-- Sidebar toggle button removed as JavaScript is not being used -->
+=======
+        <!-- Dashboard layout structure -->
+>>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8
         <!-- Mobile users can use browser back button instead -->
 
         <div class="sidebar" id="sidebar">
@@ -669,11 +673,19 @@
                     </div>
                 </div>
 
+<<<<<<< HEAD
                 <!-- Deactivate Account feature removed as requested -->
+=======
+                <!-- End of profile management section -->
+>>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8
             </div>
         </div>
     </div>
 
+<<<<<<< HEAD
     <!-- JavaScript removed as requested to rely solely on MVC backend -->
+=======
+    <!-- All functionality is handled through server-side processing -->
+>>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8
 </body>
 </html>

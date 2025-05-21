@@ -62,10 +62,14 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
             <div class="content-header">
                 <h1>Customer Management</h1>
                 <div class="header-actions">
+<<<<<<< HEAD:target/Clothee/admin/customers.jsp
                     <a href="messages.jsp" class="header-action" title="Messages <% if (unreadMessages > 0) { %>(<%=unreadMessages%> unread)<% } %>">
                         <i class="fas fa-envelope"></i>
                         <% if (unreadMessages > 0) { %><span class="header-badge"><%= unreadMessages %></span><% } %>
                     </a>
+=======
+                    <!-- Header actions area -->
+>>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8:target/Clothee-1.0-SNAPSHOT/admin/customers.jsp
                 </div>
             </div>
 
@@ -202,9 +206,13 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
                                             <a href="<%= request.getContextPath() %>/AdminUserServlet?action=view&id=<%= user.getId() %>" class="btn-view" title="View">
                                                 <i class="fas fa-eye"></i>
                                             </a>
+<<<<<<< HEAD:target/Clothee/admin/customers.jsp
                                             <a href="<%= request.getContextPath() %>/AdminUserServlet?action=edit&id=<%= user.getId() %>" class="btn-edit" title="Edit">
                                                 <i class="fas fa-edit"></i>
                                             </a>
+=======
+                                            <!-- View customer details -->
+>>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8:target/Clothee-1.0-SNAPSHOT/admin/customers.jsp
                                             <% if (user.getId() != currentUser.getId() && !user.isAdmin()) { %>
                                                 <a href="<%= request.getContextPath() %>/AdminUserServlet?action=showDeleteConfirmation&id=<%= user.getId() %>" class="btn-delete" title="Delete">
                                                     <i class="fas fa-trash"></i>

@@ -58,7 +58,6 @@ String statusFilter = request.getParameter("status");
 if (statusFilter == null) {
     statusFilter = "all";
 }
-System.out.println("Admin JSP - Status filter: " + statusFilter);
 
 // Clear messages after reading them
 session.removeAttribute("successMessage");

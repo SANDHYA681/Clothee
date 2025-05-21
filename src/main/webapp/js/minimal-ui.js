@@ -1,4 +1,5 @@
 /**
+<<<<<<< HEAD
  * UI Components
  *
  * Contains UI components for the application.
@@ -7,14 +8,30 @@
 
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize UI components
+=======
+ * Minimal UI Enhancements JavaScript
+ *
+ * This file contains the absolute minimum JavaScript needed for essential UI enhancements.
+ * It strictly follows the requirement to use JavaScript ONLY for UI enhancements.
+ * All business logic, validation, and data processing is handled server-side via MVC pattern.
+ */
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize only essential UI enhancements
+>>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8
   initPasswordToggles();
   initAlertDismissal();
   initSidebarToggle();
 });
 
 /**
+<<<<<<< HEAD
  * Password Toggle
  * Handles password visibility toggle
+=======
+ * Password Toggle - Essential UI enhancement
+ * Allows users to see their password as they type
+>>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8
  */
 function initPasswordToggles() {
   const toggleButtons = document.querySelectorAll('.password-toggle');
@@ -40,8 +57,13 @@ function initPasswordToggles() {
 }
 
 /**
+<<<<<<< HEAD
  * Alert Dismissal
  * Handles alert message dismissal
+=======
+ * Alert Dismissal - Essential UI enhancement
+ * Allows users to dismiss alert messages
+>>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8
  */
 function initAlertDismissal() {
   // Get all dismissible alerts
@@ -73,8 +95,13 @@ function initAlertDismissal() {
 }
 
 /**
+<<<<<<< HEAD
  * Sidebar Toggle
  * Handles sidebar collapse/expand functionality
+=======
+ * Sidebar Toggle - Essential UI enhancement for admin dashboard
+ * Allows users to collapse/expand the sidebar
+>>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8
  */
 function initSidebarToggle() {
   // Standard sidebar toggle

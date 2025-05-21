@@ -8,6 +8,7 @@
 
     <!-- Welcome File List -->
     <welcome-file-list>
+        <welcome-file>HomeServlet</welcome-file>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
@@ -450,8 +451,12 @@
     </servlet-mapping>
 
 
+<<<<<<< HEAD
     <!-- Filters temporarily commented out to fix deployment issues -->
     <!--
+=======
+    <!-- Authentication and Security Filters -->
+>>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8
     <filter>
         <filter-name>AuthenticationFilter</filter-name>
         <filter-class>filter.AuthenticationFilter</filter-class>

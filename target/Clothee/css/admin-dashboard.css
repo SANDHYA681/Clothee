@@ -3,11 +3,16 @@
  * This file imports all the component CSS files
  */
 
+@import url('custom.css'); /* Custom CSS framework */
 @import url('admin-base.css');
 @import url('admin-components.css');
 @import url('admin-forms.css');
 @import url('admin-pages.css');
 @import url('admin/admin-dashboard-tables.css'); /* Enhanced tables styling */
 @import url('admin-blue-theme-all.css'); /* Theme styling */
+<<<<<<< HEAD:target/Clothee/css/admin-dashboard.css
 @import url('admin-sidebar-toggle.css'); /* Sidebar toggle functionality */
 @import url('admin-fix.css'); /* Fix for pointer-events and z-index issues */
+=======
+@import url('admin-sidebar-toggle.css'); /* Sidebar toggle functionality */
+>>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8:target/Clothee-1.0-SNAPSHOT/css/admin-dashboard.css

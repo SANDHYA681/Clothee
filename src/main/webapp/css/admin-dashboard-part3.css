@@ -1,10 +1,10 @@
-/* 
+/*
  * CLOTHEE Admin Dashboard CSS - Part 3
  * Forms, buttons, and UI elements
  */
 
 /* ===== BUTTONS ===== */
-.btn {
+.admin-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -18,81 +18,81 @@
   outline: none;
 }
 
-.btn i {
+.admin-button i {
   margin-right: var(--spacing-2);
 }
 
-.btn-primary {
+.admin-button-primary {
   background-color: var(--primary);
   color: var(--white);
 }
 
-.btn-primary:hover {
+.admin-button-primary:hover {
   background-color: var(--primary-dark);
   box-shadow: var(--shadow);
 }
 
-.btn-secondary {
+.admin-button-secondary {
   background-color: var(--gray-200);
   color: var(--gray-800);
 }
 
-.btn-secondary:hover {
+.admin-button-secondary:hover {
   background-color: var(--gray-300);
 }
 
-.btn-success {
+.admin-button-success {
   background-color: var(--success);
   color: var(--white);
 }
 
-.btn-success:hover {
+.admin-button-success:hover {
   background-color: #218838;
 }
 
-.btn-danger {
+.admin-button-danger {
   background-color: var(--danger);
   color: var(--white);
 }
 
-.btn-danger:hover {
+.admin-button-danger:hover {
   background-color: #c82333;
 }
 
-.btn-info {
+.admin-button-info {
   background-color: var(--info);
   color: var(--white);
 }
 
-.btn-info:hover {
+.admin-button-info:hover {
   background-color: #138496;
 }
 
-.btn-warning {
+.admin-button-warning {
   background-color: var(--warning);
   color: var(--dark);
 }
 
-.btn-warning:hover {
+.admin-button-warning:hover {
   background-color: #e0a800;
 }
 
-.btn-sm {
+.admin-button-small {
   padding: var(--spacing-1) var(--spacing-3);
   font-size: var(--font-size-xs);
 }
 
-.btn-lg {
+.admin-button-large {
   padding: var(--spacing-3) var(--spacing-5);
   font-size: var(--font-size-base);
 }
 
-.btn-block {
+.admin-button-block {
   display: block;
   width: 100%;
 }
 
-.btn-add {
+.admin-button-add {
   display: inline-flex;
   align-items: center;
   padding: var(--spacing-2) var(--spacing-4);
@@ -104,21 +104,21 @@
   transition: var(--transition);
 }
 
-.btn-add i {
+.admin-button-add i {
   margin-right: var(--spacing-2);
 }
 
-.btn-add:hover {
+.admin-button-add:hover {
   background-color: var(--primary-dark);
   box-shadow: var(--shadow);
 }
 
-/* ===== FORMS ===== */
-.form-group {
+/* ===== ADMIN FORMS ===== */
+.admin-form-group {
   margin-bottom: var(--spacing-4);
 }
 
-.form-label {
+.admin-form-label {
   display: block;
   margin-bottom: var(--spacing-2);
   font-weight: var(--font-weight-medium);
@@ -132,7 +132,7 @@
   margin-left: var(--spacing-1);
 }
 
-.form-control {
+.admin-input {
   width: 100%;
   padding: var(--spacing-3) var(--spacing-4);
   font-size: var(--font-size-base);
@@ -144,18 +144,18 @@
   transition: var(--transition);
 }
 
-.form-control:focus {
+.admin-input:focus {
   border-color: var(--primary-light);
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgba(255, 136, 0, 0.25);
 }
 
-.form-control::placeholder {
+.admin-input::placeholder {
   color: var(--gray-500);
   opacity: 1;
 }
 
-.form-select {
+.admin-select {
   display: block;
   width: 100%;
   padding: var(--spacing-3) var(--spacing-4);
@@ -173,20 +173,20 @@
   appearance: none;
 }
 
-.form-select:focus {
+.admin-select:focus {
   border-color: var(--primary-light);
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgba(255, 136, 0, 0.25);
 }
 
-.form-check {
+.admin-checkbox-wrapper {
   display: block;
   min-height: 1.5rem;
   padding-left: 1.5em;
   margin-bottom: var(--spacing-2);
 }
 
-.form-check-input {
+.admin-checkbox {
   width: 1em;
   height: 1em;
   margin-top: 0.25em;
@@ -199,58 +199,58 @@
   appearance: none;
 }
 
-.form-check-input[type="checkbox"] {
+.admin-checkbox[type="checkbox"] {
   border-radius: var(--border-radius-sm);
 }
 
-.form-check-input[type="radio"] {
+.admin-checkbox[type="radio"] {
   border-radius: 50%;
 }
 
-.form-check-input:checked {
+.admin-checkbox:checked {
   background-color: var(--primary);
   border-color: var(--primary);
 }
 
-.form-check-input:focus {
+.admin-checkbox:focus {
   border-color: var(--primary-light);
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgba(255, 136, 0, 0.25);
 }
 
-.form-check-label {
+.admin-checkbox-label {
   color: var(--gray-700);
   font-size: var(--font-size-sm);
 }
 
-.form-text {
+.admin-form-hint {
   margin-top: var(--spacing-1);
   font-size: var(--font-size-xs);
   color: var(--gray-600);
 }
 
-.form-row {
+.admin-form-row {
   display: flex;
   flex-wrap: wrap;
   margin-right: -10px;
   margin-left: -10px;
 }
 
-.form-row > .form-group {
+.admin-form-row > .admin-form-group {
   padding-right: 10px;
   padding-left: 10px;
   flex: 1;
 }
 
-.form-actions {
+.admin-form-actions {
   display: flex;
   justify-content: flex-end;
   gap: var(--spacing-3);
   margin-top: var(--spacing-5);
 }
 
-/* ===== ALERTS ===== */
-.alert {
+/* ===== ADMIN NOTIFICATIONS ===== */
+.admin-notification {
   position: relative;
   padding: var(--spacing-3) var(--spacing-4);
   margin-bottom: var(--spacing-4);
@@ -258,25 +258,25 @@
   border-radius: var(--border-radius);
 }
 
-.alert-success {
+.admin-notification-success {
   color: #155724;
   background-color: #d4edda;
   border-color: #c3e6cb;
 }
 
-.alert-danger {
+.admin-notification-danger {
   color: #721c24;
   background-color: #f8d7da;
   border-color: #f5c6cb;
 }
 
-.alert-warning {
+.admin-notification-warning {
   color: #856404;
   background-color: #fff3cd;
   border-color: #ffeeba;
 }
 
-.alert-info {
+.admin-notification-info {
   color: #0c5460;
   background-color: #d1ecf1;
   border-color: #bee5eb;

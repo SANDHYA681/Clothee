@@ -400,7 +400,7 @@
             <div class="dashboard-header">
                 <h1 class="page-title">Edit Address</h1>
                 <div class="header-actions">
-                    <!-- Wishlist icon removed -->
+                    <!-- User account navigation -->
                     <a href="<%=request.getContextPath()%>/cart.jsp" class="header-action" title="Cart">
                         <i class="fas fa-shopping-cart"></i>
                     </a>

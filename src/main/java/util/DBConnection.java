@@ -81,5 +81,9 @@ public class DBConnection {
         }
     }
 
+<<<<<<< HEAD
     // Database connection testing and validation methods can be added here
+=======
+    // Test-related code removed
+>>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8
 }

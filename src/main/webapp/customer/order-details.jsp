@@ -481,7 +481,7 @@
                     <a href="<%=request.getContextPath()%>/CartServlet?action=view" class="header-action" title="Cart">
                         <i class="fas fa-shopping-cart"></i>
                     </a>
-                    <!-- Wishlist icon removed -->
+                    <!-- User account navigation -->
                     <a href="<%=request.getContextPath()%>/index.jsp" class="header-action" title="Back to Shop">
                         <i class="fas fa-store"></i>
                     </a>

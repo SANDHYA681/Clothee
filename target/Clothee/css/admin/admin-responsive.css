@@ -5,14 +5,14 @@
 
 /* Large Desktops (1200px and up) */
 @media (min-width: 1200px) {
-  .container {
+  .page-container {
     max-width: 1140px;
   }
 }
 
 /* Desktops (992px to 1199px) */
 @media (max-width: 1199px) {
-  .container {
+  .page-container {
     max-width: 960px;
   }
   
@@ -23,7 +23,7 @@
 
 /* Tablets (768px to 991px) */
 @media (max-width: 991px) {
-  .container {
+  .page-container {
     max-width: 720px;
   }
   
@@ -97,7 +97,7 @@
 
 /* Mobile Landscape (576px to 767px) */
 @media (max-width: 767px) {
-  .container {
+  .page-container {
     max-width: 540px;
   }
   

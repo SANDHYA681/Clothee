@@ -106,7 +106,7 @@
                                 </label>
                             </div>
 
-                            <button type="submit" class="btn btn-filter">Apply Filter</button>
+                            <button type="submit" class="action-button primary-button">Apply Filter</button>
                         </form>
                     </div>
                 </div>
@@ -132,7 +132,7 @@
                                 <option value="price-high" <%= "price-high".equals(sortBy) ? "selected" : "" %>>Price: High to Low</option>
                                 <option value="newest" <%= "newest".equals(sortBy) ? "selected" : "" %>>Newest</option>
                             </select>
-                            <button type="submit" class="btn btn-filter" style="margin-top: 10px;">Apply Sort</button>
+                            <button type="submit" class="action-button primary-button" style="margin-top: 10px;">Apply Sort</button>
                         </div>
                     </form>
                 </div>

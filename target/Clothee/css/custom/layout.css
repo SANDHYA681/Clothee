@@ -1,0 +1,264 @@
+/**
+ * Clothee E-commerce - Layout System
+ *
+ * This file implements a responsive layout system for structuring page content.
+ * It provides a flexible grid system and positioning utilities that adapt to
+ * different screen sizes for optimal viewing across devices.
+ */
+@import url('../common/variables.css');
+
+/* Page Container */
+.page-container {
+  width: 100%;
+  max-width: var(--container-xl);
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+  position: relative;
+}
+
+/* Content Section */
+.content-section {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -15px;
+}
+
+/* Content Column */
+.content-column {
+  flex: 1;
+  padding: 0 15px;
+}
+
+/* Column Widths */
+.column-full {
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding: 0 15px;
+}
+
+.column-half {
+  flex: 0 0 50%;
+  max-width: 50%;
+  padding: 0 15px;
+}
+
+.column-third {
+  flex: 0 0 33.333333%;
+  max-width: 33.333333%;
+  padding: 0 15px;
+}
+
+.column-two-thirds {
+  flex: 0 0 66.666667%;
+  max-width: 66.666667%;
+  padding: 0 15px;
+}
+
+.column-quarter {
+  flex: 0 0 25%;
+  max-width: 25%;
+  padding: 0 15px;
+}
+
+.column-three-quarters {
+  flex: 0 0 75%;
+  max-width: 75%;
+  padding: 0 15px;
+}
+
+/* Responsive Column Widths */
+@media (max-width: 1200px) {
+  .page-container {
+    max-width: var(--container-lg);
+  }
+}
+
+@media (max-width: 992px) {
+  .page-container {
+    max-width: var(--container-md);
+  }
+
+  .column-medium-full {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .column-medium-half {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .column-medium-third {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+  }
+
+  .column-medium-two-thirds {
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    max-width: var(--container-sm);
+  }
+
+  .column-small-full {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .column-small-half {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 576px) {
+  .page-container {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+
+  .column-tiny-full {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+/* Flexbox Layout Utilities */
+.flex-layout {
+  display: flex;
+}
+
+.flex-row-layout {
+  flex-direction: row;
+}
+
+.flex-column-layout {
+  flex-direction: column;
+}
+
+.flex-wrap-layout {
+  flex-wrap: wrap;
+}
+
+.flex-nowrap-layout {
+  flex-wrap: nowrap;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-around {
+  justify-content: space-around;
+}
+
+.align-start {
+  align-items: flex-start;
+}
+
+.align-end {
+  align-items: flex-end;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.align-baseline {
+  align-items: baseline;
+}
+
+.align-stretch {
+  align-items: stretch;
+}
+
+/* Grid Layout */
+.grid-layout {
+  display: grid;
+}
+
+.grid-gap-small {
+  gap: var(--spacing-sm);
+}
+
+.grid-gap-medium {
+  gap: var(--spacing-md);
+}
+
+.grid-gap-large {
+  gap: var(--spacing-lg);
+}
+
+.grid-columns-1 {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.grid-columns-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-columns-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-columns-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.grid-columns-auto-small {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.grid-columns-auto-medium {
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.grid-columns-auto-large {
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+@media (max-width: 992px) {
+  .grid-columns-medium-1 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .grid-columns-medium-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-columns-medium-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .grid-columns-small-1 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .grid-columns-small-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .grid-columns-tiny-1 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

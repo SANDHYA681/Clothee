@@ -534,7 +534,7 @@
             <div class="dashboard-header">
                 <h1 class="page-title">My Addresses</h1>
                 <div class="header-actions">
-                    <!-- Wishlist icon removed -->
+                    <!-- User account navigation -->
                     <a href="<%=request.getContextPath()%>/cart.jsp" class="header-action" title="Cart">
                         <i class="fas fa-shopping-cart"></i>
                     </a>
@@ -582,13 +582,13 @@
                     <% } %>
 
                     <div style="display: flex; gap: 15px; margin-top: 20px;">
-                        <a href="<%=request.getContextPath()%>/customer/edit-addresses.jsp?checkout=true" class="btn" style="background-color: #ff8800 !important; font-size: 16px; padding: 12px 20px; box-shadow: 0 4px 8px rgba(255, 136, 0, 0.3); position: relative; overflow: hidden; display: inline-block; text-decoration: none;">
+                        <a href="<%=request.getContextPath()%>/customer/edit-addresses.jsp?checkout=true" class="action-button" style="background-color: #ff8800 !important; font-size: 16px; padding: 12px 20px; box-shadow: 0 4px 8px rgba(255, 136, 0, 0.3); position: relative; overflow: hidden; display: inline-block; text-decoration: none;">
                             <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>Add New Address
                             <span style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent); transform: translateX(-100%); animation: shine 2s infinite;"></span>
                         </a>
 
                         <% if (hasAddress) { %>
-                        <a href="<%=request.getContextPath()%>/PaymentServlet?action=checkout" class="btn" style="background-color: #28a745 !important; color: white; font-size: 16px; padding: 12px 20px; box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3); position: relative; overflow: hidden; display: inline-block; text-decoration: none;">
+                        <a href="<%=request.getContextPath()%>/PaymentServlet?action=checkout" class="action-button" style="background-color: #28a745 !important; color: white; font-size: 16px; padding: 12px 20px; box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3); position: relative; overflow: hidden; display: inline-block; text-decoration: none;">
                             <i class="fas fa-credit-card" style="margin-right: 8px;"></i>Proceed to Payment
                             <span style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent); transform: translateX(-100%); animation: shine 2s infinite;"></span>
                         </a>
@@ -608,16 +608,7 @@
         </div>
     </div>
 
-    <script>
-        // Toggle sidebar on mobile
-        const toggleSidebar = document.getElementById('toggleSidebar');
-        const sidebar = document.getElementById('sidebar');
-
-        toggleSidebar.addEventListener('click', () => {
-            sidebar.classList.toggle('active');
-        });
-
-        // No JavaScript functions for editing addresses - using server-side approach instead
-    </script>
+    <!-- Include minimal-ui.js for UI enhancements -->
+    <script src="<%=request.getContextPath()%>/js/minimal-ui.js"></script>
 </body>
 </html>

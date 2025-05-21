@@ -35,7 +35,11 @@ a:hover {
   color: var(--primary-color);
 }
 
+<<<<<<< HEAD
 .layout-container {
+=======
+.page-container {
+>>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;

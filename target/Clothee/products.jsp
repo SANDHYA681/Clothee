@@ -497,7 +497,7 @@
 </head>
 <body>
     <header>
-        <div class="container header-container">
+        <div class="page-container header-container">
             <a href="index.jsp" class="logo">
                 <span class="logo-icon"><i class="fas fa-tshirt"></i></span>
                 <span class="logo-text">CLOTHEE</span>

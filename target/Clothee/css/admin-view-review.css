@@ -1,0 +1,207 @@
+/* Admin View Review CSS */
+
+.review-detail {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+    margin-bottom: 20px;
+    border: 1px solid #eee;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.product-info {
+    display: flex;
+    align-items: center;
+}
+
+.product-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-right: 20px;
+    border: 1px solid #eee;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-details h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.product-details p {
+    font-size: 14px;
+    color: #777;
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+.product-details a {
+    color: #4a6fdc;
+    text-decoration: none;
+}
+
+.product-details a:hover {
+    text-decoration: underline;
+}
+
+.review-meta {
+    text-align: right;
+}
+
+.review-date {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.review-id {
+    font-size: 12px;
+    color: #999;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.user-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 15px;
+    border: 1px solid #eee;
+}
+
+.user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-details h4 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.user-details p {
+    font-size: 14px;
+    color: #777;
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+.user-details a {
+    color: #4a6fdc;
+    text-decoration: none;
+}
+
+.user-details a:hover {
+    text-decoration: underline;
+}
+
+.review-rating {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.review-rating strong {
+    margin-right: 10px;
+}
+
+.stars {
+    color: #ffc107;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.rating-text {
+    color: #666;
+}
+
+.review-content {
+    margin-bottom: 30px;
+    line-height: 1.8;
+    color: #444;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid #4a6fdc;
+}
+
+.review-content p {
+    margin: 0;
+}
+
+.review-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+.btn-back, .btn-edit, .btn-delete {
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn-back {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-back:hover {
+    background-color: #5a6268;
+}
+
+.btn-edit {
+    background-color: #f0ad4e;
+    color: white;
+}
+
+.btn-edit:hover {
+    background-color: #ec971f;
+}
+
+.btn-delete {
+    background-color: #d9534f;
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #c9302c;
+}
+
+.header-action {
+    padding: 8px 15px;
+    background-color: #6c757d;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.header-action:hover {
+    background-color: #5a6268;
+}

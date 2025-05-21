@@ -190,10 +190,15 @@ session.removeAttribute("errorMessage");
             </div>
             <% } %>
 
+<<<<<<< HEAD:target/Clothee/admin/orders.jsp
             <!-- Fix Paid Orders button removed as requested -->
 
             <!-- Order Statistics -->
             <div class="card">
+=======
+            <!-- Order Statistics Section -->
+            <div class="card" style="margin-bottom: 10px;">
+>>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8:target/Clothee-1.0-SNAPSHOT/admin/orders.jsp
                 <div class="card-header">
                     <h2 class="card-title"><i class="fas fa-chart-pie"></i> Order Statistics</h2>
                 </div>
@@ -352,7 +357,19 @@ session.removeAttribute("errorMessage");
         </div>
     </div>
 
+<<<<<<< HEAD:target/Clothee/admin/orders.jsp
     <!-- Modal has been removed to comply with project requirements (no JavaScript) -->
     <!-- Status updates can be handled through direct links to the update page instead -->
+=======
+    <!-- Status updates are handled through direct links to the update page -->
+
+    <!-- Add minimal JavaScript for sidebar toggle -->
+    <script>
+        document.getElementById('toggleSidebar').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('collapsed');
+            document.querySelector('.main-content').classList.toggle('expanded');
+        });
+    </script>
+>>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8:target/Clothee-1.0-SNAPSHOT/admin/orders.jsp
 </body>
 </html>

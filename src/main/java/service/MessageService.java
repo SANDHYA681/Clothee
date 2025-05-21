@@ -159,13 +159,10 @@ public class MessageService {
      * @return List of replies
      */
     public List<Message> getRepliesByParentId(int messageId) {
-        System.out.println("MessageService: getRepliesByParentId called for messageId = " + messageId);
-
         try {
             // Get the original message to find its subject
             Message originalMessage = getMessageById(messageId);
             if (originalMessage == null) {
-                System.out.println("MessageService: Original message not found, returning empty list");
                 return new java.util.ArrayList<>();
             }
 
@@ -245,7 +242,6 @@ public class MessageService {
             }
         }
 
-        System.out.println("MessageService: Message found with ID = " + messageId + ", replied = " + message.isReplied());
         return message;
     }
 }

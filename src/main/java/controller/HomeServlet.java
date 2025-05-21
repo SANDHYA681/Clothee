@@ -21,7 +21,14 @@ public class HomeServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private List<Slide> slides;
 
-
+    /**
+     * Initialize the servlet
+     */
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        initializeSlides();
+    }
 
     /**
      * Initialize the slides
@@ -29,35 +36,15 @@ public class HomeServlet extends HttpServlet {
     private void initializeSlides() {
         slides = new ArrayList<>();
 
-        // Add slides
+        // Add a single slide with the hero image
         slides.add(new Slide(
-            "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
+            "images/hero-clothes.jpg",
             "Elevate Your Style",
             "Discover the latest trends in fashion and express yourself with our premium collection of clothing and accessories.",
             "ProductServlet?category=new",
             "Shop Now",
             "ProductServlet?category=sale",
             "View Sale"
-        ));
-
-        slides.add(new Slide(
-            "https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1771&q=80",
-            "Summer Collection 2023",
-            "Beat the heat with our cool and comfortable summer collection.",
-            "ProductServlet?category=summer",
-            "Explore Collection",
-            null,
-            null
-        ));
-
-        slides.add(new Slide(
-            "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-            "Exclusive Discounts",
-            "Up to 50% off on selected items. Limited time offer!",
-            "ProductServlet?category=sale",
-            "Shop Sale",
-            null,
-            null
         ));
     }
 
@@ -101,5 +88,8 @@ public class HomeServlet extends HttpServlet {
         // Set slides
         request.setAttribute("slides", slides);
         request.setAttribute("currentSlide", currentSlide);
+
+        // Forward to index.jsp
+        request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
 }

@@ -152,7 +152,7 @@
     </div>
 </section>
 
-<!-- Map section removed as requested -->
+<!-- Contact information section -->
 
 <style>
     .message-response {

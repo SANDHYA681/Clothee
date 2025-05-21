@@ -154,6 +154,18 @@ public class Product {
     }
 
     /**
+     * Get the average rating for this product
+     * This is a placeholder method that should be replaced with actual data from the database
+     * @return Average rating (0-5)
+     */
+    public double getAverageRating() {
+        // In a real implementation, this would query the database for all reviews of this product
+        // and calculate the average rating
+        // For now, we'll return a placeholder value
+        return 4.5;
+    }
+
+    /**
      * Add an additional image URL to the product
      * @param imageUrl Image URL to add
      */
