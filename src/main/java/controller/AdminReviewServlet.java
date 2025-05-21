@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.ArrayList;
 
 import jakarta.servlet.ServletException;
 // import jakarta.servlet.annotation.WebServlet;
@@ -117,59 +116,9 @@ public class AdminReviewServlet extends HttpServlet {
      */
     private void listReviews(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("AdminReviewServlet: listReviews method called");
-        try {
-            // Get filter parameters
-            String ratingFilter = request.getParameter("rating");
-            String sortBy = request.getParameter("sort");
-
-            // Get all reviews
-            List<Review> reviews = reviewDAO.getAllReviews();
-            System.out.println("AdminReviewServlet: Got " + reviews.size() + " reviews from database");
-
-            // Apply rating filter if specified
-            if (ratingFilter != null && !ratingFilter.equals("all")) {
-                try {
-                    int rating = Integer.parseInt(ratingFilter);
-                    List<Review> filteredReviews = new ArrayList<>();
-                    for (Review review : reviews) {
-                        if (review.getRating() == rating) {
-                            filteredReviews.add(review);
-                        }
-                    }
-                    reviews = filteredReviews;
-                    System.out.println("AdminReviewServlet: Filtered to " + reviews.size() + " reviews with rating " + rating);
-                } catch (NumberFormatException e) {
-                    System.out.println("AdminReviewServlet: Invalid rating filter: " + ratingFilter);
-                }
-            }
-
-            // Apply sorting if specified
-            if (sortBy != null) {
-                if (sortBy.equals("newest")) {
-                    reviews.sort((a, b) -> b.getReviewDate().compareTo(a.getReviewDate()));
-                } else if (sortBy.equals("oldest")) {
-                    reviews.sort((a, b) -> a.getReviewDate().compareTo(b.getReviewDate()));
-                } else if (sortBy.equals("highest")) {
-                    reviews.sort((a, b) -> Integer.compare(b.getRating(), a.getRating()));
-                } else if (sortBy.equals("lowest")) {
-                    reviews.sort((a, b) -> Integer.compare(a.getRating(), b.getRating()));
-                }
-                System.out.println("AdminReviewServlet: Sorted reviews by " + sortBy);
-            }
-
-            request.setAttribute("reviews", reviews);
-            System.out.println("AdminReviewServlet: Set reviews attribute in request");
-            request.getRequestDispatcher("/admin/reviews.jsp").forward(request, response);
-            System.out.println("AdminReviewServlet: Forwarded to reviews.jsp");
-        } catch (Exception e) {
-            System.err.println("AdminReviewServlet: Error in listReviews: " + e.getMessage());
-            e.printStackTrace();
-            // Create an empty list to avoid null pointer exception in JSP
-            request.setAttribute("reviews", new ArrayList<Review>());
-            request.setAttribute("error", "Error loading reviews: " + e.getMessage());
-            request.getRequestDispatcher("/admin/reviews.jsp").forward(request, response);
-        }
+        List<Review> reviews = reviewDAO.getAllReviews();
+        request.setAttribute("reviews", reviews);
+        request.getRequestDispatcher("/admin/reviews.jsp").forward(request, response);
     }
 
     /**
@@ -180,7 +129,7 @@ public class AdminReviewServlet extends HttpServlet {
         String idStr = request.getParameter("id");
 
         if (idStr == null || idStr.trim().isEmpty()) {
-            response.sendRedirect(request.getContextPath() + "/AdminReviewServlet?error=Invalid review ID");
+            response.sendRedirect(request.getContextPath() + "/admin/AdminReviewServlet?error=Invalid review ID");
             return;
         }
 
@@ -189,7 +138,7 @@ public class AdminReviewServlet extends HttpServlet {
             Review review = reviewDAO.getReviewById(reviewId);
 
             if (review == null) {
-                response.sendRedirect(request.getContextPath() + "/AdminReviewServlet?error=Review not found");
+                response.sendRedirect(request.getContextPath() + "/admin/AdminReviewServlet?error=Review not found");
                 return;
             }
 
@@ -208,7 +157,7 @@ public class AdminReviewServlet extends HttpServlet {
             request.getRequestDispatcher("/admin/view-review.jsp").forward(request, response);
 
         } catch (NumberFormatException e) {
-            response.sendRedirect(request.getContextPath() + "/AdminReviewServlet?error=Invalid review ID format");
+            response.sendRedirect(request.getContextPath() + "/admin/AdminReviewServlet?error=Invalid review ID format");
         }
     }
 
@@ -220,7 +169,7 @@ public class AdminReviewServlet extends HttpServlet {
         String idStr = request.getParameter("id");
 
         if (idStr == null || idStr.trim().isEmpty()) {
-            response.sendRedirect(request.getContextPath() + "/AdminReviewServlet?error=Invalid review ID");
+            response.sendRedirect(request.getContextPath() + "/admin/AdminReviewServlet?error=Invalid review ID");
             return;
         }
 
@@ -229,13 +178,13 @@ public class AdminReviewServlet extends HttpServlet {
             boolean success = reviewDAO.deleteReview(reviewId);
 
             if (success) {
-                response.sendRedirect(request.getContextPath() + "/AdminReviewServlet?success=Review deleted successfully");
+                response.sendRedirect(request.getContextPath() + "/admin/AdminReviewServlet?success=Review deleted successfully");
             } else {
-                response.sendRedirect(request.getContextPath() + "/AdminReviewServlet?error=Failed to delete review");
+                response.sendRedirect(request.getContextPath() + "/admin/AdminReviewServlet?error=Failed to delete review");
             }
 
         } catch (NumberFormatException e) {
-            response.sendRedirect(request.getContextPath() + "/AdminReviewServlet?error=Invalid review ID format");
+            response.sendRedirect(request.getContextPath() + "/admin/AdminReviewServlet?error=Invalid review ID format");
         }
     }
 
@@ -247,7 +196,7 @@ public class AdminReviewServlet extends HttpServlet {
         String idStr = request.getParameter("id");
 
         if (idStr == null || idStr.trim().isEmpty()) {
-            response.sendRedirect(request.getContextPath() + "/AdminReviewServlet?error=Invalid review ID");
+            response.sendRedirect(request.getContextPath() + "/admin/AdminReviewServlet?error=Invalid review ID");
             return;
         }
 
@@ -256,7 +205,7 @@ public class AdminReviewServlet extends HttpServlet {
             Review review = reviewDAO.getReviewById(reviewId);
 
             if (review == null) {
-                response.sendRedirect(request.getContextPath() + "/AdminReviewServlet?error=Review not found");
+                response.sendRedirect(request.getContextPath() + "/admin/AdminReviewServlet?error=Review not found");
                 return;
             }
 
@@ -275,7 +224,7 @@ public class AdminReviewServlet extends HttpServlet {
             request.getRequestDispatcher("/admin/edit-review.jsp").forward(request, response);
 
         } catch (NumberFormatException e) {
-            response.sendRedirect(request.getContextPath() + "/AdminReviewServlet?error=Invalid review ID format");
+            response.sendRedirect(request.getContextPath() + "/admin/AdminReviewServlet?error=Invalid review ID format");
         }
     }
 
@@ -290,7 +239,7 @@ public class AdminReviewServlet extends HttpServlet {
 
         if (idStr == null || idStr.trim().isEmpty() ||
             ratingStr == null || ratingStr.trim().isEmpty()) {
-            response.sendRedirect(request.getContextPath() + "/AdminReviewServlet?error=Missing required fields");
+            response.sendRedirect(request.getContextPath() + "/admin/AdminReviewServlet?error=Missing required fields");
             return;
         }
 
@@ -305,13 +254,13 @@ public class AdminReviewServlet extends HttpServlet {
             boolean success = reviewService.updateReview(reviewId, rating, comment, admin.getId(), "admin");
 
             if (success) {
-                response.sendRedirect(request.getContextPath() + "/AdminReviewServlet?action=view&id=" + reviewId + "&success=Review updated successfully");
+                response.sendRedirect(request.getContextPath() + "/admin/AdminReviewServlet?action=view&id=" + reviewId + "&success=Review updated successfully");
             } else {
-                response.sendRedirect(request.getContextPath() + "/AdminReviewServlet?action=edit&id=" + reviewId + "&error=Failed to update review");
+                response.sendRedirect(request.getContextPath() + "/admin/AdminReviewServlet?action=edit&id=" + reviewId + "&error=Failed to update review");
             }
 
         } catch (NumberFormatException e) {
-            response.sendRedirect(request.getContextPath() + "/AdminReviewServlet?error=Invalid ID or rating format");
+            response.sendRedirect(request.getContextPath() + "/admin/AdminReviewServlet?error=Invalid ID or rating format");
         }
     }
 
@@ -323,7 +272,7 @@ public class AdminReviewServlet extends HttpServlet {
         String productIdStr = request.getParameter("productId");
 
         if (productIdStr == null || productIdStr.trim().isEmpty()) {
-            response.sendRedirect(request.getContextPath() + "/AdminReviewServlet?error=Invalid product ID");
+            response.sendRedirect(request.getContextPath() + "/admin/AdminReviewServlet?error=Invalid product ID");
             return;
         }
 
@@ -332,7 +281,7 @@ public class AdminReviewServlet extends HttpServlet {
             Product product = productDAO.getProductById(productId);
 
             if (product == null) {
-                response.sendRedirect(request.getContextPath() + "/AdminReviewServlet?error=Product not found");
+                response.sendRedirect(request.getContextPath() + "/admin/AdminReviewServlet?error=Product not found");
                 return;
             }
 
@@ -343,7 +292,7 @@ public class AdminReviewServlet extends HttpServlet {
             request.getRequestDispatcher("/admin/product-reviews.jsp").forward(request, response);
 
         } catch (NumberFormatException e) {
-            response.sendRedirect(request.getContextPath() + "/AdminReviewServlet?error=Invalid product ID format");
+            response.sendRedirect(request.getContextPath() + "/admin/AdminReviewServlet?error=Invalid product ID format");
         }
     }
 
@@ -355,7 +304,7 @@ public class AdminReviewServlet extends HttpServlet {
         String userIdStr = request.getParameter("userId");
 
         if (userIdStr == null || userIdStr.trim().isEmpty()) {
-            response.sendRedirect(request.getContextPath() + "/AdminReviewServlet?error=Invalid user ID");
+            response.sendRedirect(request.getContextPath() + "/admin/AdminReviewServlet?error=Invalid user ID");
             return;
         }
 
@@ -364,7 +313,7 @@ public class AdminReviewServlet extends HttpServlet {
             User reviewUser = userDAO.getUserById(userId);
 
             if (reviewUser == null) {
-                response.sendRedirect(request.getContextPath() + "/AdminReviewServlet?error=User not found");
+                response.sendRedirect(request.getContextPath() + "/admin/AdminReviewServlet?error=User not found");
                 return;
             }
 
@@ -375,7 +324,7 @@ public class AdminReviewServlet extends HttpServlet {
             request.getRequestDispatcher("/admin/user-reviews.jsp").forward(request, response);
 
         } catch (NumberFormatException e) {
-            response.sendRedirect(request.getContextPath() + "/AdminReviewServlet?error=Invalid user ID format");
+            response.sendRedirect(request.getContextPath() + "/admin/AdminReviewServlet?error=Invalid user ID format");
         }
     }
 }

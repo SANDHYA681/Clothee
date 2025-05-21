@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="model.User" %>
 <%@ page import="dao.OrderDAO" %>
-<%-- Import required model and data access classes --%>
+<%-- Wishlist import removed --%>
 <%@ page import="dao.ReviewDAO" %>
 <%@ page import="dao.ProductDAO" %>
 <%@ page import="dao.CartDAO" %>
@@ -29,13 +29,14 @@
 
     // Get counts for dashboard cards
     OrderDAO orderDAO = new OrderDAO();
-    // Data access objects for database operations
+    // WishlistDAO removed
     CartDAO cartDAO = new CartDAO();
     ReviewDAO reviewDAO = new ReviewDAO();
     ProductDAO productDAO = new ProductDAO();
 
     int totalOrders = 0;
-    // Dashboard statistics counters
+    // wishlistItems removed
+    // savedAddresses removed
     int reviewsGiven = 0;
 
     // Get featured products
@@ -48,7 +49,9 @@
         e.printStackTrace();
     }
 
-    // Database query section
+    // Wishlist count code removed
+
+    // Address check code removed
 
     try {
         reviewsGiven = reviewDAO.getReviewCountByUserId(user.getId());
@@ -139,7 +142,9 @@
                     </div>
                 </a>
 
-                <!-- Dashboard statistics cards section -->
+                <!-- Wishlist card removed -->
+
+                <!-- Saved Addresses card removed -->
 
                 <a href="reviews.jsp" class="dashboard-card-link">
                     <div class="dashboard-card">
@@ -193,7 +198,8 @@
                         <i class="fas fa-envelope"></i>
                         <span>My Messages</span>
                     </a>
-                    <!-- End of quick action buttons -->
+                    <!-- Manage Addresses button removed -->
+                    <!-- Customize Dashboard button removed -->
                 </div>
             </div>
 

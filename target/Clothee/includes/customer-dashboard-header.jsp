@@ -22,7 +22,7 @@
     Integer cartCount = (Integer) session.getAttribute("cartCount");
     if (cartCount == null) cartCount = 0;
 
-    // Initialize cart count
+    // Wishlist functionality removed
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -100,7 +100,7 @@
                             <span class="customer-sidebar-text">My Orders</span>
                         </a>
                     </li>
-                    <!-- Shopping navigation section -->
+                    <!-- Wishlist functionality removed -->
                     <li class="customer-sidebar-item">
                         <a href="<%=request.getContextPath()%>/customer/reviews.jsp" class="customer-sidebar-link <%= pageName.equals("reviews.jsp") ? "active" : "" %>">
                             <span class="customer-sidebar-icon"><i class="fas fa-star"></i></span>
@@ -143,7 +143,7 @@
                     </div>
 
                     <div class="customer-header-actions">
-                        <!-- Shopping cart section -->
+                        <!-- Wishlist functionality removed -->
                         <a href="<%=request.getContextPath()%>/CartServlet?action=view" class="customer-header-action" title="Shopping Cart">
                             <i class="fas fa-shopping-cart"></i>
                             <% if (cartCount > 0) { %>

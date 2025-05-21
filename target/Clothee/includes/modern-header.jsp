@@ -82,7 +82,7 @@
                         <% } %>
                     </a>
 
-                    <!-- User account navigation section -->
+                    <!-- Wishlist Icon removed -->
 
                     <% if (userRole.equals("admin")) { %>
                         <!-- Admin Dashboard Icon -->
@@ -127,7 +127,7 @@
                                 <a href="<%=request.getContextPath()%>/OrderServlet?action=viewOrders" class="user-menu-item">
                                     <i class="fas fa-box"></i> My Orders
                                 </a>
-                                <!-- End of user menu items -->
+                                <!-- Wishlist menu item removed -->
                             <% } %>
 
                             <div class="user-menu-divider"></div>
@@ -201,7 +201,7 @@
                             <% } %>
                         </a>
                     </li>
-                    <!-- End of mobile menu navigation -->
+                    <!-- Mobile wishlist item removed -->
 
                     <% if (userRole.equals("admin")) { %>
                         <li class="mobile-item">

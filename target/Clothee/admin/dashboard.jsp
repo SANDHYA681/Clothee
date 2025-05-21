@@ -78,12 +78,12 @@ DecimalFormat currencyFormat = new DecimalFormat("$#,##0.00");
 
         <div class="content">
             <% if (successMessage != null && !successMessage.isEmpty()) { %>
-            <div class="notification notification-success">
+            <div class="alert alert-success">
                 <%= successMessage %>
             </div>
             <% } %>
             <% if (errorMessage != null && !errorMessage.isEmpty()) { %>
-            <div class="notification notification-danger">
+            <div class="alert alert-danger">
                 <%= errorMessage %>
             </div>
             <% } %>
@@ -309,12 +309,7 @@ DecimalFormat currencyFormat = new DecimalFormat("$#,##0.00");
         </div>
     </div>
 
-<<<<<<< HEAD:target/Clothee/admin/dashboard.jsp
     <!-- No JavaScript -->
-=======
-    <!-- Minimal UI enhancements are loaded in the header.jsp file -->
-    <!-- No additional JavaScript needed here -->
->>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8:target/Clothee-1.0-SNAPSHOT/admin/dashboard.jsp
 
     <!-- Include common footer scripts -->
     <jsp:include page="includes/footer-scripts.jsp" />

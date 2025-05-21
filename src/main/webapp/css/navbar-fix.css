@@ -82,4 +82,11 @@ body::after {
   }
 }
 
-/* Navbar styling complete */
+/* Debug outline to see clickable areas */
+.debug-mode .site-header,
+.debug-mode .header-container,
+.debug-mode .logo,
+.debug-mode .nav-icons,
+.debug-mode .nav-icon {
+  outline: 2px solid red;
+}

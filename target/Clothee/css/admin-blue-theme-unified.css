@@ -129,8 +129,8 @@ a:hover {
 }
 
 /* ===== CARD STYLES ===== */
-.product-card,
-.admin-product-card {
+.card,
+.admin-card {
   border: none !important;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05) !important;
   border-radius: 10px !important;

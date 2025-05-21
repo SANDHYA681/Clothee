@@ -1,4 +1,4 @@
-/*
+/* 
  * CLOTHEE Admin Dashboard - Components
  * Contains styles for cards, alerts, badges, and other UI components
  */
@@ -139,8 +139,8 @@
   margin-right: var(--spacing-1);
 }
 
-/* Notifications */
-.notification {
+/* Alerts */
+.alert {
   padding: var(--spacing-3) var(--spacing-4);
   margin-bottom: var(--spacing-4);
   border-radius: var(--border-radius);
@@ -148,50 +148,50 @@
   align-items: center;
 }
 
-.notification-icon {
+.alert-icon {
   margin-right: var(--spacing-3);
   font-size: var(--font-size-lg);
 }
 
-.notification-content {
+.alert-content {
   flex: 1;
 }
 
-.notification-title {
+.alert-title {
   font-weight: var(--font-weight-semibold);
   margin-bottom: var(--spacing-1);
 }
 
-.notification-message {
+.alert-message {
   font-size: var(--font-size-sm);
 }
 
-.notification-close {
+.alert-close {
   margin-left: var(--spacing-3);
   cursor: pointer;
   opacity: 0.7;
 }
 
-.notification-close:hover {
+.alert-close:hover {
   opacity: 1;
 }
 
-.notification-success {
+.alert-success {
   background-color: var(--success-light);
   color: var(--success);
 }
 
-.notification-info {
+.alert-info {
   background-color: var(--info-light);
   color: var(--info);
 }
 
-.notification-warning {
+.alert-warning {
   background-color: var(--warning-light);
   color: var(--warning);
 }
 
-.notification-danger {
+.alert-danger {
   background-color: var(--danger-light);
   color: var(--danger);
 }

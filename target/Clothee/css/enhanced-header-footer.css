@@ -35,11 +35,7 @@ a:hover {
   color: var(--primary-color);
 }
 
-<<<<<<< HEAD:target/Clothee/css/enhanced-header-footer.css
 .layout-container {
-=======
-.page-container {
->>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8:target/Clothee-1.0-SNAPSHOT/css/enhanced-header-footer.css
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;

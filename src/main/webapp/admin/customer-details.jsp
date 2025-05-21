@@ -39,7 +39,7 @@ if (orders == null) {
 }
 int orderCount = orders.size();
 
-// Initialize empty list for user preferences
+// Get wishlist items (empty list since we removed wishlist functionality)
 List<Object> wishlistItems = (List<Object>) request.getAttribute("wishlistItems");
 int wishlistCount = wishlistItems != null ? wishlistItems.size() : 0;
 

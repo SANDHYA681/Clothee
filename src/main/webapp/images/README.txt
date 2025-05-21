@@ -1,9 +1,2 @@
-This directory contains images for the website.
-
-Subdirectories:
-- avatars: User profile images
-- banners: Banner images for the website
-- categories: Category images
-- collections: Collection showcase images
-- products: Product images
-- testimonials: Customer testimonial images
+Please add a default profile image named "default-profile.jpg" in this directory.
+This image will be used as the default profile picture for users who haven't uploaded their own.

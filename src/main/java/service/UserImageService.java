@@ -293,11 +293,7 @@ public class UserImageService {
     private String getPermanentPath(String deploymentRoot, String relativePath) {
         try {
             // First, try to use a fixed, absolute path that will definitely persist
-<<<<<<< HEAD
             // This path is in the user's home directory for persistent storage
-=======
-            // This path should be outside the deployment directory but accessible by the web server
->>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8
 
             // Use the user's home directory as the primary storage location
             String userHome = System.getProperty("user.home");

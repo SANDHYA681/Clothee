@@ -154,7 +154,7 @@
                         </span>
                     </a>
 
-                    <!-- User account navigation section -->
+                    <!-- Wishlist Icon removed -->
                 <% } %>
 
                 <!-- Logout Icon -->

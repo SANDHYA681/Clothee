@@ -9,7 +9,7 @@
 </div>
 
 <section class="section">
-    <div class="page-container">
+    <div class="container">
         <%
             // Get the active tab from the request parameter
             String activeTab = request.getParameter("tab");
@@ -27,8 +27,8 @@
             <h2 class="category-title">Traditional Dress Collection</h2>
             <p class="category-description">Celebrate cultural heritage with our exquisite collection of traditional attire. Perfect for cultural events, festivals, and special occasions.</p>
 
-            <div class="content-section">
-                <div class="column-third">
+            <div class="row">
+                <div class="col-3">
                     <div class="category-card clickable">
                         <a href="products.jsp?category=traditional&type=women" class="card-link"></a>
                         <div class="category-image">
@@ -42,7 +42,7 @@
                     </div>
                 </div>
 
-                <div class="column-third">
+                <div class="col-3">
                     <div class="category-card clickable">
                         <a href="products.jsp?category=traditional&type=men" class="card-link"></a>
                         <div class="category-image">
@@ -56,7 +56,7 @@
                     </div>
                 </div>
 
-                <div class="column-third">
+                <div class="col-3">
                     <div class="category-card clickable">
                         <a href="products.jsp?category=traditional&type=accessories" class="card-link"></a>
                         <div class="category-image">
@@ -76,8 +76,8 @@
             <h2 class="category-title">Aesthetic Dress Collection</h2>
             <p class="category-description">Express your unique style with our aesthetic clothing collection. Trendy, Instagram-worthy outfits for the fashion-forward.</p>
 
-            <div class="content-section">
-                <div class="column-third">
+            <div class="row">
+                <div class="col-3">
                     <div class="category-card clickable">
                         <a href="products.jsp?category=aesthetic&type=casual" class="card-link"></a>
                         <div class="category-image">
@@ -91,7 +91,7 @@
                     </div>
                 </div>
 
-                <div class="column-third">
+                <div class="col-3">
                     <div class="category-card clickable">
                         <a href="products.jsp?category=aesthetic&type=streetwear" class="card-link"></a>
                         <div class="category-image">
@@ -105,7 +105,7 @@
                     </div>
                 </div>
 
-                <div class="column-third">
+                <div class="col-3">
                     <div class="category-card clickable">
                         <a href="products.jsp?category=aesthetic&type=vintage" class="card-link"></a>
                         <div class="category-image">
@@ -125,8 +125,8 @@
             <h2 class="category-title">Formal Dress Collection</h2>
             <p class="category-description">Make a lasting impression with our sophisticated formal wear. Perfect for business meetings, interviews, and special occasions.</p>
 
-            <div class="content-section">
-                <div class="column-third">
+            <div class="row">
+                <div class="col-3">
                     <div class="category-card clickable">
                         <a href="products.jsp?category=formal&type=business" class="card-link"></a>
                         <div class="category-image">
@@ -140,7 +140,7 @@
                     </div>
                 </div>
 
-                <div class="column-third">
+                <div class="col-3">
                     <div class="category-card clickable">
                         <a href="products.jsp?category=formal&type=evening" class="card-link"></a>
                         <div class="category-image">
@@ -154,7 +154,7 @@
                     </div>
                 </div>
 
-                <div class="column-third">
+                <div class="col-3">
                     <div class="category-card clickable">
                         <a href="products.jsp?category=formal&type=accessories" class="card-link"></a>
                         <div class="category-image">
@@ -172,6 +172,6 @@
     </div>
 </section>
 
-<!-- Server-side processing handles all functionality -->
+<!-- JavaScript removed as requested -->
 
 <%@ include file="includes/footer.jsp" %>

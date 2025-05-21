@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* Main CSS file that imports all CSS components */
 @import url('../common/variables.css');
 @import url('grid-system.css');
@@ -8,26 +7,3 @@
 @import url('card.css');
 @import url('modal.css');
 @import url('dropdown.css');
-=======
-/**
- * Clothee E-commerce - Main CSS File
- *
- * This is the primary stylesheet that imports all modular CSS components.
- * The CSS architecture follows a component-based approach with proper
- * separation of concerns for maintainability and scalability.
- */
-
-/* Core CSS Components */
-@import url('../common/variables.css'); /* Global variables for consistent theming */
-@import url('layout.css');              /* Page layout and structure */
-@import url('elements.css');            /* UI elements like buttons and form controls */
-@import url('helpers.css');             /* Utility classes for common styling needs */
-@import url('components.css');          /* Reusable UI components */
-
-/* Page-Specific Styles */
-@import url('../pages/index.css');      /* Homepage styles */
-@import url('../pages/product.css');    /* Product page styles */
-@import url('../pages/category.css');   /* Category page styles */
-@import url('../pages/admin.css');      /* Admin dashboard styles */
-@import url('../pages/customer.css');   /* Customer account styles */
->>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8

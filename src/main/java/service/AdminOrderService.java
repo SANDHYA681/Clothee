@@ -177,9 +177,11 @@ public class AdminOrderService {
      * @return true if successful, false otherwise
      */
     public boolean updateOrder(Order order) {
+        System.out.println("AdminOrderService: Updating order: " + order);
         try {
             return orderDAO.updateOrder(order);
         } catch (Exception e) {
+            System.out.println("AdminOrderService: Error updating order: " + e.getMessage());
             e.printStackTrace();
             return false;
         }
@@ -191,9 +193,11 @@ public class AdminOrderService {
      * @return Number of orders updated
      */
     public int updatePaidPendingOrders() {
+        System.out.println("AdminOrderService: Updating paid pending orders to Processing status");
         try {
             return orderDAO.updatePaidPendingOrders();
         } catch (Exception e) {
+            System.out.println("AdminOrderService: Error updating paid pending orders: " + e.getMessage());
             e.printStackTrace();
             return 0;
         }

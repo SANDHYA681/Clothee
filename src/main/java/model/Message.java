@@ -106,11 +106,7 @@ public class Message {
         return subject != null && subject.startsWith("RE: ");
     }
 
-<<<<<<< HEAD
     // Field to track if message has been replied to
-=======
-    // Transient field to store if this message has been replied to
->>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8
     private transient boolean replied = false;
 
     // Helper method to check if this message has been replied to

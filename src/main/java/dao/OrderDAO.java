@@ -117,7 +117,6 @@ public class OrderDAO {
 
                         // Create shipping record
                         boolean shippingCreated = createShipping(orderId, order.getStatus(), conn);
-<<<<<<< HEAD
 
                         // If shipping record creation failed due to missing address, log it but continue
                         if (!shippingCreated) {
@@ -125,15 +124,6 @@ public class OrderDAO {
                         }
 
                         // Order items are added through addOrderItem method
-=======
-
-                        // If shipping record creation failed due to missing address, log it but continue
-                        if (!shippingCreated) {
-                            System.out.println("OrderDAO: Warning - Shipping record not created for order ID: " + orderId + ". Missing shipping address.");
-                        }
-
-                        // Note: Order items should be added separately
->>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8
 
                         conn.commit();
                         return true;

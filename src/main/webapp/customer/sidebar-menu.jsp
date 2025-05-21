@@ -11,21 +11,22 @@
     <a href="<%=request.getContextPath()%>/OrderServlet?action=viewOrders" class="menu-item <%= request.getRequestURI().contains("orders.jsp") ? "active" : "" %>">
         <span class="menu-icon"><i class="fas fa-shopping-bag"></i></span> My Orders
     </a>
-    <!-- Shopping navigation section -->
+    <!-- Wishlist link removed -->
     <a href="<%=request.getContextPath()%>/CartServlet?action=view" class="menu-item <%= request.getRequestURI().contains("cart.jsp") ? "active" : "" %>">
         <span class="menu-icon"><i class="fas fa-shopping-cart"></i></span> My Cart
     </a>
     <a href="<%=request.getContextPath()%>/ProductServlet" class="menu-item <%= request.getRequestURI().contains("products") ? "active" : "" %>">
         <span class="menu-icon"><i class="fas fa-tshirt"></i></span> Shop Products
     </a>
-    <!-- User feedback section -->
+    <!-- Payment Methods link removed -->
     <a href="<%=request.getContextPath()%>/customer/reviews.jsp" class="menu-item <%= request.getRequestURI().contains("reviews.jsp") ? "active" : "" %>">
         <span class="menu-icon"><i class="fas fa-star"></i></span> My Reviews
     </a>
     <a href="<%=request.getContextPath()%>/messages" class="menu-item <%= request.getRequestURI().contains("messages-view.jsp") || request.getRequestURI().contains("view-message.jsp") || request.getServletPath().contains("/messages") ? "active" : "" %>">
         <span class="menu-icon"><i class="fas fa-envelope"></i></span> My Messages
     </a>
-    <!-- End of sidebar navigation -->
+    <!-- My Addresses link removed -->
+    <!-- Dashboard Settings link removed -->
     <a href="<%=request.getContextPath()%>/LoginServlet?action=logout" class="menu-item">
         <span class="menu-icon"><i class="fas fa-sign-out-alt"></i></span> Logout
     </a>

@@ -80,7 +80,7 @@
                     <div class="input-with-icon password-input" style="position: relative;">
                         <i class="fas fa-lock input-icon"></i>
                         <input type="password" id="password" name="password" class="form-control" required>
-                        <button type="button" class="password-toggle" data-input="password" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer;">
+                        <button type="button" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer;" onclick="togglePassword('password')">
                             <i class="fas fa-eye"></i>
                         </button>
                     </div>
@@ -91,7 +91,7 @@
                     <div class="input-with-icon password-input" style="position: relative;">
                         <i class="fas fa-lock input-icon"></i>
                         <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" required>
-                        <button type="button" class="password-toggle" data-input="confirmPassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer;">
+                        <button type="button" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer;" onclick="togglePassword('confirmPassword')">
                             <i class="fas fa-eye"></i>
                         </button>
                     </div>
@@ -116,6 +116,16 @@
     </div>
 </section>
 
-<!-- Password toggle functionality is now handled by ui-enhancements.js -->
+<script>
+    // Simple password toggle function
+    function togglePassword(inputId) {
+        const passwordInput = document.getElementById(inputId);
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+        } else {
+            passwordInput.type = 'password';
+        }
+    }
+</script>
 
 <%@ include file="/includes/footer.jsp" %>

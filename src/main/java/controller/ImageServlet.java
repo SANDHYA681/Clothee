@@ -25,11 +25,7 @@ import service.ProductImageService;
 public class ImageServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private ProductImageService productImageService;
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -71,11 +67,7 @@ public class ImageServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("ImageServlet - doPost method called");
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8
         // Check if user is logged in and is an admin
         HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute("user") == null) {
@@ -93,7 +85,6 @@ public class ImageServlet extends HttpServlet {
             // Get product ID from request parameter
             String productIdStr = request.getParameter("productId");
             System.out.println("ImageServlet - Product ID: " + productIdStr);
-<<<<<<< HEAD
 
             if (productIdStr == null || productIdStr.isEmpty()) {
                 // Check if returnUrl parameter is provided
@@ -108,19 +99,10 @@ public class ImageServlet extends HttpServlet {
                 return;
             }
 
-=======
-            
-            if (productIdStr == null || productIdStr.isEmpty()) {
-                response.sendRedirect(request.getContextPath() + "/admin/products.jsp?error=true&message=Product+ID+is+required");
-                return;
-            }
-            
->>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8
             int productId;
             try {
                 productId = Integer.parseInt(productIdStr);
             } catch (NumberFormatException e) {
-<<<<<<< HEAD
                 // Check if returnUrl parameter is provided
                 String returnUrl = request.getParameter("returnUrl");
                 if (returnUrl != null && !returnUrl.isEmpty()) {
@@ -173,42 +155,11 @@ public class ImageServlet extends HttpServlet {
 
             System.out.println("ImageServlet - Image URL: " + imageUrl);
 
-=======
-                response.sendRedirect(request.getContextPath() + "/admin/products.jsp?error=true&message=Invalid+product+ID");
-                return;
-            }
-            
-            // Get file part from request
-            Part filePart = request.getPart("productImage");
-            System.out.println("ImageServlet - File part: " + filePart);
-            
-            if (filePart == null || filePart.getSize() <= 0) {
-                response.sendRedirect(request.getContextPath() + "/admin/products.jsp?error=true&message=No+image+file+selected");
-                return;
-            }
-            
-            System.out.println("ImageServlet - File size: " + filePart.getSize() + " bytes");
-            
-            // Upload the image using the service
-            String webappRoot = request.getServletContext().getRealPath("/");
-            System.out.println("ImageServlet - Webapp root: " + webappRoot);
-            
-            String imageUrl = productImageService.uploadProductImage(productId, filePart, webappRoot);
-            
-            if (imageUrl == null) {
-                response.sendRedirect(request.getContextPath() + "/admin/products.jsp?error=true&message=Failed+to+upload+image");
-                return;
-            }
-            
-            System.out.println("ImageServlet - Image URL: " + imageUrl);
-            
->>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8
             // Verify the image file exists
             File imageFile = new File(webappRoot + imageUrl);
             System.out.println("ImageServlet - Image file exists: " + imageFile.exists());
             System.out.println("ImageServlet - Image file path: " + imageFile.getAbsolutePath());
             System.out.println("ImageServlet - Image file size: " + (imageFile.exists() ? imageFile.length() : 0) + " bytes");
-<<<<<<< HEAD
 
             // Check if returnUrl parameter is provided
             String returnUrl = request.getParameter("returnUrl");
@@ -232,16 +183,6 @@ public class ImageServlet extends HttpServlet {
                 // Redirect to products page with error message
                 response.sendRedirect(request.getContextPath() + "/admin/products.jsp?error=true&message=Error+uploading+image:+" + e.getMessage());
             }
-=======
-            
-            // Redirect to products page with success message
-            response.sendRedirect(request.getContextPath() + "/admin/products.jsp?success=true&message=Product+image+uploaded+successfully");
-            
-        } catch (Exception e) {
-            System.out.println("ImageServlet - Error: " + e.getMessage());
-            e.printStackTrace();
-            response.sendRedirect(request.getContextPath() + "/admin/products.jsp?error=true&message=Error+uploading+image:+" + e.getMessage());
->>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8
         }
     }
 }

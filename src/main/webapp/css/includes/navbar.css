@@ -1,8 +1,7 @@
 /**
- * Clothee E-commerce - Navigation Bar Styles
+ * Navbar CSS
  *
- * This CSS file contains styles for the site navigation bar and ensures
- * proper z-index and clickability for all interactive elements.
+ * This CSS file contains styles for the navigation bar and fixes for clickability issues
  */
 
 /* Ensure the site header is above all other elements */

@@ -109,7 +109,7 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm");
             gap: 10px;
         }
 
-        .action-button {
+        .btn-view {
             padding: 5px 15px;
             background-color: #ff8800;
             color: white;
@@ -120,7 +120,7 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm");
             text-decoration: none;
         }
 
-        .action-button:hover {
+        .btn-view:hover {
             background-color: #e67a00;
         }
 
@@ -138,11 +138,7 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm");
     <div class="message-container">
         <div class="message-header">
             <h1 class="message-title">My Messages</h1>
-<<<<<<< HEAD:target/Clothee/customer/messages.jsp
             <a href="<%=request.getContextPath()%>/contact.jsp" class="btn-view">Send New Message</a>
-=======
-            <a href="<%=request.getContextPath()%>/contact.jsp" class="action-button">Send New Message</a>
->>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8:target/Clothee-1.0-SNAPSHOT/customer/messages.jsp
         </div>
 
         <%
@@ -182,11 +178,7 @@ SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm");
                             <span class="message-status status-unread">New message</span>
                         <% } %>
                         <div class="message-actions">
-<<<<<<< HEAD:target/Clothee/customer/messages.jsp
                             <a href="<%=request.getContextPath()%>/messages?action=view&id=<%= message.getId() %>" class="btn-view">View</a>
-=======
-                            <a href="<%=request.getContextPath()%>/messages?action=view&id=<%= message.getId() %>" class="action-button">View</a>
->>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8:target/Clothee-1.0-SNAPSHOT/customer/messages.jsp
                         </div>
                     </div>
                 <% } %>

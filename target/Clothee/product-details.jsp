@@ -232,10 +232,6 @@
                             <button type="submit" class="add-to-cart-btn" <%= product.getStock() <= 0 ? "disabled" : "" %>>
                                 <i class="fas fa-shopping-cart"></i> Add to Cart
                             </button>
-<<<<<<< HEAD:target/Clothee/product-details.jsp
-=======
-                            <!-- Product purchase options -->
->>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8:target/Clothee-1.0-SNAPSHOT/product-details.jsp
                         <% } else if (user != null && user.isAdmin()) { %>
                             <div class="admin-notice">
                                 <i class="fas fa-info-circle"></i> Admin users cannot add products to cart
@@ -244,10 +240,6 @@
                             <a href="LoginServlet?message=<%= java.net.URLEncoder.encode("Please login to add items to your cart", "UTF-8") %>&redirectUrl=<%= java.net.URLEncoder.encode("ProductDetailsServlet?id=" + product.getId(), "UTF-8") %>" class="add-to-cart-btn">
                                 <i class="fas fa-shopping-cart"></i> Login to Add
                             </a>
-<<<<<<< HEAD:target/Clothee/product-details.jsp
-=======
-                            <!-- End of product actions -->
->>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8:target/Clothee-1.0-SNAPSHOT/product-details.jsp
                         <% } %>
                     </div>
                 </form>
@@ -525,7 +517,7 @@
                                             <input type="hidden" name="quantity" value="1">
                                             <button type="submit" class="btn-add-cart">Add to Cart</button>
                                         </form>
-                                        <!-- End of product card actions -->
+                                        <!-- Wishlist button removed -->
                                     <% } %>
                                 </div>
                             </div>

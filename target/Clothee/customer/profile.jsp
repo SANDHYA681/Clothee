@@ -486,11 +486,7 @@
 </head>
 <body>
     <div class="dashboard-container">
-<<<<<<< HEAD:target/Clothee/customer/profile.jsp
         <!-- Sidebar toggle button removed as JavaScript is not being used -->
-=======
-        <!-- Dashboard layout structure -->
->>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8:target/Clothee-1.0-SNAPSHOT/customer/profile.jsp
         <!-- Mobile users can use browser back button instead -->
 
         <div class="sidebar" id="sidebar">
@@ -673,19 +669,11 @@
                     </div>
                 </div>
 
-<<<<<<< HEAD:target/Clothee/customer/profile.jsp
                 <!-- Deactivate Account feature removed as requested -->
-=======
-                <!-- End of profile management section -->
->>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8:target/Clothee-1.0-SNAPSHOT/customer/profile.jsp
             </div>
         </div>
     </div>
 
-<<<<<<< HEAD:target/Clothee/customer/profile.jsp
     <!-- JavaScript removed as requested to rely solely on MVC backend -->
-=======
-    <!-- All functionality is handled through server-side processing -->
->>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8:target/Clothee-1.0-SNAPSHOT/customer/profile.jsp
 </body>
 </html>

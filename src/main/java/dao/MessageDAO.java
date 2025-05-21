@@ -336,10 +336,7 @@ public class MessageDAO {
      * @return List of unread messages
      */
     public List<Message> getUnreadMessages() {
-<<<<<<< HEAD
         List<Message> messages = new ArrayList<>();
-=======
->>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8
         return getAllMessages();
     }
 
@@ -471,11 +468,7 @@ public class MessageDAO {
 
         // Check if parent_id column exists
         if (!columnExists("parent_id")) {
-<<<<<<< HEAD
             System.out.println("MessageDAO: Using subject-based approach");
-=======
-            System.out.println("MessageDAO: parent_id column doesn't exist, using subject-based approach");
->>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8
 
             // Get the original message to find its subject
             Message originalMessage = getMessageById(parentId);
@@ -490,19 +483,13 @@ public class MessageDAO {
             // The reply subject pattern is "RE: " + original subject
             String replySubject = "RE: " + originalMessage.getSubject();
 
-<<<<<<< HEAD
             System.out.println("MessageDAO: Looking for replies with subject = " + replySubject);
 
-=======
->>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8
             // Find all messages that have the reply subject
             for (Message message : allMessages) {
                 if (message.getSubject() != null && message.getSubject().equals(replySubject)) {
                     replies.add(message);
-<<<<<<< HEAD
                     System.out.println("MessageDAO: Found reply ID = " + message.getId() + ", From: " + message.getName());
-=======
->>>>>>> 9b37fa48ea2abd2526c46b02e1af26f3d35528e8
                 }
             }
         } else {
